@@ -5,11 +5,6 @@ descript
 	version,1
 }
 
-//原始大小檔案(測試用)
-surface9999999
-{
-	element0,base,origin000.png,0,0
-}
 //透明
 surface999
 {
