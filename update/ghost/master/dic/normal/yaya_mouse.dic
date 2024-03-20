@@ -1,0 +1,744 @@
+//******************************************************************************
+// YAYA　ゴーストテンプレート
+// マウス入力関連辞書
+//******************************************************************************
+//#globaldefine ， ，\w5
+
+//******************************************************************************
+//マウス処理部
+//
+//以下、実際のトークを記述します。関数名は以下の規則になっています。
+//[種別] + [スコープ] + [部位]
+//種別は、MouseMove, MouseDoubleClick, MouseWheelUp, MouseWheelDown のどれかです。
+//スコープは、\0,\1,といったスコープ番号です。
+//部位は、当たり判定のどの部位かを表します。当たり判定の無い場所でのイベントの場合
+//部位はありません。
+//******************************************************************************
+//須將隨機對話額外做成獨立事件，否則【nonoverlap】將不作用
+
+//==========移動滑鼠（赫卡蒂）
+//摸頭（赫卡蒂）
+MouseMove0Hair
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HC[0] = TOINT (cum_touch_HC[0])
+		cum_touch_HC[0]++
+		if relationship[0]%2==1
+		{	intimacy[0]+=5 ; cum_int_HC[0]+=5	}
+		else
+		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
+		mood[0]+=3
+	}
+	if  EventArgv==0 { MenuChoice=0 ; SameLine_0Hair }
+	elseif DressingMode>=1 ; DressingRoomTouch(0)
+	else ; MouseInEvent
+}
+//摸臉（赫卡蒂）
+MouseMove0Face
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HC[1] = TOINT (cum_touch_HC[1])
+		cum_touch_HC[1]++
+		if relationship[0]%2==1
+		{	intimacy[0]+=3 ; cum_int_HC[0]+=3 ; mood[0]+=1	}
+		else
+		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
+		mood[0]++
+	}
+	if EventArgv==0 { MenuChoice=0 ; Line_Move0Face }
+	elseif DressingMode>=1 ; DressingRoomTouch(0)
+	else ; MouseInEvent
+}
+//摸胸（赫卡蒂）
+MouseMove0Bust
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HC[3] = TOINT (cum_touch_HC[3])
+		cum_touch_HC[3]++
+		if relationship[0]%2==1
+		{	intimacy[0]+=2 ; cum_int_HC[0]+=2 ; mood[0]++	}
+		else
+		{	intimacy[0]+=1 ; cum_int_HC[0]+=1	}
+	}
+	if EventArgv==0 { MenuChoice=0 ; Line_Move0Bust }
+	elseif DressingMode>=1 ; DressingRoomTouchBust(0)
+	else ; MouseInEvent
+}
+
+
+//==========雙擊滑鼠（赫卡蒂）==========
+MouseDoubleClick0Hair
+{
+	
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HC[0] = TOINT (cum_touch_HC[0])
+		cum_touch_HC[0]++
+		if relationship[0]%2==1
+		{	intimacy[0]+=5 ; cum_int_HC[0]+=5	}
+		else
+		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
+		mood[0]+=3
+	}
+	if EventArgv==0 { MenuChoice=0 ; SameLine_0Hair }
+	elseif DressingMode>=1 ; DressingRoomTouch(0)
+	else ; MouseInEvent
+}
+
+MouseDoubleClick0Face
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HC[2] = TOINT (cum_touch_HC[2])
+		cum_touch_HC[2]++
+		if relationship[0]%2==1
+		{	intimacy[0]+=3 ; cum_int_HC[0]+=3	}
+		else
+		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
+		mood[0]++
+	}
+	if EventArgv==0 { MenuChoice=0 ; Line_DoubleClick0Face }
+	elseif DressingMode>=1 ; DressingRoomTouch(0)
+	else ; MouseInEvent
+}
+
+
+MouseDoubleClick0Bust : nonoverlap
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HC[4] = TOINT (cum_touch_HC[4])
+		cum_touch_HC[4]++
+		if relationship[0]%2==1
+		{	intimacy[0]+=1 ; cum_int_HC[0]+=1 ; mood[0]++	}
+		else
+		{	intimacy[0]+=0 ; cum_int_HC[0]+=0	}
+	}
+	if EventArgv==0 { MenuChoice=0 ; Line_DoubleClick0Bust }
+	elseif DressingMode>=1 ; DressingRoomTouchBust(0)
+	else ; MouseInEvent
+}
+//==========開啟主選單（赫卡蒂）
+MouseDoubleClick0
+{
+	if EventArgv==0 { MenuChoice=0 ; OpenMenu }
+	elseif DressingMode>=1 ; DressingRoomTouch(0)
+	elseif ill_mode==2 && ill_info_page==14
+	{	OnIllustrated_Enemy_Info
+		--
+		"\0\![quicksession,false]"
+		--
+		OnIllustrated_Enemy_Info_TheDeepLine.HC
+	}
+	else ; MouseInEvent
+}
+
+//**********************************************************
+//---------------------------海拉---------------------------
+//**********************************************************
+//==========移動滑鼠（海拉）
+MouseMove1Hair
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[0] = TOINT (cum_touch_HL[0])
+		cum_touch_HL[0]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=3 ; cum_int_HL[0]+=3	}
+		else
+		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
+		mood[1]++
+	}
+	if EventArgv==0 { MenuChoice=1 ; SameLine_1Hair }
+	elseif DressingMode>=1 ; DressingRoomTouch(1)
+	else ; MouseInEvent
+}
+MouseMove1Face
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[1] = TOINT (cum_touch_HL[1])
+		cum_touch_HL[1]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=4 ; cum_int_HL[0]+=4	}
+		else
+		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
+		mood[1]+=2
+	}
+	if EventArgv==0 { MenuChoice=1 ; Line_Move1Face }
+	elseif DressingMode>=1 ; DressingRoomTouch(1)
+	else ; MouseInEvent
+}
+MouseMove1Bust
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[3] = TOINT (cum_touch_HL[3])
+		cum_touch_HL[3]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=2 ; cum_int_HL[0]+=2 ; mood[1]+=2	}
+		else
+		{	intimacy[1]-=2 ; cum_int_HL[0]-=2	}
+	}
+	if EventArgv==0 { MenuChoice=1 ; SameLine_1Bust }
+	elseif DressingMode>=1 ; DressingRoomTouchBust(1)
+	else ; MouseInEvent
+}
+//==========雙擊滑鼠（海拉）
+MouseDoubleClick1Hair
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[0] = TOINT (cum_touch_HL[0])
+		cum_touch_HL[0]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=3 ; cum_int_HL[0]+=3	}
+		else
+		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
+		mood[1]++
+	}
+	if EventArgv==0 { MenuChoice=1 ; SameLine_1Hair }
+	elseif DressingMode>=1 ; DressingRoomTouch(1)
+	else ; MouseInEvent
+}
+MouseDoubleClick1Face
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[2] = TOINT (cum_touch_HL[2])
+		cum_touch_HL[2]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=3 ; cum_int_HL[0]+=3	}
+		else
+		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
+		mood[1]++
+	}
+	if EventArgv==0 { MenuChoice=1 ; Line_DoubleClick1Face }
+	elseif DressingMode>=1 ; DressingRoomTouch(1)
+	else ; MouseInEvent
+}
+MouseDoubleClick1Bust
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[4] = TOINT (cum_touch_HL[4])
+		cum_touch_HL[4]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=2 ; cum_int_HL[0]+=2 ; mood[1]++	}
+		else
+		{	intimacy[1]-=2 ; cum_int_HL[0]-=2	}
+	}
+	if EventArgv==0 { MenuChoice=1 ; SameLine_1Bust }
+	elseif DressingMode>=1 ; DressingRoomTouchBust(1)
+	else ; MouseInEvent
+}
+MouseDoubleClick1Shoulder
+{
+	if EventArgv==0 || DressingMode>=1
+	{
+		cum_touch_HL[5] = TOINT (cum_touch_HL[5])
+		cum_touch_HL[5]++
+		if relationship[1]%2==1
+		{	intimacy[1]+=5 ; cum_int_HL[0]+=5	}
+		else
+		{	intimacy[1]+=3 ; cum_int_HL[0]+=3	}
+		mood[1]+=5
+	}
+	if EventArgv==0 { MenuChoice=1 ; Line_DoubleClick1Shoulder }
+	elseif DressingMode>=1 ; DressingRoomTouch(1)
+	else ; MouseInEvent
+}
+
+//==========開啟主選單（海拉）
+MouseDoubleClick1
+{
+	if EventArgv==0 { MenuChoice=1 ; OpenMenu }
+	elseif DressingMode>=1 ; DressingRoomTouch(1)
+	elseif ill_mode==2 && ill_info_page==14
+	{	OnIllustrated_Enemy_Info
+		--
+		"\1\![quicksession,false]"
+		--
+		OnIllustrated_Enemy_Info_TheDeepLine.HL
+	}
+	else ; MouseInEvent
+}
+
+EventArgv
+{ TOINT(BattleMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+TOINT(ill_mode)) }
+//if BattleMode+SpaMode+DispatchMode+StoreMode
+MouseInEvent
+{
+	if first_boot_event<6 ; ChiefRegister
+	elseif BattleMode>=1 ; StillInBattle
+	elseif SpaMode>=1 ; OnSpa.Window
+	elseif DispatchMode>=1 ; OnDispatch.Window
+	elseif StoreMode>=1 ; MouseDoubleClick3
+	elseif ill_mode==2 ; OnIllustrated_Enemy_Info
+	elseif ill_mode==1 ; Illustrated
+}
+//************************************************************
+//----------------------------台詞----------------------------
+//************************************************************
+//==========互動台詞（赫卡蒂）
+Line_Move0Bust : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\0\s[1]……"
+	else
+	{
+		if wearing_cloth_HC[7]==5 && wearing_cloth_HC[8]==4
+		{
+			if cloth_line_hc[0]==0
+			"\0\s[0]%SFX('exc/02-HC-15-enn')這就是所謂的學生制服，對吧？\e:eval=(cloth_line_hc[0]=1)"
+			if cloth_line_hc[0]==1
+			"\0\s[0]%SFX('exc/02-HC-52-ha a')說起來，琳小姐也是穿著學生制服的。\e:eval=(cloth_line_hc[0]=2)"
+			if cloth_line_hc[0]>=2
+			"\0\s[0]%SFX('exc/02-HC-15-enn')所謂學生，是要去「學校」習得知識與技能，未來在「社會」上發揮作用。\w9\w9\n[130]\s[1]我沒有去過學校，往年來都是在管理局接受訓練\w4…\w6…\w9 \s[3]我有為%(you)發揮作用嗎，%SFX('chief/01-HC-10-chief')%(usernameHC)？\e:eval=(cloth_line_hc[0]=0)"
+		}
+		if relationship[0]%2==1
+		{
+			"\0\s[5]這個行為是……「親熱」嗎？\w8我在專門的書上看到過。"
+		}
+		elseif relationship[0]%2==1 && intimacy[0]>=13000
+		{
+			"\0\s[8]我的心……\w5突然跳得好快……"
+		}
+		elseif relationship[0]%2==1 && intimacy[0]>=14000
+		{
+			"\0\s[8]不行……\w5明明還在工作中……"
+		}
+		elseif relationship[0]%2==1 && intimacy[0]>=15000
+		{
+			"\0\s[8]我的心……\w5突然跳得好快……"
+			"\0\s[7]%(usernameHC)這樣……\w5讓我的胸口變得好熱……\w7 \s[8]為什麼會這樣呢？"
+		}
+		elseif relationship[0]%2==1 && intimacy[0]>=17000
+		{
+			"\0\s[7]我好像……\w4開始喜歡被%(usernameHC)這樣對待了……"
+			"\0\s[8]我還想要%(usernameHC)溫柔的觸摸……\w9可以嗎？"
+		}
+		if intimacy[0]>7777 && relationship[0]%2==0
+		{
+			"\0\s[1]您在幫我整理衣服嗎？\w8謝謝。"
+		}
+		if cloth_line_hc[0]==0 && relationship[0]%2==0
+			"\0\s[1]我目前的心律十分穩定，請%SFX('chief/01-HC-02-chief')%(usernameHC)不必擔心。\e"
+	}
+}
+
+Line_DoubleClick0Face : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\0\s[1]……"
+	else
+	{
+		"\0\s[1]%SFX('exc/02-HC-15-enn')沒事的，我感覺不到痛。\e"
+		"\0\s[0]%SFX('exc/02-HC-15-enn')這個行為，是什麼意思呢？\e"
+		"\0\s[0]%SFX('exc/02-HC-15-enn')這是忍耐訓練嗎？\e"
+	}
+}
+Line_DoubleClick0Bust : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\0\s[1]……"
+	else
+	{
+		if relationship[0]>=1
+		{
+			"\0\s[0]這是情侶之間會做的事情嗎？\w9\s[8]我會試著習慣。"
+		}
+		elseif intimacy[0]>=10000
+		{
+			"\0\s[8]請……請不要這樣……"
+			"\0\s[0]%(usernameHC)，%(you)很喜歡做這種事嗎？"
+		}
+		else
+		{
+			"\0\s[0]\![sound,play,voice/原始_煩躁.mp3]如果是難以啟齒的命令，不必猶豫\s[1]，儘管使用我就好。\e"
+			"\0\s[1]%SFX('exc/02-HC-15-enn')沒關係，無論%(usernameHC)想做什麼，我會接受。\e"
+		}
+	}
+}
+MouseDoubleClick0Book : nonoverlap
+{
+	if DressingMode>=1
+		DressingRoomTouch(0)
+	else
+	{
+		if MoodStage(mood[0])=="G"
+		{	
+			"\0\s[3]當我的感到低落，\w9把心情畫到圖上，\w8就會舒坦許多……"
+			"\0\s[1]恩菲爾小姐似乎也會將糟糕的心情轉化成創作……"
+		}
+		else
+		{
+			
+			"\0\s[0]\![sound,play,voice/昨日重現_閒置.mp3]我畫過一些和%(usernameHC)有關的畫，他們都說，\s[3]絕不能讓%(you)看到。\e"
+			"\0\s[0]%SFX('chief/02-HC-50-chief')%(usernameHC)，\w3\s[5]你有空的時候，能不能陪我一起畫圖呢。\e"
+			"\0\s[0]%SFX('chief/02-HC-45-chief')%(usernameHC)你上次說，\w3我的畫……很好看？\w5我最近趁空又畫了一些，\w5\s[1]不知道你願不願意看一下呢？\e"
+			"\0\s[3]獨處的時候，\w4我喜歡將夢到的東西畫在本子上。\w8\n\s[0]%SFX('chief/02-HC-45-chief')%(usernameHC)獨處的時候喜歡做些什麼呢？\e"
+			"\0\s[3]麗莎小姐之前說過我很有天份，\w7%SFX('chief/01-HC-40-chief')%(usernameHC)……\w3也那麼覺得嗎？\e"
+		}
+	}
+}
+Line_Move0Face : nonoverlap
+{
+	if MoodStage(mood[0])=="G" && intimacy[0]<10000
+	{
+		"\0\s[0]「心情不好」？\w8那是什麼意思呢……"
+	}
+	elseif MoodStage(mood[0])=="G"
+	{
+		"\0\s[1]我的表情是不是很糟糕呢？"
+		"\0\s[1]我看起來不太開心？\w8很明顯嗎……\w5抱歉。"
+	}
+	else
+	{
+		"\0\s[0]%SFX('exc/02-HC-15-enn')……我的臉，怎麼了嗎？\e"
+		"\0\s[1]%SFX('exc/02-HC-15-enn')唔……\w5%(usernameHC)？\e"
+		if intimacy[0]>6789
+		{
+			"\0\s[5]%(usernameHC)的手，\w5好溫暖……"
+		}
+		if intimacy[0]>=10000
+		{
+			"\0\s[1]像這樣接觸%(usernameHC)，\w8讓我感到很安心……"
+		}
+	}
+}
+
+//==========共通台詞（赫卡蒂）
+SameLine_0Hair : nonoverlap
+{
+	if MoodStage(mood[0])=="G" && relationship[0]%2==1
+	{
+		"\0\s[3]我可以再撒會兒嬌嗎……\w8 %(usernameHC)？"
+	}
+	elseif MoodStage(mood[0])=="G" && intimacy<10000
+	{
+		"\0\s[5]是在鼓勵我嗎？\w7\s[8]謝謝您……"
+	}
+	elseif MoodStage(mood[0])=="G"
+	{
+		"\0\s[1]嗯……"
+		"\0\s[1]%(usernameHC)……"
+	}
+	else
+	{
+		"\0\s[1]%SFX('exc/02-HC-12-en')唔……\e"
+		"\0\s[2]%SFX('exc/02-HC-13-he inhale')呼……\e"
+		"\0\s[0]%SFX('chief/01-HC-40-chief')……%(usernameHC)要幫我整理頭髮嗎？\e"
+		"\0\s[0]%SFX('exc/02-HC-13-he inhale')如果%(you)希望的話，我可以換個髮型。\e"
+		if intimacy[0]<5000
+		{
+			"\0\s[0]\![sound,play,voice/原始_特殊交談1.mp3]%(you)可以對我再嚴苛一些，那些對我友善的人……\s[3]都……\e"
+		}
+		if intimacy[0]>8956
+		{
+			"\0\s[0]咦？\w3我的頭髮手感很好嗎？"
+			"\0\s[0]這是在「誇獎」我嗎？"
+		}
+		if intimacy[0]>=10000
+		{
+			"\0\s[5]「好乖」……\w5是什麼意思？"
+		}
+		if intimacy[0]>=11000
+		{
+			"\0\s[5]這是親暱的表現嗎？\w9我是不是也該摸摸%(usernameHC)的頭來回應呢？"
+		}
+		if relationship[0]>=1
+		{
+			"\0\s[5]喜歡……"
+			"\0\s[7]還想要……"
+			"\0\s[8]這樣很舒服……\w5%(usernameHC)……"
+		}
+		//------著裝反應
+		if wearing_cloth_HC[2]==1	//貓耳
+		"\0\s[1]%SFX('exc/02-HC-12-en')雖然看起來不明顯，\w7但這只是髮夾，\w6不是真的貓耳。\w9\n…\w1…\w3…\w5…\w9 \s[0]您為什麼要露出失望的表情呢？\e"
+	}
+}
+SameLine_0Bust : nonoverlap
+{
+	if DressingMode>=1
+		DressingRoomTouchBust(0)
+	elseif MoodStage(mood[0])=="G"
+		"\0\s[1]……"
+	{
+		if relationship[0]==1
+		{
+			"\0\s[5]這樣……\w5很舒服……"
+			"\0\s[7]%(usernameHC)溫柔的觸摸……\w7喜歡……"
+			"\0\s[8]唔嗯……"
+			"\0\s[8]有種奇怪的感覺……"
+		}
+		elseif intimacy[0]>=10000
+		{
+			"\0\s[0]？"
+			"\0\s[0]這個行為到底是什麼意思呢？"
+			"\0\s[0]%(usernameHC)？"
+		}
+		else
+		{
+			"\0\s[0]\![sound,play,voice/原始_煩躁.mp3]如果是難以啟齒的命令，不必猶豫\s[1]，儘管使用我就好。\e"
+			"\0\s[1]%SFX('exc/02-HC-15-enn')沒關係，無論%(usernameHC)想做什麼，我會接受。\e"
+		}
+	}
+}
+
+//==========互動詞（海拉）
+Line_Move1Face : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\1\s[51]……"
+	else
+	{
+		if relationship[1]==1
+		{	
+			"\1\s[12]喜歡我的臉嗎？\w6%(usernameHL)？"
+			"\1\s[12]當初是不是因為這張可愛的臉想要和我交往的？"
+			"\1\s[13]真肉麻－－"
+			"\1\s[37]幹嘛用那麼深情的眼神看著我……"
+		}
+		elseif intimacy[1]>=10000
+		{
+			"\1\s[35]如果不是%(usernameHL)的話，\w7這樣摸美少女會被認為是變態吧？"
+		}
+		if relationship[1]==0
+		{
+			"\1\s[13]看什麼看？沒看過美少女嗎？\e"
+			"\1\s[12]嗯？我的臉很有彈性嗎？\e"
+		}
+	}
+}
+Line_DoubleClick1Face : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\1\s[51]……"
+	else
+	{
+		if intimacy[1]>=10000
+		{
+			"\1\s[36]輕、\w3輕一點啦！"
+			"\1\s[32]臉會被捏歪掉的！"
+		}
+		else
+		{
+			"\1\s[14]\![sound,play,sound/ineterjection/HL 34-ei (fluster).mp3]怎麼能亂捏美少女的臉呢！\e"
+			"\1\s[14]\![sound,play,sound/ineterjection/HL 34-ei (fluster).mp3]好痛！\w3笨蛋！\e"
+			"\1\s[14]\![sound,play,sound/ineterjection/HL 34-ei (fluster).mp3]快住手！\e"
+		}
+	}
+}
+Line_DoubleClick1Shoulder : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\1\s[3]果然被%(you)按摩……\w5心理就會舒暢一些……"
+	else
+	{
+		if relationship[1]==1
+		{
+			"\1\s[38]討厭，\w3%(you)這個手法是有什麼下流的心思嗎？"
+			"\1\s[33]能給可愛的女朋友按摩，\w8是%(you)的福氣喔！"
+		}
+		if intimacy[1]>=10000
+		{
+			"\1\s[15]果然還是%(you)的按摩舒服——"
+			"\1\s[33]嗯、\w3嗯\w1嗯\w2…\w2…"
+			"\1\s[12]再給我揉揉！"
+		}
+		else
+		{
+			"\1\s[11]\![sound,play,sound/line/HL/Hl profile 煩躁.mp3]%(you)這是在給我按摩嗎？\e"
+			
+		}
+		"\1\s[15]\![sound,play,sound/ineterjection/HL 90-hu ha.mp3]嗯嗯，\w3就是那裡，\w6再施點力－－\e"
+	}
+}
+//==========共通台詞（海拉）
+SameLine_1Hair : nonoverlap
+{
+	if MoodStage(mood[0])=="G" ; "\1\s[13]……"
+	else
+	{
+		if relationship[1]==1
+		{
+			"\1\s[12]\![sound,play,sound/ineterjection/HL 16-hihi.mp3]嘿嘿……"
+			"\1\s[12]%(you)在開心什麼？\w6\s[33]是在想「能有像海拉這樣可愛的女朋友真幸運」嗎？"
+		}
+		if intimacy[1]>7000
+		{
+			"\1\s[11]\![sound,play,sound/ineterjection/HL 96-hen.mp3]別以為這樣……就可以討好我。\e"
+		}
+		"\1\s[18]\![sound,play,sound/ineterjection/HL 16-hihi.mp3]沒想到吧，我在辛迪加也能把髮質維持這麼好。\e"
+	}
+}
+SameLine_1Bust : nonoverlap
+{
+	"\1"
+	--
+	if relationship[1]%2==0 ; "\f[color,255,0,0]"
+	--
+	if MoodStage(mood[1])=="G"
+	{
+		"\s[19]別碰我！"
+		"\s[31]走、\w3走開……"
+	}
+	elseif intimacy[1]<5555
+	{
+		if touch_hella_chest==9
+		{
+			"\s[17]\![sound,play,sound/line/HL/Hl profile2 煩躁.mp3]再多試幾次的話，%(you)可要護好自己的腦袋哦？"
+			--
+			touch_hella_chest++
+		}
+		elseif touch_hella_chest>=10 ; TouchTooMuch1Bust
+		else
+		{
+			"\s[17]\![sound,play,sound/ineterjection/HL 07-zezeze.mp3]那隻手不想要了是嗎？"
+			"\s[17]\![sound,play,sound/ineterjection/HL 07-zezeze.mp3]%(you)活膩了嗎？！"
+			"\s[14]\![sound,play,sound/ineterjection/HL 54-wu a.mp3]手放哪呢！"
+			--
+			touch_hella_chest++
+		}
+	}
+	elseif intimacy[1]<10000
+	{
+		"\s[37]不、\w33不要……！"
+		"\s[39]住手……"
+		"\s[38]討厭！"
+	}
+	elseif intimacy[1]>=10000
+	{
+		"\s[37]變態！！！"
+		"\s[38]這是做什麼！"
+		"\s[37]怎麼毛手毛腳的！！"
+	}
+	elseif relationship[1]%2==1 && intimacy[1]<13000
+	{
+		"\s[38]在亂摸什麼……！"
+		"\s[37]討、\w3討厭……\w5 這麼猴急幹嘛呀……"
+	}
+	elseif relationship[1]%2==1
+	{
+		"\s[37]我一點都……\w5不喜歡喔……"
+		"\s[39]色情狂……"
+		"\s[39]笨蛋……"
+		"\s[50]震驚！\w4MBCC局長在辦公室偷摸女下屬胸部！"
+	}
+	
+	if relationship[1]%2==1 && intimacy[1]>=16000
+	{
+		"\s[39]再多摸幾下……\w6也不是不行……"
+	}
+}
+TouchTooMuch1Bust
+{
+	intimacy[1]-=10
+	cum_touch_HL[4]++
+	cum_int_down_HL[0]+=10
+	"\1\s[14]\f[color,255,0,0]%(you)、%(you)這傢伙……\w7 \s[17]不聽勸是嗎？！\w9\n[130]/
+	\f[default]現在、\w5立刻、\w5馬上！\w5給我滾出去！！！/
+	\0\s[6]咦……/
+	\p[2]%cp(0)但是……\w5 這裡是我的辦公室。\w7/
+	\1%(nl)\s[17]滾哪！！！\w5去門外給我好好反省！\w9\-"
+}
+TouchTooMuch1Bust2
+{
+	touch_hella_chest=0
+	intimacy[1]+=5
+	"\1\s[11]哼……\w4 \s[13]下次可不許再這樣得寸進尺了。"
+}
+TouchTooMuch1Bust3
+{
+	intimacy[1]-=17
+	cum_int_down_HL[0]+=17
+	"\1\s[17]\f[color,255,0,0]那就再回去反省一次。\w9\-"
+}
+
+//************************************************************
+//----------------------------戰鬥----------------------------
+//************************************************************
+MouseDoubleClick5
+{
+	if BattleMode>=1
+		StillInBattle
+	else
+		"\p[5]\s[-1]\c\b[-1]\e"
+}
+
+
+
+
+//**********************************************************
+//							局長							
+//**********************************************************
+MouseDoubleClick2
+{
+	if first_boot_event<6 ; ChiefRegister
+	elseif EventArgv>0 ; MouseInEvent
+	else { MenuCheif=2 ; CheifInfo }
+}
+
+
+
+
+//**********************************************************
+//----------------------------NPC----------------------------
+//**********************************************************
+MouseDoubleClick3
+{
+	if first_boot_event<6 ; ChiefRegister
+	elseif StoreMode>=1
+	{
+		Store
+		--
+		if StoreMode==0	; Menu_STORE.MenuTalk0
+		else ; Menu_STORE.MenuTalk1
+	}
+	elseif ForgeMode>=1 ; OnForgeRoom.Talk
+	else
+		"\p[3]\s[-1]"
+}
+
+//**********************************************************
+//----------------------------派遣----------------------------
+//**********************************************************
+MouseDoubleClick8
+{
+	if DispatchMode>=1 ; OnDispatch.Window
+	elseif SpaMode>=1
+		OnSpa.Window
+	else ; "\p[8]\s[-1]"
+}
+//******************************************************************************
+//マウス処理部コア
+//AYATEMPLATE.MouseMoveWheelFuncの2番目の数字が「感度」です。
+//1番目の数字（0か1）は、MoveかWheelかを判別するためのもので、
+//変更の必要はありません。
+//******************************************************************************
+
+OnMouseMove
+{
+	AYATEMPLATE.MouseMoveWheelFunc(0,50,'MouseMove')
+}
+
+OnMouseWheel
+{
+	_result = ''
+	if TOINT(reference[2]) > 0 {
+		_result = AYATEMPLATE.MouseMoveWheelFunc(1,4,'MouseWheelUp')
+	}
+	else {
+		_result = AYATEMPLATE.MouseMoveWheelFunc(1,4,'MouseWheelDown')
+	}
+	
+	if _result == '' {
+		_result = AYATEMPLATE.MouseMoveWheelFunc(1,4,'MouseWheel')
+	}
+	
+	_result
+}
+
+OnMouseDoubleClick
+{
+	AYATEMPLATE.MouseEventExec('MouseDoubleClick');
+}
+

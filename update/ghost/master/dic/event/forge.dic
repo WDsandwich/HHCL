@@ -1,0 +1,239 @@
+Hotkey_ForgeRoom
+{	if ForgeMode==1 ; OnForgeRoom.Close
+	else ; OnForgeRoom.Open
+}
+OnForgeRoom.Open
+{	ForgeMode=1
+	forge_insuf=0
+	metmess=TOINT(metmess) ; metmess++
+	--
+	"\![sound,stop]"
+	--
+	OnForgeRoom
+	--
+	"\w2\p[3]\![quicksession,false]\![set,balloontimeout,0]\![sound,stop]"
+	--
+	"%SFX('npc\mess\open_01')\s[312000]平常都是%(you)的副官來下訂單的，\_w[2010]\s[312003]今天怎麼親自來了？\_w[2100]\n[130]\s[312009]難不成……\_w[1314] \s[312002]%(you)也想要一把充滿惡意的武器？"
+	if metmess>1
+	"%SFX('npc\mess\open_02')\s[312008]別催我，\_w[1000]做好了會送你過去的……\_w[2000]\n[130]\s[312009]嗯？\_w[600]\s[312003]是%(you)呀。"
+	--
+	"\_w[3000]\b[-1]\s[312000]"
+
+}
+OnForgeRoom.Talk
+{	OnForgeRoom
+	--
+	"\p[3]\![quicksession,false]\![set,balloontimeout,0]\![sound,stop]"
+	--
+	OnForgeRoom.Talk.Line
+	--
+	"\_w[3000]\_w[3000]\_w[3000]\b[-1]"
+}
+OnForgeRoom.Talk.Line:nonoverlap
+{
+	"%SFX('npc\mess\talk_01')\s[312000]雖然槍械也很好，\_w[1500]但我還是更喜歡冷兵器。\_w[2010]\n[130]\s[312005]噗呲，\w9\s[312002]啪嘰，\w9\s[312003]嘩啦──\_w[1200]\s[312007]人就沒了，\_w[1400]\s[312004]太浪漫了……"
+	"%SFX('npc\mess\talk_02')\w9\s[312007]我最看不起\w2新城的那些\w2律師經理\w2和政客了－－\_w[2200] \s[312003]有空動嘴皮子，\_w[1000]\s[312005]為什麼不動手呢？\_w[1200]\n[130]\s[312006]……買把刀也用不了幾個錢吧。"
+	"%SFX('npc\mess\talk_03')\s[312001]\w5哇！\w5新出的這個巫毒娃娃好可愛～\_w[2500]\s[312002]好想把它切碎了扔進爐子裡當燃料……\_w[1800] \n[130]\s[312004]欸嘿，\_w[1000]\s[312001]現在就下單！"
+	/*"%SFX('npc\mess\talk_04')嗯，刀筋很正，平衡也很完美，接下來就是刀柄了… "*/
+	"%SFX('npc\mess\talk_05')\s[312007]我是絕對不會用鍛造機這種不可愛的東西的。\_w[3000] \n[130]\s[312000]比起機打的大路貨，\_w[1300]用精心手打的武器戰鬥，\_w[1600]\s[312003]心情也會不一樣的吧？"
+	"%SFX('npc\mess\talk_06')\s[312003]我觀察%(you)很久了。\_w[1500]%(you)的身上真的沒有那種……\_w[1550] \s[312005]嗯，\_w[1100]\s[312006]純粹的惡意，\_w[1300]\s[312003]一點都沒有。\_w[1600]\n[130]\s[312007]太奇怪了，\_w[1500]\s[312003]怎麼會有人打心眼裡不想傷害別人呢？\_w[2500]\s[312009]"
+	"%SFX('npc\mess\talk_07')\s[312003]喜歡可愛的東西\_w[1500]和喜歡暴力有衝突嗎？ \_w[1600]\n[130]\s[312006]倒不如說－－\_w[1300]\s[312002]他們抱著仇恨和惡意\_w[1500]相互傷害的樣子\_w[500]\s[312001]最可愛了，\_w[1200]\s[312000]%(you)不這麼覺得嗎？"
+}
+OnForgeRoom
+{
+	"\p[4]\s[-1]\b[6]%(click)\f[align,center]\![quicksession,true]\![set,choicetimeout,0]\n[20]\![*]鍛造列表\![*]\n[110]\f[height,12]   \f[bold,1]\f[shadowcolor,#930000]%(DividingLine)\f[default]\f[align,left]\n[200]"
+	--
+	_txt=""
+	for _i=0 ; _i<2 ; _i++
+	{	_item=ForgeList(_i)
+		_ob=_item[0]
+		_enh=_ob+1
+		_num=_item[1]
+		_insuf=0
+		if TOINT(_item[1])<10  ; _num="0"+_num
+		if TOINT(_item[1])<100 ; _num="0"+_num
+		_cloth="13_%(_num)"
+		_have=0
+		if _ob==0 && _cloth _in_ TOSTR(clothes_box_HC) ; _have=1
+		elseif _ob==1 && _cloth _in_ TOSTR(clothes_box_HL) ; _have=1
+		
+		_pic="dressing\icon\%(_item[0])\13\13_%(_num)_forge"
+		_pic_enh="items\enhancement_%(_enh)_18px"
+		_txt+="\_l[10]%Bimg(_pic)\_l[175]\_b[img\store\%(Char_Code[_ob])_0.png,inline,--option=use_self_alpha]\n[10]"
+		_txt+="\_l[90]\f[height,15]\f[bold,1]"
+		if _have==1 ; _txt+="\f[color,#6FB7B7]<已鍛造>"
+		else ; _txt+="\f[color,#EA76A1]<未鍛造>"
+		_txt+="\f[default]\n[150]"
+		if _have==1 ; _txt+="\f[color,#8E8E8E]"
+		//_txt+="\_l[80]\f[color,#E0FFFF]【材料】\f[default]\n"
+		for _j=3 ; _j<11 ; _j++
+		{	_txt+="\_l[80]"
+			_k=_j+2
+			if TOINT(_item[_k])>0
+			{	
+				_var=_item[_j]
+				_j++
+				_num=_item[_j]
+				--
+				_name="%(_var)_name[%(_num)]"
+				_var="%(_var)[%(_num)]"
+				_j++
+				_step1="_txt+=%(_name)"
+				--
+				EVAL(_step1)
+				--
+				_qty=0
+				_step2="_qty="+_var
+				--
+				EVAL(_step2)
+				--
+				if _have==1 ; _txt+="×"
+				else {
+				if _qty<_item[_j] { _txt+="\f[color,#FF0000]" ; _insuf++ }
+				else ; _txt+="\f[color,#BBDD88]"
+				_txt+=" "+ TOINT(_qty) +"\f[color,default]" + " / "
+				}
+				_txt+= _item[_j]
+			}
+			else { _j=11 ; _txt+="  " }
+			// "\f[color,#000000]0\f[color,default]"
+			--
+			_txt+= "\n"
+			
+		}
+		_txt+= "\n[20]\_l[15]\f[valign,center]%Bimg('items\enhancement_0_18px')狂亂精粹 "
+		if _have==1 ; _txt+="×"
+		else { 
+			if enhancement[0]<_item[2] { _txt+="\f[color,#FF0000]" ; _insuf++ }
+			else ; _txt+="\f[color,#BBDD88]"
+		_txt+= enhancement[0] + "\f[color,default]" + " / "
+		}
+		_txt+="%(_item[2])"
+		_txt+="\n\_l[15]\f[valign,center]%Bimg(_pic_enh)%(enhancement_name[_enh]) "
+		if _have==1 ; _txt+="×"
+		else { 
+			if enhancement[_enh]<15 { _txt+="\f[color,#FF0000]" ; _insuf++ }
+			else ; _txt+="\f[color,#BBDD88]"
+		_txt+= enhancement[_enh] +"\f[color,default]" +" / " }
+		_txt+="15"
+		
+		/*if have==1 ; _txt+="×"
+		else {
+		if discoin<TOINT(_item[2]) ; _txt+="\f[color,#FF0000]"
+		else ; _txt+="\f[color,#FFE299]"
+		_txt+= discoin + "\f[color,default]" + " / "
+		}
+		_txt+= _item[2]*/
+		_txt+= "\n[-530]\f[align,left]\_l[2]"
+		if _have==1 ; _txt+= "%Bimg('botton\forge_0')"
+		elseif _insuf>=1 ; _txt+= "\__q[OnForging.Insufficient]%Bimg('botton\forge_2')\__q"
+		else ; _txt+= "\__q[OnForging,%(_i),%(_cloth)]%Bimg('botton\forge_1')\__q"
+		_txt+="\n[260]"
+	}
+	--
+	_txt
+	--
+	"\n[-70]\f[height,12]   \f[bold,1]\f[shadowcolor,#930000]%(DividingLine)\f[default]/
+	\n[111]\f[align,center]\f[color,150,150,150]\_l[20]\_b[img/BackIcon,inline]\f[height,12]\q[返回,OnForgeRoom.Back]/
+	\_l[150]\_b[img/CancelIcon,inline]\q[關閉,OnForgeRoom.Close]"
+
+}
+OnForgeRoom.Back
+{	"\p[3]\s[-1]\![sound,stop]\w1"
+	--
+	ERASEVAR('ForgeMode')
+	--
+	OnMenu_Bureau
+}
+OnForgeRoom.Close
+{	"\p[3]\s[-1]\![sound,stop]\w1"
+	--
+	ERASEVAR('ForgeMode')
+	--
+	CANCEL_Button
+}
+OnForging.Insufficient
+{	_ld=forge_insuf
+	forge_insuf ++
+	OnForgeRoom
+	--
+	"\p[3]\![quicksession,false]\![set,balloontimeout,0]\![sound,stop]"
+	--
+	if _ld>=4
+		"%SFX('npc\mess\insufficient_04')\s[312008]停！\_w[530]再亂動，\_w[850]\s[312010]把%(you)丟進鍛爐裡當柴燒！"
+	elseif _ld==3
+		"%SFX('npc\mess\exc_02-he ei')\s[312011]%(you)這個人怎麼就是講不聽呢？"
+	elseif _ld==2
+		"%SFX('npc\mess\exc_01-ei')\s[312007]唉，\w3都說沒辦法啦，\w5\s[312012]%(username)還是老老實實去蒐集材料吧！"
+	elseif _ld==1
+		"%SFX('npc\mess\exc_05-heng')\s[312005]盧我也沒也用，\w5除非%(you)現在自己去生出來。"
+	else
+		"%SFX('npc\mess\exc_04-en')\s[312003]%(username)……\w5缺材料的情況下，\w7哪怕是我也做不了啊。"
+	--
+	"\_w[3000]\_w[3000]\_w[3000]\b[-1]\s[312000]"
+}
+
+
+OnForging
+{	click_sound=1
+	_n=reference0
+	_cloth=reference1
+	_array=ForgeList(_n)
+	_ob=_array[0]
+	_box_name="clothes_box_"+Char_Code[_ob]	//服裝箱變數名稱
+	_weapon=_array[1]
+	_enh=_ob+1
+	_enh_qty=_array[2]
+	--
+	"\p[3]\![quicksession,false]\![set,balloontimeout,0]\![sound,stop]"
+	--
+	"%SFX('npc\mess\forging_01')\s[312003]幫我看著工坊，不准別人進去。 "
+	"%SFX('npc\mess\forging_02')\s[312002]好好看著－－弒神的武器就要出爐啦。"
+	/*"馬上來，等著啊！"
+	"喂，幫我看著門，別讓其他人進來打擾我！"*/
+	--
+	"\_w[3000]\_w[100]"
+	--
+	if _ob==1 ; clothes_box_HL ,= "%(_cloth)"
+	else	  ; clothes_box_HC ,= "%(_cloth)"
+	--
+	enhancement[0]-=TOINT(_enh_qty)
+	enhancement[_enh]-=15
+	--
+	for _j=3 ; _j<11 ; _j++
+	{	
+		_k=_j+2
+		if TOINT(_array[_k])>0
+		{	
+			_var=_array[_j]
+			_j++
+			_num=_array[_j]
+			--
+			_var="%(_var)[%(_num)]"
+			_j++
+			_step1="%(_var)-=_array[_j]"
+			--
+			EVAL(_step1)
+		}
+		else ; _j=11
+	}
+	--
+	"\p[3]\s[312005]\n[130]%SFX('sfx\blacksmith_1')…\w4%SFX('sfx\blacksmith_2')…\w5%SFX('sfx\blacksmith_3')…\w6%SFX('sfx\blacksmith_4')…\w9\n[130]\f[color,#FFDC35]"
+	--
+	"%SFX('npc\mess\exc_06-laugh')\s[312001]將獎，\w3攻擊力最強的武器－－\w5Get！"
+	"%SFX('npc\mess\exc_05-heng')\s[312000]拿去，\w4下次告訴我使用心得吧？"
+	--
+	OnForgeRoom
+}
+
+
+ForgeList
+{	_array=""
+	case _argv[0]
+	{	
+		when 0 ; _array=(1,3,20,"loot",0,5,"loot",5,5,"loot",11,5)
+		when 1 ; _array=(1,4,31,"event_item",1,1,"loot",8,13)
+		/*when 2 ; _array=(0,3,3333,"event_item",0,1,"loot",7,13,"loot",10,10)*/
+	}
+	_array
+}

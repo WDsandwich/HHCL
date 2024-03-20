@@ -1,0 +1,499 @@
+//規則完善,待排版
+PlayGame
+{
+	"\%(MenuChoice)\b[2]\_q%(click)"
+	--
+	menu_title="小遊戲"
+	menu_p_list=("├","└")
+	
+	menu_o_list=("猜拳（二人）","比大小（三人）")
+	menu_func_list=("Mora","Compare.Once.Begin")
+	--
+	Menu.Option
+	--
+	MuenBottomOption("Menu_Interact")
+}
+
+//==================================================================
+//								猜拳								
+//==================================================================
+Mora
+{
+	"\%(MenuChoice)%(click)"
+	--
+	case MenuChoice
+	{	when 0
+		{
+			"\s[1]我準備好了，\w5%(usernameHC)。"
+			"\s[0]%(usernameHC)，\w5要出什麼？"
+		}
+		when 1
+		{
+			"\s[34]放馬過來吧！"
+			"\s[34]一決勝負！"
+		}
+	}
+	--
+	"\w9\p[2]%(cp)\b[22]\![quicksession,true]\f[align,center]（出拳……）/
+	\n[150]\f[align,center]%(opp)\q[ 剪刀 ,OnMora_Punch,剪刀]\n[150]/
+	\f[align,center]%(opp)\q[ 石頭 ,OnMora_Punch,石頭]\n[150]/
+	\f[align,center]%(opp)\q[ 布 ,OnMora_Punch,布]"
+}
+OnMora_Punch
+{
+	_cp=reference0
+	_sp=ANY("剪刀","石頭","布")
+	--
+	"\%(MenuChoice)%(click)"
+	--
+	_ml=""
+	_pl=""
+	_wl=""
+	_fl=""
+	case MenuChoice
+	{	when 0
+		{	cum_int_HC[1]+=5
+			_ml="我出%(_sp)，\w7"
+			_pl="\s[0]我們平手。"
+			_wl="\s[1]我贏了。"
+			_fl="是%(usernameHC)贏了。"
+		}
+		when 1
+		{	cum_int_HL[1]+=5
+			_ml="我出%(_sp)！\w7"
+			_pl="\s[16]欸－－ \w5是平手？"
+			_wl="\s[33]我贏啦！"
+			_fl="\s[30]是%(you)贏了……"
+		}
+	}
+	--
+	_ml
+	--
+	if _cp==_sp ; _pl
+	elseif (_cp=="剪刀"&&_sp=="石頭") || (_cp=="石頭"&&_sp=="布") || (_cp=="布"&&_sp=="剪刀") ; _wl
+	else ; _fl
+	--
+	intimacy[MenuChoice]+=5
+	mood[MenuChoice]+=3
+	--
+	"\w9\p[2]%(cp)\![quicksession,true]\f[align,center]%(opp)\__q[Mora] 再玩一次 \__q\n[130]/
+	\f[align,center]%(opp)\__q[OnGame.End] 不玩了 \__q"
+}
+
+OnGame.End
+{
+	GameMode=0
+	"\%(MenuChoice)%(click)"
+	--
+	if MenuChoice==0
+	{	"\s[1]嗯。\e"
+		"\s[1]繼續工作吧。\e"
+	}
+	elseif MenuChoice==1
+		"\s[13]唔，\w3不玩了嗎……\e"
+	/*elseif reference1=='mora'
+		Mora
+	elseif reference0==1 && reference1=='compare'
+		Compare.Once.Begin
+	else
+	{	GameMode=(0,0)
+		--
+		"\0\s[3]嗯，\w5回辦公室吧。\e"	
+		"\1\s[13]要回去了嗎…… \w5好吧。\e"	
+	}*/
+}
+
+//==================================================================
+//								撲克牌								
+//==================================================================
+poker_code
+{
+	("4_1","4_2","4_3","4_4","4_5","4_6","4_7","4_8","4_9","4_10","4_11","4_12","4_13","3_1","3_2","3_3","3_4","3_5","3_6","3_7","3_8","3_9","3_10","3_11","3_12","3_13","2_1","2_2","2_3","2_4","2_5","2_6","2_7","2_8","2_9","2_10","2_11","2_12","2_13","1_1","1_2","1_3","1_4","1_5","1_6","1_7","1_8","1_9","1_10","1_11","1_12","1_13","5_14","5_15")
+}
+poker_suit
+{ "0,梅花,方塊,紅心,黑桃,鬼牌" }
+PokerImg
+{
+	"\_b[img\game\poker\%(_argv[0]).png,inline,--option=use_self_alpha]"
+}
+
+//========================比大小========================
+Compare.Option
+{
+	"\%(MenuChoice)\b[2]%(click)/
+	\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]比大小\![*]\f[default]/
+	\f[height,12]  \f[color,#D0D0D0]"
+	--
+	if compare_rule_show==1
+		"\__q[OnCompare.Rule,0]收起遊戲規則▲\__q\n[150]/
+		【大小規律】\n/
+		✧ 花色大小：♠️>♥️>♦️>♣️\n/
+		✧ 號碼大小：A<數字<J<Q<K\n/
+		✧ 號碼的比較權重優先於花色\n/
+		✧ 兩張鬼牌並列為最大\n[166]/
+
+		【多回合模式】\n/
+		參與者每回合各自從總數52+2的牌組中抽取1張牌，並比較卡片大小，直至剩餘牌數歸零。\n[166]/
+		
+		【多回合計分方式】\n/
+		以當回合花色或者號碼相同之人數決定贏家得分。\n/
+		✧ 三人同號碼：4分\n/
+		✧ 三人同花色：3分\n/
+		✧ 二人同號碼或花色：2分\n/
+		✧ 贏家的抽牌為鬼牌：5分\n/
+		✧ 其餘：1分\n[166]/
+
+		【多回合結算獎勵】\n/
+		✧ 當局遊戲結束（即牌組歸零）後，局長可依自身得分，賺得相應數目的狄斯幣。\n/
+		✧ 若局長獲得最終勝利，獎勵的狄斯幣將會翻倍。\n/
+		✧ 若獲勝者為禁閉者，可額外提升該名禁閉者好感及心情。\n/
+		✧ 如果提前結束遊戲，將無法獲得額外獎勵。\n[130]/
+		\f[align,center]\__q[OnCompare.Rule,0]=====收起遊戲規則▲=====\__q"
+	else
+	"\__q[OnCompare.Rule,1]查看遊戲規則▼\__q/
+	\f[default]\n\n[half]\f[default]\_q/
+	\_l[0,30]\f[color,200,0,0]\f[height,20]/
+	\f[color,200,0,0]├ \f[default]\q[單回合,Compare.Once]\n/
+	\f[height,20]\f[color,200,0,0]├ \f[default]\q[多回合,Compare.Round]"
+}
+OnCompare.Rule
+{
+	_r=reference0
+	compare_rule_show=_r
+	Compare.Option
+}
+
+Compare.Once.Opponent
+{
+	"\b[2]%(click)\__q[OnCompare.Once,1,0]✧ 和赫卡蒂玩\__q\n/
+	\__q[OnCompare.Once,1,1]✧ 三個人一起玩\__q"
+}
+
+Compare.Once.Begin
+{
+	"\p[2]%(cp)\![quicksession,true]\f[align,center]\n[90]%(opp)\q[（抽一張牌）,Compare.Once]"
+}
+Compare.Once
+{
+	game_poker_desk=1
+	OnCompare.Shuffle
+	Compare.Scoring
+	--
+	Compare.Outcome
+}
+//------------------------重新洗牌------------------------
+OnCompare.Shuffle
+{
+    poker_left=poker_code
+    //for _i=1 ; _i<game_poker_desk ; _i++
+	//{
+	//     poker_left,=poker_code
+	//}
+}
+//------------------------勝負、分數計算------------------------
+Compare.Scoring
+{
+	//=====roll卡
+	_C  = ANY(poker_left)
+	_HC = ANY(poker_left)
+	_HL = ANY(poker_left)
+	//=====符合以下情況時重roll
+	while _C==_HC || _C==_HL || _HC==_HL
+	{
+		_C  = ANY(poker_left)
+		_HC = ANY(poker_left)
+		_HL = ANY(poker_left)
+	}
+	//=====將牌抽走
+	_n_hc=ASEARCH(_HC,poker_left)
+	poker_left[_n_hc]=IARRAY
+	_n_hl=ASEARCH(_HL,poker_left)
+	poker_left[_n_hl]=IARRAY
+	_n_c =ASEARCH(_C,poker_left)
+	poker_left[_n_c] =IARRAY
+	//=====紀錄卡牌code
+	playercard_code=(_HC,_HL,_C)
+	//=====轉換分隔符號
+	SETDELIM(_C,"_")
+	SETDELIM(_HC,"_")
+	SETDELIM(_HL,"_")
+	//=====紀錄卡牌名稱
+	_s_hc=TOINT(_HC[0])
+	_s_hl=TOINT(_HL[0])
+	_s_c =TOINT(_C[0])
+	playercard_name=("\f[color,#7BCAEA]%(poker_suit[_s_hc])%(_HC[1])","\f[color,#7BCAEA]%(poker_suit[_s_hl])%(_HL[1])","\f[color,#7BCAEA]%(poker_suit[_s_c])%(_C[1])")
+	if _HC[0]==5 ; playercard_name[0]="\f[color,#FFD306]%(poker_suit[_s_hc])"
+	if _HL[0]==5 ; playercard_name[1]="\f[color,#FFD306]%(poker_suit[_s_hl])"
+	if _C[0]==5 ; playercard_name[2]="\f[color,#FFD306]%(poker_suit[_s_c])"
+	--
+	//=====判定勝負&得分
+	_HC[1]=TOINT(_HC[1])
+	_HL[1]=TOINT(_HL[1])
+	_C[1] =TOINT(_C[1])
+	poker_result=(0,0,0)
+	--
+	//使用>只會判定第一位數字，故以相減比較大小
+	//優先判定鬼牌
+	if _HC[0]==5||_HL[0]==5||_C[0]==5
+	{	poker_result[1]=5 ; poker_result[0]=""
+		--
+		if _HC[0]==5 ; poker_result[0]+="0"
+		if _HL[0]==5 ; poker_result[0]+="1"
+		if _C[0]==5  ; poker_result[0]+="2"
+	}
+	//單人最大數字
+	elseif _C[1]-_HC[1]>0 && _C[1]-_HL[1]>0
+		poker_result=(2,1,0)
+	elseif _HC[1]-_HL[1]>0 && _HC[1]-_C[1]>0
+		poker_result=(0,1,1)
+	elseif _HL[1]-_HC[1]>0 &&_HL[1]-_C[1]>0
+		poker_result=(1,1,2)
+	//三人同數字，比較花色
+	elseif _HL[1]==_C[1] && _HL[1]==_HC[1] && _HC[1]==_C[1]
+	{
+		poker_result[1]=4 ; poker_result[2]=3
+		if _C[0]-_HC[0]>0 && _C[0]-_HL[0]>0
+			poker_result[0]=2
+		  elseif _HC[0]-_HL[0]>0 && _HC[0]-_C[0]>0
+			poker_result[0]=0
+		  else
+			poker_result[0]=1
+	}
+	//禁閉者同數字
+	elseif _HC[1]==_HL[1]
+	{
+		if _HC[0]-_HL[0]>0
+			poker_result=(0,2,4)
+		else
+			poker_result=(1,2,5)
+	}
+	//局赫同數字
+	elseif _HC[1]==_C[1]
+	{
+		if _HC[0]-_C[0]>0
+			poker_result=(0,2,6)
+		else
+			poker_result=(2,2,7)
+	}
+	//局海同數字
+	elseif _C[1]==_HL[1]
+	{
+		if _C[0]-_HL[0]
+			poker_result=(2,2,8)
+		else
+			poker_result=(1,2,9)
+	}
+	--
+	//同花色分數修正
+	if poker_result[1]==1
+	{
+		if (poker_result[0]==0 && (_HC[0]==_HL[0]||_HC[0]==_C[0])) || (poker_result[0]==1 && (_HL[0]==_HC[0]||_HL[0]==_HC[0])) || (poker_result[0]==2 && (_C[0]==_HL[0]||_C[0]==_HC[0]))
+		{	poker_result[1]=2  }
+	}
+	
+}
+
+Compare.Reveal
+{
+	"%(click)\0%PokerImg(playercard_code[0]) \f[bold,1]%(playercard_name[0])\f[bold,0]  /
+	\1%PokerImg(playercard_code[1]) \f[bold,1]%(playercard_name[1])\f[bold,0]  /
+    \p[2]%(cp)\b[20]%PokerImg(playercard_code[2]) \f[bold,1]%(playercard_name[2])\f[bold,0]  "
+}
+
+Compare.Outcome
+{
+   _w=STRLEN(TOSTR(poker_result[0]))
+   --
+	//	揭牌
+    "%(click)\0%PokerImg(playercard_code[0]) \f[bold,1]%(playercard_name[0])\f[default]  /
+	\1%PokerImg(playercard_code[1]) \f[bold,1]%(playercard_name[1])\f[default]  /
+    \p[2]%cp(0)\b[20]\f[valign,center]%PokerImg(playercard_code[2]) \f[bold,1]%(playercard_name[2])\f[default]  "
+    --
+	"\w9\![quicksession,false]\0\_l[40,25]\1\_l[40,25]"
+	--
+	if poker_result[1]==5 && STRLEN (poker_result[0])==2
+	{
+		if "0" !_in_ poker_result[0]
+		{
+			"\1\s[18]哇！我和%(usernameHL)贏了！"
+		}
+		elseif "1" !_in_ poker_result[0]
+		{
+			"\0\s[1]是我和%(usernameHL)贏了！"
+		}
+		elseif "2" !_in_ poker_result[0]
+		{
+			"\0\s[1]是我和海拉贏了！"
+			"\1\s[33]禁閉者的勝利！"
+		}
+		
+	}
+    elseif poker_result[0]==0
+    {	"\0\s[5]是我贏了。"  }
+    elseif poker_result[0]==1
+    {	"\1\s[18]哇！我贏了！" }
+    elseif poker_result[0]==2
+	{	"\0\s[0]是%(usernameHC)贏了。"
+        "\1\s[30]啊，是%(usernameHL)贏了。"
+    }
+	--
+	_c=poker_result[0]
+	intimacy+=3
+	cum_int_HC[1]+=3
+	cum_int_HL[1]+=3
+	mood+=3
+	--
+	"\x"
+	--
+	"\p[2]%(cp)\![quicksession,true]\f[align,center]%(opp)\q[ 再玩一次 ,Compare.Once.Begin]\n[130]/
+	\f[align,center]%(opp)\q[ 不玩了 ,OnGame.End]"
+    
+}
+
+
+
+//==================================================================
+//							娛樂室
+//==================================================================
+OnGameRoom
+{
+	if gameroom_open==1
+	{
+		if reference0=='poker_table'
+		{
+			"\%(MenuChoice)\b[2]%(click)"
+			--
+			menu_title="牌桌"
+			menu_p_list=("├","└")
+			
+			menu_o_list=("","比大小")
+			menu_func_list=("","Compare.Round.Begin")
+			--
+			Menu.Option
+			--
+			MuenBottomOption('OnGameRoom')
+		}
+		else
+		{
+			"\%(MenuChoice)\b[2]%(click)"
+			--
+			menu_title="娛樂室（施工中）"
+			menu_p_list=("├","└")
+			
+			menu_o_list=("","牌桌")
+			menu_func_list=("","OnGameRoom,poker_table")
+			--
+			Menu.Option
+			--
+			MuenBottomOption('OnMenu_Bureau')
+		}
+	}
+	else
+	"\p[2]%cp(0)%SFX('sfx\LockedDoorHandleJiggle')（門內傳來了施工聲…… \w5還沒開放嗎？）\e"
+}
+
+Compare.Round.Begin
+{
+	round=0
+	poker_score=(0,0,0)
+	OnCompare.Shuffles
+	--
+	OnPokerTable
+}
+
+Compare.Round.Scoring
+{
+	_winner=poker_result[0]
+	if poker_result[1]==5
+	{	case poker_result[0]
+		{	when "01" ; { poker_score[0]+=5 ; poker_score[1]+=5 }
+			when "12" ; { poker_score[1]+=5 ; poker_score[2]+=5 }
+			when "02" ; { poker_score[0]+=5 ; poker_score[2]+=5 }
+		}
+	}
+	else ; poker_score[_winner]+=poker_result[1]
+	--
+	round++
+}
+
+
+
+//==================================================================
+//								牌桌								
+//==================================================================
+
+OnPokerTable
+{
+    //比大小遊戲
+	if GameMode[1]=='compare'
+	{
+		"\p[4]\![quicksession,true]\![*]比大小\![*]\n[130]/
+		【目前分數】\n/
+		赫卡蒂 %(poker_score[0])\n/
+		海拉 %(poker_score[1])\n/
+		局長 %(poker_score[2])\n[150]"
+		--
+		"剩餘牌數：%ARRAYSIZE(poker_left)\n[150]"
+		--
+		if round==0
+			"\__q[OnCompare.Group.Draw,0]→開始新的一局\__q"
+		elseif ARRAYSIZE(poker_left)<3
+		{	"\n[150]遊戲結束/
+			\p[2]%(cp)\f[align,center]\n[77]\__q[OnCompare.Group.Draw,1] 再玩一局 \__q/
+			\n[130]\__q[OnGame.End] 離開娛樂室 \__q"
+		}
+		else
+			"第%(round+1)回合\n[200]\__q[OnGame.End][ 離開娛樂室 ]\__q/
+			\p[2]%(cp)\f[align,center]\n[77]\__q[OnCompare.Group.Draw,1]（抽牌）\__q"
+	}
+}
+
+
+//======================抽牌======================
+OnCompare.Group.Draw
+{
+    if reference0==0
+	{	GameMode=(1,'compare')
+		OnCompare.Shuffle
+		"\p[2]%(cp)\f[align,center]\n[77]\q[（抽一張）,OnCompare.Group.Draw,1]"
+	}
+	else
+	{
+		Compare.Scoring
+		Compare.Round.Scoring
+		--
+		Compare.Reveal
+		--
+		"\w9\p[4]"
+		--
+		_w=poker_result[0]
+		_s=poker_result[1]
+		if poker_result[1]==5 && STRLEN(poker_result[0])==2
+		{	case poker_result[0]
+			{	when "02" ; "\0\s[0]兩張鬼牌，\w6%(usernameHC)和我並列最大。"
+				when "12" ; "\1\s[18]我和%(usernameHL)同時贏喔！"
+				when "01"
+				{	"\0\s[1]我和海拉一樣。"
+					"\1\s[34]是禁閉者的勝利！"
+				}
+			}
+			--
+			_wa=TOINT(SUBSTR(_w,0,1)) ; _wb=TOINT(SUBSTR(_w,1,1))
+			"\n[150]%Char_Name[_wa]和%Char_Name[_wb]同時獲得10分！\x"
+			
+		}
+		else
+			"%Char_Name[_w]最大，\n[150]/
+			%(compare_score_txt[_s])本回合獲得%(poker_result[1])分。\x"
+		--
+		OnPokerTable
+	}
+}
+compare_score_txt
+{
+	(0,"","二人同號碼或花色，\n[150]","三人同花色，\n[150]","三人同號碼，\n[150]","抽到鬼牌，\n[150]")
+}
+
+
+
+

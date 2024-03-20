@@ -1,0 +1,595 @@
+//******************************************************************************
+// 此人格以範例人格 紺野ややめ 為基礎開發
+// SHIORI類型：YAYA
+//******************************************************************************
+
+//====================================================
+////////////////////////主選單//////////////////////
+//====================================================
+OpenMenu: nonoverlap
+{
+	ERASEVAR('chatlog')
+	MenuCheif=0
+	--
+	case MenuChoice
+	{
+		when 0
+		{
+		"\0\b[2]%(click)\f[height,12]"
+		--
+		"\s[0]\![sound,play,voice/昨日重現_問候.mp3]今天需要我做些什麼呢？"
+		"\s[0]\![sound,play,voice/原始_升至3階.mp3]我的一切都將為你所用，這就是「赫卡蒂」存在的意義。"
+		"\s[0]\![sound,play,voice/昨日重現_升級.mp3]休息時我也不會鬆懈。"
+		"\s[0]有什麼命令嗎，%(usernameHC)？"
+		"\s[0]請%(usernameHC)吩咐。"
+		"\s[0]我在。"
+		"\s[1]%(usernameHC)有任何需要，請儘管對我下達命令。"
+		"\s[0]我會一直在您身邊。"
+		"\s[0]有需要我幫忙的事情嗎？"
+		"\s[0]有新的命令嗎？"
+		"\s[0]%(usernameHC)，請給我命令。"
+		"\s[0]我不需要自由。"
+		}
+		when 1
+		{
+		"\1\b[2]%(click)\f[height,12]"
+		--
+		"\s[10]嗯？有什麼事嗎？"
+		"\s[12]怎麼啦？"
+		"\s[10]\![sound,play,sound/line/HL/Hl profile 交談1.mp3]什麼事\w1啊，\w5%(usernameHL)？"
+		"\s[12]\![sound,play,sound/line/HL/Hl profile 問候.mp3]%(usernameHL)－－\w9 能不能給世界上最可愛的海拉一點點零花錢呢？"
+		}
+	}
+	--
+	"\w5\_q\f[height,12]\f[color,#8B0000]\n\n[half]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\_q\f[default]"
+	--
+	"\n[130]\![*]\q[ 互動 ,Menu_Interact]\n[150]/
+	\![*]\q[ 管理局 ,OnMenu_Bureau]\n[150]/
+	\![*]\q[ 外出 ,Menu_GoOutside]\n[150]/
+	\![*]\q[ 採購部 ,Menu_STORE]\n[150]/
+	\![*]\q[ 局長命令 ,Menu_Function]\n[150]/
+	\f[align,center]\f[color,#ADADAD]\f[height,12]\f[bold,1]\_l[70,222]✖\q[ 取消 ,Menu_CANCEL]"
+	--
+	_hc=""
+	if MenuChoice==1 { _eh=event_holiday_HL ; _hc=holiday_celebrated_HL }
+	else			 { _eh=event_holiday_HC ; _hc=holiday_celebrated_HC }
+	_he=0 ; _hcy=""
+	for _i=0 ; _i<ARRAYSIZE(holiday_name) ; _i++
+	{	if "%(month).%(day)"== holiday_date[_i] && "%(year)" !_in_ _hc[_i] && relationship[MenuChoice]%2==1
+		_he=_i+1
+	}
+	--
+	HolidayCheck
+	--
+	if developermode==1 ; "\_l[-,180]%(_hc)"
+	--
+	//局長生日
+	if "%(year)" !_in_ TOSTR (birthday_celebrated_chief) && "%(month).%(day)"=="%(chief_birthday[1]).%(chief_birthday[2])"
+		"\_l[-,195]\f[align,right]\__q[OnChiefBirthday_Option.Menu]%Bimg('\relationship\…')\__q"
+	elseif _he>0
+		"\_l[-,195]\f[align,right]\__q[OnHolidayEvent_Start,%(_he-1)]%Bimg('\relationship\…')\__q"
+	elseif holiday_today!=""
+		"\n\f[default]\![quicksession,true]\_l[-,195]\f[color,#7B7B7B]\f[height,12]\f[align,right]今天是 %(holiday_today[1]) ！"
+
+}
+BalloonTooltip_OnChiefBirthday_Option.Menu{"今天是個特別的日子……"}
+BalloonTooltip_OnHolidayEvent_Start{"%(Char_Name[MenuChoice])似乎有事找%(you)……"}
+
+
+
+
+//選擇逾時
+OnChoiceTimeout
+{
+	if TOINT (BattleMode+DressingMode+GameMode+DispatchMode+SpaMode)==0
+	{ case MenuChoice
+	  {
+		when 0
+		{
+			"\0……%(usernameHC)？累的話還是到沙發上休息吧，在桌子上睡會著涼的。\e"
+			"\0……%(usernameHC)？怎麼了嗎？\e"
+			"\0睜著眼……睡著了嗎？\e"
+		}
+		when 1
+		{
+			"\1……？\w5\s[13]怎麼沒反應了？"
+			"\1\s[16]%(you)在發什麼呆啊？"
+			"\1\s[30]……喂！別突然不理人哪！"
+		}
+	  }
+	}
+}
+
+
+//====================================================
+////////////////////////選單內容//////////////////////
+//====================================================
+//==========互動選單==========
+Menu_Interact
+{
+	memory_page=0
+	event_dialogue=0
+	--
+	"\%(MenuChoice)\b[2]\_q%(click)"
+	--
+	menu_title="和%(Char_Name[MenuChoice])互動"
+	menu_p_list=("├","├","├","├","└")
+	
+	menu_o_list=("聆聽","「剛剛說了什麼？」","玩耍","關於發言頻率","回憶")
+	menu_func_list=("Menu_AITALK","Menu_LASTTALK","PlayGame","Menu_TALKINTERVAL","Menu_Memory")
+	--
+	/*if relationship[MenuChoice]>0 && intimacy[0]>=12000
+	menu_p_list=("├",menu_p_list)*/
+	--
+	_eh=""
+	if MenuChoice==1 ; _eh=event_history_HL
+	else ; _eh=event_history_HC
+	if relationship[MenuChoice]%2==0 && intimacy[MenuChoice]>=12000 && _eh[0]>=1
+	{	menu_p_list=("├",menu_p_list)
+		menu_o_list=(menu_o_list,"告白")
+		menu_func_list=(menu_func_list,"Menu_LoveConfession")
+	}
+	--
+	/*if holiday_today!="" && developermode==1
+	{	menu_p_list=("├",menu_p_list)
+		menu_o_list=(menu_o_list,"慶祝%(holiday_today[1])")
+		menu_func_list=(menu_func_list,"OnHoildayCelebrate,%(holiday_today[0]),%(MenuChoice)")
+	}
+	--*/
+	Menu.Option
+	--
+	MuenBottomOption(0)
+}
+//---- 聆聽
+Menu_AITALK
+{
+	intimacy[MenuChoice]++
+	_a=2
+	if MenuChoice==0 ; _a=ANY(0,0,2)
+	if MenuChoice==1 ; _a=ANY(1,1,2)
+	case _a
+	{
+		when 0 ; HecateTalkAlone
+		when 1 ; HellaTalkAlone
+		when 2 ; SinnerTalK
+	}
+}
+//---- 聊天
+Menu_Chat
+{
+	case MenuChoice
+	{
+		when 0
+		{
+			"\0%(click)"
+			--
+			"有什麼事嗎，%(usernameHC)？"
+			"我在聽。"
+			"是命令嗎？"
+		}
+		when 1
+		{
+			"\1%(click)"
+			--
+			"嗯？什麼什麼？"
+		}
+	}
+	--
+	"\![open,communicatebox]"
+}
+
+
+//---- さっきの話は
+Menu_LASTTALK
+{
+	AYATEMPLATE.LastTalk
+}
+
+//---- 調整說話頻率
+Menu_TALKINTERVAL
+{
+	"%(click)\%(MenuChoice)"
+	--
+	case MenuChoice
+	{
+		when 0
+		{
+			"\s[3]……我吵到%(usernameHC)了嗎？"
+		}
+		when 1
+		{
+			"\s[30]幹嘛，\w5吵到%(you)了？"
+		}
+	}
+	--
+	_in=(40,100,300,666,0)
+	_o=("沒這回事，說得卻多越好哦。","熱鬧一點也不錯。","普通的感覺就好。","只是稍微說一點的話……","抱歉，現在想稍微清靜一下。")
+	_option="\p[2]%cp(0)\b[26]\n[-70]\f[align,center]"
+	--
+	for _i ; _i<ARRAYSIZE(_o) ; _i++
+	{
+		_option+="\n[170]\__q[OnMenu_TALKINTERVAL.Change,%(_in[_i])] \_q「%(_o[_i])」\_q\__q"
+	}
+	_option
+}
+OnMenu_TALKINTERVAL.Change
+{
+	//間隔=秒數
+	aitalkinterval=reference0
+	intimacy++
+	click
+	--
+	case aitalkinterval
+	{ when 0
+	  { if MenuChoice==1
+			"\1\s[16]欸……\w5 \s[13]行、行吧……\w9\w5\n[130]\s[31]%(you)……就這麼嫌棄我嗎？"
+		else
+		{	"\0%(click)恩，我就不繼續打擾%(usernameHC)了。"
+			"\0%(click)……很抱歉打擾到您，我會安靜的。"
+		}
+	  }
+	  when 40
+	  {  if MenuChoice==1
+			"\1\s[34]嘿嘿……\w5 %(you)可不能反悔喔！"
+		else
+			"\0\s[1]雖然我不善言語，但如果是%(usernameHC)的命令，我會努力達成。"
+	  }
+	  when 100
+	  { if MenuChoice==1
+			"\1\s[18]%(you)這麼喜歡聽我說話呀？"
+		else
+			"\0\s[1]好的，我和海拉會讓辦公室熱鬧起來。"
+	  }
+	  when 300
+	  { if MenuChoice==1
+			"\1\s[33]那就維持平常的樣子囉。"
+		else
+		{	"\0\s[0]明白了。"
+			"\0\s[0]……好。"
+		}
+	  }
+	  when 666
+	  { if MenuChoice==1
+			"\1\s[30]唔…… \w3%(you)現在需要專注在工作上嗎？\w7\s[13]我知道了。"
+		else
+			"\0\s[1]恩，不會讓%(usernameHC)感到孤單的。"
+	  }
+	}
+	--
+	"\e"
+}
+//---- 文について説明
+/*Menu_ABOUTAYA
+{
+	"\0\s[0]わたしたちは、汎用DLL「文」の進化版、「YAYA」で制作されてるんだよね？\w8\1聞くなよ。その通りだ。\w9\nＣ言語風の読みやすいスクリプトで、SHIORIやSAORIを作ることが出来るんだ。\w8\0\s[5]\n\n最初は訳分かんないかもしれないけど、噛めば噛むほど面白くなるよ。\w8\s[4]\n多分。\w8\1\n\nおい。\e"
+}
+
+//---- ややめに話しかける
+Menu_COMMUNICATEOPEN
+{
+	"\0\s[5]はいっ。\![open,communicatebox]\e"
+}
+
+//---- 他のゴーストと話す
+Menu_GHOSTCOMSTART
+{
+	StartCommunicate
+}*/
+
+
+//---- 主選單取消
+Menu_CANCEL
+{
+	"%(click)"
+	--
+	case MenuChoice
+	{
+		when 0
+		{
+			"\0\s[0]……\w6\![sound,play,voice/原始_交談1.mp3]……只要能保護好你，就可以了吧？"
+			"\0\s[0]\![sound,play,voice/原始_升至1階.mp3]只要你需要，我會一直在你身邊。"
+			"\0\s[0]……明白了。\e"
+			"\0\s[0]那麼……我就繼續待命了。"
+		}
+		when 1
+		{
+			"\1\s[13]哼，捉弄我是嗎？"
+			"\1\s[13]哦。"
+		}
+	}
+	--
+	"\e"
+	
+}
+
+
+//============================================================================
+//									管理局									  
+//============================================================================
+OnMenu_Bureau
+{
+	_page=TOINT(reference0)
+	--
+	"\%(MenuChoice)\b[2]\c\_q%(click)/
+	%Subtitle('管理局')  "
+	--
+	if _page==1 ; "\__q[OnMenu_Bureau,0]%Bimg('botton/IEIPa')\__q"
+	else		; "\__q[OnMenu_Bureau,1]%Bimg('botton/IEIPa')\__q"
+	--
+	" 走道%(_page+1) "
+	--
+	if _page==1 ; "\__q[OnMenu_Bureau,0]%Bimg('botton/IEIPb')\__q"
+	else		; "\__q[OnMenu_Bureau,1]%Bimg('botton/IEIPb')\__q"
+	--
+	_p_list=("├","├","├","├","├","├","├","└")
+	_o_list=("辦公室","檔案室","更衣室","娛樂區（施工中）","研磨坊","密室","鍛造室","倉庫")
+	_func_list=("Office","Database","GoIntoDressingRoom","OnGameRoom","Dye.Grind.GoTo","SecretChamber","OnForgeRoom.Open","OnBagItem")
+	if _page==1
+	{	_p_list=("└") ; _o_list=("焚化爐") ; _func_list=("PapreShredder2")	}
+	_option="\n[150]\f[default]\_q\_l[0,30]\f[height,20]"
+	for _i=0 ; _i<ARRAYSIZE(_o_list) ; _i++
+	{
+		_option+="\f[color,200,0,0]%(_p_list[_i])\f[default]\q[ %(_o_list[_i]) ,%(_func_list[_i])]\f[height,20]\n"
+	}
+	_option
+	--
+	MuenBottomOption(0)
+}
+//============密室============
+SecretChamber
+{
+	_m=month
+	if _m<10 ; _m="0"+_m
+	if "%(year).%(_m)" _in_ TOSTR (get_pay_date)
+		"\p[2]%cp(0)（還沒到發薪水的時候……）"
+	else 
+	{
+		if get_pay_date=="" ; get_pay_date="%(year).%(_m)"
+		else ; get_pay_date,="%(year).%(_m)"
+		hypercube+=1800
+		cum_gain_hypercube[1]+=1800
+		--
+		"\p[7]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[CANCEL_Button]%QTYimg('x')\__q\n[380]/
+		\f[align,center]領取了月薪【\f[color,#97CBFF]1,800異方晶\f[default]】"
+	}
+}
+
+
+
+Menu_GoOutside
+{
+	case MenuChoice
+	{
+		when 0
+		{
+			"\0\b[0]%(click)咦……\w5%(usernameHC)要帶我出去嗎？\w8\n要去哪裡呢？"
+		}
+		when 1
+		{
+			"\1\s[18]\b[0]%(click)哇－－要去哪要去哪！"
+			"\1\s[18]\b[0]%(click)出去玩囉！"
+		}
+	}
+	--
+	"\p[2]%(cp)\b[22]\w1/
+	\_q%(opp)\q[執行任務（戰鬥）,GoToBattle]\_q\n[150]\w1/
+	\_q%(opp)\q[派遣,Dispatch]\_q\n[150]\w1/
+	\_q%(opp)\q[溫泉,GoToSpa]\_q\n[150]\w1/
+	\_q%(opp)\q[「不出去了。」,GoOutsideCANCEL]\_q"
+}
+GoToBattle
+{
+	click
+	--
+	/*if mood[0]<100 && mood[1]<100 ; "%cp(0)\b[20]（兩個人都無精打采的，或許現在不適合戰鬥。）"
+	elseif MenuChoice==0 && MoodStage(mood[0])=="G"
+		"\0我現在的狀態，\w8沒辦法戰鬥……\w9\n[130]對不起，\w5%(usernameHC)。\e"
+	elseif MenuChoice==0 && MoodStage(mood[1])=="G"
+		"\0\s[1]海拉的情緒好像很低落的樣子，\w8還是等會兒再去吧。\e"
+	elseif MenuChoice==1 && MoodStage(mood[1])=="G" ; "\1\s[31]不要……\w4我不想去……\e"
+	elseif MenuChoice==1 && MoodStage(mood[0])=="G"
+		"\1\s[36]赫卡蒂看起來很難受，\w8或許暫時不要去戰鬥比較好吧？\e"
+	elseif mood[0]<100 ; "\0\s[1]抱歉，\w4%(usernameHC)……\w5 我現在不在狀態……\w9 %cp(0)\b[20]（赫卡蒂的心情很糟糕的樣子……）"
+	elseif mood[1]<100 ; "\1\s[19]我不想去……\w9 %cp(0)\b[20]（海拉的心情很糟糕的樣子……）"
+	else ; */
+	BattleMapChoose_Line
+}
+
+GoOutsideCANCEL
+{
+	case MenuChoice
+	{
+		when 0
+		{
+			"\0\s[1]……明白了。"
+			"\0\s[1]……好的。"
+		}
+		when 1
+		{
+			"\1\s[32]啊－－%ANY('討厭','好失望')－－"
+		}
+	}
+	--
+	"\e"
+	
+	
+}
+
+
+
+Menu_Function
+{
+	case MenuChoice
+	{
+		when 0 ; "\0"
+		when 1 ; "\1"
+	}
+	--
+	"\b[2]/
+	\_q%(click)\f[color,127,179,230]\![*]要求幫忙/
+	\f[default] \_l[80]   \![*]\q[電源,SystemOder]\n\n[half]\_q"
+	--
+	MuenBottomOption(0)
+	--
+	Menu_Function_list
+}
+OnMenu_Function.ChangPage
+{
+	functionpage=reference0
+	Menu_Function
+}
+
+SystemOder
+{
+	case MenuChoice
+	{
+		when 0 ; "\0"
+		when 1 ; "\1"
+	}
+	--
+	"\b[2]\_q%(click)\![*]\q[要求幫忙,Menu_Function]/
+	 \_l[80]   \f[color,127,179,230]\![*]電源\f[default]\n\n[half]\_q"
+	--
+	MuenBottomOption(0)
+	--
+	SystemOder_list
+}
+
+
+
+
+//-----次級選單
+Menu_Function_list: nonoverlap
+{
+	"\_l[0,30]\f[height,20]\f[color,200,0,0]├ \f[default]\f[height,15]\q[ 開啟APP一覽,APPLIST]\f[height,20]\n/
+	\f[color,200,0,0]└ \f[default]\f[height,15]\q[ 計算機 ,CALCULATOR]\f[height,20]"
+}
+SystemOder_list
+{
+	"\_l[0,30]\f[color,200,0,0]\f[height,20]├ \f[default]\f[height,15]\q[ 休眠 ,BAT_Sleep]\f[height,20]\n/
+	\f[color,200,0,0]├ \f[default]\f[height,15]\q[ 關機 ,BAT_Shutdown]\f[height,20]\n/
+	\f[color,200,0,0]└ \f[default]\f[height,15]\q[ 重新啟動 ,BAT_Reboot]\f[default]"
+}
+
+
+//------三級選單
+ChangeSinnerInfoHC
+{
+	infopage=0
+	SinnerInfo
+}
+ChangeSinnerInfoHL
+{
+	infopage=1
+	SinnerInfo
+}
+
+
+
+
+
+Menu_自訂主選單
+{
+	case MenuChoice
+	{
+		when 0
+		"\0"
+		when 1
+		"\1"
+	}
+	--
+	"\b[2]"
+	--
+}
+
+//=======================選單底部=======================
+MuenBottomOption
+{
+	_txt="\_q\f[color,150,150,150]\_l[7,220]\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
+	--
+	if _argv[0]==0
+		_txt+="OpenMenu"
+	else
+		_txt+=_argv[0]
+	--
+	_txt+="]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	_txt
+}
+MuenBottomOption2
+{
+	_txt="\_l[10]\_q\f[color,150,150,150]\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
+	--
+	if _argv[0]==0
+		_txt+="OpenMenu"
+	else
+		_txt+=_argv[0]
+	--
+	_txt+="]\_l[170]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	_txt
+}
+EventBottomOption
+{
+	if _argv[0]==0
+		_xpot=7
+	else
+		_xpot=_argv[0]
+	if _argv[1]==0
+		_ypot=220
+	else
+		_ypot=_argv[1]
+	if _argv[3]==0
+		_closepot=120
+	else
+		_closepot=_argv[3]
+	--
+	_txt="\_q\f[color,150,150,150]\_l["
+	_txt+="%(_xpot),%(_ypot)"
+	_txt+="]\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
+	_txt+="%(_argv[2])"
+	_txt+="]\_l["
+	_txt+="%(_closepot)"
+	_txt+="]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	_txt
+}
+//=======================bat指令=======================
+APPLIST
+{	intimacy[MenuChoice]+=5
+	"\![open,file,order\APP.bat]"
+}
+CALCULATOR
+{	intimacy[MenuChoice]+=5
+	"\![open,file,order\計算機.bat]"
+}
+BAT_Shutdown
+{
+	intimacy[MenuChoice]+=5
+	GoodbyeMSG
+	--
+	"\![open,file,order\關機.bat]"
+}
+BAT_Sleep
+{
+	intimacy[MenuChoice]+=5
+	case MenuChoice
+	{ when 0 ; "\0\s[1]請您好好休息。\w9"
+	  when 1 ; "\1\s[13]%(you)要記得回來喔！\w9"	}
+	--
+	"\![open,file,order\休眠.bat]"
+}
+BAT_Reboot
+{
+	intimacy[MenuChoice]+=5
+	case MenuChoice
+	{ when 0 ; "\0\s[0]待會見。\w9"
+	  when 1 ; "\1\s[30]是要去上廁所嗎？\w9"	}
+	--
+	"\![open,file,order\立即重啟.bat]"
+}
+
+選項ID
+{"\![open,file,order\檔案名稱.bat]"}
+//=======================開啟捷徑=======================
+EXEReNamer
+{
+	"\![open,file,order\ReNamer.exe.lnk]"
+}

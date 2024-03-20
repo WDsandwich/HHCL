@@ -1,0 +1,864 @@
+//==============================
+//////////////物品欄////////////
+//==============================
+//==============================
+//////////////新物品欄////////////
+//==============================
+OpenBagItem
+{
+	if openbagmode==1
+		CloseBag
+	else
+		OnBagItem
+}
+OnBagItem
+{
+	_list_a=""
+	_list_an=""
+	--
+	"\p[4]\s[-1]\b[6]\![quicksession,true]\![set,choicetimeout,0]\f[align,center]\![set,autoscroll,disable]/
+	\n[50]\f[height,12]\f[bold,1]\f[color,#9D9D9D]"
+	--
+	if openbagmode==0
+	{
+		"\![sound,play,sound/effect/bag_open.mp3]"
+		--
+		openbagmode=1
+	}
+	else ; click
+	--
+	if bagItempage==1
+		"\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\q[ 戰利品 ,OnChangeItemMode,1]\f[shadowcolor,default]\f[color,#9D9D9D]    "
+	--
+	if bagItempage==2
+		"\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\q[ 染色 ,OnChangeItemMode,2]\f[shadowcolor,default]\f[color,#9D9D9D]    "
+	--
+	if bagItempage==3
+		"\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\q[ 消耗 ,OnChangeItemMode,3]\f[shadowcolor,default]\f[color,#9D9D9D]    "
+	--
+	if bagItempage==4
+		"\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\q[ 其他 ,OnChangeItemMode,4]\f[shadowcolor,default]\f[color,#9D9D9D]\n   \f[shadowcolor,#930000]"
+	--
+	DividingLine
+	-- 
+	case bagItempage
+	{
+		when 1
+		{
+			ItemList("戰利品")
+		}
+	}
+	if bagItempage==2
+	{
+		ItemList("染料原礦")
+		--
+		"\n[130]   %(DividingLine)"
+		--
+		ItemList("各色染料")
+	}
+	if bagItempage==3
+	{
+		"\n%ProgressBar(6,100,100,stamina,staminamax)\_l[90,31]\_b[img\stamina.png,inline,--option=use_self_alpha]/
+		\_l[135,35]\f[shadowcolor,none]%(stamina) / %(staminamax)\n"
+		--
+		"\n[-2]   %(DividingLine)"
+		--
+		ItemList("強化道具")
+		--
+		"\n[130]   %(DividingLine)"
+		--
+		ItemList("體力補充")
+		--
+		ItemList("生日蛋糕")
+		--
+		ItemList("體力補充2")
+	}
+	--
+	if bagItempage==4
+	{
+		ItemList("特殊")
+		--
+		ItemList("活動商品")
+		--
+		"\n[130]   %(DividingLine)"
+		--
+		ItemList("禮物")
+		--
+		ItemList("禮物2")
+	}
+	--
+	"\n[150]"
+	--
+	"\f[height,12]   "
+	--
+	"\f[bold,1]\f[shadowcolor,#930000]%(DividingLine)\f[default]/
+	
+	\n[111]\_l[20]\f[valign,center]\__q[TipOption_BagToStore,Discoin]\_b[img\items\Discoin.png,inline,--option=use_self_alpha]\f[color,#DAA520]\__q\f[color,#DAA520] %ThousandsSeparators(discoin)/
+	\n[200]\f[color,150,150,150]\_l[20]\_b[img/BackIcon,inline]\f[height,12]\q[返回,Bag.FrontPage]/
+	\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CloseBag]"
+}
+Bag.FrontPage
+{
+	"\![sound,play,sound/effect/bag_close.mp3]"
+	--
+	openbagmode=0
+	OnMenu_Bureau
+}
+CloseBag
+{
+	"\![sound,play,sound/effect/bag_close.mp3]"
+	--
+	openbagmode=0
+	CANCEL
+}
+BagToStore
+{
+	"\![sound,play,sound/effect/bag_close.mp3]\w9"
+	--
+	openbagmode=0
+	Menu_STORE
+}
+//切換標籤頁
+OnChangeItemMode
+{
+	bagItempage=reference0
+	OnBagItem
+}
+ItemList
+{
+	
+	_list_a=""
+	_list_an=""
+	_txt=""
+	case _argv[0]
+	{
+		when "戰利品"	; {_list_a=loot_name		   ; _list_an=loot}
+		when "染料原礦" ; {_list_a=dye_ingredient_name ; _list_an=dye_ingredient}
+		when "各色染料" ; {_list_a=dye_name			   ; _list_an=dye}
+		when "強化道具" ; {_list_a=enhancement_name	   ; _list_an=enhancement}
+		when "體力補充" ; {_list_a=consumable_sp_name  ; _list_an=consumable_sp}
+		when "生日蛋糕" ; {_list_a=birthdaycake_name   ; _list_an=birthdaycake}
+		when "體力補充2"; {_list_a=consumable_name	   ; _list_an=consumable}
+		when "特殊"		; {_list_a=spitem_name		   ; _list_an=spitem}
+		when "活動商品"	; {_list_a=event_item_name	   ; _list_an=event_item}
+		when "禮物"	    ; {_list_a=gift_sp_name		   ; _list_an=gift_sp}
+		when "禮物2"	; {_list_a=gift_name 		   ; _list_an=gift}
+	}
+	_n=ARRAYSIZE(_list_a)
+	//不顯示小標題之項目
+	if _argv[0]!="戰利品" && _argv[0]!="禮物2" && _argv[0]!="生日蛋糕" && _argv[0]!="體力補充2" && _argv[0]!="活動商品" 
+		_txt+="\n\f[height,12]\f[align,center]\f[bold,1]  %Subtitle(_argv[0])  \f[default]\f[height,15]"
+	--
+	"\f[height,15]"
+	--
+	for _i=0 ; _i < _n ; _i++
+	{
+		if "愛情巧克力" _in_ _list_a[_i] ; _list_an[_i]=TOINT((_list_an[_i]+6)/7)
+		if "友情巧克力" _in_ _list_a[_i] ; _list_an[_i]=TOINT((_list_an[_i]+9)/10)
+		if (_argv[0]=="戰利品"||_argv[0]=="生日蛋糕"||_argv[0]=="體力補充"||_argv[0]=="體力補充2"||_argv[0]=="活動商品"||_argv[0]=="禮物"||_argv[0]=="禮物2") && _list_an[_i]*1==0
+			_txt+=""
+		else
+		{
+			_qty=ThousandsSeparators(_list_an[_i])
+			_txt+="\n[131]\__q[OnItemInfo,%(_i),%(_argv[0])]\_l[7]%ItemImg('button_0')\__q\f[align,left]\_l[15]%(_list_a[_i])"
+			if (loot_lock[_i]==1 && _argv[0]=="戰利品") || (dye_ingredient_lock[_i]==1 && _argv[0]=="染料原礦")
+				_txt+="\_b[img/botton/lock_1,inline,--option=use_self_alpha]"
+			_txt+="\n[1]\f[align,right]x "
+			if	_qty>=1
+				_txt+="\f[color,#FFF0AC]\f[bold,1]"
+			_txt+="%(_qty)\f[color,default]\f[bold,0]    "
+		}
+	}
+	_txt
+}
+//==============================
+/////////////物品資訊///////////
+//==============================
+OnItemInfo
+{
+	_n=reference0
+	_type=reference1
+	qty=1
+	_na=""
+	_f=""
+	_d=""
+	_p=""
+	case _type
+	{
+		when "戰利品" ; {_na=loot_name ; _d=loot_description ; _p=loot_price }
+		when "染料原礦" ; {_na=dye_ingredient_name ; _f="dye_ingredient" ; _d=dye_ingredient_description ; _p=dye_ingredient_price }
+		when "各色染料" ; {_na=dye_name ; _f="powder dye" ; _d=dye_ingredient_description ; _p=0 }
+		when "強化道具" ; {_na=enhancement_name ; _f="enhancement" ; _d=enhancement_description ; _p=enhancement_price }
+		when "體力補充" ; {_na=consumable_sp_name ; _f="" ; _d=consumable_sp_description ; _p=0 }
+		when "生日蛋糕" ; {_na=birthdaycake_name ; _f="" ; _d="" ; _p=0 }
+		when "體力補充2" ; {_na=consumable_name ; _f="" ; _d=consumable_description ; _p=0 }
+		when "特殊" ; {_na=spitem_name ; _f="" ; _d=spitem_description ; _p=1 }
+		when "活動商品" ; {_na=event_item_name ; _f="" ; _d=event_item_description ; _p=0 }
+		when "禮物" ; {_na=gift_sp_name ; _f="gift_sp" ; _d=gift_sp_description ; _p=0 }
+		when "禮物2" ; {_na=gift_name ; _f="" ; _d=gift_description ; _p=0 }
+	}
+	_name=_na[_n]
+	_desc=_d[_n]
+	_price=_p[_n]
+	_option=""
+	_pic=""
+	if _name=="巧克力製作套組" ; _option="\f[color,#ADFEDC]製作"
+	else
+	{	case _type
+		{
+			when "染料原礦","各色染料" ; _option="\f[color,#BFA0CF]染料研磨"
+			when "強化道具","體力補充","生日蛋糕","體力補充2","活動商品" ; _option="\f[color,#ADFEDC]使用"
+			when "特殊" ; _option=spitem_option
+			when "禮物","禮物2" ; _option="\f[color,#FFBDC2]贈送"
+		}
+	}
+	if _type=="各色染料" ; _desc="【合成】 "+dye_decode(_n,dye_mixing)
+	elseif _type=="生日蛋糕" ; _desc="赫卡蒂和海拉一起做給%(username)的生日蛋糕。\n無法在戰鬥中使用。"
+	elseif "巧克力" _in_ _name && _type=="體力補充"
+	{	_pic="items\consumable_sp_"+_n+"."+consumable_sp[_n]%6
+		if consumable_sp[_n]%6==0 ; _pic="items\consumable_sp_"+_n+".6"
+		_desc="\_l[-5]"+Bimg(_pic)+"\_l[70]"+_desc+"\n[150]\f[align,center]無法在戰鬥中使用。"
+	}
+	elseif _type=="體力補充" ; 
+	--
+	"\p[7]"
+	--
+	if _type=="體力補充" ; "\b[34]"
+	else ; "\b[30]"
+	--
+	"\s[-1]\![quicksession,true]"
+	--
+	case _type
+	{
+		when "戰利品","體力補充","生日蛋糕","體力補充2","特殊","活動商品","禮物2"
+		{
+			"\n[40]\f[align,center]\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(_name)\![*]\f[default]\n[150]/
+			\f[height,12]%(_desc)"
+		}
+		when "染料原礦","各色染料","強化道具","禮物"
+		{
+			if _type=="各色染料"
+				_name+="染料"
+			_file=ItemImg("%(_f)_%(_n)")
+			if _type=="體力補充" && "巧克力" _in_ _name ; _file=_file+consumable_sp[_n]
+			"%(_file)/
+			\_l[70,25]\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(_name)\![*]\f[default]\n/
+			\f[align,center]\f[height,12]\n[111]/
+			%(_desc)"
+		}
+	}
+	--
+	case _type
+	{
+		when "戰利品"
+		{
+			"\n\_l[-,95]\f[color,#FFE1AD]【掉落】%(loot_enemy_name[_n])"
+		}
+		when "體力補充"
+		{
+			"\n\_l[-,160]\f[align,center]\f[color,#00FFFF]能夠補充 %(consumable_sp_stamina[_n]) 點體力"
+		}
+		when "生日蛋糕"
+		{
+			"\n\_l[-,80]\f[align,center]\f[color,#00FFFF]能夠補充 500 點體力"
+		}
+		when "體力補充2"
+		{
+			"\n\_l[-,80]\f[align,center]\f[color,#00FFFF]能夠補充 %(consumable_stamina[_n]) 點體力"
+		}
+	}
+	--
+	_chocolate=consumable_sp[_n]%6
+	if consumable_sp[_n]>0 && _chocolate==0 ; _chocolate=6
+	if "巧克力" _in_ _name && _type=="體力補充" ; "\n\_l[-,180]\f[height,12]\f[align,center]\f[color,default][%(_chocolate)/6]"
+	--
+	"\n"
+	--
+	if _type=="體力補充" ; "\_l[-,180]"
+	else ; "\_l[-,95]"
+	--
+	"\f[height,12]"
+	--
+	if _option==""
+		""
+	elseif _type=="特殊"
+		"\f[align,left]\__q[OnUsingItem,%(_type),%(_n),%(_name),%(_f)_%(_n)][ \f[bold,1]%(_option[_n])\f[bold,0]\f[color,default] ]\__q"
+	else
+		"\f[align,left]\__q[OnUsingItem,%(_type),%(_n),%(_name),%(_f)_%(_n)][ \f[bold,1]%(_option)\f[bold,0]\f[color,default] ]\__q"
+	--
+	"\n[1]\f[align,right]\f[color,#708090]"
+	--
+	if _price==0
+		"無法販售"
+	else
+		"售價%(_price)元"
+	--
+	if _type=="戰利品" || _type=="染料原礦"
+	{	_pic="botton/lock_%TOINT(loot_lock[_n])"
+		if _type=="染料原礦" ; _pic="botton/lock_%TOINT(dye_ingredient_lock[_n])"
+		"\n\_l[-7,-2]\__q[OnItemLock,%(_n),%(_type)]%Bimg(_pic)\__q"
+	}
+	--
+	OnBagItem
+}
+OnItemLock
+{	_n=reference0 ; _type=reference1
+	case _type
+	{ when "戰利品"
+	  { if loot_lock[_n]==1 ; loot_lock[_n]=0
+		else ; loot_lock[_n]=1}
+	  when "染料原礦"
+	  { if dye_ingredient_lock[_n]==1 ; dye_ingredient_lock[_n]=0
+		else ; dye_ingredient_lock[_n]=1}
+	}
+	
+	--
+	"\![raise,OnItemInfo,%(_n),%(_type)]"
+}
+
+
+//========================使用物品========================
+OnUsingItem
+{
+	_type=reference0
+	_n=reference1
+	_name=reference2
+	_file=reference3
+	--
+	if _type == "體力補充"
+	{	stamina+=consumable_sp_stamina[_n] ; cum_stamina_heal[0]+=consumable_sp_stamina[2]
+		consumable_sp[_n]--
+	}
+	--
+	"\p[7]\b[50]\s[-1]\![quicksession,true]"
+	--
+	if _name=="異方晶" || _name=="抽獎券" || _name=="廢料"
+	{
+		BagToStore
+	}
+	elseif _name=="海豹抱枕" && _type == "活動商品"
+	{
+		openbagmode=0
+		OnForgeRoom.Open
+	}
+	elseif _name=="巧克力製作套組"
+	{	"%cp(0)\b[22]%(click)\![quicksession,false]說明書上寫…… \w7要先隔水加熱融化巧克力，\w8然後倒進模具裡，\w5接著等巧克力冷卻……\x/
+		%cp(0)\b[20]\n[70]加上裝飾……\x/
+		%cp(0)\b[20]完成了。\w5\n[150]\_q（獲得手工巧克力×1）\_q"
+		--
+		gift_sp[2]=TOINT(gift_sp[2]) ; gift_sp[2]++
+		event_item[0]--
+		click_sound=1
+		--
+		OnBagItem
+	
+	}
+	elseif _type == "體力補充" || _type == "體力補充2" ||  _type == "生日蛋糕"
+	{
+		"\_l[236,-24]\__q[OnBagItem]%QTYimg('x')\__q\n"
+		--
+		if stamina >= staminamax
+		{	"\_l[-,40]\f[align,center]體力已經是滿的了。"
+			--
+			OnBagItem
+		}
+		elseif _name == "赫卡蒂的愛情巧克力"
+		{	"\p[7]\b[-1]%cp(0)\b[20]\![quicksession,false]\n[70]（赫卡蒂的愛意令人精神百倍……）\x/
+			\![raise,OnItemInfo,%(_n),%(_type)]"
+		}
+		elseif _name == "海拉的愛情巧克力"
+		{	"\p[7]\b[-1]%cp(0)\b[20]\![quicksession,false]\n[70]（果然愛情就是最好的廚藝……）\x/
+			\![raise,OnItemInfo,%(_n),%(_type)]"
+		}
+		elseif _name == "夜鶯的友情巧克力"
+		{	/*stamina+=consumable_sp_stamina[2] ; cum_stamina_heal[0]+=consumable_sp_stamina[2]
+			consumable_sp[2]--*/
+			--
+			if consumable_sp[2]%6==0
+			{	
+				"\p[7]\b[-1]"
+				--
+				OnBagItem
+				--
+				"%cp(0)\b[20]\![quicksession,false]\n[70]（這是最後一顆了……）"
+			}
+			else
+			{
+				"\p[7]\b[-1]%cp(0)\b[20]\![quicksession,false]（似乎能感受到來自夜鶯的鼓勵……）\x/
+				\![raise,OnItemInfo,%(_n),%(_type)]"
+			}
+		
+		}
+		/*elseif "愛情巧克力" _in_ _name
+		{	click
+			--
+			click_sound=1
+			stamina+=consumable_sp_stamina[2] ; cum_stamina_heal[0]+=consumable_sp_stamina[2]
+			consumable_sp[2]--
+			--
+			"\p[7]\b[-1]%cp(0)\b[20]\![quicksession,false]（似乎能感受到來自夜鶯的鼓勵……）"
+		
+		}*/
+		elseif  _type == "生日蛋糕"
+		{	click
+			--
+			click_sound=1
+			stamina+=500
+			cum_stamina_heal[0]+=500
+			cum_birthdaycake[_n]=TOINT(cum_birthdaycake[_n]) ; cum_birthdaycake[_n]++
+			birthdaycake[_n]--
+			--
+			"\p[7]\b[-1]%cp(0)\b[20]\![quicksession,false]（一口氣吃掉一個6吋蛋糕，\w5好撐……）"
+			--
+			OnBagItem
+		}
+		else
+		{
+			stamina+=consumable_stamina[_n]
+			cum_stamina_heal[0]+=consumable_stamina[_n]
+			cum_consumable[_n]=TOINT(cum_consumable[_n]) ; cum_consumable[_n]++
+			consumable[_n]--
+			--
+			"\![raise,OnItemInfo,%(_n),%(_type)]"
+		}
+	}
+	elseif _type == "染料原礦" || _type == "各色染料"
+		Dye.Grind
+	elseif _type == "禮物" || _type == "禮物2"
+	{	"\p[2]%(cp)\b[22]\n[90]\f[align,center]把這個禮物送給……\n[180]/
+		%(opp)\__q[OnSendGift,0,%(_n),%(_type)] 赫卡蒂 \__q\n[150]/
+		%(opp)\__q[OnSendGift,1,%(_n),%(_type)] 海拉　 \__q"
+		--
+		OnBagItem
+	}
+	elseif (_name=="狂亂精粹" && enhancement[0]<=0) || (_name=="異能源液" && enhancement[1]<=0) || (_name=="狂暴源液" && enhancement[2]<=0) 
+	{	"%cp(0)\b[20]\![quicksession,false]（必須要有\f[bold,1]%(_name)\f[bold,0]\n才能使用……）"
+		--
+		OnBagItem
+	}
+	else
+	{
+		"\_l[10,-22]\f[height,12]"
+		--
+		if _name=="異能源液" || _name=="狂暴源液"
+			"攻擊力"
+		elseif _name=="狂亂精粹"
+			"HP"
+		--
+		" 強化\_l[236]\__q[OnBagItem]%QTYimg('x')\__q\n[170]/
+		\f[align,center]\f[height,12]使用數量\f[default]\n[110]/
+		\__q[OnChageQty,%(_type),%(_n),%(_name),%(_file),min]%QTYimg('min')\__q  /
+		\__q[OnChageQty,%(_type),%(_n),%(_name),%(_file),--]%QTYimg('--')\__q /
+		\__q[OnChageQty,%(_type),%(_n),%(_name),%(_file),-]%QTYimg('-')\__q           /
+		\__q[OnChageQty,%(_type),%(_n),%(_name),%(_file),+]%QTYimg('+')\__q /
+		\__q[OnChageQty,%(_type),%(_n),%(_name),%(_file),++]%QTYimg('++')\__q  /
+		\__q[OnChageQty,%(_type),%(_n),%(_name),%(_file),max]%QTYimg('max')\__q\n[1]/
+		\f[color,#9CEDED]%(qty) \f[default]\n[150]/
+		\f[height,12]使用對象\f[default]\n[110]\f[color,#9D9D9D]"
+		--
+		if _name=="異能源液"
+			{"\f[align,center]\f[shadowcolor,#930000]\f[color,default]赫卡蒂\f[color,default]" ; usingItem_object=0}
+		elseif _name=="狂暴源液"
+			{"\f[align,center]\f[shadowcolor,#930000]\f[color,default]海拉\f[color,default]" ; usingItem_object=1}
+		else
+		{
+			if usingItem_object==0
+				"\f[shadowcolor,#930000]\f[color,default]"
+			--
+			"\q[ 赫卡蒂 ,OnUsingItem.ChangeObject,%(_type),%(_n),%(_name),%(_file),0]\f[shadowcolor,default]\f[default]\f[color,#9D9D9D]        "
+			--
+			if usingItem_object==1
+				"\f[shadowcolor,#930000]\f[color,default]"
+			--
+			"\q[ 海拉 ,OnUsingItem.ChangeObject,%(_type),%(_n),%(_name),%(_file),1]\f[shadowcolor,default]\n[1]"
+		}
+		--
+		"\n[140]\f[align,center]\__q[OnUsingItem.Confirm,%(_type),%(_n),%(_name),%(_file),%(usingItem_object)]%QTYimg('OK')\__q"
+		--
+		OnBagItem
+	}
+}
+
+
+
+//============================================================
+//						強化道具							  
+//============================================================
+OnUsingItem.ChangeObject
+{
+	_type=reference0
+	_n=reference1
+	_name=reference2
+	_file=reference3
+	_ob=reference4
+	--
+	usingItem_object=_ob
+	OnUsingItem(reference)
+}
+OnChageQty
+{
+	_type=reference0
+	_n=reference1
+	_name=reference2
+	_file=reference3
+	_count=reference4
+	_max=""
+	case _type
+	{
+		when "戰利品" ; _max=loot[_n]
+		when "染料原礦" ; _max=dye_ingredient[_n]
+		when "各色染料" ; _max=dye[_n]
+		when "強化道具" ; _max=enhancement[_n]
+	}
+	case _count
+	{
+		when "min" ; qty=1
+		when "--" ; qty-=10
+		when "-" ; qty-=1
+		when "+" ; qty+=1
+		when "++" ; qty+=10
+		when "max" ; qty=_max
+	}
+	if qty>_max ; qty=_max
+	if qty<=0 ; qty=1
+	OnUsingItem(reference)
+}
+
+OnUsingItem.Confirm
+{
+	_type=reference0
+	_n=reference1
+	_name=reference2
+	_file=reference3
+	_ob=reference4
+	_v=TOINT(3+level*0.3456*qty)
+	if (_name=="狂亂精粹" && enhancement[0]<=0) || (_name=="異能源液" && enhancement[1]<=0) || (_name=="狂暴源液" && enhancement[2]<=0) 
+	{	"%cp(0)（必須要有%(_name)才能使用……）"
+		--
+		OnBagItem
+	}
+	if _name=="狂亂精粹" && _ob==0
+		{_v=_v*5 ; HCinc_ex[0]+=_v ; enhancement[0]-=qty ; cum_enh_HC[0]+=qty ; HPup.End(_ob,_v)}
+	elseif _name=="狂亂精粹" && _ob==1
+		{_v=_v*5 ; HLinc_ex[0]+=_v ; enhancement[0]-=qty ; cum_enh_HL[0]+=qty ; HPup.End(_ob,_v)}
+	elseif _name=="異能源液"
+		{HCinc_ex[1]+=_v ; enhancement[1]-=qty ; cum_enh_HC[1]+=qty ; ATKup.End(_ob,_v)}
+	elseif _name=="狂暴源液"
+		{HLinc_ex[1]+=_v ; enhancement[2]-=qty ; cum_enh_HL[1]+=qty ; ATKup.End(_ob,_v)}
+}
+HPup.End
+{
+	_ob=_argv[0]
+	_v=_argv[1]
+	--
+	OnBagItem
+	--
+	"\![quicksession,false]"
+	--
+	case _ob ; { when 0 ; "\0（赫卡蒂" ; when 1 ; "\1（海拉" }
+	--
+	"的HP上升了\f[bold,1]\f[color,#FF7575]%(_v)\f[default]點。）"
+}
+ATKup.End
+{
+	_ob=_argv[0]
+	_v=_argv[1]
+	--
+	OnBagItem
+	--
+	case _ob
+	{	when 0 ; "\0\s[1]\![quicksession,false]我又有更強大的力量可以保護%(username)了。"
+		when 1 ; "\1\s[18]\![quicksession,false]我好像更能打了耶！"	}
+	--
+	"\n[130]（攻擊力上升了\f[bold,1]\f[color,#D8875F]%(_v)\f[default]點。）"
+}
+
+
+
+
+//============================================================
+//						贈送禮物							  
+//============================================================
+
+OnSendGift
+{
+	send_gift_ob=reference0 ; _num=reference1 ; _type=reference2
+	_name=""
+	_int=0
+	mood[send_gift_ob]+=30
+	if _type=="禮物"
+		{ intimacy[send_gift_ob]+=gift_sp_intimacy[_num] ; _int=gift_sp_intimacy[_num] ; gift_sp[_num]=TOINT(gift_sp[_num]) ; gift_sp[_num]-- ; _name=gift_sp_name[_num] }
+	if _type=="禮物2"
+		{ intimacy[send_gift_ob]+=gift_intimacy[_num] ; _int=gift_intimacy[_num] ; gift[_num]--    ; _name=gift_name[_num] }
+	--
+	if send_gift_ob==1 && _num==14
+	{	cum_int_down_HL[2]=TOINT(cum_int_down_HL[2]) ; cum_int_down_HL[2]+=4 ; intimacy[1]+=4	}
+	elseif send_gift_ob==0 ; cum_int_HC[3]+=_int
+	elseif send_gift_ob==1 ; cum_int_HL[3]+=_int
+	if send_gift_ob==0 && _type=="禮物" { cum_sendgift_sp_HC[_num]=TOINT(cum_sendgift_sp_HC[_num]) ; cum_sendgift_sp_HC[_num]++}
+	if send_gift_ob==1 && _type=="禮物" { cum_sendgift_sp_HL[_num]=TOINT(cum_sendgift_sp_HL[_num]) ; cum_sendgift_sp_HL[_num]++}
+	if send_gift_ob==0 && _type=="禮物2" { cum_sendgift_HC[_num]=TOINT(cum_sendgift_HC[_num]) ; cum_sendgift_HC[_num]++}
+	if send_gift_ob==1 && _type=="禮物2" { cum_sendgift_HL[_num]=TOINT(cum_sendgift_HL[_num]) ; cum_sendgift_HL[_num]++}
+	--
+	mood[send_gift_ob]+=10
+	--
+	case send_gift_ob
+	{
+		when 0
+		{
+			"\0"
+			--
+			if _name=="草莓糖果"
+				"\s[1]這個…… \w5對我有特殊的意義。"
+			elseif _name=="海豹抱枕"
+			{	"\s[5]軟軟的……\w5很舒服……"
+				"\s[1]抱著這個的話，\w7晚上會不會睡得更好呢？"
+			}
+			elseif _name=="手工巧克力"
+			{	if relationship[0]%2==1 && "%(month).%(day)"=="2.14"
+				{	intimacy[0]+=32 ; cum_int_HC[3]+=32
+					"\s[7]這是…… \w3%(usernameHC)自己做的嗎？\w9\w5\n[130]\s[8]…\w2…\w1難道我對%(usernameHC)來說也是特別的存在嗎？"
+				}
+				elseif relationship[0]%2==0 && "%(month).%(day)"=="2.14"
+					"\s[1]這就是所謂的「友情巧克力」嗎？"
+				elseif month==2 && day<14
+					"\s[0]咦？\w3%(usernameHC)是不是弄錯日期了呢？"
+				elseif month==2 && day>14 && relationship[0]%2==1
+					"\s[1]是因為工作太忙才錯過日期的嗎？\w8\n[130]\s[5]沒關係……\w5 即便如此我也能明白%(usernameHC)的心意，\w8\s[20]謝謝%(you)。"
+				elseif month==2 && day>14 && relationship[0]%2==0
+					"\s[0]是為了避嫌才刻意避開日期嗎？\w8\n[130]\s[1]無論%(usernameHC)是何種想法，\w8能收到%(you)的禮物我都很感激。"
+				else
+					"\s[5]%(usernameHC)不用對我這麼好……\w7也可以的……"
+			}
+			elseif _name=="芝麻湯圓模型"
+				"\s[1]……原來是模型嗎？\w5還以為是我鼻子失靈了。"
+			elseif _name=="空白線圈本"
+				"\s[5]我會畫更多%(usernameHC)的……"
+			elseif _name=="20面骰子"
+				"\s[0]之前和愛緹小姐玩桌遊的時候，\w9也有用到這個道具。"
+			elseif _name=="羽毛筆"
+				"\s[0]渡鴉小姐有一支跟它很像的。"
+			elseif "西洋棋" _in_ _name
+				"\s[0]西洋棋嗎…… \w6\s[1]我不懂得玩這個遊戲，\w9不知是否能夠向伊琳娜小姐請教呢。"
+			elseif "糖" _in_ _name
+				"\s[4]好甜……"
+			elseif MoodStage(mood[0])=="F"
+				"\s[3]我的心情好一些了，\w7謝謝%(you)。"
+			elseif MoodStage(mood[0])=="G"
+				"\s[3]嗯，\w3謝謝……"
+			else
+				"\s[5]謝謝%(you)，\w5我會好好珍惜的……"
+		}
+		when 1
+		{
+			"\1"
+			--
+			if _name=="小熊餅乾"
+				"\s[16]哇－－ \w5這個餅乾！\w5好可愛！\w7\n[130]\s[18]嘿嘿，\w3多謝啦，\w5%(usernameHL)。"
+			elseif _name=="海豹抱枕"
+			{	"\s[12]好可愛－－\w5 我想放到沙發上可以嗎？"
+				if relationship[1]%2==1
+				"\1\s[18]有了這個，\w7\s[33]以後感到寂寞時就不用抱%(usernameHL)了吧？\w9\s[34]用它代替就好了。\w9\w9\n[130]…\w3…\w3\s[16]我開玩笑的啦！\w9\s[37]%(you)也不用失望成那樣吧？"
+			}
+			elseif _name=="手工巧克力"
+			{	if relationship[1]%2==1 && "%(month).%(day)"=="2.14"
+				{	intimacy[1]+=32 ; cum_int_HL[3]+=32
+					"\s[50]…\w2…\w3…\w2…\w3！\w6\s[31]%(usernameHL)…\w2…\w2%(you)居然……\w9\w4\n[130]\s[37]我、\w3我是說…… \w8這不是理所當然的嘛！\w9\w3\n[130]\s[18]嘿嘿，\w5謝謝%(you)……"
+				}
+				elseif relationship[0]%2==0 && "%(month).%(day)"=="2.14"
+					"\s[35]「友情巧克力」……對吧？\w7\n[130]\s[18]嗯！\w2有吃的就很開心啦！"
+				elseif month==2 && day<14
+					"\s[30]喂，\w3搞錯日期了吧？\w6%(you)腦子是不是睡糊塗了？"
+				elseif month==2 && day>14 && relationship[1]%2==1
+					"\s[37]晚了啦！\w7\n[130]\s[35]但是局長的工作很忙也沒辦法吧？\w7\s[18]沒事啦，\w5我還是能明白%(you)的用心啦。"
+				elseif month==2 && day>14 && relationship[1]%2==0
+					"\s[35]嗯……\w3因為是「友情巧克力」才刻意避開14號的嗎？\w7\n[130]\s[36]真是的，\w5我不會誤會的啦！"
+				else
+					"\s[18]這麼有心？\w5還是親手做的。\w6謝謝啦！"
+			}
+			elseif _name=="芝麻湯圓模型"
+				"\s[18]那我就不客氣啦－－%cp(0)\b[20]\n[70]海拉，等等……\1\n[130]\s[19]哇哇哇哇哇！\w6好硬－－！\w9\n[130]\s[36]…\w2…\w1…\w2…\w1咦？\w3是假的啊？"
+			elseif _name=="木質沙漏"
+				"\s[16]咦欸－－ \w5等它流完剛好是3分鐘嗎？\w9 \s[34]正好，下次泡麵的時候我可以用！"
+			elseif _name=="西洋棋（后）"
+				"\p[2]%(cp)（海拉揮舞著棋子）\w9\1\s[18]我以皇后的名義命令%(you)－－ \w9\s[33]給本宮按摩肩膀%ANY(10,15,20)分鐘！"
+			elseif _name=="20面骰子"
+				"\s[30]海拉戰士一看見敵人，\w9\s[33]二話不說就是一記劈砍\w2－\w3－\w5－\w3－\w5 \s[14]啊*文明*！！！\w5 怎麼骰出了1？！"
+			elseif _name=="酒心巧克力"
+				"\s[32]*文明*－－！！\w5 \s[19]咳、\w3咳呃\w2呃呃呃！！\w8\n[130]這、\w3這什麼？！ \w7明明是巧克力，\w8卻……\w3咳、\w2這麼嗆……\w9\n[130]\s[17]\f[color,255,0,0]是什麼整人道具嗎！"
+			elseif _name=="羽毛筆"
+				"\s[30]是為了給我練字送的嗎？\w9 \s[19]……但是這支筆好細啊，\w7握著有點難受……"
+			elseif _name=="金鴨幣"
+				"\s[16]是零用錢嗎！\w9 …\w3…\w5…\w3…\s[30]哦，\w5原來只是遊戲代幣啊。"
+			elseif _name=="黑白小羊玩偶"
+				"\s[35]其實我不懂這部卡通有啥好看的…… \w9\s[13]玩偶倒是很可愛……"
+			elseif MoodStage(mood[1])=="F"
+				"\s[18]是看我心情不好才送我的嗎？"
+			elseif MoodStage(mood[1])=="G"
+				"\s[13]喔，\w3多謝啦……"
+			else
+				"\s[18]嘿嘿，\w5終於懂得孝敬%(you)爸爸我了？"
+		}
+	}
+	--
+	click_sound=1
+	--
+	OnBagItem
+}
+
+
+
+
+
+
+//============================================================
+//						廢案
+//============================================================
+paletteinfo
+{
+	"\p[2]\b[30]\s[2100]\![quicksession,true]\_b[img\items\palette.png,inline,--option=use_self_alpha]/
+	\_l[70,25]\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]繽紛塗料 \![*]\f[default]\n/
+	\f[align,center]\f[height,12]\n[111]/
+	   赫卡蒂鍾愛的顏料，有極佳的耐氣候牢度，良好的流動性能。\n[144]/
+	\f[align,right]\f[color,#708090]無法販售"
+	--
+	OnBagItem
+}
+OnACSMinfo
+{
+	"\p[2]\b[30]\s[2100]\![quicksession,true]"
+	--
+	if ACSMinfoMod==0
+		{"\_b[img\items\A-CSM.png,inline,--option=use_self_alpha]/
+		\_l[70,25]\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]魂識印記 \![*]\f[default]\n/
+		\f[align,center]\f[height,12]\n[111]/
+		不知名的存在凝視狄斯所留下的印記，蘊含某種莫名的偉力。\n\f[color,#FFD2D2]※蒐集特定數量可以強化赫卡蒂在戰鬥中具現化夢魘的能力。\n[144]\f[align,left]\f[bold,1]"
+		--
+		if CSM_A<10
+			"\f[color,#708090][ 數量不足 ]"
+		elseif CSM_A>=10
+			"\f[color,#CA8EC2]　　　[\q[ 使用 ,UseCSM_A]]"
+		--
+		"\f[bold,0]\_l[154]\f[color,#708090]無法販售\n[150]/
+		\f[align,center]\f[color,#B8C7CC]-------------\q[▲ 獲取途徑 ▲,ChangeACSMinfoMod1]-------------"}
+	elseif ACSMinfoMod==1
+		"\f[height,12]\f[align,center]\f[color,#B8C7CC]-------------\q[▼ 獲取途徑 ▼,ChangeACSMinfoMod0]-------------\f[color,default]\n[130]/
+		首次戰鬥\n/
+		首次派遣5分鐘\n/
+		首次派遣10分鐘\n/
+		首次派遣30分鐘\n/
+		等級升至10"
+	--
+	OnBagItem
+}
+DSInfo
+{
+	"\p[2]\b[30]\s[2100]\![quicksession,true]\_b[img\items\DreamShadow.png,inline,--option=use_self_alpha]/
+	\_l[88,25]\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]夢魘 \![*]\f[default]\n/
+	\f[align,center]\f[height,12]\n[111]/
+	赫卡蒂無數噩夢的實體化存在，攻擊對手的同時對其造成精神傷害，也可為赫卡蒂抵禦傷害。"
+	--
+	OnBagItem
+}
+
+
+
+
+
+
+
+簡寫info
+{
+	"\p[2]\b[30]\s[2100]\![quicksession,true]\_b[img\items\簡寫.png,inline,--option=use_self_alpha]/
+	\_l[70,25]\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]名稱\![*]\f[default]\n/
+	\f[align,center]\f[height,12]\n[111]/
+	介紹。\n[144]/
+	\f[align,right]\f[color,#708090]售價xxx元"
+	--
+	OnBagItem
+}
+
+
+//============================================
+////////////////////道具使用//////////////////
+//============================================
+//-----------狂亂精粹-----------
+ConfirmUseManiaE
+{
+	_hpup=level/3*qty
+	ManiaE-=qty
+	OnBagItem
+	--
+	case EnhanceChoice
+	{
+		when 0
+		 { HCinc_ex[0]+=_hpup
+		   --
+		   "\0（赫卡蒂"}
+		when 1
+		 { HLinc_ex[0]+=_hpup
+		   --
+		   "\1（海拉"}
+	}
+	
+	--
+	"的HP上升了\f[bold,1]\f[color,#E86D6D]%(_hpup)\f[default]點。）"
+}
+
+//-----------異能源液-----------
+OnPAFEQtyConfirm
+{
+	OnBagItem
+	--
+	"\p[7]\s[-1]\b[50]\![quicksession,true]\_l[3,-25]攻擊力 強化 （赫卡蒂）/
+	\_l[236]\__q[OnBagItem]%QTYimg('x')\__q\n[230]/
+	\f[align,center]\f[height,12]使用數量\f[default]\n[110]/
+	\__q[OnChagePAFEQty,min]%QTYimg('min')\__q  /
+	\__q[OnChagePAFEQty,--]%QTYimg('--')\__q /
+	\__q[OnChagePAFEQty,-]%QTYimg('-')\__q           /
+	\__q[OnChagePAFEQty,+]%QTYimg('+')\__q /
+	\__q[OnChagePAFEQty,++]%QTYimg('++')\__q  /
+	\__q[OnChagePAFEQty,max]%QTYimg('max')\__q\n[1]/
+	\f[color,#9CEDED]\__q[EnterPAFEQty]%(qty)\__q \f[default]\n[250]/
+	\f[align,center]\__q[ConfirmUsePAFE]%QTYimg('OK')\__q"
+}
+ConfirmUsePAFE
+{
+	_atkup=level/5*qty
+	PAFE-=qty
+	OnBagItem
+	HCinc_ex[1]+=_atkup
+	--
+	"\0\s[1]\![quicksession,false]我又有更強大的力量可以保護%(username)了。\n[150]/
+	\f[color,#E9DC9B]（赫卡蒂的攻擊力上升了\f[bold,1]\f[color,#E86D6D]%(_atkup)\f[default]\f[color,#E9DC9B]點。）"
+}
+
+//-----------狂暴源液-----------
+ConfirmUsePFEF
+{
+	_atkup=level/5*qty
+	PFEF-=qty
+	OnBagItem
+	HLinc_ex[1]+=_atkup
+	--
+	"\1\s[18]\![quicksession,false]我好像更能打了耶！\n[150]/
+	\f[color,#E9DC9B]（海拉的 攻擊力 上升了\f[bold,1]\f[color,#E86D6D]%(_atkup)\f[color,#E9DC9B]\f[bold,0]點。）"
+}
+
+
+//=====選項tips=====
+On_balloon_tooltip {
+　if ISFUNC( "BalloonTooltip_%(reference[1])" ) {
+　	EVAL( "BalloonTooltip_%(reference[1])" )
+　}
+}
+TipOption_BagToStore{BagToStore}
+BalloonTooltip_TipOption_BagToStore { "前往採購部" }

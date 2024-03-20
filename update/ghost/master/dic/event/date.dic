@@ -1,0 +1,16 @@
+OnSpDateEvent
+{
+	_date=reference0
+	_date2=ERASE(_date,0,5)
+	_ob=reference1
+	case _date2
+	{
+		when "2.14"
+		{	if _ob==1 && relationship[1]%2==1
+			{
+				""
+			}
+			
+		}
+	}
+}

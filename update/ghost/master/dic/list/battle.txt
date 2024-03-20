@@ -1,0 +1,27 @@
+bp
+{	"\_b[img\point.png,inline,--option=use_self_alpha]"	}
+bh
+{	"\f[color,#F64141]%(_argv[0])\f[default]"	}
+//==========================掉落物==========================
+//0exp,1狄斯幣,2狂亂精粹,3異能源液,4狂暴源液,5戰利品,6原礦,7感染凝膠
+Edrop_name
+{
+	("經驗值","狄斯幣","狂亂精粹","異能源液","狂暴源液","戰利品","原礦","感染凝膠")
+}
+//==========================異常狀態==========================
+debuff_name
+{
+	("中毒","流血","燃燒","詭計")
+}
+debuff_color
+{
+	("\f[color,#C8A7CD]","\f[color,#E14747]","\f[color,#FFA042]","\f[color,#D8D8EB]")
+}
+debuff_icon
+{
+	(" \_b[img\battle\debuff\debuff_0.png,inline,--option=use_self_alpha]"," \_b[img\battle\debuff\debuff_1.png,inline,--option=use_self_alpha]"," \_b[img\battle\debuff\debuff_2.png,inline,--option=use_self_alpha]"," \_b[img\battle\debuff\debuff_3.png,inline,--option=use_self_alpha]")
+}
+debuff_detail
+{
+	("攻擊時損失10%HP","任何一方行動，都將損失3%HP","回合結束後損失5%HP","無法使用技能")
+}

@@ -1,0 +1,150 @@
+Dispatch
+{
+	"\%(MenuChoice)\b[2]\_q%(click)"
+	--
+	menu_title="前往派遣"
+	menu_p_list=("├","├","├","└")
+	
+	menu_o_list=("30分鐘","1小時","3小時","6小時")
+	menu_func_list=("OnDispatch.Sure,30,1","OnDispatch.Sure,60,0.9","OnDispatch.Sure,180,0.8","OnDispatch.Sure,360,0.6")
+	--
+	Menu.Option
+	--
+	"\![quicksession,true]\n\_l[-,180]\f[align,right]\f[height,12]\__q[Dispatch.ChangeOption]"
+	--
+	if dispatch_option==1 ; Bimg('dressing\button\mark1')
+	else ; Bimg('dressing\button\mark0')
+	--
+	" 派遣後關機\__q"
+	--
+	MuenBottomOption('Menu_GoOutside')
+	
+}
+
+OnDispatch.Sure
+{
+	dispatch_second=reference0*60
+	DispatchMode=1
+	dispatch_start="%(year).%(month).%(day).%(hour).%(minute).%(second)"
+	_ratio=reference1
+	//	強化材料
+	dispatch_drop=(0,0,0)
+	for _i=0 ; _i<3 ; _i++
+	{
+		_d= TOINT (dispatch_second/1800*(level*0.05)*_ratio)
+		dispatch_drop[_i]+=TOINT (dispatch_second/1800*(level*0.13)*_ratio)+ RAND(_d)+1
+	}
+	//	原礦
+	dispatch_dye_qty=dispatch_second/3600
+	dispatch_dye_type= RAND (5)
+	--
+	if	   MenuChoice==0 && MoodStage(mood[0])=="E" ; "\0\s[1]嗯。"
+	elseif MenuChoice==0 && MoodStage(mood[0])=="F" ; "\0\s[1]命令……\w3必須服從……"
+	elseif MenuChoice==0 ; "\0\s[0]那麼待會兒見了，\w5%(usernameHC)。"
+	elseif MenuChoice==1 && MoodStage(mood[1])=="E" ; "\1去去就回……"
+	elseif MenuChoice==1 && MoodStage(mood[1])=="F" ; "\1\s[19]啊？\w3非去不可嗎？"
+	elseif MenuChoice==1 ; "\1\s[34]等著我的好消息吧！"
+	--
+	"\w9"
+	--
+	if dispatch_option==1
+	{	OnDispatch.Setting
+		--
+		"\w5\![open,file,order\關機.bat]"
+	}
+	else ; OnDispatch.Window
+}
+Dispatch.ChangeOption
+{
+	if dispatch_option==1 ; dispatch_option=0
+	else ; dispatch_option=1
+	--
+	Dispatch
+}
+
+OnDispatch.Setting
+{
+	dispatch_pass=TimeSpan(dispatch_start,"%(year).%(month).%(day).%(hour).%(minute).%(second)")
+	dispatch_left=dispatch_second-dispatch_pass
+	dispatch_time=(TOINT(dispatch_left/3600),TOINT((dispatch_left/60)%60),TOINT(dispatch_left%60))
+	--
+	if dispatch_time[0]<10 ; dispatch_time[0]="0"+ TOINT (dispatch_time[0])
+	if dispatch_time[1]<10 ; dispatch_time[1]="0"+ TOINT (dispatch_time[1])
+	if dispatch_time[2]<10 ; dispatch_time[2]="0"+ TOINT (dispatch_time[2])
+}
+OnDispatch.Window
+{
+	OnDispatch.Setting
+	--
+	if developermode==1
+	{
+		"\p[4]\s[-1]\b[2]\![quicksession,true]\f[height,12]/
+		現在時間\n%(year).%(month).%(day).%(hour).%(minute).%(second)\n[130]/
+		dispatch_start 出發時間(日期)\n%(dispatch_start)\n[130]/
+		dispatch_second 所需用時(相對數值)\n%(dispatch_second)\n[130]/
+		dispatch_pass 已過去時間(相對數值)\n%(dispatch_pass)\n[130]/
+		dispatch_left 剩餘時間(相對數值)\n%(dispatch_left)\n[130]/
+		dispatch_time 剩餘時間(相對數值)顯示用\n%(dispatch_time)"
+	}
+	--
+	if dispatch_left<=0 ; dispatch_pass=dispatch_second
+	--
+	"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\c\s[810010]\![quicksession,true]/
+	派遣進度：\n%ProgressBar(7,10,140,dispatch_pass,dispatch_second)\n[130]"
+	--
+	if dispatch_left>0
+	{
+		"剩餘\f[color,#9EDBFF]%(dispatch_time[0]):%(dispatch_time[1]):%(dispatch_time[2])\n[1]\f[align,right]\f[color,#FFE153]\__q[OnDispatch.Back][ 緊急召回 ]\__q\f[default]"
+		--
+		"\_w[1000]\![raise,OnDispatch.Window]"
+	}
+	else
+		"派遣完成！     \f[color,#FFE153]\__q[OnDispatch.End][ 領取獎勵 ]\__q"
+}
+OnDispatch.Back
+{
+	if reference0=='sure'
+	{	DispatchMode=0
+		dispatch_pass=TimeSpan(dispatch_start,"%(year).%(month).%(day).%(hour).%(minute).%(second)")
+		cum_dispatch[1]++
+		cum_dispatch_time[1]+=dispatch_pass
+		--
+		"\p[8]\s[-1]\0\s[0]\1\s[10]\p[2]%cp(0)"
+	}
+	else
+		"%SureWindow('OnDispatch.Window')\f[align,center]這樣\f[bold,1]\f[color,#FF7575]無法\f[default]獲得任何獎勵，\n確定緊急召回嗎？\n[180]/
+			%SureWindow.Button('OnDispatch.Back,sure','OnDispatch.Window')"
+}
+OnDispatch.Back.Sure
+{
+	Dispatch
+}
+OnDispatch.End
+{
+	DispatchMode=0
+	cum_dispatch[0]++
+	cum_dispatch_time[0]+=dispatch_second
+	"\p[8]\s[-1]"
+	--
+	case MenuChoice
+	{
+		when 0 ; "\1\s[10]\0\s[1]久等了，\w5%(usernameHC)。"
+		when 1 ; "\0\s[0]\1\s[33]我帶了東西回來喔！"
+	}
+	--
+	_txt="\w9\p[4]\s[-1]\b[32]\![set,balloontimeout,0]"
+	--
+	for _i=0 ; _i<3 ; _i++
+	{
+		_txt+="\_q%(bp)%SFX('sfx/decision button2') 獲得 %(dispatch_drop[_i]) 個 %(enhancement_color[_i])%(enhancement_name[_i])\f[default] %(bp)\_q\n[130]\w9"
+		enhancement[_i]+=dispatch_drop[_i]
+	}
+	if dispatch_dye_qty>0
+	{
+		_txt+="\_q%(bp)%SFX('sfx/decision button2') 獲得 %(dispatch_dye_qty) 個 %(dye_ingredient_name[dispatch_dye_type]) %(bp)\_q\n[130]\w9"
+		dye_ingredient[dispatch_dye_type]+=dispatch_dye_qty
+	}
+	_txt+="\![quicksession,true]\n[150]\f[color,#FFC2CF]\__q[Dispatch][ 再次派遣 ]\__q\f[default]\n[150]\__q[CANCEL_Button][ 返回管理局 ]\__q"
+	_txt
+	
+}

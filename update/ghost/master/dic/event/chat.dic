@@ -1,0 +1,16 @@
+Topic
+{
+	_txt="\p[2]%(cp)\b[22]"
+	--
+	_tc=topic_chiose
+	for _i=1 ; _i<5 ; _i++
+	{
+		
+		_c=ANY(topic_chiose)
+		_tn=ASEARCH(_c,_tc)
+		_tc[_tn]=IARRAY
+		if _i>1 ; _txt+="、"
+		_txt+="「%(_c)」"
+	}
+	_txt
+}

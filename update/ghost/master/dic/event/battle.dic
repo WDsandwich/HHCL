@@ -1,0 +1,2298 @@
+//戰鬥模式
+StillInBattle
+{	case BattleMode
+	{
+		when 1 ; BattleMapChoose_Line
+		when 2 ; BattleWarning
+		when 3 ; EnemyHPCheck
+		when 4 ; NextWave
+		when 5 ; MissionComplete_MSG
+		when 10 ; BattleMapChoose_Line
+	}
+}
+
+map_name_zh { ("辛迪加","實驗室廢墟","銹河-乾枯河道","內海","無背景") }
+map_name_en { ("Syndicate","ParmaRuins","RustRiver","DisSea","none") }
+enemy_action_list { ("hecate","hella","aoe","skill","idle") }
+enemy_attacktarget_list { ("赫卡蒂","海拉","禁閉者們","技能","待機") }
+
+//=====選擇戰鬥地圖=====
+BattleModeChoose
+{
+	"\0\b[2]選擇戰鬥模式（開發用）：\n[150]/
+	\q[%(bp) 初次戰鬥流程 ,GoFristBattle]\n[130]\q[%(bp) 一般戰鬥(地圖選擇) ,BattleMapChoose]"
+}
+BattleMapChoose_Line
+{
+	"\c"
+	--
+	click_sound=1
+	if MenuChoice==0 && MoodStage(mood[0])=="G"
+		"\0我現在的狀態，\w8沒辦法戰鬥……\w9\n[130]對不起，\w5%(usernameHC)。\e"
+	elseif MenuChoice==0 && MoodStage(mood[1])=="G"
+		"\0\s[1]海拉的情緒好像很低落的樣子，\w8還是等會兒再去吧。\e"
+	elseif MenuChoice==1 && MoodStage(mood[1])=="G" ; "\1\s[31]不要……\w4我不想去……\e"
+	elseif MenuChoice==1 && MoodStage(mood[0])=="G"
+		"\1\s[36]赫卡蒂看起來很難受，\w8或許暫時不要去戰鬥比較好吧？\e"
+	else
+	{
+		case MenuChoice
+		{
+			when 0
+			{	if BattleMode>=10
+					"\0接著去哪裡？"
+				else
+				{ case MoodStage(mood[0])
+				  {
+					when "A" ; "\0我等不及了，%(usernameHC)。"
+					when "B" ; "\0嗯，我現在狀態正佳。"
+					when "C" ; "\0要去哪裡戰鬥呢？"
+					when "D" ; "\0要去哪裡執行任務？"
+					when "E" ; "\0沒關係，我還撐得住。"
+					when "F" ; "\0如果是%(usernameHC)的命令的話……"
+				  }
+				}
+			}
+			
+			when 1
+			{	if BattleMode>=10
+					"\1\s[32]我還能打！"
+				else
+				{ case MoodStage(mood[1])
+				  {
+					when "A" ; "\1\s[34]走吧！給他們好看！"
+					when "B" ; "\1\s[34]我正在興頭上呢！"
+					when "C" ; "\1\s[18]好欸－－打架囉－－"
+					when "D" ; "\1這次去哪裡呀？"
+					when "E" ; "\1\s[36]好吧，雖然現在不太想去……"
+					when "F" ; "\1\s[19]非去不可嗎？"
+				  }
+				}
+			}
+		}
+		--
+		BattleMapChoose
+	}
+}
+BattleMapChoose
+{
+	"\p[4]\s[-1]\b[2]%(click)\_b[img\battle\DisCity.png,2,28,--option=background,--option=use_self_alpha]/
+	\![quicksession,true]\f[shadowcolor,none]\f[height,12]\f[color,#73ABAB]體　力：\f[color,default] \f[shadowcolor,none]        %(stamina) / %(staminamax)%ProgressBar(6,50,135,stamina,staminamax)\f[shadowcolor,default]\f[height,15]"
+	--
+	if level>=10 ; "\_b[img\battle\dot.png,133,109,--option=use_self_alpha]\__q[OnChooseMap,2]"
+	else ; "\f[color,#8E8E8E]\__q[UnlockRustRiver]"
+	--
+	"\_l[10,70]銹河-乾枯河道\__q/
+	\_b[img\battle\dot.png,155,159,--option=use_self_alpha]\_l[125,85]\__q[OnMapDetail,2]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q\_l[75,119]\f[default]\__q[OnChooseMap,0] 辛迪加 \__q\_l[145,134]\__q[OnMapDetail,0]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
+	--
+	//"\_b[img\battle\dot.png,195,273,--option=use_self_alpha]\f[color,#8E8E8E]\f[shadowcolor,none]\__q"
+	--
+	if verson_code>=999999 ; "\__q[OnChooseMap,3]"
+	else ; "\f[color,#8E8E8E]\__q[UnlockDisSea]"
+	--
+	"\_l[134,190]內海\__q"
+	--
+	if level>=5
+		"\_b[img\battle\dot.png,140,66,--option=use_self_alpha]\f[default]\__q[OnChooseMap,1]"
+	else
+		"\f[color,#8E8E8E]\__q[UnlockParmaRuins]"
+	--
+	"\_l[40,30]實驗室廢墟\__q\_l[130,45]\__q[OnMapDetail,1]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
+	--
+	batlle_level = TOINT(batlle_level)
+	if batlle_level<0 ; batlle_level=0
+	"\_l[10,180]\f[height,12]\f[color,#CA8EC2]汙染層級：\n[120]\_l[15]\__q[OnBattle.ChangeBL,-1]%QTYimg('-')\__q \__q[OnBattle.ChangeBL,input]%(batlle_level)\__q \__q[OnBattle.ChangeBL,1]%QTYimg('+')\__q\n"
+	--
+	"\_l[5,225]\f[color,#FFD700]\f[height,12]\q[<返回管理局,Battle.Cancel]"
+}
+OnBattle.ChangeBL
+{
+	if reference0=="input"
+	{	BattleMapChoose
+		--
+		"\![open,inputbox,OnBattle.ChangeBL.Enter,-1,--text=%(batlle_level)]"
+	}
+	else
+	{	batlle_level+=reference0 ; BattleMapChoose	}
+}
+OnBattle.ChangeBL.Enter
+{	_bl=reference0
+	if GETTYPE(_bl)==1 || GETTYPE(_bl)==2 ; batlle_level=TOINT(_bl)
+	BattleMapChoose
+}
+Battle.Cancel
+{
+	if BattleMode>=1 && MenuChoice==0
+	{	"\0\s[0]%(usernameHC)還是打算休息一下嗎？"	}
+	elseif BattleMode>=1 && MenuChoice==1
+	{	"\1\s[13]欸－－\w5失望……"	}
+	elseif BattleMode==0 && MenuChoice==0 && MoodStage(mood[0])=="E"
+	{	"\0\s[1]抱歉，\w4我再去調整一下。"}
+	elseif BattleMode==0 && MenuChoice==0 && MoodStage(mood[0])=="F"
+	{	"\0\s[5]謝謝……"}
+	elseif BattleMode==0 && MenuChoice==0
+	{	"\0還有什麼要準備的嗎？" ; "\0我隨時都為%(usernameHC)待命。"}
+	elseif BattleMode==0 && MenuChoice==1 && MoodStage(mood[1])=="E"
+	{	"\1\s[13]我想回家……"	}
+	elseif BattleMode==0 && MenuChoice==1 && MoodStage(mood[1])=="F"
+	{	"\1\s[13]太好了……"	}
+	elseif BattleMode==0 && MenuChoice==1
+	{	"\1\s[16]欸－－－－" ; "\1\s[13]沒有要打架了嗎？"}
+	--
+	BattleMode=0
+	--
+	"\e"
+}
+OnMapDetail
+{
+	_name="辛迪加,實驗室廢墟,銹河-乾枯河道"
+	_detail="暴力的溫床，黑幫的舞台。偶爾也有死役在此出沒。,遺留在此的實驗體和器材，受狂厄影響後，誕生出獨特的原生種。,原本流淌著河水的地方只剩下高度污染的泥濘，源源不絕的死役大量出沒。"
+	_level=(1,5,10)
+	_info="- 擊敗敵人時可獲得狄斯幣，數目隨等級增加\n[130]- 無法在此獲得染劑原礦,- 敵人擁有更高的血量\n[130]- 掉落的染劑原礦和強化道具為2倍,- 敵人擁有較高的血量與更高的攻擊力，以及更多樣的攻擊方式\n[130]- 擊敗敵人時將獲得更多經驗值"
+	_pay=("隨等級&汙染層級增加",3000,5000)
+	_wave=(7,5,10,3)
+	_sta=(2,4,3,5)
+	_n=reference0
+	"\p[6]\s[-1]\b[2]\![quicksession,true]%(click)\![*]\f[color,#E0FFFF]\f[bold,1]%(_name[_n])\![*]\n[10]\f[align,right]\f[height,12]\f[color,default]Lv.\f[color,#80FFFF]%(_level[_n])\f[color,default]解鎖\f[default]\n[130]\f[align,left]/
+	\f[height,12]\f[color,#9D9D9D]%(_detail[_n])\f[default]\n[150]%(_info[_n])\n[200]/
+	\f[color,#E87DB3]總wave數：%(_wave[_n])\n[130]/
+	\f[color,#80FFFF]單wave消耗體力：%(_sta[_n])\n[130]/
+	\f[color,#FFDC35]通關報酬：%(_pay[_n])/
+	\f[color,150,150,150]\f[height,12]\_l[150,220]\_b[img/CancelIcon,inline]\q[關閉,BattleMapChoose]"
+	--
+	BattleMapChoose
+}
+UnlockParmaRuins
+{
+	BattleMapChoose
+}
+UnlockRustRiver
+{
+	BattleMapChoose
+}
+UnlockDisSea
+{
+	BattleMapChoose
+}
+BalloonTooltip_UnlockParmaRuins { "等級5以上 解鎖" }
+BalloonTooltip_UnlockRustRiver { "等級10以上 解鎖" }
+BalloonTooltip_UnlockDisSea { "尚未開放" }
+
+OnChooseMap
+{
+	BattleMode=1
+	map_num=reference0
+	mapname=map_name_en[map_num]
+	case mapname
+	{
+		when "Syndicate"
+		{
+			missionpay=50+level*27+TOINT(level*batlle_level*1.14514)
+			wave=(1,7,2)
+		}
+		when "ParmaRuins"
+		{
+			missionpay=3000
+			wave=(1,5,4)
+		}
+		when "RustRiver"
+		{
+			missionpay=5000
+			wave=(1,10,3)
+			if developermode==1
+			"\![sound,loop,sound/bgm/awesomeness.mp3]\![sound,option,sound/bgm/awesomeness.mp3,--volume=70]"
+		}
+		when "DisSea"
+		{
+			missionpay=10000
+			wave=(1,3,5)
+		}
+	}
+	--
+	"\p[6]\s[-1]\![set,balloonalign,right]\![move,--X=550,--Y=440,--time=10,--base-offset=left.top]\p[5]\s[-1]\![bind,background,%(mapname),1]\![set,balloonalign,top]\![move,--X=500,--Y=400,--time=10,--base-offset=left.top]"
+	--
+	AllMapSetting
+}
+
+//辛迪加 地圖設定
+ChooseMap_Syndicate
+{
+	BattleMode=1
+	mapname="Syndicate"
+	missionpay=50+level*27+TOINT(level*batlle_level*1.14514)
+	wave=(1,7,2)
+	--
+	"\p[6]\s[-1]\![bind,background,Syndicate,1]\![set,balloonalign,right]\![move,--X=550,--Y=440,--time=10,--base-offset=left.top]\p[5]\s[-1]\![bind,background,Syndicate,1]\![set,balloonalign,top]\![move,--X=500,--Y=400,--time=10,--base-offset=left.top]"
+	--
+	AllMapSetting
+}
+//實驗室廢墟 地圖設定
+ChooseMap_ParmaRuins
+{
+	BattleMode=1
+	mapname="ParmaRuins"
+	missionpay=3000
+	wave=(1,5,4)
+	--
+	"\p[5]\s[-1]\![bind,background,ParmaRuins,1]"
+	--
+	AllMapSetting
+}
+//銹河河道 地圖設定
+ChooseMap_RustRiver
+{
+	BattleMode=1
+	mapname="RustRiver"
+	missionpay=2000
+	wave=(1,10,6)
+	--
+	"\p[5]\s[-1]\![bind,background,RustRiver,1]"
+	--
+	AllMapSetting
+}
+//內海 地圖設定
+ChooseMap_DisSea
+{
+	BattleMode=1
+	mapname=DisSea
+	missionpay=5000
+	wave=(1,3)
+	"\p[5]\s[-1]\![bind,background,DisSea,1]"
+	AllMapSetting
+}
+
+//通用開場設定
+AllMapSetting
+{
+	if	   MoodStage(mood[0])=="E" ; mood[0]-=10
+	elseif MoodStage(mood[0])=="F" ; mood[0]-=20
+	if 	   MoodStage(mood[1])=="E" ; mood[1]-=10
+	elseif MoodStage(mood[1])=="F" ; mood[1]-=20
+	roundNum=1
+	InitialSetting
+	Edrop=(0,0,0,0,0,0,,,0)
+	Edmg=(0,0,0)
+	debuff_HC=(0,0,0)
+	debuff_HL=(0,0,0)
+	evasion=(15,15)
+	cirt=(15,15)
+	pressbutton=0
+	click_sound=1
+	enemy_nameSetting
+	EnemyInfoSetting
+	--
+	"\c%BattleSurface('none')\![set,choicetimeout,0]\![set,balloonalign,left]\f[align,center]"
+	--
+	"\b[10]\n[130]%SFX('battle/01-HC-46-go ba')我們走吧，%(usernameHC)。"
+	"\b[12]\n[130]%SFX('battle/HL-levelstrat-GOGOGO')出發！"
+	--
+	"\w9\w9"
+	--
+	BattleWarning
+}
+
+//通用初始設定
+InitialSetting
+{
+	//Bmp=赫卡蒂,海拉,局長,禁閉者上限,局長上限
+	Bmp=(1,1,3,3,7)
+	HCskill=(0,0)
+	HLskill=(0,0,0)
+	OrderDone=(0,0,0)
+	ordertarget=1
+	def=(1,1)
+	incapacitated=(0,0)
+	--
+	if level==1
+		{HCinc=(500,317)
+		HLinc=(1000,222)
+		Einc_C=(200,20)}
+	elseif level>1
+		{HCinc_b=(500+(level-1)*10,317+(level-1)*3+TOINT(ROUND((level-1)/7*5)))
+		HLinc_b=(TOINT(HCinc_b[0]*1.3),TOINT(HCinc_b[1]*0.7))
+		HCinc=(HCinc_b[0]+HCinc_ex[0],HCinc_b[1]+HCinc_ex[1])
+		HLinc=(HLinc_b[0]+HLinc_ex[0],HLinc_b[1]+HLinc_ex[1])
+		Einc_B_b=(500+level*14+(level-1)*22,100+(level-1)*3)
+		Einc_C=((200+(level)*14)*1.5+RAND(level),20+(level-1)*25+RAND(level))}
+	elseif level>=100
+		{HCinc_b=(50000,18703)
+		HLinc_b=(HCinc_b[0]*2,HCinc_b[1]*0.7)
+		HCinc=(HCinc_b[0]+HCinc_ex[0],HCinc_b[1]+HCinc_ex[1])
+		HLinc=(HLinc_b[0]+HLinc_ex[0],HLinc_b[1]+HLinc_ex[1])
+		Einc_B_b=(328586,14950)
+		Einc_C=(54650,14870)}
+	--
+	HCinc[1]=TOINT(HCinc[1]*mood[0]*0.001)
+	HLinc[1]=TOINT(HLinc[1]*mood[1]*0.001)
+	hp=(HCinc[0],HLinc[0])
+}
+
+//=====戰鬥流程=====
+//敵人名稱設定
+enemy_nameSetting
+{
+	case mapname
+	{
+	  when "Syndicate"
+		enemy_name=ANY(EnemyC)
+	  when "ParmaRuins"
+	  {
+		_Eappear=RAND(20)
+		--
+		if _Eappear==1
+			enemy_name="？？？"
+		else
+			enemy_name=ANY(EnemyP)
+		--
+		if wave[0]==1
+			enemy_name=ANY(EnemyP)
+	  }
+	  when "RustRiver"
+	  {
+			enemy_name=ANY(EnemyR)
+	  }
+	}
+}
+//==================================================
+//-------------------主要戰鬥視窗-------------------
+//==================================================
+BattleWarning
+{
+	if wave[0]>wave[1]
+		MissionComplete
+	elseif OrderDone[0]*OrderDone[1]==1 && OrderDone[2]==0
+		Enemy.Act
+	else
+	{
+		BattleMode=2
+		enemy_action="idle"
+		--
+		"\0\s[-1]\1\s[-1]\p[2]%cp(0)\p[5]\s[520010]"
+		--
+		if roundNum==1 && OrderDone[0]+OrderDone[1]==0 && pressbutton==0
+		{	"\![bind,enemy,%(enemy_name)-entrance,1]\_w[120]"	}
+		--
+		"\![bind,enemy,%(enemy_name)-idle,1]"
+		--
+		"\p[6]\s[-1]\b[32]\c%(click)\![set,choicetimeout,0]"
+		--
+		if roundNum==1
+		{	"%(bp) 前方遭遇 %(enemy_name) ！%(bp)"
+			"%(bp) %(enemy_name) 迎面走來！%(bp)"
+			"%(bp) 遇見了 %(enemy_name) ！%(bp)"
+		}
+		elseif enemy_name=="？？？"
+		{	case roundNum
+			{	when 2 ; "%(bp) 巨大的雙唇一張一合…… %(bp)"
+				when 3-6 ; "%(bp) 祂似乎想傳達些什麼…… %(bp)"
+				when 7 ; "%(bp) 赫卡蒂將無法解讀的訊息記錄了下來…… %(bp)"
+				when 8-999
+				{	"%(bp) 空洞的眼神注視著前方…… %(bp)"
+					"%(bp) %(you)的腦袋一陣暈眩…… %(bp)"	}
+			}	
+		}
+		elseif enemy_action=="idle"
+		{	case enemy_name
+			{	when "憂鬱的婦人" ; "%(bp) 無法看清她的臉…… %(bp)"
+				when "魟魚" ; "%(bp) %(enemy_name) 好像很開心的樣子…… %(bp)"
+			}
+		}
+		else
+		{
+			{"%(bp) %(enemy_name) 虎視眈眈地看著%(AttackTarget)…… %(bp)"
+			"%(bp) %(enemy_name) 似乎在尋找進攻的時機…… %(bp)"}
+		}
+		--
+		BattleInfoWindow
+		--
+		"\w9"
+		--
+		pressbutton++
+		--
+		BattleOrder
+	}
+}
+//戰鬥資訊視窗
+BattleInfoWindow
+{
+	"\n\![quicksession,true]\_l[-,50]"
+	--
+	DividingLine2
+	--
+	"\n"
+	--
+	//		圖標
+	"\_b[img\battle\enemy\%(enemy_name).png,inline,--option=use_self_alpha]"
+	--
+	//		buff、debuff狀態顯示用
+	_status_HC="" ; _status_HL=""
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{
+		if debuff_HC[_i]>=1
+		{	
+			_status_HC+=debuff_icon[_i]
+		}
+	}
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{
+		if debuff_HL[_i]>=1
+		{	
+			_status_HL+=debuff_icon[_i]
+		}
+	}
+	--
+	"\n[20]\_l[65]\f[height,12]"
+	--
+	if BattleMode==4 ; "剩餘體力 （\f[color,#80FFFF]-%(wave[2])\f[color,default]）"
+	else ; "%(enemy_name)"
+	--
+	"\n[125]\_l[65]\f[shadowcolor,none]"
+	--
+	if BattleMode==4 ; "%(stamina)/%(staminamax)%ProgressBar(6,60,100,stamina,staminamax)\n[190]"
+	else ; "%TOINT(Ehp)/%TOINT(Einc[0])%ProgressBar(1,60,100,Ehp,Einc[0])\n[190]"
+	--
+	DividingLine2
+	--
+	"\f[height,12]\n\_l[30]\f[color,#E0FFFF]局長能量%EnergyBar(90,Bmp[2],Bmp[4])\f[default]\n[111]"
+	--
+	if OrderDone[0]==1
+		"\_b[img\battle\1P.jpg,inline,--option=use_self_alpha]"
+	else
+		"\__q[OnChangeOrder,0]\_b[img\battle\1P.jpg,inline,--option=use_self_alpha]\__q"
+	--
+	"\n[11]\f[height,12]\f[valign,bottom]\_l[65,160]"
+	--
+	if ordertarget==0
+		"\f[color,#CE0000]▶ \f[color,default]"
+	--
+	"赫卡蒂\__q[OnBattleInfoWindow.Status,赫卡蒂]%(_status_HC)\__q\n[125]\_l[65,180]\f[shadowcolor,none]%(hp[0])/%(HCinc[0])%ProgressBar(1,60,100,hp[0],HCinc[0])\n%EnergyBar(60,Bmp[0],Bmp[3])\n[140]"
+	--
+	if OrderDone[1]==1
+		"\_b[img\battle\2P.jpg,inline,--option=use_self_alpha]"
+	else
+		"\__q[OnChangeOrder,1]\_b[img\battle\2P.jpg,inline,--option=use_self_alpha]\__q"
+	--
+	"\n[11]\f[height,12]\_l[65,215]"
+	--
+	if ordertarget==1
+		"\f[color,#CE0000]▶ \f[color,default]"
+	--
+	"海拉"
+	--
+	if HLskill[1]>=1
+		"    \f[color,#E76123]▲%(HLskill[1])\f[color,default]"
+	--
+	"\__q[OnBattleInfoWindow.Status,海拉]%(_status_HL)\__q\n[125]\_l[65,235]\f[shadowcolor,none]%(hp[1])/%(HLinc[0])%ProgressBar(1,60,100,hp[1],HLinc[0])\n%EnergyBar(60,Bmp[1],Bmp[3])\n[140]/
+	\_l[4]\f[color,#EAC100]Lv.%(level)\f[default]%ProgressBar(3,40,120,exp,levelupexp)\n[150]"
+	--
+	"\f[default]\_l[5]wave %(wave[0])/%(wave[1])\n[1]\f[align,right]round %(roundNum) "
+}
+
+OnBattleInfoWindow.Status
+{
+	"\p[6]\s[-1]\b[32]\![quicksession,true]%(BattleInfoWindow)"
+	--
+	_s=""
+	case reference0
+	{	when "赫卡蒂" ; _s=debuff_HC
+		when "海拉" ; _s=debuff_HL
+	}
+	--
+	_txt="\p[7]\s[-1]\b[36]\![quicksession,true]\![set,choicetimeout,0]\![*]%(reference0)的狀態 \![*]\n\_l[-,18]"
+	--
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{  if _s[_i]>=1
+		_txt+="%(debuff_color[_i])%(debuff_icon[_i])%(debuff_name[_i]) \f[color,#FFD500]\f[bold,1]%(_s[_i])\f[default]回合\n\f[color,#D6F0F0]%(debuff_detail[_i])\n[125]"
+	}
+	--
+	_txt
+	--
+	BattleOrder
+}
+
+OnChangeOrder
+{
+	ordertarget=reference0
+	--
+	BattleWarning
+}
+
+
+//==================================================
+//-------------------我方行動-------------------
+//==================================================
+//下達戰鬥指令
+BattleOrder
+{
+	if OrderDone[0]+OrderDone[1]==0
+		OrderLine
+	elseif OrderDone[0]==0
+	{	ordertarget=0 ; OrderLine	}
+	elseif OrderDone[1]==0
+	{	ordertarget=1 ; OrderLine	}
+	--
+	OrderOptions
+}
+OrderLine
+{
+	"\0\s[-1]\1\s[-1]\p[2]%cp(0)\p[5]"
+	--
+	case ordertarget
+	{
+		when 0
+		{
+			"\b[10]\f[align,center]\![set,choicetimeout,0]\n[120]"
+			--
+			""
+			--
+			"%SFX('battle/01-HC-18-please tell me what you decide')我該怎麼做？"
+			"%SFX('battle/02-HC-01-give me order chief')%(usernameHC)，請給我命令。"
+			"%SFX('battle/01-HC-12-please order')請%(usernameHC)下達指令。"
+		}
+		when 1
+		{
+			"\b[12]\c\![set,choicetimeout,0]\n[120]\f[align,center]"
+			--
+			"%SFX('exc/01-HL-16-hihi')"
+			"%SFX('exc/01-HL-12-haha')"
+			"%SFX('exc/01-HL-05-he')"
+			--
+			"讓老娘好好收拾他們一頓！"
+			"可別被嚇跑了喔？"
+			"交給我吧！"
+			"放馬過來！"
+		}
+	}
+}
+
+OrderOptions
+{
+	"\0\s[-1]\1\s[-1]\p[2]%cp(0)\b[24]\c\f[align,center]\![set,choicetimeout,0]\q[⚔️攻擊,OrderAttack]\n[130]/
+	\q[🗲技能,OrderSkill]\n[130]/
+	\q[🛡️防禦,OrderDefense]\n[130]/
+	\q[◊局長權能,ChiefPotestas]\n[170]/
+	\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]\f[default]"
+}
+OrderCancel
+{
+	_txt="\n\_l[-,"
+	--
+	if _argv[0]==2 ; _txt+="90"
+	else ; _txt+="95"
+	--
+	_txt+="]\f[align,center]\f[height,12]\f[color,#BEBEBE]\q[ ✖取消 ,BattleWarning]\f[default]"
+	_txt
+}
+//====================普攻====================
+//指令-攻擊
+OrderAttack
+{
+	DecideSdmg
+	--
+	"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[6]\s[-1]\b[32]\c"
+	--
+	case ordertarget{
+	  when 1
+		{
+			OrderDone[1]=1
+			--
+			"%SFX('exc/01-HL-19-hiu')%SFX('sfx/metal punch1')"
+			"%SFX('exc/01-HL-19-hiu')%SFX('sfx/metal punch2')"
+			"%SFX('exc/01-HL-19-hiu')%SFX('sfx/metal punch3')"
+			"%SFX('exc/02-HL-28-hen')%SFX('sfx/metal punch1')"
+			"%SFX('exc/02-HL-28-hen')%SFX('sfx/metal punch2')"
+			"%SFX('exc/02-HL-28-hen')%SFX('sfx/metal punch3')"
+			--
+			"\p[5]%BattleSurface('atk')\b[-1]\p[6]\s[-1]\b[32]"
+			--
+			"%(bp) 海拉 毆打了 %(enemy_name) ，造成 %bh(Sdmg) 點傷害！%(bp)"
+			--
+			crit_msg
+			--
+			//中毒作用
+			if debuff_HL[0]>=1
+			{	hp[1]-=TOINT(HLinc[0]/10)
+				--
+				"\n\w7%(sfx_poison)%(bp) 但是，在 %(debuff_color[0])%(debuff_name[0])\f[default] 的影響下，損失了 %(debuff_color[0])%TOINT(HLinc[0]/10)\f[default] 點HP %(bp)"
+			}
+			--
+			"\x"
+			--
+			Sinner.HPCheck
+			if hp[1]>0 ; EnemyBeenAttack
+		}
+	  when 0
+		{
+			OrderDone[0]=1
+			--
+			"\p[5]%BattleSurface('atk')"
+			--
+			"%SFX('sfx/パンチの素振り1')"
+			"%SFX('sfx/パンチの素振り2')"
+			"%SFX('sfx/パンチの素振り3')"
+			"%SFX('sfx/キックの素振り1')"
+			"%SFX('sfx/キックの素振り2')"
+			"%SFX('sfx/キックの素振り3')"
+			--
+			"\p[6]\s[-1]\b[32]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(Sdmg) 點傷害！%(bp)"
+			--
+			crit_msg
+			--
+			//中毒作用
+			if debuff_HC[0]>=1
+			{	hp[0]-=TOINT(HCinc[0]/10)
+				--
+				"\n\w7%(sfx_poison)%(bp) 但是，在 %(debuff_color[0])%(debuff_name[0])\f[default] 的影響下，損失了 %(debuff_color[0])%TOINT(HCinc[0]/10)\f[default] 點HP %(bp)"
+			}
+			--
+			"\x"
+			--
+			Sinner.HPCheck
+			if hp[0]>0 ; EnemyBeenAttack
+		}
+	}
+}
+
+
+//====================禁閉者技能====================
+//指令-技能
+OrderSkill
+{
+	skill_name="無光之鏡,召喚夢魘"
+	skill_usemp=(1,2)
+	skill_level=(5,15)
+	skill_cold=(1,5)
+	skill_detail="對敵方造成赫卡蒂攻擊力2.5倍的傷害。,為我方抵擋該回合所有傷害和異常狀態附加。"
+	if ordertarget==1
+	{
+		skill_name="文明迪斯,武力全開,奮力一擊"
+		skill_usemp=(1,2,3)
+		skill_level=(2,10,20)
+		skill_cold=(1,5,2)
+		skill_detail="強迫敵方的單體攻擊對象轉為海拉，無法改變全體攻擊。,使海拉的攻擊力提升5回合，此期間無法自動回復能量。,對敵方造成海拉攻擊力5倍的傷害。"
+	}
+	
+	case ordertarget
+	{
+	  when 1
+	  {
+		if debuff_HL[3]>=1 && enemy_name=="婕克南瓜"
+		{
+			"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 海拉受到 %(enemy_name) 的 詭計 誘騙，拒絕使用技能 %(bp)"
+			--
+			"\x"
+			--
+			"\c"
+			--
+			BattleWarning
+		}
+		elseif Bmp[1]==0
+		{
+			"\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 海拉的能量不足，無法使用技能！%(bp)"
+			--
+			"\x"
+			--
+			"\c"
+			--
+			BattleWarning
+		}
+		elseif Bmp[1]>=1
+		{	"\p[2]\b[24]\c\s[-1]\f[align,center]\![set,choicetimeout,0]\![quicksession,true]"
+			--
+			OpenSkillOption
+		}
+	  }
+	  when 0
+	  {
+		if debuff_HC[3]>=1 && enemy_name=="婕克南瓜"
+		{
+			"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 赫卡蒂受到 %(enemy_name) 的 詭計 誘騙，拒絕使用技能 %(bp)"
+			--
+			"\x"
+			--
+			"\c"
+			--
+			BattleWarning
+		}
+		elseif Bmp[0]==0
+		{
+			"\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 赫卡蒂的能量不足，無法使用技能！%(bp)"
+			--
+			"\x"
+			--
+			"\c"
+			--
+			BattleWarning
+		}
+		elseif Bmp[0]>=1
+		{
+			"\p[2]\b[24]\c\f[align,center]"
+			--
+			OpenSkillOption
+			/*if level>=70
+				"]\q[噩夢詛咒,CastSkillHC2]"
+			else
+				"\f[color,#BEBEBE]噩夢詛咒"
+			--*/
+		}
+	  }
+	}
+}
+OpenSkillOption
+{
+	battle_msg = "（選擇指令技能……）"
+	SkillOption
+}
+SkillOption
+{
+	_txt="\p[2]%cp(0)\b[22]\f[align,center]\![quicksession,true]%(click)"
+	for _i=0 ; _i<ARRAYSIZE(skill_name) ; _i++
+	{
+		if level>=skill_level[_i]
+		_txt+="\__q[OnCastSkill,%(_i)]\_b[img\battle\skill\%(Char_Code[ordertarget])%(_i).png,inline,--option=use_self_alpha] %(skill_name[_i])(%(skill_usemp[_i]))\__q \__q[OnSkillDetail,%(_i)]\_b[img\battle\skill\skill_detail.png,inline,--option=use_self_alpha]\__q\n[180]"
+	}
+	_txt+= OrderCancel(2)
+	_txt+="\p[6]\s[-1]\b[32]%(battle_msg)"
+	click_sound = 1
+	_txt+= BattleInfoWindow
+	_txt
+}
+BalloonTooltip_OnSkillDetail { "查看技能詳情" }
+OnSkillDetail
+{
+	_skill=reference0
+	click_sound = 0
+	battle_msg = "【\f[color,#FFD306]\f[bold,1]%(skill_name[_skill])\f[default]】  消耗\f[color,#A6FFFF]\f[bold,1]%(skill_usemp[_skill])\f[default]能量\n%(skill_detail[_skill])"
+	if skill_cold[_skill]>1 && skill_name[_skill]!="武力全開"
+		battle_msg += "（冷卻%(skill_cold[_skill])回合）"
+	SkillOption
+}
+//施放技能
+OnCastSkill
+{
+	_skill=reference0
+	OrderDone[ordertarget]=1
+	if	   ordertarget==0 ; HCskill[_skill]+=skill_cold[_skill]
+	elseif ordertarget==1 ; HLskill[_skill]+=skill_cold[_skill]
+	_debuff=debuff_HC ; _posionedhp=TOINT(HCinc[0]*0.1)
+	if ordertarget==1
+	{ _debuff=debuff_HL ; _posionedhp=TOINT(HLinc[0]*0.1) }
+	_atkmode=0
+	DecideSdmg
+	--
+	//顯示訊息
+	if Bmp[ordertarget]<skill_usemp[_skill]
+	{
+		"\p[2]%cp(3)\p[6]\s[-1]\b[32]\c\![set,choicetimeout,0]%(bp)%(Char_Name[ordertarget])的能量不足%(skill_usemp[_skill])點。%(bp)"
+		--
+		"\x"
+		--
+		OpenSkillOption
+	}
+	else
+	{
+		Bmp[ordertarget]-=skill_usemp[_skill]
+		"\p[2]%cp(1)"
+		--
+		if ordertarget==0 && _skill==0
+		{
+			_atkmode=1
+			"\p[5]%BattleSurface('skill')\p[6]\s[-1]\b[32]\c\![set,choicetimeout,0]"
+			--
+			"%SFX('skill/01-HC-54-dreamshadow')"
+			"%SFX('skill/02-HC-27-dreamshadow')"
+			"%SFX('skill/02-HC-29-dreamshadow')"
+			"%SFX('skill/02-HC-57-nightmare')"
+			"%SFX('skill/01-HC-55-defeat them')"
+			--
+			"%SFX('sfx/メニューを開く2')"
+			--
+			"%(bp) 赫卡蒂 施展 無光之鏡 對 %(enemy_name) 造成 %bh(TOINT(Sdmg)) 點傷害！%(bp)"
+			"%(bp) 赫卡蒂 解放夢魘的力量對 %(enemy_name) 攻擊，造成 %bh(TOINT(Sdmg)) 點傷害！%(bp)"
+			--
+			crit_msg
+		}
+		elseif ordertarget==0 && _skill==1
+		{
+			if HCskill[1]==5
+				"\p[2]%cp(1)\p[6]\s[-1]\b[32]%SFX('sfx/gravity magic1')%(bp) 赫卡蒂的夢魘將為我方禁閉者抵禦本回合的所有傷害。%(bp)"
+			else
+			{	OrderDone[0]=0
+				HCskill[1]-=5
+				Bmp[0]+=2
+				"\p[2]%cp(3)\p[6]\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp)技能冷卻中，尚有%(HCskill[1])回合。%(bp)"
+			}
+		}
+		elseif ordertarget==1 && _skill==0
+		{
+			OrderDone[1]=0
+			if HLskill[0]>=2
+			{	Bmp[1]+=1	//最前面扣過了要加回來
+				"\p[6]\s[-1]\b[32]%(bp)本回合已經發動過嘲諷了。%(bp)"
+			}
+			else
+			{
+				HLskill[0]++
+				"\p[2]%cp(3)\p[5]%BattleSurface('taunt')\p[6]\s[-1]\b[32]\c"
+				--
+				"%SFX('skill/01-HL-08-qu dis')"
+				"%SFX('skill/01-HL-41-(beep)')"
+				"%SFX('skill/01-HL-46-you dis')"
+				"%SFX('skill/02-HL-59-coward')"
+				"%SFX('skill/01-HL-93-xiao yang')"
+				--
+				"\i[20061]\b[12]\f[align,center]\n[120]/
+				#@$&*@#$%^&!!!/
+				\p[6]\s[-1]\b[32]\c%(bp)敵方被海拉的優美的詞藻深深打動，將在下一回合針對她發動攻擊！%(bp)"
+			}
+		}
+		elseif ordertarget==1 && _skill==1
+		{
+			OrderDone[1]=0
+			"\p[5]\i[676200]\p[6]\s[-1]\b[32]\c%SFX('sfx/power charge')"
+			--
+			if HLskill[0]>=1
+				"%(bp) 海拉 的攻擊上升狀態增加3回合，還有%(HLskill[1])回合結束。此期間內不會恢復能量。%(bp)"
+			else
+				"%(bp) 海拉 的攻擊力大幅增加！該狀態將在%(HLskill[1])回合後結束，期間內不會恢復能量。%(bp)"
+		}
+		elseif ordertarget==1 && _skill==2
+		{
+			if HLskill[2]>2
+			{	HLskill[2]-=2
+				OrderDone[1]=0
+				Bmp[1]+=3	//最前面扣過了要加回來
+				"\p[2]%cp(3)\p[6]\s[-1]\b[32]\c%(bp) 該技能尚在冷卻中。%(bp)"
+			}
+			else
+			{
+				_atkmode=1
+				"\p[2]%cp(1)\p[5]%BattleSurface('skill')\p[6]\s[-1]\b[32]\c"
+				--
+				"%SFX('skill/02-HL-19-hai la wu shuang')"
+				"%SFX('skill/02-HL-20-bie dang dao')"
+				--
+				"%SFX('exc/01-HL-19-hiu')%SFX('sfx/metal punch1')"
+				"%SFX('exc/01-HL-19-hiu')%SFX('sfx/metal punch2')"
+				"%SFX('exc/01-HL-19-hiu')%SFX('sfx/metal punch3')"
+				"%SFX('exc/02-HL-28-hen')%SFX('sfx/metal punch1')"
+				"%SFX('exc/02-HL-28-hen')%SFX('sfx/metal punch2')"
+				"%SFX('exc/02-HL-28-hen')%SFX('sfx/metal punch3')"
+				--
+				"%(bp) 海拉 用全身的力量痛擊 %(enemy_name) ，對其造成 %bh(Sdmg) 點傷害！%(bp)"
+				--
+				crit_msg
+			}
+		}
+		--
+		//中毒作用
+		if ((ordertarget==0 && debuff_HC[0]>=1) || (ordertarget==1 && debuff_HL[0]>=1)) && _atkmode==1
+			"\n\w7%(sfx_poison)%(bp) 但是，在 %(debuff_color[0])%(debuff_name[0])\f[default] 的影響下，損失了 %(debuff_color[0])%(_posionedhp)\f[default] 點HP %(bp)"
+		--
+		"\x"
+		--
+		if _atkmode==1
+		{
+			Sinner.HPCheck
+			if hp[1]>0 ; EnemyBeenAttack
+		}
+	}
+}
+//赫卡蒂技能
+CastSkillHC0
+{
+	OrderDone[0]=1
+	HCskill[0]=1
+	DecideSdmg
+	--
+	"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[5]\i[650031]\w5%BattleSurface('skill')\p[6]\s[-1]\b[32]\c\![set,choicetimeout,0]%(bp)"
+	--
+	"%SFX('sfx/メニューを開く2')"
+	--
+	"%SFX('skill/01-HC-54-dreamshadow')"
+	"%SFX('skill/02-HC-27-dreamshadow')"
+	"%SFX('skill/02-HC-29-dreamshadow')"
+	"%SFX('skill/02-HC-57-nightmare')"
+	"%SFX('skill/01-HC-55-defeat them')"
+	--
+	"赫卡蒂 施展 無光之鏡 對 %(enemy_name) 造成 %bh(TOINT(Sdmg)) 點傷害！"
+	"赫卡蒂 解放夢魘的力量對 %(enemy_name) 攻擊，造成 %bh(TOINT(Sdmg)) 點傷害！"
+	--
+	"%(bp)"
+	--
+	//中毒作用
+	if debuff_HC[0]>=1
+	{	hp[0]-=TOINT(HCinc[0]*0.1)
+		"\n\w7%(sfx_poison)%(bp) 但是，在 %(debuff_color[0])%(debuff_name[0])\f[default] 的影響下，損失了 %(debuff_color[0])%TOINT(HCinc[0]*0.1)\f[default] 點HP %(bp)"
+	}
+	--
+	"\x"
+	--
+	Sinner.HPCheck
+	if hp[0]>0
+	{	EnemyBeenAttack
+		Bmp[0]--
+		Sinner.MpCheck
+		EnemyBeenAttack
+	}
+}
+CastSkillHC1
+{
+	if Bmp[0]>=2
+	{
+		case HCskill[1]
+		{
+			when 0
+			{
+				HCskill[1]=5
+				OrderDone[0]=1
+				Bmp[0]-=2
+				--
+				"\p[6]\s[-1]\b[32]\c%SFX('sfx/gravity magic1')%(bp)赫卡蒂的夢魘將為我方禁閉者抵禦本回合的所有傷害。%(bp)"
+				--
+				"\x"
+				--
+				DecideWhoAct
+			}
+			when 1-5
+			{
+				"\p[6]\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp)技能冷卻中，尚有%(HCskill[1])回合。%(bp)"
+				--
+				"\x"
+				--
+				BattleWarning
+			}
+		}
+   }
+   else
+   {
+		"\p[6]\s[-1]\b[32]\c%SFX('sfx/ビープ音3')%(bp)赫卡蒂的能量不足2點。%(bp)"
+		--
+		"\x"
+		--
+		BattleWarning
+   }
+}
+//海拉技能
+CastSkillHL0
+{
+	if Bmp[1]<2
+		"\c\p[6]\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp)海拉的能量不足2點。%(bp)\x"
+	else
+	{
+		HLskill[0]+=3
+		Bmp[1]-=2
+		--
+		"\0\s[-1]\p[5]\i[676200]\p[6]\s[-1]\b[32]\c%SFX('sfx/power charge')%(bp)"
+		--
+		if HLskill[0]>=1
+			"海拉 的攻擊上升狀態增加3回合，還有%(HLskill[0])回合結束。此期間內不會恢復能量。"
+		else
+			"海拉 的攻擊力大幅增加！該狀態將在%(HLskill[0])回合後結束，期間內不會恢復能量。"
+		--
+		"%(bp)\x"
+		--
+		BattleWarning
+	}
+}
+CastSkillHL1
+{
+	case HLskill[1]
+	{
+		when 0
+		  {HLskill[1]=1
+		  Bmp[1]--
+		  --
+		  "%BattleSurface('taunt')"
+		  --
+		  "%SFX('skill/01-HL-08-qu dis')"
+		  "%SFX('skill/01-HL-41-(beep)')"
+		  "%SFX('skill/01-HL-46-you dis')"
+		  "%SFX('skill/02-HL-59-coward')"
+		  "%SFX('skill/01-HL-93-xiao yang')"
+		  --
+		  "\i[20061]\b[12]\f[align,center]\n[120]/
+		  #@$&*@#$%^&!!!/
+		  \p[6]\s[-1]\b[32]\c%(bp)敵方被海拉的優美的詞藻深深打動，將在下一回合針對她發動攻擊！%(bp)\x"
+		  --
+		  DecideWhoAct}
+		when 1
+		  {"\p[6]\s[-1]\b[32]\c%(bp)本回合已經發動過嘲諷了。%(bp)\x"
+		  --
+		  BattleWarning}
+	}
+    
+}
+CastSkillHL2
+{
+	if Bmp[1]<3
+		"\c\p[6]\s[-1]\b[32]%(bp)海拉的能量不足3點。%(bp)\x"
+	else
+	{
+		HLskill[2]=1
+		OrderDone[1]=1
+		DecideSdmg
+		OrderDone[1]=1
+		Bmp[1]-=3
+		Sinner.MpCheck
+		--
+		"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[5]%BattleSurface('skill')\p[6]\s[-1]\b[32]\c"
+		--
+		"%SFX('skill/02-HL-19-hai la wu shuang')"
+		"%SFX('skill/02-HL-20-bie dang dao')"
+		--
+		"%(bp) 海拉 用全身的力量痛擊 %(enemy_name) ，對其造成 %bh(Sdmg) 點傷害！%(bp)"
+		--
+		//中毒作用
+		if debuff_HL[0]>=1
+		{	hp[1]-=TOINT(HLinc[0]*0.1)
+			"\n\w7%(bp) 但是，在 %(debuff_color[0])%(debuff_name[0])\f[default] 的影響下，損失了 %(debuff_color[0])%TOINT(HLinc[0]*0.1)\f[default] 點HP %(bp)"
+		}
+		--
+		"\x"
+		--
+		Sinner.HPCheck
+		if hp[1]>0 ; EnemyBeenAttack
+	}
+}
+
+//====================防禦====================
+//指令-防禦（傷害減免判定）
+OrderDefense
+{
+	"\0\s[-1]\1\s[-1]\p[2]%cp(0)\p[5]"
+	--
+	case ordertarget
+	{
+		when 1
+		{
+			def[1]=0.3
+			OrderDone[1]=1
+			--
+			"\i[676301]%SFX('sfx/shakiin3')\p[6]\s[-1]\b[32]\c%(bp) 海拉擺出防禦架勢，本回合獲得自身傷害減免。%(bp)\x"
+		}
+		when 0
+		{
+			def[0]=0.3
+			OrderDone[0]=1
+			--
+			"\i[676300]%SFX('sfx/shakiin3')\p[6]\s[-1]\b[32]\c%(bp)赫卡蒂身後的夢魘變得更加清晰了，將在本回合為她吸收部分傷害。%(bp)\x"
+		}
+	}
+	--
+	DecideWhoAct
+}
+
+//====================局長權能====================
+ChiefPotestas
+{
+	"\0\s[-1]\1\s[-1]\p[6]\s[-1]\b[32]"
+	--
+	BattleInfoWindow
+	--
+	"\p[2]%cp(0)\b[24]\c\f[align,center]/
+	\q[✚回復HP,PotestaHeal]\n[170]/
+	\q[⚡充能,PotestaEmpower]\n[170]/
+	\q[✖麻痺敵人,PotestaStill]"
+	--
+	OrderCancel
+}
+ChiefMpNotEnough
+{
+	"\p[2]%cp(3)\p[6]\s[-1]\b[32]\c%(bp) 局長能量不足，無法使用權能！%(bp)\x"
+	--
+	BattleWarning
+}
+//權能-回復HP
+PotestaHeal
+{
+	if Bmp[2]==0
+		ChiefMpNotEnough
+	else
+	{
+		"\p[2]%cp(0)\b[24]\c\f[align,center]\![set,choicetimeout,0]/
+		\q[✚單人50%,HealOne]\n[200]/
+		\q[✚全體30%,HealAll]"
+		--
+		OrderCancel
+		--
+		"\p[6]\s[-1]\b[32]"
+		--
+		BattleInfoWindow
+	}
+}
+HealOne
+{
+	"\p[6]\s[-1]\b[32]\c%(bp)要為誰回復HP？%(bp)"
+	--
+	BattleInfoWindow
+	--
+	"\p[2]%cp(0)\b[24]\c\f[align,center]\![set,choicetimeout,0]/
+	%(opp)\q[ 赫卡蒂 ,HealHC]\n[150]/
+	%(opp)\q[ 海拉 ,HealHL]"
+	--
+	OrderCancel
+}
+HealHC
+{
+	if hp[0]>=HCinc[0]
+	{
+		"\p[6]\s[-1]\b[32]\c%(bp) 赫卡蒂 的HP已經是滿的了，無需回復。%(bp)\x"
+		--
+		DecideWhoAct
+	}
+	else
+	{
+		if HCinc[0]/hp[0]<=2
+			hp[0]=HCinc[0]
+		else
+			hp[0]+=HCinc[0]/2
+		--
+		Bmp[2]-=1
+		--
+		"\p[5]\i[676100]\p[6]\s[-1]\b[32]\c%SFX('sfx/タイトル表示')%(bp) 已為 赫卡蒂 回復%TOINT(HCinc[0]/2)點HP。%(bp)\x"
+		--
+		DecideWhoAct
+	}
+}
+HealHL
+{
+	if hp[1]>=HLinc[0]
+	{
+		"\p[6]\s[-1]\b[32]\c%(bp) 海拉 的HP已經是滿的了，無需回復。%(bp)\x"
+		--
+		DecideWhoAct
+	}
+	else
+	{
+		if HLinc[0]/hp[1]<=2
+			hp[1]=HLinc[0]
+		else
+			hp[1]+=HLinc[0]/2
+		--
+		Bmp[2]-=1
+		--
+		"\0\s[-1]\p[5]\i[676101]\p[6]\s[-1]\b[32]\c%SFX('sfx/タイトル表示')%(bp) 已為 海拉 回復%TOINT(HLinc[0]/2)點HP。%(bp)\x"
+		--
+		DecideWhoAct
+	}
+}
+HealAll
+{
+	"\p[6]\s[-1]\b[32]\c\![set,balloontimeout,0]%(bp)"
+	--
+	if hp[0]==HCinc[0] || hp[1]==HLinc[0]
+	{
+		"但是，"
+		--
+		if hp[0]==HCinc[0]
+			"赫卡蒂"
+		elseif hp[1]==HLinc[0]
+			"海拉"
+		--
+		"的HP已經是滿的了。"
+	}
+	elseif hp[0]==HCinc[0] && hp[1]==HLinc[0]
+	{
+		"兩個人的HP都是滿的。"
+	}
+	else
+	{
+		if hp[0]+(HCinc[0]*0.3)>=HCinc[0]
+			hp[0]=HCinc[0]
+		else 
+			hp[0]+=TOINT(HCinc[0]*0.3)
+		--
+		if hp[1]+(HLinc[0]*0.3)>=HLinc[0]
+			hp[1]=HLinc[0]
+		else 
+			hp[1]+=TOINT(HLinc[0]*0.3)
+		--
+		"\0\s[-1]\p[6]%SFX('sfx/タイトル表示')\i[676100]\i[676101]\p[6]已回復禁閉者的HP。"
+	}
+	--
+	"%(bp)"
+	--
+	BattleInfoWindow
+	--
+	"\x"
+	--
+	DecideWhoAct
+}
+
+//權能-充能
+PotestaEmpower
+{
+	if Bmp[2][0]==0
+		ChiefMpNotEnough
+	else
+	{
+	"\c\p[6]\s[-1]\b[32]%(bp)要回復誰的能量？%(bp)"
+	--
+	BattleInfoWindow
+	--
+	"\p[2]%cp(0)\b[24]\c\f[align,center]\n[111]%(opp)\q[ 赫卡蒂 ,EmpowerHC]\n[150]/
+	%(opp)\q[ 海拉 ,EmpowerHL]"
+	--
+	OrderCancel
+	}
+}
+EmpowerHC
+{
+	if Bmp[0]==Bmp[3]
+		{"\c\p[6]\s[-1]\b[32]%(bp) 赫卡蒂的能量已滿，無法再增加了。%(bp)"}
+	else
+	{	Bmp[0]++
+		Bmp[2]-=1
+		--
+		"\c\p[6]\s[-1]\b[32]%SFX('sfx/ゲージ回復2')%(bp) 為赫卡蒂回復1點能量。%(bp)"}
+	--
+	BattleInfoWindow
+	--
+	"\x"
+	--
+	BattleWarning
+}
+EmpowerHL
+{
+	if Bmp[1]==Bmp[3]
+		{"\c\p[6]\s[-1]\b[32]%(bp) 海拉的能量已滿，無法再增加了。%(bp)"}
+	else
+	{	Bmp[1]++
+		Bmp[2]-=1
+		--
+		"\c\p[6]\s[-1]\b[32]%SFX('sfx/ゲージ回復2')%(bp) 為海拉回復1點能量。%(bp)"}
+	--
+	BattleInfoWindow
+	--
+	"\x"
+	--
+	BattleWarning
+}
+PotestaStill
+{
+	if Bmp[2]==0
+		ChiefMpNotEnough
+	else
+	{
+		OrderEffectMode=4
+		Bmp[2]--
+		BattleWarning
+		--
+		"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[6]\c\s[-1]\b[32]%(bp) 受權能影響，敵人將無法動彈一回合。%(bp)\x"
+	}
+}
+
+
+//====================我方傷害計算===================
+//我方傷害判定
+DecideSdmg
+{
+	_cri=RAND(100) ; crit_msg=""
+	if _cri<=crit[ordertarget] { crit_dmg=1.66 ; crit_msg="\n[150]%(bp) 擊中了要害！%(bp)" }
+	else ; crit_dmg=1
+	case ordertarget
+	{
+		when 1
+		{
+			//基礎攻擊
+			Sdmg=TOINT(HLinc[1]*crit_dmg)
+			if HLskill[1]>=1 ; Sdmg=TOINT(Sdmg*1.7)		//增攻
+			if HLskill[2]>=2 ; Sdmg=Sdmg*5			//重擊
+		}
+		when 0
+		{
+			//基礎攻擊
+			Sdmg=TOINT(HCinc[1]*crit_dmg)
+			if HCskill[0]==1
+				Sdmg=Sdmg*2.5
+		}
+	}
+}
+
+
+
+//==================================================
+//-------------------敵方行動-------------------
+//==================================================
+//敵方受擊
+EnemyBeenAttack
+{
+  if Ehp<=Sdmg
+	Ehp=0
+  elseif Ehp>Sdmg
+	Ehp-=Sdmg
+  --
+  EnemyHPCheck
+}
+//敵方血量判定-敵方回合or敵方死亡
+EnemyHPCheck
+{
+	BattleMode=3
+	--
+	if enemy_name=="實驗人員" && Ehp==0
+	{	
+		_i= ASEARCH ("實驗人員",enemy_list_name)
+		cum_enemy[_i] = TOINT (cum_enemy[_i]) ; cum_enemy[_i] ++
+		enemy_name="藍蠕蟲"
+		--
+		"\p[2]%cp(1)\p[5]%BattleSurface('idle')\p[6]\s[-1]\b[32]\c\![quicksession,false]%(bp) 敵人改變了型態！%(bp)\w9"
+		--
+		Einc=(Einc_C[0]*2,Einc_C[1]*1.5)
+		Ehp=Einc[0] 
+		NextRound
+	}
+	elseif Ehp==0
+    {
+		//擊敗敵方演出
+		EnemyDropItemSetting
+		_en = ASEARCH (enemy_name,enemy_list_name)
+		cum_enemy[_en] = TOINT (cum_enemy[_en]) ; cum_enemy[_en] ++
+		--
+		"%BattleSurface('idle')\![bind,enemy,%(enemy_name)-defeated,1]\p[6]\s[-1]\b[32]\c\![quicksession,false]%(bp)%SFX('sfx/decision button2') 擊敗了 %(enemy_name) ！%(bp)\w9\w5\n[200]/
+		\_q%(bp)%SFX('sfx/decision button2') 獲得%(Edrop[0])經驗值 %(bp)\_q\w9"
+		--
+		WhenExpGet
+		--
+		if Edrop[1]>=1 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 \f[color,#ECAA36]%(Edrop[1])狄斯幣\f[default] %(bp)\_q\w9"
+		--
+		//強化道具
+		_txt=""
+		for _i=2 ; _i<=4 ; _i++
+		{
+			_k=_i-2
+			if Edrop[_i]>=1
+			{
+				_txt+="\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 %(Edrop[_i]) 個 %(enhancement_color[_k])%(Edrop_name[_i])\f[default] %(bp)\_q\w9"
+				--
+				enhancement[_k]+=Edrop[_i]
+			}
+		}
+		_txt
+		--
+		//戰利品
+		if enemy_name _in_ TOSTR(loot_enemy_name) ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得了 \f[color,#80FFFF]%(Edrop[5])\f[default]！%(bp)\_q\w9"
+		--
+		if Edrop[6] != ""
+		{	"\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得"
+			--
+			if mapname=="RustRiver" ; " 2個"
+			else ; "了"
+			--
+			" %(Edrop[6])！%(bp)\_q\w9"
+		}
+		--
+		if Edrop[7]>=1 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 %(Edrop[7])個 \f[color,#d8bfd8]感染凝膠\f[default]。%(bp)\_q\w9"
+		--
+		"\x"
+		--
+		AddWave
+	}
+	elseif Ehp<=10
+    {
+		"\p[6]\s[-1]\b[32]\c%(bp)"
+		--
+		"%(enemy_name) 因為害怕而逃走了……"
+		"%(enemy_name) 慌慌張張地逃跑了……"
+		--
+		"%(bp)\x"
+		--
+		wave[0]++
+		NextWave
+	}
+	elseif Ehp>10
+		DecideWhoAct
+}
+
+
+
+//====================================================
+//-------------------戰鬥結束後操作-------------------
+//====================================================
+EnemyDropItemSetting	//----------敵方單位掉落道具，在此事件中獲得相應道具(除強化道具)
+{
+	//0exp,1狄斯幣,2狂亂精粹,3異能源液,4狂暴源液,5戰利品,6原礦,7感染凝膠
+	Edrop=(TOINT(level*53.1472+RAND(level)+level*30*batlle_level*0.1),0,RAND(level/10),0,0,"","",0)
+	//-----exp
+	if mapname=="ParmaRuins" ; Edrop[0]=TOINT(Edrop[0]*1.7)
+	if mapname=="RustRiver" ; Edrop[0]=Edrop[0]*3
+	if enemy_name=="？？？" ; Edrop[0]=TOINT(Edrop[0]*10.7+RAND(level))
+	exp+=Edrop[0]
+	//-----狄斯幣
+	if mapname=="Syndicate" ; Edrop[1]=TOINT(level*3.456+RAND(level)+RAND(batlle_level))
+	discoin+=Edrop[1]
+	cum_gain_discoin[1]+=Edrop[1]
+	//-----異能or狂暴源液（需手動更新）
+	case enemy_name
+	{
+		when "刀狩","幫派打手","三角頭","聚合體","魟魚","淚人兒" ; Edrop[4]=RAND(level/10)
+		when "失心者","兜帽客工匠","紅水母","厄種","婕克南瓜","憂鬱的婦人" ; Edrop[3]=RAND(level/10)
+	}
+	//-----戰利品
+	_a=ASEARCHEX(enemy_name,loot_enemy_name)
+	_a=ANY(_a)
+	Edrop[5]=loot_name[_a]
+	if enemy_name _in_ TOSTR(loot_enemy_name)
+	{	if loot[_a]=="" ; loot[_a]=1
+		else ; loot[_a]++
+	}
+	//-----染料原礦
+	_b=ASEARCH(enemy_name,enemy_list_name)
+	_c=""
+	case enemy_name
+	{	when "紅水母" ; _c=0
+		when "婕克南瓜" ; _c=1
+		when "魟魚","藍蠕蟲" ; _c=2
+		when "厄種","死神" ; _c=3
+		when "聚合體","淚人兒" ; _c=4
+	}
+	if _c!=""
+	{
+		Edrop[6]=dye_ingredient_name[_c]
+		dye_ingredient[_c]++
+		cum_ingredient[_c]=TOINT(cum_ingredient[_c]) ; cum_ingredient[_c]++
+		if mapname=="ParmaRuins"
+		{	dye_ingredient[_c]++ ; cum_ingredient[_c]=TOINT(cum_ingredient[_c]) ; cum_ingredient[_c]++	}
+	}
+	//-----感染凝膠
+	case enemy_name
+	{	when "紅水母","淚人兒" ; Edrop[7]=3
+		when "？？？" ; Edrop[7]=10
+		when "魟魚" ; Edrop[7]=1
+	}
+	if Edrop[7]>0
+	{	dye_ingredient[5]+=Edrop[7] ; cum_ingredient[5]=TOINT(cum_ingredient[5]) ; cum_ingredient[5]+=Edrop[7] }
+	
+}
+
+
+//判定行動對象
+DecideWhoAct
+{
+	if OrderDone[0]*OrderDone[1]*OrderDone[2]==1
+		NextRound
+	elseif OrderDone[0]*OrderDone[1]==1
+		Enemy.Act
+	elseif OrderDone[1]==1
+		{ordertarget=0
+		BattleWarning}
+	elseif OrderDone[0]==1
+		{ordertarget=1
+		BattleWarning}
+	else
+		BattleWarning
+}
+
+
+
+//==========敵方回合==========
+Enemy.Act
+{
+	Enemy.Act.Action	//決定 enemy_action
+	--
+	Edmg[0]=TOINT(Einc[1]*def[0])
+	Edmg[1]=TOINT(Einc[1]*def[1])
+	OrderDone[2]=1
+	--
+	//敵方技能特殊處理
+	if enemy_action=="skill"
+	{
+		_rate=0
+		case enemy_name
+		{
+			when "婕克南瓜" ; Eskill=("詭計",2)
+			when "魟魚" ; Eskill=("甩尾",1)
+			when "憂鬱的婦人" ; Eskill=("收割",RAND(6))
+			//when "" ; Eskill=("",1)
+		}
+	}
+	--
+	case enemy_action
+	{	when "hecate" ; Edmg[2]=Edmg[0]
+		when "hella" ; Edmg[2]=Edmg[1]		}
+	--
+	if OrderEffectMode==4			//-----權能麻痺
+	{
+		"\p[6]\s[-1]\b[32]\c%(bp) 由於麻痺效果，敵方無法行動。%(bp)\x"
+		--
+		NextRound
+	}
+	elseif HCskill[1]>=5			//-----夢魘承傷
+	{
+		"\p[2]%cp(1)%BattleSurface('dreamshadow')\p[6]\s[-1]\b[32]%(bp)夢魘為兩人擋下了此次傷害。%(bp)\x"
+		--
+		NextRound
+	}
+	elseif enemy_action=="skill"	//-----發動技能
+	{	if Eskill[0]=="詭計"
+		{	attack_target=ANY(0,1)
+			if attack_target==1 ; debuff_HL[3]=2
+			elseif attack_target==0 ; debuff_HC[3]=2
+			--
+			"\p[2]%cp(2)\p[5]%BattleSurface('hurt')\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 對 %(Char_Name[attack_target]) 施展了 %(Eskill[0])！%(bp)\w5\n/
+			%(bp) %(Char_Name[attack_target]) 被她的三寸不爛之舌說服，將不在下回合使用技能。%(bp)\x"
+		}
+		elseif Eskill[0]=="甩尾"
+		{	SinnerBeenAttack
+			--
+			_rate=(RAND(3),RAND(3))
+			_a=ANY("",2,3) ; _b=ANY(1,2)
+			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\![sound,play,sound/enemy/swing%(_a).mp3]\![sound,play,sound/enemy/鞭で攻撃%(_b).mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 對 禁閉者們 使出了 %(Eskill[0])！%(bp)\w5\n/
+			%(batlle_msg)%(bp) 對 赫卡蒂 造成 %bh(Edmg[0]) 點傷害！%(bp)\w3\n/
+			%(batlle_msg)%(bp)  對 海拉 造成 %bh(Edmg[1]) 點傷害！%(bp)"
+			--
+			if _rate[0]==1
+				{ "\w5\n%(sfx_poison)%(bp) 赫卡蒂 %(debuff_color[0])中毒\f[default]了！%(bp)" ; debuff_HC[0]+=4 }
+			--
+			if _rate[1]==1
+				{ "\w5\n%(sfx_poison)%(bp) 海拉 %(debuff_color[0])中毒\f[default]了！%(bp)" ; debuff_HL[0]+=4 }
+			--
+			"\x"
+		}
+		elseif Eskill[0]=="收割"
+		{
+			SinnerBeenAttack
+			--
+			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\w9\w5\![sound,play,sound/enemy/刀の素振り1.mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 舉起鐮刀向 我方所有人 砍去…… %(bp)\w5\n/
+			%(batlle_msg)%(bp) 對 赫卡蒂 造成 %bh(Edmg[0]) 點傷害！%(bp)\w3\n/
+			%(batlle_msg)%(bp)  對 海拉 造成 %bh(Edmg[1]) 點傷害！%(bp)"
+			--
+			//演出插入
+			Bmp[0]-- ; Bmp[1]--
+			if Bmp[0]<0 ; Bmp[0]=0
+			if Bmp[1]<0 ; Bmp[1]=0
+			--
+			if Eskill[1]<=2
+				"\w5\n%(bp) ………… %(bp)\w7\n%(batlle_msg)%(bp) 突然感到一陣無力…… %(bp)\w7\n/
+				%(batlle_msg)%(bp) 禁閉者們 損失了 1 點能量………… %(bp)"
+			--
+			if Eskill[1]==2
+			{	Bmp[2]--
+				if Bmp[2]<0 ; Bmp[2]=0
+				--
+				"\w9\n%(batlle_msg)%(bp) %(username) 損失了 1 點能量………… %(bp)"
+			}
+			--
+			if Eskill[1]<=1
+				"\w9\n%(batlle_msg)%(bp) 在 禁閉者們 的奮力抵擋下，%(username) 沒有損失能量。%(bp)"
+			--
+			"\x"
+		}
+		--
+		if hp[0]<=0 || hp[1]<=0 ; Sinner.HPCheck
+		else ; NextRound
+	}
+	elseif enemy_action=="idle"	//-----待機行動
+	{	
+		"\p[2]%cp(2)\p[6]\s[-1]\b[32]\c"
+		--
+		case enemy_name
+		{
+			when "？？？"
+			{ case roundNum
+			  {
+				when 1 ; "%(bp) ………… %(bp)"
+				when 2 ; "%(bp) ？？ ？？？？ ？ ？？？？ %(bp)"
+				when 3 ; "%(bp) 「҉姣҉嶈҉Κ҉鍦҉ㄧ҉湅҉钁҉梱҉o҉u҉」 %(bp)"	//姣嶈Κ鍦ㄧ湅钁梱ou 母親在看著you
+				when 4 ; "%(bp) 「҉蹇҉҉粸҉锛҉岄҉亷҉渚҉嗘҉垜҉閫҉欓҉倞҉」 %(bp)"	//蹇粸锛岄亷渚嗘垜閫欓倞  快點，過來我這邊
+				when 5 ; "%(bp) 「҉鍜҉屾҉垜҉涓҉€҉璧҉峰҉洖҉h҉o҉m҉e҉」 %(bp)"	//鍜屾垜涓€璧峰洖home  和我一起回home
+				when 6 ; "%(bp) 「҉鎴҉愮҉偤҉锛҉屾҉垜҉鍊҉戠҉殑҉涓҉€҉浠҉藉҉瓙҉」 %(bp)"	//鎴愮偤锛屾垜鍊戠殑涓€浠藉瓙  成為，我們的一份子
+				when 7-999 ; "%(bp) 似魚非人的生物發出沙啞的低吼，那個聲音使%(you)%ANY('反胃','作嘔','感到一陣眩暈')…… %(bp)"
+			  }
+			}
+			when "魟魚" ; "%(batlle_msg)%(bp) %(enemy_name) 面帶微笑地看著%(you)！ %(bp)"
+			when "憂鬱的婦人" ; "%(batlle_msg)%(bp) %(enemy_name) 正在低聲啜泣…… %(bp)"
+		}
+		--
+		"\x"
+		--
+		NextRound
+	}
+	else							//-----普通攻擊
+	{
+		SinnerBeenAttack
+		--
+		"\p[2]%cp(2)\p[5]%BattleSurface('hurt')\p[6]\s[-1]\b[32]\c%(bp)%SFX('sfx/弓矢が刺さる') %(enemy_name) 對 "
+		--
+		if enemy_action=="hecate" || enemy_action=="hella"
+			"%(AttackTarget) 造成了 %bh(Edmg[2]) 點傷害！"
+		else
+			"赫卡蒂 造成了 %bh(Edmg[0]) 點傷害！%(bp)\w3\n%(bp) %(enemy_name) 對 海拉 造成了 %bh(Edmg[1]) 點傷害！"
+		--
+		"%(bp)\x\p[5]\b[-1]%BattleSurface('idle')"
+		--
+		if hp[0]<=0 || hp[1]<=0 ; Sinner.HPCheck
+		else ; NextRound
+	}
+}
+//判定攻擊目標
+Enemy.Act.Action
+{
+	_a=RAND(2)
+	enemy_action_num=RAND(2)
+	--
+	//====分類攻擊模式====
+	case enemy_name
+	{
+		//----經典三取一
+		when "淚人兒"
+			enemy_action_num=RAND(3)
+		//----單體or技能
+		when "婕克南瓜"
+			enemy_action_num=ANY(0,1,3)
+		//----海拉or全體
+		when "聚合體"
+			enemy_action_num=ANY(1,2)
+		//----必為技能(1/2概率發動)
+		when "憂鬱的婦人"
+			enemy_action_num=ANY(3,4)
+		//----必為技能(2/3概率發動)
+		when "魟魚"
+			enemy_action_num=ANY(4,3,3)
+		//----必為全體攻擊
+		when "兜帽客工匠","紅水母","三角頭","藍蠕蟲"
+			enemy_action_num=2
+		//----必定攻擊海拉(前排)
+		when "厄種"
+			enemy_action_num=1
+		//----必定待機
+		when "？？？"
+			enemy_action_num=4
+	}
+	--
+	//技能發動概率調整
+	//_rate=0
+	//if enemy_name=="憂鬱的婦人" && enemy_action=="skill"
+	//	enemy_action=ANY("idle","skill")
+	
+	//elseif enemy_name=="婕克南瓜" && enemy_action=="skill"
+	//	enemy_action=ANY("idle","skill")
+	--
+	//嘲諷
+	if HLskill[1]==1 && enemy_action_num==0
+		enemy_action_num=1
+	--
+	enemy_action=enemy_action_list[enemy_action_num]
+	enemy_attacktarget_name=enemy_attacktarget_list[enemy_action_num]
+	--
+	case enemy_action
+	{	when "hella"  ; {attack_target=1 ; AttackTarget="海拉"}
+		when "hecate" ; {attack_target=0 ; AttackTarget="赫卡蒂"}
+		when "aoe"	  ; {attack_target=2 ; AttackTarget="禁閉者們"}		}
+}
+
+//禁閉者(我方)損血、受擊時特殊狀態/迴避判定
+SinnerBeenAttack
+{
+	_eva=(RAND(100),RAND(100))	//隨機迴避
+	if HCskill[1]==5
+		"\c\p[6]\s[-1]\b[32]%(bp) 夢魘為赫卡蒂和海拉抵禦了該次傷害。%(bp)\w8"
+	/*elseif _eva[attack_target]<=evasion[attack_target] && attack_target<2	//迴避
+		"\c\p[6]\s[-1]\b[32]%(bp) %(AttackTarget) 躲開了攻擊！%(bp)\w8"*/
+	elseif enemy_action=="hecate"
+		hp[0]-=Edmg[0]
+	elseif enemy_action=="hella"
+		hp[1]-=Edmg[1]
+	elseif enemy_action=="aoe"
+	{	hp[0]-=Edmg[0] ; hp[1]-=Edmg[1]	}
+	elseif enemy_action=="skill" && (enemy_name=="魟魚"||enemy_name=="憂鬱的婦人")
+	{	hp[0]-=Edmg[0] ; hp[1]-=Edmg[1]	}
+}
+Sinner.HPCheck
+{
+	if hp[0]*hp[1]<=0
+	{	_a= ASEARCH (mapname,map_name_en)
+		cum_battle_fall[_a]++
+		intimacy[1]-=20
+		cum_int_down_HL[1]+=20
+	}
+	if hp[0]<=0 ; Defeated.Hecate
+	elseif hp[1]<=0 ; Defeated.Hella
+}
+Sinner.MpCheck
+{
+	if Bmp[0]<0 ; Bmp[0]=0
+	if Bmp[1]<0 ; Bmp[1]=0
+	if Bmp[0]>3 ; Bmp[0]=3
+	if Bmp[1]>3 ; Bmp[1]=3
+}
+Defeated.Hecate
+{
+	hp[0]=0
+	mood[0]-=40 ; mood[1]-=20
+	--
+	"\p[2]%cp(2)\p[6]\c\s[-1]\b[32]\![quicksession,false]%(bp) 赫卡蒂無法承受傷害，昏了過去。%(bp)\w8"
+	--
+	BattleInfoWindow
+	--
+	"\0\s[-1]\1\s[-1]\p[5]\s[520052]\b[10]\![quicksession,false]"
+	--
+	"%(usernameHC)……快……逃……"
+	"對不起……沒能保護好%(you)……"
+	--
+	"\w7\p[5]\b[12]\c赫卡蒂！！！"
+	--
+	"\w9"
+	--
+	"\p[6]\s[-1]\b[32]\c%(bp) "
+	--
+	"抱著昏迷的赫卡蒂回到了管理局……"
+	"抱著傷痕纍纍的赫卡蒂逃離了戰場……"
+	--
+	"%(bp)\x"
+	--
+	BattleMode=0
+	DeleteAllBattleVar
+	--
+	"\p[5]\s[-1]\0\s[1]\1\s[31]/
+	\1\s[31]……\w2赫卡蒂？\w5妳還好嗎？\w9/
+	\0\s[1]……沒事的，\w5海拉，\w5我感覺不到痛……\w9\w9\w5/
+	\1%(nl)\s[17]**喂！！！\w5%(you)這傢伙！\w6這麼不小心，\w5要、\w3\s[31]要是赫卡蒂出了什麼事……\w9\w2/
+	\p[2]%(cp)\b[20]對不起……\w7\w9/
+	\0%(nl)\s[3]抱歉，\w3我能力不足拖累你們了。\w9\w2/
+	\1%(nl)\s[32]明明是這家伙的指揮有問題啦！\w8\s[30]…\w1…\w8\n[130]話說回來，\w6%(you)沒有受傷吧？\w9/
+	\p[2]%(cp)\b[20]\c沒有……\w9\w9\w5/
+	\1%(nl)\s[35]我可沒有在擔心%(you)啊？\w8 \s[34]我是想如果%(you)受傷了，\w5就來狠狠嘲笑%(you)！\w7\w9\n[130]…\w2…\w3\s[13]反正，\w5%(you)沒事就好了。\w9/
+	\0%(nl)\s[1]為了保護好%(usernameHC)，\w7我也會繼續修煉的。\w5"
+	--
+	"\e"
+}
+Defeated.Hella
+{
+	hp[1]=0
+	mood[0]-=20 ; mood[1]-=40
+	--
+	"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\s[-1]\c\![quicksession,false]\b[32]%(bp) 海拉傷得太重，無法在短期內回復傷口。%(bp)\w8"
+	--
+	BattleInfoWindow
+	--
+	"\![quicksession,false]\p[5]\s[520053]\b[12]"
+	--
+	"……好……痛……"
+	"嗚……"
+	--
+	"\w9\p[5]\b[10]\c海拉的狀況很不妙，我們先回局裡吧，%(usernameHC)？\w9"
+	--
+	"\p[6]\s[-1]\b[32]\c%(bp) "
+	--
+	"赫卡蒂讓夢魘抱著受重傷的海拉回到了局裡……"
+	"赫卡蒂操控夢魘抱著傷痕纍纍的海拉逃離了戰場……"
+	--
+	"%(bp)\x"
+	--
+	BattleMode=0
+	DeleteAllBattleVar
+	--
+	"\p[5]\s[-1]\0\s[0]\1\s[10]/
+	\1\s[19]嗚……\w7/
+	\0\s[3]海拉，\w5我來幫妳包紮吧。\w9/
+	\1%(nl)\s[31]不用啦，\w5我已經好得差不多了……\w9/
+	\0%(nl)\s[1]那就好。\w9\w9/
+	\1%(nl)\s[17]*文明*……\w2%(you)\w2%(you)\w3%(you)\w2%(you)\w3%(you)！\w3笨蛋！\w5大笨蛋！！\w5就算傷口能很快復原，\w7\s[31]我還是會痛的啊！\w9/
+	\p[2]%cp(0)對不起……\w9/
+	\1%(nl)\s[11]哼，\w3這次先原諒%(you)，\w6要是還有下次，\w6\s[17]我可要把%(you)揍成豬頭囉！\w9/
+	\0%(nl)\s[3]那樣會被我阻止的。\w9\n[130]\s[0]%(usernameHC)，%(you)有受傷嗎？\w9/
+	\p[2]\c沒有……\w9/
+	\0%(nl)\s[1]嗯，\w3那我就放心了。\w9\w5/
+	\1%(nl)\s[30]我要去加緊訓練了，\w8\s[34]下次再找那些臭傢伙好好算帳！\w8嘿嘿。"
+	--
+	"\e"
+}
+Defeated.Both
+{
+	hp=(0,0)
+	--
+	"\c\p[6]\s[-1]\b[32]%(bp) 海拉傷得太重，無法在短期內回復傷口。%(bp)\w8"
+	--
+	BattleInfoWindow
+	--
+}
+Defeated.Both.Continue
+{
+	"\1……好過分！好過分好過分！！%(you)一點都不考慮我們的感受嗎！/
+	\0\s[-1]\p[6]%(usernameHC)……我沒事……請不用……擔心……/
+	\1\c**為什麼非得弄到這個境地才撤退！反正我們是禁閉者，痛也沒關係對吧！/
+	\p[2]\c不是的……/
+	\0\s[-1]\p[6]\c%(usernameHC)他不是故意的……\n我是為了%(usernameHC)誕生的工具，就算嚴重損毀也不要緊，還會有下一個赫卡蒂出現。您不用顧慮我。/
+	\p[2]\c我沒有那樣想……/
+	\1\c我不要理%(you)了啦！！在%(you)徹底反省之後，我才原諒%(you)！/
+	\p[2]\c抱歉，海拉……\e"
+}
+
+
+NextRound
+{
+	//判定應否回復禁閉者mp
+	if roundNum%2 !=1
+	{
+		if Bmp[0]==Bmp[3]
+		{//若赫能量已滿，將回復局長能量
+			if Bmp[2]<Bmp[4]
+				Bmp[2]+=1
+		}
+		elseif Bmp[0]<Bmp[3]
+			Bmp[0]++
+		--
+		if Bmp[1]==Bmp[3] && HLskill[1]<=0
+		{//若海能量已滿，將回復局長能量
+			if Bmp[2]<Bmp[4]
+				Bmp[2]+=1
+		}
+		elseif Bmp[1]<Bmp[3] && HLskill[1]<=1
+			Bmp[1]++
+	}
+	--
+	roundNum+=1
+	--
+	DeleteBattleVar_Round
+	ordertarget=1
+	BattleWarning
+}
+
+//逃跑
+BattleRunaway
+{
+		"\c\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[5]\f[align,center]\n[130]%BattleSurface('runaway')"
+		--
+		case ordertarget
+		{	when 0 ; "\b[10]\n[-50]為了%(usernameHC)的安全，我們快點離開吧。"
+			when 1 ; "\b[12]我明明還能打的！"
+		}
+		--
+		"\w9\w9\w9"
+		--
+		BattleMode=0
+		DeleteAllBattleVar
+		_mp=("Syndicate","ParmaRuins","RustRiver")
+		_mn=(mapname,_mp)
+		cum_battle_runaway[_mn]=TOINT(cum_battle_runaway[_mn]) ; cum_battle_runaway[_mn]++
+		--
+		"\p[5]\s[-1]\b[-1]\p[6]\s[-1]\b[32]\c%(bp) "
+		--
+		"從戰鬥中逃離了…… "
+		"至少，沒有讓她們受重傷。"
+		--
+		"%(bp)\x"
+		--
+		"\0\s[0]\1\s[10]\p[2]%cp(0)\e"
+}
+
+
+AddWave
+{
+	if Bmp[2]<Bmp[4] ; Bmp[2]+=1
+	if stamina<wave[2] && wave[0]<wave[1]+1
+	{
+		"\c\0\s[-1]\p[6]\n[130]\b[32]%(bp)體力不足以支撐她們繼續前進，要使用道具補充嗎？%(bp)\n"
+		--
+		_txt=""
+		for _i=0 ; consumable_name[_i]!="" ; _i++
+		{
+			if consumable[_i]>=1
+			_txt+="\n[130]- \_q\__q[OnBattle.UseConsumable,%(_i)]%(consumable_name[_i])／%(consumable_stamina[_i])\__q\_q"
+		}
+		_txt
+		--
+		if _txt=""
+			"（未持有任何恢復道具。）"
+		--
+		"\n[250]→\_q \__q[BattleRunaway][ 回到管理局 ]\__q\_q"
+	}
+	else
+	{
+		wave[0]+=1
+		stamina-=wave[2]
+		cum_stamina_use+=wave[2]
+		--
+		if wave[0]>=wave[1]+1
+			MissionComplete
+		elseif wave[0]==wave[1] && mapname=="DisSea"
+			BossBattle
+		else
+			NextWave
+	}
+}
+NextWave
+{
+	BattleMode=4
+	DeleteBattleVar_Wave
+	--
+	"%BattleSurface('next')"
+	--
+	"\b[10]\c\![set,choicetimeout,0]\f[align,center]\n[111]%SFX('battle/01-HC-16-chief should we keep going')繼續前進嗎？%(usernameHC)。"
+	"\b[10]\c\![set,choicetimeout,0]\f[align,center]\n[111]%SFX('battle/01-HC-58-battle still not end')戰鬥還沒結束。%(usernameHC)。"
+	"\b[12]\c\![set,choicetimeout,0]\f[align,center]\n[111]%SFX('battle/HL-levelstrat-GOGOGO')GO！GO！GO！"
+	"\b[12]\c\![set,choicetimeout,0]\f[align,center]\n[111]%SFX('battle/HL-levelstrat-GOGOGO')GO！GO！GO！"
+	--
+	"\p[6]\s[-1]\b[32]%(BattleInfoWindow)"
+	--
+	"\p[2]%cp(0)\b[20]\f[align,center]%(opp)\q[繼續探索,NewWave]\n[166]%(opp)\q[返回管理局,BattleRunaway]"
+}
+NewWave
+{
+	roundNum=1
+	OrderDone=(0,0,0)
+	enemy_nameSetting
+	EnemyInfoSetting
+	--
+	BattleWarning
+}
+
+OnBattle.UseConsumable
+{
+	_a=reference0
+	stamina+=consumable_stamina[_a]
+	cum_stamina_heal[0]+=consumable_stamina[_a]
+	cum_consumable[_a]=TOINT(cum_consumable[_a]) ; cum_consumable[_a]++
+	consumable[_a]--
+	--
+	if stamina<wave[2]
+		AddWave
+	else
+	{
+		"\c\0\s[-1]\p[6]\n[130]\b[32]%(bp)已補充了足夠的體力，可以繼續執行任務了。%(bp)"
+		--
+		"\x"
+		--
+		AddWave
+	}
+}
+
+
+
+
+
+//Boss戰(內海專用)
+BossBattle
+{
+    case mapname
+    {
+        when "Syndicate"
+			NewWave
+        when ""
+    }
+	if mapname==Syndicate
+		{enemy_name=ANY(EnemyC)
+		BattleWarning}
+	elseif mapname==RustRiver
+}
+
+
+
+
+//地圖通關
+MissionComplete
+{
+    _a=ASEARCH(mapname,map_name_en)
+	cum_battle_complete[_a]=TOINT(cum_battle_complete[_a]) ; cum_battle_complete[_a]++
+	discoin+=missionpay
+	cum_gain_discoin[0]+=missionpay
+	intimacy+=10
+	cum_int_HC[2]=TOINT(cum_int_HC[2]) ; cum_int_HC[2]+=10
+	cum_int_HL[2]=TOINT(cum_int_HL[2]) ; cum_int_HL[2]+=10
+	mood+=30
+	BattleMode=5
+    --
+	MissionComplete_MSG
+}
+MissionComplete_MSG
+{	
+	"\0\s[-1]\p[6]\s[-1]\p[3]\s[310000]\b[0]辛苦了，\w5%(username)。\w7\n本次任務的完成報酬%(missionpay)狄斯幣，\w7已經匯進您的帳戶了。\w6/
+	\p[2]%cp(0)\b[20]\f[align,center]\q[ 再次戰鬥 ,BattleAgain]\n[166]\q[ 回到管理局 ,GobackBureau]"
+}
+BattleAgain
+{
+	"\p[3]\s[310000]\b[0]\c好的，\w4請%(username)切勿勉強自己。\w9\w9\p[3]\s[-1]"
+	--
+	DeleteAllBattleVar
+	BattleMode=10
+	--
+	BattleMapChoose_Line
+}
+GobackBureau
+{
+	BattleMode=0
+	DeleteAllBattleVar
+	--
+	"\p[3]\s[310002]\b[0]\c請您好好休息，\w5%(username)。\x\p[5]\s[-1]\p[3]\s[-1]\0\s[0]\1\s[10]\e"
+}
+
+
+
+
+
+//====================================================
+//-------------------刪除戰鬥用變數-------------------
+//====================================================
+DeleteBattleVar_Skill
+{
+	HCskill-- ; HLskill--
+	for _i=0 ; _i<3 ; _i++
+	{	if HCskill[_i]<0 ; HCskill[_i]=0
+		if HLskill[_i]<0 ; HLskill[_i]=0
+	}
+	HCskill[0]=0
+	HLskill[0]=0
+}
+DeleteBattleVar_Round
+{
+	def=(1,1)
+	OrderDone=(0,0,0)
+	attack_target=0
+	debuff_HC-- ; debuff_HL--
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{
+		if debuff_HC[_i]<0 ; debuff_HC[_i]=0
+	}
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{
+		if debuff_HL[_i]<0 ; debuff_HL[_i]=0
+	}
+	DeleteBattleVar_Skill
+	ERASEVAR('OrderEffectMode')
+	enemy_action="idle"
+}
+DeleteBattleVar_Wave
+{
+	DeleteBattleVar_Round
+	ERASEVAR('enemy_name')
+	ERASEVAR('Einc')
+	ERASEVAR('Ehp')
+	ERASEVAR('Edrop')
+	Edrop[5]=""
+	Edrop[6]=""
+	Edrop[7]=0
+	pressbutton=0
+}
+DeleteBattleVar_Map
+{
+	ERASEVAR('mapname')
+	ERASEVAR('hp')
+	ERASEVAR('Bmp')
+	ERASEVAR('Edmg')
+	ERASEVAR('missionpay')
+}
+DeleteAllBattleVar
+{
+	DeleteBattleVar_Round
+	DeleteBattleVar_Wave
+	DeleteBattleVar_Map
+	BattleMode=0
+	--
+	"\![sound,stop]\p[5]\![bind,enemy,none]\![bind,background,none]\s[-1]\0\s[1]\1\s[10]\p[2]%cp(0)"
+}
+
+//====================================================
+////////////////////////戰鬥畫面//////////////////////
+//====================================================
+BattleSurface
+{
+	_screen=_argv[0]
+	--
+	_txt="" //\0\s[-1]\1\s[-1]
+	_txt+="\p[5]\s[5200"
+	--
+	if _screen=='next'			//-----下回合
+	{	_txt+="5"
+		if hp[0]>0 && hp[1]>0
+			_txt+="%ANY(0,1)"
+		elseif hp[0]==0
+			_txt+="2"
+		elseif hp[1]==0
+			_txt+="3"
+	}
+	elseif _screen=='runaway'	//-----逃走
+	{	_txt+="9"
+		--
+		if hp[0]>0 && hp[1]>0
+		{	if ordertarget==0 ; _txt+="0"
+			else ; _txt+="1"
+		}
+		elseif hp[0]==0
+			_txt+="2"
+		elseif hp[1]==0
+			_txt+="3"
+	}
+	else						//-----戰鬥中
+	{	
+		if hp[0]>0 && hp[1]>0
+			_txt+="1"
+		elseif hp[0]==0
+			_txt+="2"
+		elseif hp[1]==0
+			_txt+="3"
+		--
+		_a=0 ; _c=0
+		if ordertarget==1 || enemy_action=="hella" || attack_target==1
+			_a=1
+		if enemy_action=="hecate" ; _a=0
+		_b=_a*3
+		case _screen
+		{
+			when 'idle'			; _c=0
+			when 'atk'			; _c=1+_b
+			when 'skill'		; _c=2+_b
+			when 'hurt'			; _c=3+_b
+			when 'taunt'		; _c=7
+			when 'aoe'			; _c=8
+			when 'dreamshadow'  ; _c=9
+		}
+		if _argv[0]=='hurt' && enemy_action=="aoe" ; _c=8
+		_txt+="%(_c)"
+		
+	}
+	--
+	_txt+="]\![bind,enemy,%(enemy_name)-"
+	--
+	case _screen
+	{
+		when 'idle','atk','skill','taunt' ; _txt+="idle"
+		other ; _txt+=enemy_action
+	}
+	--
+	_txt+=",1]"
+	--
+	case _screen
+	{	when 'next','runaway','none' ; _txt+="\![bind,enemy,none,1]"
+	}
+	--
+	_txt
+	
+}
+//battlescreen[0待機,1赫攻擊,2技能,3敵方攻擊(赫),4海攻擊,5海技能,6敵方攻擊(海),7海嘲諷,8敵方攻擊(全體),9夢魘承傷,50赫下回合,51海下回合,90赫逃走,91海逃走,100空地)]
+
+BattleScreenSetting
+{
+	_action=_argv[0]
+	--
+	_txt="\0\s[-1]\1\s[-1]\p[5]\s[5200"
+	if _action<10
+	{
+		if incapacitated[0]==1
+			_txt+="2"
+		elseif incapacitated[1]==1
+			_txt+="3"
+		else
+			_txt+="1"
+		--
+		_txt+="%(_action)"
+	}
+	elseif _action<100
+		_txt+=_action
+	else
+		_txt+="10"
+	_txt+="]"
+	--
+	_txt+="\![bind,enemy,"
+	if _action>=50
+		_txt+="none"
+	elseif _action ==3 || _action ==7 || _action ==8
+	{	_txt+=enemy_name
+		_txt+="-"
+		_txt+=enemy_action	}
+	else
+		_txt+=enemy_name+"-idle"
+	--
+	_txt+=",1]"
+	--
+	_txt
+}
+
+//====================================================
+////////////////////////數值設定//////////////////////
+//====================================================
+//初次戰鬥(設定赫卡蒂數值)
+FristBattleInfoSetting
+{
+	if level==1
+		HCinc=(500,317)
+	elseif level>1
+		{HCinc_b=(500+(level-1)*10,317+(level-1)*3+TOINT(ROUND((level-1)/7*5)))
+		HCinc=(HCinc_b[0]+HCinc_ex[0],HCinc_b[1]+HCinc_ex[1])}
+	elseif level>=100
+		{HCinc_b=(50000,18703)
+		HCinc=(HCinc_b[0]+HCinc_ex[0],HCinc_b[1]+HCinc_ex[1])}
+}
+//其他戰鬥
+BattleInfoSetting
+{
+	InitialSetting
+	hp[0]=(HCinc[0],HCinc[1])
+	DSinc_l=(DSinc[0],DSinc[1])
+}
+
+//個別敵人數值設定
+EnemyInfoSetting
+{
+	case mapname
+	{
+	  when "Syndicate"
+		Einc=Einc_C
+	  when "ParmaRuins"
+		Einc=(TOINT(Einc_C[0]*3.712),TOINT(Einc_C[1]*1.5))
+	  when "RustRiver"
+		Einc=(TOINT(Einc_C[0]*2.2),Einc_C[1]*2.2)
+	}
+	--
+	//汙染加成
+	_hp=TOINT(level*20*level*0.14856)
+	_atk=TOINT(_hp*0.4)
+	Einc=(TOINT(Einc[0]+Einc[0]*batlle_level*batlle_level*0.3141592)+RAND(_hp),TOINT(Einc[1]+Einc[1]*batlle_level*batlle_level*0.2077)+RAND(_atk))
+	--
+	if enemy_name=="實驗人員"
+		Einc[0]=10
+	if enemy_name=="？？？"
+		Einc[0]=TOINT(Einc[0]*10.7777)
+	--
+	Ehp=Einc[0]
+}
+
+
+//====================================================
+////////////////////////道具強化//////////////////////
+//====================================================
+//攻擊力強化
+EatHowManyPAFE
+{
+	"\0\s[-1]\p[6]要用幾個？\![open,inputbox,OnEatPAFE]"
+}
+OnEatPAFE
+{
+	if reference0==0
+		"\0\s[-1]\p[6]……不強化了嗎？"
+	elseif TOINT(FLOOR(reference0))==0
+		"\0\s[-1]\p[6]這並非一個數目，%(usernameHC)口誤了嗎？\![open,inputbox,OnEatPAFE]"
+	elseif PAFE<(TOINT(FLOOR(reference0)))
+		{"\0\s[-1]\p[6]您並沒有那麼多的異能源素哦，\n/
+		目前只有%(PAFE)個。\![open,inputbox,OnEatPAFE]"}
+	elseif reference0>=1
+		{"\c\0\s[-1]\p[6]"
+		--
+		"謝謝，我……一定不會辜負您的期望。\n[130]"
+		"如此一來，我又有更強大的力量可以保護%(you)了。\n[130]"
+		--
+		"\w7"
+		--
+		OnPAFEupATK}
+	else
+		{"\0\s[-1]\p[6]咦？好像發生了什麼錯誤……？"
+		"\0\s[-1]\p[6]發生未知錯誤，請%(usernameHC)重新操作一次。"
+		--
+		PAFEinfo}
+}
+OnPAFEupATK
+{
+	_atkup=reference0*level
+	HCinc_ex[1]+=_atkup
+	PAFE-=reference0
+	--
+	"\f[height,12]\f[color,#B8C7CC]（已使用%(reference0)個異能源素提升\f[color,#EA0000]\f[bold,1]%(_atkup)\f[bold,0]\f[color,#B8C7CC]點攻擊力。）\x\c"
+	--
+	PAFEinfo
+}
+
+
+
+
+
+

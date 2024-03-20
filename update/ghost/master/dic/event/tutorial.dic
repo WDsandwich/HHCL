@@ -1,0 +1,146 @@
+OnTutorial
+{
+	"\%(MenuChoice)\b[2]\_q%(click)"
+	--
+	menu_title="向夜鶯請教"
+	menu_p_list=("└")
+	
+	menu_o_list=("戰鬥教學")
+	menu_func_list=("OnTutorial.Battle,20")
+	--
+	Menu.Option
+	--
+	MuenBottomOption(0)
+	--
+	"\p[3]有什麼我能幫上忙的地方嗎，%(username)？"
+}
+TTRH
+{"\f[color,#FF0000]\f[shadowcolor,#F5FFE8]☞\f[default]\f[color,#FFDC35]"}
+OnTutorial.Battle
+{
+	BattleMode=reference0
+	_bm=BattleMode
+	case _bm
+	{	when 20
+		{	missionpay=1000
+			wave=(1,5,1)
+			enemy_name="刀狩"
+			OrderDone=(0,1,0)
+			Bmp=(1,1,3,3,7)
+			HCinc=(500,317)
+			HLinc=(1000,222)
+			hp=(HCinc[0],HLinc[0])
+			Einc=(HCinc[1]+HCinc[1]+HLinc[1]-30,100)
+			Ehp=Einc[0]
+			--
+			"\0\s[-1]\1\s[-1]\p[5]\s[520010]\![bind,background,Syndicate,1]\p[3]%(username)，請您保持警惕。\x\![raise,OnTutorial.Battle,21]"
+		}
+		when 21
+		{	"\0\s[-1]\1\s[-1]\p[5]\![bind,enemy,刀狩-entrance,1]\w1/
+			\p[6]\s[-1]\b[32]%(bp) 遇見了 %(enemy_name) ！%(bp)%(BattleInfoWindow.Tutorial)\w3/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			%(TTRH)\f[color,#FFDC35]\__q[OnTutorial.Battle,22]⚔️攻擊\__q\n[130]/
+			\f[color,#7B7B7B]🗲技能\n[130]/
+			🛡️防禦\n[130]/
+			◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]\f[default]\w3/
+			\p[3]\![quicksession,false]敵人出現了，請指示禁閉者進行攻擊。"
+		}
+		when 22
+		{	"\p[5]\![bind,enemy,刀狩-idle,1]%SFX('sfx/キックの素振り1')\s[520011]/
+			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(HCinc[1]) 點傷害！%(bp)\x/
+			\p[3]\![quicksession,false]赫卡蒂、海拉、敵人，每回合（round）各有一次行動機會。我方兩名禁閉者完成行動後，才會輪到敵方行動。\x/
+			\p[3]\c敵方的攻擊對象可能是赫卡蒂、海拉，也有會同時攻擊兩者的敵人，%(username)可以藉由戰鬥訊息得知。\x/
+			\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 虎視眈眈地看著海拉…… %(bp)\w2%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			\f[color,#7B7B7B]⚔️攻擊\n[130]/
+			🗲技能\n[130]/
+			%(TTRH)\__q[OnTutorial.Battle,23]🛡️防禦\__q\n[130]/
+			\f[color,#7B7B7B]◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]\f[default]\w2/
+			\p[3]\c\![quicksession,false]本回合的攻擊對象是海拉，請指示她防禦吧。"
+		}
+		when 23
+		{	"\p[5]\i[676301]%SFX('sfx/shakiin3')\p[6]\s[-1]\b[32]\c%(bp) 海拉擺出防禦架勢，本回合獲得自身傷害減免。%(bp)\x/
+			\p[5]\s[520016]\![bind,enemy,刀狩-hella,1]\p[6]\s[-1]\b[32]%(bp)%SFX('sfx/弓矢が刺さる') %(enemy_name) 對 海拉 造成了 %bh(TOINT(Einc[1]*0.3)) 點傷害！\x"
+		
+		}
+	}
+	
+}
+
+
+BattleInfoWindow.Tutorial
+{
+	"\n\![quicksession,true]\_l[-,50]"
+	--
+	DividingLine2
+	--
+	"\n"
+	--
+	//		圖標
+	"\_b[img\battle\enemy\%(enemy_name).png,inline,--option=use_self_alpha]"
+	--
+	//		buff、debuff狀態顯示用
+	_status_HC="" ; _status_HL=""
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{
+		if debuff_HC[_i]>=1
+		{	
+			_status_HC+=debuff_icon[_i]
+		}
+	}
+	for _i=0 ; _i<ARRAYSIZE(debuff_name) ; _i++
+	{
+		if debuff_HL[_i]>=1
+		{	
+			_status_HL+=debuff_icon[_i]
+		}
+	}
+	--
+	"\n[20]\_l[65]\f[height,12]"
+	--
+	if BattleMode==4 ; "剩餘體力 （\f[color,#80FFFF]-%(wave[2])\f[color,default]）"
+	else ; "%(enemy_name)"
+	--
+	"\n[125]\_l[65]\f[shadowcolor,none]"
+	--
+	if BattleMode==4 ; "%(stamina)/%(staminamax)%ProgressBar(6,60,100,stamina,staminamax)\n[190]"
+	else ; "%TOINT(Ehp)/%TOINT(Einc[0])%ProgressBar(1,60,100,Ehp,Einc[0])\n[190]"
+	--
+	DividingLine2
+	--
+	"\f[height,12]\n\_l[30]\f[color,#E0FFFF]局長能量%EnergyBar(90,Bmp[2],Bmp[4])\f[default]\n[111]"
+	--
+	if OrderDone[0]==1
+		"\_b[img\battle\1P.jpg,inline,--option=use_self_alpha]"
+	else
+		"\__q[OnChangeOrder,0]\_b[img\battle\1P.jpg,inline,--option=use_self_alpha]\__q"
+	--
+	"\n[11]\f[height,12]\f[valign,bottom]\_l[65,160]"
+	--
+	if ordertarget==0
+		"\f[color,#CE0000]▶ \f[color,default]"
+	--
+	"赫卡蒂\__q[OnBattleInfoWindow.Status,赫卡蒂]%(_status_HC)\__q\n[125]\_l[65,180]\f[shadowcolor,none]%(hp[0])/%(HCinc[0])%ProgressBar(1,60,100,hp[0],HCinc[0])\n%EnergyBar(60,Bmp[0],Bmp[3])\n[140]"
+	--
+	if OrderDone[1]==1
+		"\_b[img\battle\2P.jpg,inline,--option=use_self_alpha]"
+	else
+		"\__q[OnChangeOrder,1]\_b[img\battle\2P.jpg,inline,--option=use_self_alpha]\__q"
+	--
+	"\n[11]\f[height,12]\_l[65,215]"
+	--
+	if ordertarget==1
+		"\f[color,#CE0000]▶ \f[color,default]"
+	--
+	"海拉"
+	--
+	if HLskill[1]>=1
+		"    \f[color,#E76123]▲%(HLskill[1])\f[color,default]"
+	--
+	"\__q[OnBattleInfoWindow.Status,海拉]%(_status_HL)\__q\n[125]\_l[65,235]\f[shadowcolor,none]%(hp[1])/%(HLinc[0])%ProgressBar(1,60,100,hp[1],HLinc[0])\n%EnergyBar(60,Bmp[1],Bmp[3])\n[140]/
+	\_l[4]\f[color,#EAC100]Lv.%(level)\f[default]%ProgressBar(3,40,120,exp,levelupexp)\n[150]"
+	--
+	"\f[default]\_l[5]wave %(wave[0])/%(wave[1])\n[1]\f[align,right]round %(roundNum) "
+}

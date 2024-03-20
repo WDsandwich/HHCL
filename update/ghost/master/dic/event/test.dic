@@ -1,0 +1,99 @@
+/*
+新增變數
+lottery_ticket
+Last_Offline
+*/
+//測試用使魔
+
+TestMenu
+{
+	"\_q\1\b[2]\f[height,12]\![*]\q[賦值,AddValue]\n\n[half]/
+	\![*]\q[指令測試,TestCode]\_q"
+	--
+	"\_q\f[color,150,150,150]\_l[100,50]\_b[img/CancelIcon,inline]\q[關閉對話框,CANCEL]\_q"
+}
+
+AddValue
+{
+	"\q[關閉夢魘,ClossDS]\n/
+	\q[開啟夢魘,OpenDS]"
+
+}
+
+TestCode
+{
+	"expmax:%((level*10)*(level*10))\n/
+	\q[經驗上升10,EXPA]\n/
+	\q[經驗上升200,EXPB]\n/
+	\q[exp歸零,EXP0]"
+}
+
+EXPA
+{
+getexp:=10
+--
+"getexp=%(getexp)"
+--
+WhenExpGet
+}
+
+EXPB
+{
+getexp:=200
+--
+"getexp=%(getexp)"
+--
+WhenExpGet
+}
+EXP0{exp=0}
+
+ClossDS{unlockDS=0}
+OpenDS{unlockDS=1}
+
+
+
+
+List
+{
+  _i=_argv[0]
+  switch _i
+  {
+      "A"
+	  "B"
+      "C"
+      "D"
+      "E"
+	  20
+  }
+}
+
+Count
+{
+	_a=0
+	_x=""
+	--
+	while _x != 20
+	 {
+	   _x=List(_a)
+	   _a++
+	 }
+	--
+	_a--
+	_a
+}
+
+
+Ongrdfje
+{
+	FCOPY("\新增 文字文件.txt","\") 
+}
+
+
+OnBuyingClothesTest
+{
+	"rectangle0=%(reference0)"
+}
+Onjrioj
+{
+	"%(reference2)"
+}

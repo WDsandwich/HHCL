@@ -1,0 +1,272 @@
+PapreShredder0
+{	PSmeun=""
+	--
+	if MenuCheif==2
+		"\p[2]%cp(0)\b[2]要將不需要的文件交給禁閉者處理嗎？"
+	elseif MenuChoice==1
+		"\1\s[18]\b[2]哦？要我幫忙拆東西嗎？儘管交給我吧！"
+	else
+		"\0\s[1]\b[2]%(usernameHC)可以將不需要的文件交給我，我會幫您拆解成廢料。"
+	--
+	"\b[2]\![quicksession,true]\f[height,12]\f[color,#8B0000]\n\n[half]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\f[default]"
+	--
+	"\n[180]\![set,choicetimeout,0]\f[color,#E0FFFF]\f[height,12]\![quicksession,true]※目前僅支持\f[bold,1]單個檔案或資料夾\f[bold,0]的拆解，如要拆解多個檔案，請先\f[bold,1]全部放進資料夾\f[bold,0]再拖曳到人物身上。\n[130]此外，若碎紙機處於\f[bold,1]關閉\f[bold,0]狀態，本功能將\f[bold,1]不會啟用\f[bold,0]。\n[130]/
+	\f[color,#dc143c]\n[half]※檔案將被\f[bold,1]永久刪除\f[bold,0]，並依大小拆解成相應數量的\f[color,#00CED1]廢料\f[color,#dc143c]。\f[default]\![quicksession,false]\_q\n\_l[20,190]\![*]"
+	--
+	case papre_shredder_function
+	{
+		when 0 ; "\q[開啟碎紙機,PapreShredder.OPEN]"
+		when 1 ; "\q[關閉碎紙機,PapreShredder.CLOSE]"
+	}
+	--
+	"\_q"
+	--
+	MuenBottomOption('Office')
+}
+PapreShredder
+{
+	PSmeun=""
+	--
+	if MenuCheif==2
+		"%cp(0)"
+	elseif MenuChoice==1
+		"\1\s[18]"
+	else
+		"\0\s[1]"
+	--
+	"\b[2]%(click)\f[height,12]\![quicksession,true]"
+	--
+	Subtitle("碎紙機")
+	--
+	"\n"
+	--
+	if MenuCheif==2
+		"\p[2]%cp(0)要將不需要的文件交給禁閉者處理嗎？"
+	elseif MenuChoice==1
+		"\1\s[18]哦？要我幫忙拆東西嗎？儘管交給我吧！"
+	else
+		"\0\s[1]%(usernameHC)可以將不需要的文件交給我，我會幫您拆解成廢料。"
+	--
+	PapreShredder.Menu
+	--
+	MuenBottomOption('Office')
+}
+PapreShredder2
+{
+	PSmeun=2
+	--
+	"\%(MenuChoice)\b[2]\f[height,12]\![quicksession,true]"
+	--
+	Subtitle("焚化爐")
+	--
+	"\n[130]"
+	--
+	if MenuChoice==1
+		"\s[34]通通燒毀！"
+	else
+		"\s[1]請您小心安全。"
+	--
+	PapreShredder.Menu
+	--
+	MuenBottomOption('OnMenu_Bureau,1')
+}
+PapreShredder.Menu
+{
+	"\f[height,12]\f[color,#8B0000]\n╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\f[default]\f[height,12]"
+	--
+	"\n[130]\![set,choicetimeout,0]※\f[color,#FFED97]被處理的檔案將會\f[color,#FF2D2D]\f[bold,1]永久刪除\f[bold,0]\f[color,#FFED97]。\n\f[color,default]※\f[color,#FFED97]無法一次處理多個檔案。\n\f[color,default]※\f[color,#FFED97]檔名不可含有「,」(半字形)。\n\f[color,default]※\f[color,#FFED97]\f[color,#75F5F1]單一檔案\f[color,#FFED97]將會被扔進碎紙機，並依檔案大小拆解成相應數量的\f[color,#75F5F1]廢料\f[color,#FFED97]。\n\f[color,#D3A4FF]資料夾\f[color,#FFED97]則將被扔進焚化爐完全燒毀，且\f[color,#D3A4FF]不轉化成任何資源\f[color,#FFED97]。"
+	--
+	_m=(" 開啟\f[bold,1] 碎紙機"," 啟動\f[bold,1] 焚化爐")
+	_option="\f[default]\_l[-,145]"
+	for _i=0 ; _i<2 ; _i++
+	{
+		_option+="\n[130]\f[align,center]\f[valign,center]\f[bold,0]\__q[OnPapreShredder.OC,%(_i)]"
+		--
+		if papre_shredder_function[_i]==1 ; _option+=check1
+		else ; _option+=check0
+		--
+		_option+=_m[_i]
+		--
+		_option+=" \__q    "
+	}
+	--
+	_option
+}
+OnPapreShredder.OC
+{	if papre_shredder_function[reference0]==1 ; papre_shredder_function[reference0]=0
+	else ; papre_shredder_function[reference0]=1
+	--
+	EVAL("PapreShredder"+PSmeun)
+
+}
+PapreShredder.OPEN
+{
+	papre_shredder_function=1
+	PapreShredder
+}
+PapreShredder.CLOSE
+{
+	papre_shredder_function=0
+	PapreShredder
+}
+
+
+OnCountAllFileSize
+{
+	
+}
+
+
+OnFileDrop2
+{
+	PSdropfile=reference0
+	PSob=reference1
+	PSdropfilesize=FSIZE(reference0)
+	PSdropfileFirst = reference0[0]
+	PSdropfileFirstext = TOLOWER(SPLITPATH(PSdropfileFirst)[3])
+	PSdropfileFirstname = SPLITPATH(PSdropfileFirst)[2] + PSdropfileFirstext
+	--
+	OnAskDestroyFile
+}
+OnAskDestroyFile
+{
+	if ISDIR(PSdropfile)
+		PSdropfileFirstname="資料夾"
+	--
+	if PSob<2
+	{
+		"\%(PSob)"
+		--
+		if PSdropfileFirstname=="資料夾" && papre_shredder_function[1]==1
+		{ case PSob
+		 {	when 0 ; "\s[0]要幫忙%(usernameHC)把【%(PSdropfileFirstname)】丟到焚化爐嗎？"
+			when 1 ; "\s[16]這個【%(PSdropfileFirstname)】確定不要了嗎？那我扔到焚化爐裡了喔？"
+		 }
+		 --
+		 "%cp(0)\b[20]\f[align,center]\![set,choicetimeout,0]\_q%(opp)\q[ √確定燒毀 ,OnAskDestroyFile.Sure]\n[170]/
+			%(opp)\q[ ✖取消 ,OnAskDestroyFile.No]\_q"
+		}
+		elseif PSdropfileFirstname=="資料夾" && papre_shredder_function[0]==1
+		{ case PSob
+		 {	when 0 ; "\s[1]%(usernameHC)，\w5碎紙機無法處理這麼多的資料，只能扔進焚化爐裡。"
+			when 1 ; "\s[36]這個會把碎紙機搞壞喔！還是丟到焚化爐吧？"
+		 }
+		 --
+		 "%cp(0)\b[20]\f[align,center]\![set,choicetimeout,0]\_q%(opp)\__q[OnAskDestroyFile.Sure.Open,1] √啟動焚化爐並燒毀整個資料夾 \__q\n[130]/
+			%(opp)\q[ ✖取消 ,OnAskDestroyFile.No]\_q"
+		}
+		elseif papre_shredder_function[0]==1
+		{ case PSob
+		 {	when 0 ; "\s[0]\b[0]將\_q\f[color,#FFD306]\f[bold,1] %(PSdropfileFirstname) \f[default]\_q拆解成廢料，您確定要這麼做嗎？"
+			when 1 ; "\s[18]\b[0]那麼，我要把\_q\f[color,#FFD306]\f[bold,1] %(PSdropfileFirstname) \f[default]\_q拆得粉碎了喔！"
+		 }
+		 --
+		 "%cp(0)\b[20]\f[align,center]\![set,choicetimeout,0]\_q%(opp)\q[ √確定拆解 ,OnAskDestroyFile.Sure]\n[170]/
+			%(opp)\q[ ✖取消 ,OnAskDestroyFile.No]\_q"
+		}
+		
+	}
+}
+OnAskDestroyFile.No
+{
+	case PSob
+		{
+			when 0 ; "\0\s[1]好的。"
+			when 1 ; "\1\s[13]……\w2可惜了。"
+		}
+}
+OnAskDestroyFile.Sure.Open
+{
+	papre_shredder_function[reference0]=1
+	OnAskDestroyFile.Sure
+}
+OnAskDestroyFile.Sure
+{
+	PSaddScrap=317122
+	--
+	foreach PSdropfile; _d 
+		{
+			OnDeleteFile(_d)
+		}
+}
+
+
+
+OnDeleteFile
+{
+	if ISDIR(_argv[0])
+		OnDeleteFile.Folder(_argv[0])
+	else
+		OnDeleteFile.File(_argv[0])
+}
+OnDeleteFile.Folder
+{
+	_path=_argv[0]
+	PSdropfileFirst=FENUM(_path)
+	foreach PSdropfileFirst;_f
+	{
+		_f=_path+'/'+ _f
+		OnDeleteFile(_f)
+	}
+	if !RMDIR(_path)
+	{
+		"資料夾刪除失敗。"
+	}
+	else 
+		OnDeleteFile.End
+}
+OnDeleteFile.File
+{
+	_thefile=reference0
+	PSaddScrap+=TOINT(PSdropfilesize)
+	if _argc>0
+		_thefile=_argv[0]
+	if !FDEL(_thefile)
+	{
+		"檔案刪除失敗。"
+	}
+	else 
+		OnDeleteFile.End
+}
+OnDeleteFile.End
+{
+	PSaddScrap=TOINT(PSaddScrap/317122)
+	scrap+=PSaddScrap
+	intimacy[MenuChoice]++
+	--
+	case MenuChoice
+	{
+		when 0
+		{
+			"\0"
+			--
+			if PSdropfileFirstname=="資料夾"
+				"\w2\s[1]已經將檔案全部燒毀了。"
+			else
+			{
+				"⁃⁃\w2⁃⁃⁃\w3⁃⁃⁃⁃\w4⁃⁃⁃⁃⁃ \w9\n處理\s[1]完畢。"
+				"⁃⁃\w2⁃⁃⁃\w3⁃⁃⁃⁃\w4⁃⁃⁃⁃⁃ \w9\n拆解\s[1]成功。"
+				--
+				"\w9\c共獲得\f[color,#FFD306]\f[bold,1] %(PSaddScrap) \f[default]個廢料。\e"
+			}
+		}
+		when 1
+		{
+			"\1"
+			--
+			if PSdropfileFirstname=="資料夾"
+				"\w2\s[30]唔……\w3全都燒成灰燼了喔。"
+			else
+			{
+				"\s[15]⁃⁃\w2⁃⁃⁃\w3⁃⁃⁃⁃\w4⁃⁃⁃⁃⁃ \w9\n[130]\s[18]完成啦！"
+				--
+				"\w9\c我拆出了\f[color,#FFD306]\f[bold,1] %(PSaddScrap) \f[default]個廢料唷，厲害吧！\e"
+			}
+		}
+	}
+
+
+	
+}
+
+

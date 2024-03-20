@@ -1,0 +1,48 @@
+MoodStage	//階段性
+{
+	_mood=_argv[0]
+	if _mood>2333 ; "A"
+	elseif _mood>1997 ; "B"
+	elseif _mood>1250 ; "C"
+	elseif _mood>700 ; "D"
+	elseif _mood>333 ; "E"
+	elseif _mood>100 ; "F"
+	else ; "G"
+}
+MoodPic		//輸出圖片
+{
+	_mood=_argv[0]
+	_pic=MoodStage(_mood)
+	"\_b[img\emoji\%(_pic).png,inline,--option=use_self_alpha]"
+}
+
+
+//將數值處理成心情tag
+MoodToEmoji
+{
+	_mood=_argv[0]
+	_emoji=0
+	if _mood >= 145
+		_emoji=7
+	elseif _mood > 115
+		_emoji=6
+	elseif _mood > 90
+		_emoji=5
+	elseif _mood > 75
+		_emoji=4
+	elseif _mood > 50
+		_emoji=3
+	elseif _mood > 25
+		_emoji=2
+	else
+		_emoji=1
+	_emoji
+}
+EmojiBar
+{
+	_mood=_argv[0]
+	_emoji=MoodToEmoji(_mood)
+	_px=_emoji-1
+	_pic="\_b[img\emojibar.png,inline,--option=use_self_alpha,--clipping=%(_px*20)  0 %(_emoji*20) 20]"
+	_pic
+}

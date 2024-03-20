@@ -1,0 +1,102 @@
+relationship_name
+{
+	("\f[color,123,113,126]陌生","\f[color,208,203,211]認識","\f[color,122,160,129]孰悉","\f[color,130,172,223]信任","\f[color,235,198,65]夥伴","\f[color,195,77,94]戀人")
+}
+relationship_intimacy
+{
+	(0,2500,4500,8500,10000,12000)
+}
+
+OnSubMaxEvent.First
+{
+	click
+	--
+	event_dialogue=0
+	event_ob=reference0
+	--
+	_a="OnSubMaxEvent_%(Char_Code[reference0])"
+		if ISFUNC(_a) {
+		EVAL(_a)
+	}
+	/*if reference0==1 ; SubMaxEvent_HL
+	else ; SubMaxEvent_HC*/
+}
+
+OnSubMaxEvent_HC
+{
+	case event_dialogue
+	{	when 0
+		{
+			"%cp(0)\b[20]（咦？桌上有封信）\w5\n\f[align,center]/
+			\_q%(opp)\__q[OnSubMaxEvent_Dialogue,1]打開看看\__q\_q\w2\n/
+			\_q%(opp)\__q[SinnerInfo]待會兒再看\__q\_q"
+		}
+		when 1
+		{
+			"\p[4]\s[-1]\b[52]%SFX('sfx\snd_use_map')\w5/
+			\_l[-10]\f[bold,1]To %(usernameHC)：\f[bold,0]\n[200]\w9\w9/
+			我一直以為「赫卡蒂」只是工具，\w8%(usernameHC)卻從未這樣對待我，\w6總是在給予我溫暖——\n[150]\w9\w9/
+			明明將體力耗盡時只要把我扔進回復倉就好了，\w8%(you)卻自掏腰包讓我到旅館泡溫泉。\w7我才知道原來不施打藥劑，\w8只是浸泡在熱水中也能感到放鬆。\n[150]\w9\w9/
+			無論我在戰鬥中失敗了多少次，\w7%(you)也從未丟棄我，\w5耐心與我一同訓練，\w6因此我才能夠成長到至今的模樣。\n[150]\w9\w9/
+			就算反覆告訴%(usernameHC)「粗暴對待我也沒有關係」，\w8%(you)還是一遍遍溫柔地撫摸我，\w7送我禮物，\w5陪伴我玩耍，\w5無微不至地照顧我…… \n[150]\w9\w9/
+			我也在一天天的相處中逐漸重視%(usernameHC)，\w8%(you)對我而言已經不單是「局長」了，\w7而是我珍愛的寶物，\w6是我重要的夥伴。\n[150]\w9\w9/
+			%(usernameHC)送給我的草莓糖果，\w7我也會好好收藏的。\n[150]\w9\w9/
+			謝謝%(you)，\w5%(usernameHC)。\n[150]\w9\w9/
+			以後的日子我還想繼續待在%(you)身邊，\w8可以嗎？\n[250]\w9\w9/
+			\_l[233]\f[bold,1]赫卡蒂\w5 敬上\x"
+			--
+			"%cp(0)\b[22]（原來她已經這麼信任我了……\w7 以後也儘管依賴我吧，\w5因為我是妳的夥伴。\n\w9/
+			嗯？信封裡還有一張紙……）\x/
+			%cp(0)\b[20]（是我的肖像畫……）\x/
+			\0\s[0]（%(usernameHC)已經看過信了嗎？\w7 ……\s[5]希望我的心意能傳達給他。）"
+			--
+			if event_history_HC[0]==1 ; OnEventHistory.End
+			else ; event_history_HC[0]=1
+		}
+	}
+}
+OnSubMaxEvent_HL
+{
+	case event_dialogue
+	{	when 0
+		{
+			"\1\s[-1]%cp(0)\b[20]（咦？桌上有封信）\w5\n\f[align,center]/
+			\_q%(opp)\__q[OnSubMaxEvent_Dialogue,1]打開看看\__q\_q\w2\n/
+			\_q%(opp)\__q[SinnerInfo]待會兒再看\__q\_q"
+		}
+		when 1
+		{
+			"\p[4]\s[-1]\b[52]%SFX('sfx\snd_use_map')\w5/
+			\_l[-10]\f[bold,1]To %(usernameHL)：\f[bold,0]\n[200]\w9\w9/
+			我最近不是在學字嗎？就想說乾脆給%(you)寫信當練習好啦！\n[150]\w9\w9/
+			說起來呀，我原本以為%(you)這傢伙是什麼控制狂變態呢！一見面就對人用枷鎖也太過份了，不但痛！還很討厭！\n[150]\w9\w9/
+			嗯，不過後來認識到%(you)並不是什麼壞傢伙，甚至還挺關心我的……\n[150]\w9\w9/
+			陪我玩、陪我聊天，還給我穿好看的衣服，差點以為在拍電視劇呢。\n[150]\w9\w9/
+			還有啊，那個叫「溫泉」的地方真是不錯，以後再帶我去唄！\n[150]\w9\w9/
+			除了上次那個嗆人的奇怪巧克力，%(you)送我的小零食都還挺好吃的。\n[150]\w9\w9/
+			以及，%(you)的按摩技術確實是一流！為了不浪費%(you)的才華，以後我也能繼續當%(you)的練習對象喔！\n[150]\w9\w9/
+			有時候仗著比我高就亂摸我的頭……雖然我也沒有很討厭就是了。\n[150]\w9\w9/
+			更重要的是，%(you)在乎我的感受！\w9看我心情不好會安慰我，一旦我受傷就立馬送我回家。\w9嗯……其實我也沒像當時表現得那麼生氣啦，我知道%(you)不是故意的！\w9再說，能看到%(you)為了我驚慌失措的樣子也很有意思。\n[150]\w9\w9/
+			和%(you)度過的時光真的很開心，我啊，已經把%(you)當成自己的夥伴了，我海拉大人的夥伴位子可是很稀有的喔！\w9好好慶幸吧，隨意背叛重要的夥伴是要受懲罰的！\w9知道了嗎？\n[150]\w9\w9/
+			拉勾勾！\n[250]\w9\w9/
+			\_l[233]\f[bold,1]海拉.\x"
+			--
+			"%cp(0)\b[22]（她把我視為重要的夥伴嗎？\w6我也要好好珍惜她的心意。\w9\n/
+			……桌上好像還擺了什麼？）\x/
+			%cp(0)\b[20]（布娃娃……是海拉做的嗎？）\x/
+			\1\s[10]我回來了。\w5\s[14]啊……！\w9/
+			\0\s[0]怎麼了，\w4海拉？\w9\w5/
+			\1%(nl)\s[13]沒、\w3沒什麼……\w9\n[130]（\s[39]討厭，\w3怎麼剛好撞上那傢伙在看我寫的信的時機……\w9 \s[37]明明就是那些話無法當面說才……）\w9\w9\n[130]（\s[14]嗚哇！\w3%(usernameHL)正在用噁心的笑臉看著我！\w9\w5\s[38]太難為情了啊啊啊！\w7早知道就不送出去了！）"
+			--
+			if event_history_HL[0]==1 ; OnEventHistory.End
+			else ; event_history_HL[0]=1
+		}
+	}	
+}
+OnSubMaxEvent_Dialogue
+{
+	event_dialogue=reference0
+	_a="OnSubMaxEvent_%(Char_Code[event_ob])"
+	--
+	EVAL(_a)
+}

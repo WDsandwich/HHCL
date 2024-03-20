@@ -1,0 +1,21 @@
+GiveCandy
+{
+	"\p[2]要送幾顆？\![open,inputbox,OnGiveCandyQuantity]"
+}
+OnGiveCandyQuantity
+{
+	if reference0==0
+		"\0……\s[3]是我誤會了嗎？"
+	elseif reference0>strawberry_candy
+		"\p[2]（你摸了摸口袋，發現自己並沒有那麼多草莓糖果。）"
+	elseif reference0>=100
+		"\0咦……這麼多……都是給我的嗎？\n……謝謝你，%(usernameHC)。"
+	elseif reference0>=10
+		{"\0……謝謝，%(usernameHC)。我會好好珍惜的。"
+		"\0謝謝你，%(usernameHC)……我真的很喜歡草莓糖果。"}
+	elseif reference0>=1
+		"\0%(usernameHC)是怎麼知道我喜歡草莓糖果的呢？"
+	--
+	_giftcandy=reference0
+	intimacy+=_giftcandy*0.3
+}

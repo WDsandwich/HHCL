@@ -1,0 +1,154 @@
+OnSaveBackup.Save
+{
+	save_name=FENUM('save')
+	_m=month ; _d=day ; _hr=hour ; _min=minute
+	if month<10 ; _m="0%(_m)"
+	if day<10	; _d="0%(_d)"
+	if hour<10  ; _hr="0%(_hr)"
+	if minute<10; _min="0%(_min)"
+	_sn="save_%(year).%(_m).%(_d)_%(_hr)%(_min)"
+	if "save_%(year).%(_m)" _in_ TOSTR(save_name) && _argv[0]=="boot" ; ""
+	else
+	{
+		void FDEL('save\yaya_variable.cfg')
+		save_remark=FENUM('dic\event\save_remark')
+		save_remark_reset=("01-","02-","03-","04-","05-","06-","07-","08-","09-","10-","11-","12-","13-","14-","15-","16-","17-","18-","19-","20-")
+		//	本次備份後的檔案名稱
+		--
+		//	若該時間已備份
+		if _sn _in_ TOSTR(save_name) ; OnDataBase.SaveBackup.MSG("savefall")
+		else
+		{
+			//	查看save_name是否已存在或超過20個元素，以刪除超過上限的檔案，並重新調整備註
+			save_name=FENUM('save')
+			if ARRAYSIZE(save_name)>=20
+			{	void FDEL("save\%(save_name[0])")
+				save_remark_new=save_remark
+				save_remark_new[0]=IARRAY
+				for _i=0 ; _i<20 ; _i++
+				{
+					save_remark_new[_i]=ERASE(save_remark_new[_i],0,3)
+					save_remark_new[_i]=INSERT(save_remark_new[_i],0,save_remark_reset[_i])
+				}
+				save_remark_new[19]="20-"
+				for _i=0 ; _i<20 ; _i++
+				{
+					void FRENAME("dic\event\save_remark\%(save_remark[_i])","dic\event\save_remark\%(save_remark_new[_i])")
+				}
+			}
+			--
+			//	新建存檔
+			void FCOPY('yaya_variable.cfg','save')
+			void FRENAME('save\yaya_variable.cfg',"save\%(_sn)")
+		}
+	}
+	--
+	if _argv[0]!="boot" ;	DataBase.SaveBackup
+}
+
+OnSaveBackup.Load.Sure
+{
+	_num=reference0
+	save_name=FENUM('save')
+	void FDEL('save_recover')
+	//FDEL('yaya_variable.cfg')
+	//void FRENAME('yaya_variable.cfg','yaya_variable.cfg-1')
+	void FCOPY("save\%(save_name[_num])",'')
+	void FRENAME("%(save_name[_num])",'save_recover')
+	--
+	"\w5\![open,file,data_recover.bat]\-"
+}
+
+DataBase.SaveBackup
+{
+	if MenuCheif==2 ; "\p[2]"
+	else ; "\%(MenuChoice)"
+	--
+	"\b[2]%(click)\![quicksession,true]\![set,choicetimeout,0]%Subtitle('存檔管理說明')\n[150]/
+	每天第一次開啟程式都會自動備份存檔，%(you)也可以在這個介面手動備份。\n[150]/
+	點選存檔可以讀取該備份，注意\f[color,#FF9797]此操作會覆蓋當下的存檔\f[color,default]。\n[150]/
+	讀取存檔後，程式會自動關閉。請於\f[color,#FF9797]至少5秒後\f[color,default]再開啟，以確保存檔修復程式正確執行。"
+	--
+	MuenBottomOption('Office')
+	--
+	"\p[4]\b[6]\c\f[height,15]\![quicksession,true]\![set,choicetimeout,0]\f[shadowcolor,#930000]\f[bold,1]\_l[45]備份日期\_l[160]備註\f[default]/
+	\n[70]  %(DividingLine)\n[-50]"
+	--
+	save_name=FENUM('save')
+	save_remark=FENUM('dic\event\save_remark')
+	//ASORT(int,save_name)
+	_save=""
+	for _i=0 ; _i<20 ; _i++
+	{
+		_date=REPLACE(save_name[_i],"save_","")
+		_r=ERASE(save_remark[_i],0,3)
+		if STRLEN(save_remark[_i])<=3 ; _r="           "
+		_save+="\f[height,15]\n[130]\f[color,#D72828] %(_i+1).\f[color,default]\_l[37]\__q[OnDataBase.SaveBackup.MSG,%(_i),loadask]%(_date)\__q"
+		if _i<ARRAYSIZE(save_name)
+			_save+="\_l[155]\f[height,12]\__q[OnDataBase.SaveBackup.Remark.Edit,%(_i)]\f[color,#E0C74D] %(_r) \__q"
+	}
+	_save
+	--
+	"\n  %(DividingLine)\n\_l[-,475]\f[height,15]\f[align,center]\f[color,#CAFFFF]\f[shadowcolor,#930000]\f[bold,1]\__q[OnSaveBackup.Save][ 立即備份存檔 ]\__q"
+}
+
+OnDataBase.SaveBackup.Load.Ask
+{
+	DataBase.SaveBackup
+	--
+	_num=reference0
+	_date=REPLACE(save_name[_num],"save_","")
+	--
+	"\p[7]\![quicksession,true]\_l[236,-25]\__q[DataBase.SaveBackup]%QTYimg('x')\__q\n\_l[-,15]\f[align,center]/
+	\f[color,#E0C74D]\f[bold,1]%(_date)\f[default]\n\_l[-,40]\f[align,center]要載入這個存檔嗎？\n\_l[-,75]\f[align,center]/
+	\__q[OnSaveBackup.Load.Sure,%(_num)]\_b[img\O.png,inline]\__q         /
+	\__q[DataBase.SaveBackup]\_b[img\X.png,inline]\__q"
+}
+OnDataBase.SaveBackup.MSG
+{
+	DataBase.SaveBackup
+	--
+	_num=reference0
+	_date=REPLACE(save_name[_num],"save_","")
+	--
+	"\p[7]\![quicksession,true]\_l[236,-25]\__q[DataBase.SaveBackup]%QTYimg('x')\__q"
+	--
+	if reference1=="loadask"
+	{
+		"\n\_l[-,15]\f[align,center]/
+		\f[color,#E0C74D]\f[bold,1]%(_date)\f[default]\n\_l[-,40]\f[align,center]要載入這個存檔嗎？\n\_l[-,75]\f[align,center]/
+		\__q[OnSaveBackup.Load.Sure,%(_num)]\_b[img\O.png,inline]\__q         /
+		\__q[DataBase.SaveBackup]\_b[img\X.png,inline]\__q"
+	}
+	elseif _argv[0]=="savefall"
+	{
+		"\n\_l[-,15]\f[align,center]存檔間隔過快，\n[150]\f[align,center]如需在短期內備份多個存檔，\n[150]\f[align,center]請重新啟動程式後再執行。"
+	}
+}
+
+OnDataBase.SaveBackup.Remark.Edit
+{
+	_num=reference0
+	_txt=ERASE(save_remark[_num],0,3)
+	save_remark_edit=_num
+	--
+	DataBase.SaveBackup
+	--
+	"\p[7]\s[-1]\c\![close,inputbox,__SYSTEM_ALL_INPUT__]\![open,inputbox,OnDataBase.SaveBackup.Remark.Sure,-1,%(_txt)]"
+}
+OnDataBase.SaveBackup.Remark.Sure
+{
+	_num=save_remark_edit
+	_sr_o=save_remark[_num]
+	_no=""
+	if _num<10 ; _no+="0"
+	_no+="%(_num+1)-"
+	_fulltxt=_no+reference0
+	void FRENAME("dic\event\save_remark\%(_sr_o)","dic\event\save_remark\%(_fulltxt)")
+	--
+	DataBase.SaveBackup
+}
+
+
+
+

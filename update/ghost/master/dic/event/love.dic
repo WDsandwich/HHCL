@@ -1,0 +1,212 @@
+Menu_LoveConfession
+{
+	event_dialogue=0
+	intimacy[MenuChoice]++
+	if	   MenuChoice==0 ; LoveConfession_HC
+	elseif MenuChoice==1 ; LoveConfession_HL
+}
+//--------------------------------------------------------
+LoveConfession_HL
+{
+	_ld=event_dialogue
+	if _ld==8
+	{
+		"\1"
+		--
+		if  _argv[0]==2 ; "\s[38]怎麼這麼快就瞪鼻子上眼了啦！\w8大笨逼！"
+		else ; "\s[18]知道就好！"
+		--
+		"\w9\w9/
+		%cp(0)\b[20]\n[70]（和海拉成為了戀人）\x/
+		%cp(0)\b[20]\c\n[70]（把赫卡蒂叫回來吧）\w9\w9/
+		\0\s[1]一切順利嗎？\w9\w9/
+		%cp(0)\b[20]\c如妳所見，比想像中順利。\w9\w9/
+		\0\s[0]%(nl)太好了，\w5海拉。\w9\w9/
+		\1\s[37]唔\w2、\w3嗯……"
+		--
+		if relationship[0]%2==1
+			"\w9\w9\n[130]\s[13]真是貪心的傢伙……"
+		--
+		if event_history_HL[1]>=1 ; OnEventHistory.End
+		else
+		{	relationship[1]=1
+			event_history_HL[1]=1
+			dating_anniversary_HL = (year,month,day)
+		}
+		
+	}
+	elseif _ld==7
+	{
+		"\1\s[13]我、\w3我當然是……\w5不會放著%(you)不管的，\w8\s[11]哼……\w9\w9/
+		%cp(0)\b[20]\n[70]謝謝妳，海拉。\w9\w9/
+		\1%(nl)\s[13]唔，\w5\s[37]%(you)可不能隨便放棄！\w9知道嗎！\w5\s[38]不然有%(you)好看的！\w9\w9/
+		%cp(0)\b[22]\c%(opp)\__q[OnLoveConfession_HL_NextDialogue,8,1]「好，知道了。一定不會離開妳。」\__q\n[130]/
+		%(opp)\__q[OnLoveConfession_HL_NextDialogue,8,2]「我知道了，親愛的。」\__q"
+	}
+	elseif _ld==6
+	{
+		"\1\s[50]唔……！\w9\w9/
+		%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HL_NextDialogue,7]「妳願意接受我嗎？」\__q"
+	}
+	elseif _ld==5
+	{
+		"%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HL_NextDialogue,6]「我也喜歡妳，戀愛的喜歡。」\__q"
+	}
+	elseif _ld==4
+	{
+		"\1\s[13]……就、\w3就是，\w5那個……\w5 我們的關係，\w5\s[37]還能更、\w4更進一步的喔……\w9\n[130]\s[38]%(you)懂吧，\w5\s[39]就是再親密一點\w2…\w2…\w8 也\w2…\w2…\w9\w9/
+		%cp(0)\b[20]\n[70]%(opp)\__q[OnLoveConfession_HL_NextDialogue,5]「我也是，海拉。」\__q"
+	}
+	elseif _ld==3
+	{
+		if _argv[0]==2 ; "\1\s[39]不、\w3不行……\w5有必要！"
+		else ; "\1\s[38]可惡！\w5%(you)是故意的吧！\w7饒不了%(you)！"
+		--
+		"\w9\w9%cp(0)\b[20]\n[70]%(opp)\__q[OnLoveConfession_HL_NextDialogue,4]「我洗耳恭聽。」\__q"
+	}
+	elseif _ld==2
+	{
+		"\1\s[39]別、\w3\s[37]別讓我親自說出口啊！\w9\s[38]笨逼！\w9\w9/
+		%cp(0)\b[22]%(opp)\__q[OnLoveConfession_HL_NextDialogue,3,1]「但是……海拉不告訴我的話我就不會知道哦。」\__q\n[130]/
+		%(opp)\__q[OnLoveConfession_HL_NextDialogue,3,2]「嗯……那就沒必要說了吧？」\__q"
+	}
+	elseif _ld==1
+	{
+		_a=""
+		if MoodStage(mood[1]) _in_ "DEFG" ; _a=RAND(TOINT(mood[1]*0.01))
+		else ; _a=1
+		if MoodStage(mood[1])=="G" ; _a=0
+		if event_history_HL[1]>=1 ; _a=1
+		if _a==0
+		{	"\1\s[13]沒有……\w5/
+			%cp(0)\b[20]\n[70]咦？\w5/
+			\1\s[19]我現在不在狀態，\w7到時候再說吧……\w7/
+			%cp(0)\b[22]（好像讓她感到困擾了，等海拉心情好點再來吧。）"
+			--
+			mood[1]-=50
+			intimacy[1]-=100
+		}
+		else
+		{	
+			"\1\s[38]%(nl)%(you)……！\w5明知故問！\w7\s[13]剛剛還把赫卡蒂支走了……\w9\w9/
+			%cp(0)\b[20]\n[70]%(opp)\__q[OnLoveConfession_HL_NextDialogue,2]「嗯？」\__q"
+		}
+	}
+	else
+	{
+		"\0\s[0]\1\s[13]…\w3…\w3…\w3\s[39]…\w3…\w3…\w3\s[37]…\w3…\w3…\w9\w9/
+		\0\s[0]我給你們一點空間吧。\w9\w9/
+		\1\s[14]%(nl)等等，\w5赫卡蒂，\w5別走\w9\w9/
+		\0\s[1]%(nl)這是%(usernameHC)的命令。\w9\s[-1]\w9/
+		\1\s[13]%(nl)…\w2…\w2唔\w2…\w2…\w2\w9\w9/
+		%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HL_NextDialogue,1]「海拉，有什麼事嗎？」\__q"
+	}
+}
+OnLoveConfession_HL_NextDialogue
+{
+	event_dialogue=reference0
+	intimacy[1]++
+	LoveConfession_HL(reference1)
+}
+
+
+
+
+LoveConfession_HC
+{
+	_ld=event_dialogue
+	if _ld==10
+	{
+		"\0\s[4]%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HC_NextDialogue,3]「我希望能夠跟妳交往。」\__q"
+	}
+	elseif _ld==9
+	{
+		"\0\s[20]嗯……\w9\w9/
+		%cp(0)\b[20]\n[30]（和赫卡蒂成為了戀人）\x/
+		%cp(0)\b[20]\c\n[70]（把海拉叫回來吧）\w9\w9/
+		\1\s[18]我回來啦！\w7\s[34]看赫卡蒂這個模樣，\w7想必「談話」是十分順利吧？\w9\w9/
+		%cp(0)\b[20]\c\n[70]是啊。"
+		--
+		if relationship[1]%2==1
+			"\w9\w9\0\s[5]話說，\w5%(usernameHC)的喜好，\w7真是廣泛呢……"
+		--
+		if event_history_HC[1]>=1 ; OnEventHistory.End
+		else
+		{	relationship[0]=1
+			event_history_HC[1]=1
+			dating_anniversary_HC = (year,month,day)
+		}
+	}
+	elseif _ld==8
+	{
+		"\0\s[7]我的肩膀、\w4脖子、\w3還有臉，\w5都好熱，\w5內心也\w2…\w2…\w5十分地雀躍。\w7\n[130]\s[8]這就是戀愛嗎？\w7%(usernameHC)。\w9\w9/
+		%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HC_NextDialogue,9,1]「或許是的。」\n[130]\__q%(opp)\__q[OnLoveConfession_HC_NextDialogue,9,2]「我也很高興。」\__q"
+	}
+	elseif _ld==7
+	{
+		"\0\s[20]"
+		--
+		if _argv[0]==2 ; "好的。"
+		else ; "謝謝%(you)，\w5%(usernameHC)。"
+		--
+		"\w9\w9\n[130]/
+		\s[8]\w2…\w2…唔\w2…\w2…\w9\w9/
+		%cp(0)\b[20]\n[70]%(opp)\__q[OnLoveConfession_HC_NextDialogue,8]「赫卡蒂，妳還好嗎？」\__q"
+	}
+	elseif _ld==6
+	{
+		"\0\s[5]但我還不懂「交往」時應該做些甚麼\w2…\w3…\w9\s[7]不知%(usernameHC)是否願意包容我。\w9\w9/
+		%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HC_NextDialogue,7,1]「我當然願意。」\__q\n[110]%(opp)\__q[OnLoveConfession_HC_NextDialogue,7,2]「我們一起學著「交往」吧。」\__q"
+	}
+	elseif _ld==5
+	{
+		"\0\s[3]嗯，\w4\s[5]%(usernameHC)是我深愛的人，\w9不是出自於指示或命令\w2－\w3－ \w9\s[8]而是我自己的意志，\w8想要好好珍惜%(usernameHC)。\w9\w9/
+		%cp(0)\b[20]\n[70]%(opp)\__q[OnLoveConfession_HC_NextDialogue,6]「赫卡蒂……」\__q"
+	}
+	elseif _ld==4
+	{
+		"\0\s[1]不用擔心，\w5%(usernameHC)，\w5這確實是我的本意。\w9\w9/
+		%cp(0)\b[20]\n[70]%(opp)\__q[OnLoveConfession_HC_NextDialogue,5]「真的嗎？」\__q"
+	}
+	elseif _ld==3
+	{
+		_a=""
+		if MoodStage(mood[0]) _in_ "DEFG" ; _a=RAND(TOINT(mood[1]*0.01))
+		else ; _a=1
+		if MoodStage(mood[0])=="G" ; _a=0
+		if event_history_HC[1]>=1 ; _a=1
+		if _a==0
+		{	"\0\s[3]對不起……\w5 我現在還有些想不明白這些事情\……w9/
+			%cp(0)\b[22]（赫卡蒂的心情不太好的樣子，\w5要不要先做什麼讓她開心起來呢……）"
+			--
+			mood[0]-=50
+			intimacy[0]-=100
+		}
+		else
+		{	"\0\s[5]好的，\w5我答應%(you)。\w9\w9/
+			%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HC_NextDialogue,4,1]「妳不必聽從。」\__q\n%(opp)\__q[OnLoveConfession_HC_NextDialogue,4,2]「這是可以拒絕的，赫卡蒂。」\__q"
+		}
+	}
+	elseif _ld==2
+	{
+		"\0\s[6]咦……\w9\w9/
+		%cp(0)\b[22]\n[70]%(opp)\__q[OnLoveConfession_HC_NextDialogue,10]「我對赫卡蒂的感情已經超過職位和羈絆，產生了戀愛的情節……」\__q"
+	}
+	elseif _ld==1
+	{
+		"\0\s[1]有任何命令請儘管吩咐。\w9\w9/
+		%cp(0)\b[22]\n[70]%(opp)\__q[OnLoveConfession_HC_NextDialogue,2]「……這並不是命令，我接下來說的話，尤其不希望妳把它當作命令……」\__q"
+	}
+	else
+	{
+		"\1\s[18]嘿嘿，\w5我有些事情要離開一下，\w8要過一\w2～\w3～\w3\s[34]段時間才回來喔。\w9\w9\1\s[-1]/
+		\0\s[0]是任務嗎？\w9\w9/
+		%cp(0)\b[20]%(opp)\__q[OnLoveConfession_HC_NextDialogue,1]「赫卡蒂，我有話對妳說。」\__q"
+	}
+}
+OnLoveConfession_HC_NextDialogue
+{
+	event_dialogue=reference0
+	intimacy[1]++
+	LoveConfession_HC(reference1)
+}

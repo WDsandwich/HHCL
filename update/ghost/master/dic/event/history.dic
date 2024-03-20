@@ -1,0 +1,94 @@
+Menu_Memory
+{
+	_txt="\%(MenuChoice)\b[2]\_q%(click)\![*]\f[bold,1]\f[color,#E0FFFF]\f[height,12]和%(Char_Name[MenuChoice])的"
+	if memory_page==1 ; _txt+="節日回憶\![*] \f[color,#FFE153]\__q[OnMenu_Memory.ChangePage,0]↔️特別\__q"
+	else ; _txt+="特別回憶\![*] \f[color,#FFE153]\__q[OnMenu_Memory.ChangePage,1]↔️節日\__q"
+	_txt+="\_q\w1\n\_l[0,30]"
+	_eh=""
+	//分別定義
+	if 	   memory_page==1 && MenuChoice==0 ; _eh=event_holiday_HC
+	elseif memory_page==1 && MenuChoice==1 ; _eh=event_holiday_HL
+	elseif MenuChoice==0 ; _eh=event_history_HC
+	elseif MenuChoice==1 ; _eh=event_history_HL
+	//回憶列表
+	if memory_page==1
+	{	for _i=0 ; _i< ARRAYSIZE (holiday_name) ; _i++
+		{
+			_txt+="\_q\f[height,20]\f[color,200,0,0]└ \f[default]"
+			if _eh[_i]>=1 ; _txt+="\__q[OnHolidayEvent_Start,%(_i)]%(holiday_name[_i])\__q"
+			else ; _txt+= "\f[color,#ADADAD]（未解鎖）"
+			_txt+="\_q\w1\n"
+		}
+	}
+	else
+	{	for _i=0 ; _i< ARRAYSIZE (history_name) ; _i++
+		{
+			_txt+="\_q\f[height,20]\f[color,200,0,0]└ \f[default]"
+			if _eh[_i]>=1 ; _txt+="\__q[OnEventHistory,%(_i)]%(history_name[_i])\__q"
+			else ; _txt+= "\f[color,#ADADAD]（未解鎖）"
+			_txt+="\_q\w1\n"
+		}
+	}
+	_txt+= MuenBottomOption("Menu_Interact")
+	--
+	_txt
+}
+OnMenu_Memory.ChangePage
+{	memory_page=reference0
+	--
+	Menu_Memory
+}
+history_name
+{
+	("服從度max","告白","%(username)的生日","%(Char_Name[MenuChoice])的生日")
+}
+OnEventHistory
+{
+	event_dialogue=0
+	event_ob=MenuChoice
+	intimacy[event_ob]++
+	_en=("OnSubMaxEvent_","LoveConfession_")
+	_e=_en[reference0]+Char_Code[MenuChoice]
+	if reference0==2 ; _e="OnChiefBirthday_Option"
+	EVAL(_e)
+}
+OnEventHistory.End
+{
+	"\x%cp(0)\b[20]（……那時候還發生了那樣的事情啊。）\w9\w9/
+	\![raise,OnEventHistory.End_%(Char_Code[MenuChoice]),0]"
+}
+OnEventHistory.End_HC
+{
+	_d=reference0
+	case _d
+	{
+		when 0
+		{
+			"\0\s[0]%(usernameHC)？\w5怎麼了呢？\w5\n[130]一直盯著我發呆，\w7是不是哪裡不舒服？\w9\w5/
+			%cp(0)\b[20]\c%(opp)\__q[OnEventHistory.End_HC,1]「我想起了一些往事。」\__q"
+		}
+		when 1
+			"\0\s[1]這樣啊。\w9\w5/
+			%cp(0)\b[20]%(opp)\__q[OnEventHistory.End_HC,2]「妳不好奇是什麼嗎？」\__q"
+		when 2
+			"\0\s[20]%(usernameHC)看起來心情很好，\w8這對我來說就足夠了。\e"
+	}
+}
+OnEventHistory.End_HL
+{
+	_d=reference0
+	case _d
+	{
+		when 0
+			"\1\s[16]喂？\w3%(you)沒事吧？\w5看美少女看到出神了？\w9\w5/
+			%cp(0)\b[20]\c%(opp)\__q[OnEventHistory.End_HL,1]「我想起了一些往事。」\__q"
+		when 1
+			"\1\s[18]想到什麼好事了嗎？\w9\w5/
+			%cp(0)\b[20]%(opp)\__q[OnEventHistory.End_HL,2]「是關於海拉的事哦。」\__q"
+		when 2
+			"\1\s[14]咦！\w9\w5/
+			%cp(0)\b[20]\n[70]%(opp)\__q[OnEventHistory.End_HL,3]「妳要聽嗎？」\__q"
+		when 3
+			"\1\s[38]不聽不聽！\w3王八念經！\w8\n[130]\s[37]誰、\w2誰要聽這種東西啦！\w8笨蛋！\e"
+	}
+}

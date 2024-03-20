@@ -1,0 +1,1071 @@
+OnLeaveStoreBottom
+{
+	"\f[height,15]\f[color,#FFD700]\q[ 離開商店➥ ,OnLeaveStore]"
+}
+Menu_STORE
+{
+	storepage=(0,0)
+	StoreMode=0
+	DressingPage[1]=2
+	poke_history_open=0
+	Store
+	--
+	if StoreMode==0	;{ Menu_STORE.MenuTalk0 ; StoreMode=1 }
+	else ; Menu_STORE.MenuTalk1
+}
+//=============商店首頁對話=============
+Menu_STORE.MenuTalk0 : nonoverlap
+{
+	"\p[3]%SFX('sfx\door chime1')\w9\![quicksession,false]"
+	--
+	"\s[311000]\![sound,play,voice/store/click_01.mp3]呦，局長是來看我的嗎？也可以順便看看新到的貨物哦。"
+	"\s[311000]\![sound,play,voice/store/click_04.mp3]「買！」一個字，簡單、痛快、瀟灑，真是天底下最浪漫的話啊！\w5\n%(you)說對吧，%(username)？"
+}
+Menu_STORE.MenuTalk1 : nonoverlap
+{
+	"\p[3]\![quicksession,false]\s[311000]"
+	--
+	_eg=0
+	foreach event_goods ; _i { _eg += TOINT(_i) }
+	if storepage==(4,0) && _eg==0
+	{	"哇…… \w3月供商品已經銷售一空啦！\w9\n[130]感謝%(username)對本店的支持！" }
+	elseif storepage==(4,0) && month==2 ; Menu_STORE.MenuTalk4
+	else ; Menu_STORE.MenuTalk2
+}
+Menu_STORE.MenuTalk2 : nonoverlap
+{
+	"\s[311000]\![sound,play,voice/store/click_02.mp3]管理庫存真的很累人欸－－ \w9%(username)要不要選點貨物，減輕一下我的工作量？"
+	"\s[311000]\![sound,play,voice/store/click_03.mp3]咳咳，等等，讓我喝口水。"	
+	"\s[311000]\![sound,play,voice/store/click_06.mp3]沒事的話，來聊聊天吧，%(username)？\n\w9有什麼我不知道的新八卦嗎？"	
+	"\s[311000]喔？\w5%(username)還有要買的東西嗎？"
+	"\s[311000]慢慢逛、\w5慢慢逛！\w5本店應有盡有！"
+}
+Menu_STORE.MenuTalk4 : nonoverlap
+{
+	"情人佳節，\w5要不要購買一些禮物贈與佳人呢？"
+	"果然還是親手做的巧克力更好對吧？"
+	"現在特別為%(username)上架了表白神器哦！"
+	"愛\w1情\w1的\w1邱\w1比\w1特\w1呀\w2～\w2～\w5 請眷顧%(username)的戀情吧！"
+}
+//==============================================================
+//---------------------------商店主頁---------------------------
+//==============================================================
+Store
+{
+	"\p[4]\s[-1]\b[42]\![set,choicetimeout,0]\![quicksession,true]"
+	--
+	click
+	--
+	if storepage==(0,0)		//-----首頁
+	{
+		"\n[250]\f[height,18]\f[bold,1]/
+		\_l[50]\f[color,223,158,62]👚\f[color,default]\__q[OnStore.ChangePage,1,0] 服裝分區 \__q\n[233]/
+		\_l[50]\f[color,223,158,62]🍬\f[color,default]\__q[OnStore.ChangePage,2,0] 雜貨區 \__q\n[233]/
+		\_l[50]\f[color,223,158,62]🎁\f[color,default]\__q[OnStore.ChangePage,3,0] 禮品抽獎區 \__q\n[233]/
+		\_l[50]\f[color,223,158,62]✡︎\f[color,default]\__q[OnStore.ChangePage,4,0] 活動 \__q\n[233]/
+		\_l[50]\f[color,127,179,230]💰\f[color,default]\__q[OnStore.ChangePage,99,0] 販售物品 \__q\f[default]"
+		--
+		"\_l[10,320]\f[height,12]累計消費額度：%ThousandsSeparators(cum_cost_discoin[0]+cum_cost_discoin[1]+cum_cost_discoin[2])"
+		--
+		"\_l[80,350]\f[default]%(OnLeaveStoreBottom)\![quicksession,false]"
+	}
+	elseif storepage==(1,0)		//-----服裝分區
+	{
+		"\f[align,center]\f[color,#000000]\f[bold,1]\f[height,20]\f[shadowcolor,#FFFFFF]▪\f[color,#DBB700]\f[shadowcolor,#000000]  %(_sectionname)服裝分區 \f[color,#000000]\f[shadowcolor,#FFFFFF] ▪\f[default]\n[150]/
+		\f[height,12]\f[color,#F0E68C]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\f[default]/
+		\f[align,center]\f[bold,1]\f[color,#000000]\f[shadowcolor,#FFFFB9]/
+		\n[253]單品\n[1]\_l[70,70]\__q[OnStore.ChangePage,1,1]%STimg('title')\__q/
+		\n[340]\f[align,center]套裝\n[1]\_l[70,130]\__q[OnStore.ChangePage,1,2]%STimg('title')\__q/
+		\n[340]\f[align,center]cosplay\n[1]\_l[70,190]\__q[OnStore.ChangePage,1,3]%STimg('title')\__q"
+		--
+		"\f[default]\_l[7,350]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+		
+	}
+	//========================================================================
+	//--------------------------------服裝分區--------------------------------
+	//========================================================================
+	elseif storepage[0]==1 && storepage[1]>=1
+	{
+		"\f[align,center]\f[bold,1]\f[color,#000000]\f[shadowcolor,#FFFFB9]▪ "
+		--
+		case storepage[1]
+		{  when 1 ; "單品"
+		   when 2 ; "套裝"
+		   when 3 ; "cosplay"
+		}
+		--
+		case DressingPage[0]
+		{
+			when 0
+			{
+				outfit_box=outfit_box_HC
+				hair_box=hair_box_HC
+				clothes_box=clothes_box_HC
+			}
+			when 1
+			{
+				outfit_box=outfit_box_HL
+				hair_box=hair_box_HL
+				clothes_box=clothes_box_HL
+			}
+		}
+		if DressingPage[1]==1 ; clothes_box=hair_box
+		if storepage[1]>=2	  ; clothes_box=outfit_box
+		_item="" ; _item2=""
+		--
+		" ▪\_l[70,-1]%STimg('title')\n[160]/
+		\f[height,15]\f[shadowcolor,#FFFFFF]\_l[-,35]\__q[OnStore.ChangePage,1,0]<返回\__q"
+		--
+		case storepage[1]
+		{
+			//單品-標籤頁
+			when 1
+			{
+				"\n[1]/
+				\_l[65,30]\__q[OnChangeSCType,2]%STimg('type02')\__q\_l[110]\__q[OnChangeSCType,3]%STimg('type03')\__q\_l[155]"
+				--
+				case DressingPage[0]
+				{
+					when 0
+					{
+						"\__q[OnChangeSCType,4]%STimg('type04_0')\__q"
+					}
+					when 1
+					{
+						"\__q[OnChangeSCType,4]%STimg('type04_1')\__q"
+					}
+				}
+				--
+				"\n[140]/
+				\_l[5]\__q[OnChangeSCType,5]%STimg('type05')\__q\_l[50]\__q[OnChangeSCType,6]%STimg('type06')\__q\_l[95]\__q[OnChangeSCType,7]%STimg('type07')\__q\_l[140]\__q[OnChangeSCType,8]%STimg('type08')\__q\n[140]/
+				\_l[5]\__q[OnChangeSCType,9]%STimg('type09')\__q\_l[50]\__q[OnChangeSCType,10]%STimg('type10')\__q\_l[95]\__q[OnChangeSCType,11]%STimg('type11')\__q\_l[140]\__q[OnChangeSCType,12]%STimg('type12')\__q\n[1]/
+				\_l[203,10]\__q[OnLeaveStore,更衣室]%STimg('dressingroom')\__q\_l[190,70]"
+				--
+				case DressingPage[0]
+				{  when 0 ; "\__q[STChangeHL]%STimg('HC_60px')\__q"
+				   when 1 ; "\__q[STChangeHC]%STimg('HL_60px')\__q"
+				}
+				--
+				"\n[70]%(STdiscoin)\n[130]"
+			}
+		  //套裝-標籤頁
+			when 2
+			{
+				"\_l[100,30]"
+				--
+				case DressingPage[0]
+				{
+					when 0 ; "\__q[STChangeHL]%STimg('HC_40px')\__q"
+					when 1 ; "\__q[STChangeHC]%STimg('HL_40px')\__q"
+				}
+				--
+				"\_l[203]\__q[OnLeaveStore,更衣室]%STimg('dressingroom')\__q\n[10]/
+				%(STdiscoin)\n[120]"
+			}
+		  //cosplay-標籤頁
+		  when 3
+			{
+				"    %(STdiscoin)\_l[203,10]\__q[OnLeaveStore,更衣室]%STimg('dressingroom')\__q\n[30]"
+			}
+		}
+		--
+		"\_l[-9]%STimg('line')\n[-80]/
+		\_l[-9]%STimg('field')\n[-99]\f[default]\f[height,12]"
+		--
+		case storepage[1]
+		{  //單品-商品
+			when 1
+			{
+				"\_l[20]服裝\_l[100]染色\_l[195]價格\n[150]"
+				--
+				store_merchandise=FENUM("img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])")
+				_item2+="\n[20]"
+				_drc=DressingPage[0]
+				_ob=Char_Code[_drc]
+				//顯示可購買單品
+				for _i=1 ; _i<ARRAYSIZE(store_merchandise) ; _i++
+				{
+					_file=store_merchandise[_i]
+					_code=SUBSTR(store_merchandise[_i],0,6)
+					_pic="dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(_file)"
+					_price=SCprice[i]
+					_file_a=_file
+					SETDELIM(_file_a,"_")
+					//	是否擁有SCR版本
+					_dye="" ; _dye_pic=""
+					if "_scr." _in_ _file
+					{	
+						_dye=_file_a[2]
+						SETDELIM(_dye,".")
+						for _d=1 ; _d<ARRAYSIZE(_dye) ; _d++
+						{			
+							_dye_pic+="\_b[img\dressing\button\color%(_dye[_d]).png,inline,--option=use_self_alpha]"
+						}
+						
+					}
+					else
+						_dye_pic=Bimg("dressing\button\color_none.png")
+					--
+					if _code _in_ ST.ClothPack.Package || _code _in_ ST.ClothPack.Cosplay || _code _in_ TOSTR(clothes_box) || "_d" _in_ _file || "_initial" _in_ _file || "_int" _in_ _file
+						_item+=""
+					else
+					{
+						_item+="\n[30]\_l[4]%Bimg(_pic)\n[40]/
+						\_l[100]%(_dye_pic)\n[1]\f[align,right]%ThousandsSeparators(_price)\n[-210]/
+						\_l[-1]\__q[OnBuyingClothes,%(_file),%(_i),%(_price),%(_code),%(_ob)]%STimg('square')\__q\n[20]"
+					}
+					--
+					//顯示已購買單品
+					if _code _in_ ST.ClothPack.Package || _code _in_ ST.ClothPack.Cosplay || "_d" _in_ _file || "_initial" _in_ _file || "_int" _in_ _file
+						_item2+=""
+					elseif _code _in_ TOSTR(clothes_box)
+					{
+						_item2+="\n[30]\_l[4]%Bimg(_pic)\n[40]/
+						\_l[100]%(_dye_pic)\n[1]\f[align,right]%ThousandsSeparators(_price)\n[-210]/
+						\_l[-1]%STimg('square_x')\n[20]"
+					}
+				}
+			}
+		  //套裝-商品
+		  when 2
+			{
+				"\_l[20]預覽\_l[150]服裝數\_l[210]價格\n[150]"
+				--
+				_item=""
+				store_merchandise=FENUM("img\store\package%(DressingPage[0])")
+				_drc=DressingPage[0]
+				_ob=Char_Code[_drc]
+				for _i=1 ; _i<ARRAYSIZE(store_merchandise) ; _i++
+				{
+					_file = store_merchandise[_i]
+					_file_a = _file
+					SETDELIM(_file_a,".")
+					_outfit=SUBSTR(_file_a[1],0,6)
+					_qty=_file_a[2]
+					_price=SCprice(_qty,_i)
+					_pic=Bimg("store\package%(DressingPage[0])\%(_file)")
+					if _outfit !_in_ TOSTR(clothes_box)
+					{	_item+="\_l[-7]%(_pic)\n[35]/
+						\_l[165]%(_qty)\n[1]\f[align,right]%ThousandsSeparators(_price)\n[-110]/
+						\_l[-10]\__q[OnBuyingClothes,%(_file),%(_i),%(_price),%(_outfit),%(_ob)]%STimg('square2')\__q\n[30]"
+					}
+					if _outfit _in_ TOSTR(clothes_box)
+					{	_item+="\_l[-7]%(_pic)\n[35]/
+						\_l[165]%(_qty)\n[1]\f[align,right]%ThousandsSeparators(_price)\n[-110]/
+						\_l[-10]%STimg('square2_x')\n[30]"
+					}
+				}
+			}
+		  //cosplay-商品
+		  when 3
+			{
+				"\_l[20]服裝\_l[145]適用對象\_l[210]價格\n[170]"
+				--
+				store_merchandise=FENUM("img\store\cosplay_icon")
+				
+				for _i=1 ; _i<ARRAYSIZE(store_merchandise) ; _i++
+				{
+					_file=store_merchandise[_i]
+					_pic=Bimg("store\cosplay_icon\%(_file)")
+					_file_a=_file
+					SETDELIM(_file_a,".")
+					_ob=_file_a[1]
+					_outfit=_file_a[2]
+					_name=_file_a[3]
+					_char_pic=Bimg("store\%(_ob)_3.png")
+					_price=SCprice(_i)
+					if _ob=="HC" ; clothes_box=outfit_box_HC
+					if _ob=="HL" ; clothes_box=outfit_box_HL
+					if _outfit _in_ TOSTR(clothes_box)
+					{
+						_item2+="\_l[-7]%(_pic)\n[17]/
+						\_l[140]%(_char_pic)\n[30]/
+						\_l[40]%(_name)\n[1]\f[align,right]%ThousandsSeparators(_price)\n[-120]/
+						\_l[-10]%STimg('square3_x')\n[50]"
+					}
+					else
+					{
+						_item+="\_l[-7]%(_pic)\n[17]/
+						\_l[140]%(_char_pic)\n[30]/
+						\_l[40]%(_name)\n[1]\f[align,right]%ThousandsSeparators(_price)\n[-120]/
+						\_l[-10]\__q[OnBuyingClothes,%(_file),%(_i),%(_price),%(_outfit),%(_ob)]%STimg('square3')\__q\n[50]"
+					}
+				}
+			}
+		}
+		--
+		_item
+		--
+		_item2
+		--
+		"\f[default]\_l[-9]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)/
+		\n[50] "
+	}
+	
+	//========================================================================
+	//---------------------------------戳戳樂---------------------------------
+	//========================================================================
+	elseif storepage==(3,0)
+	{
+		"\_l[10,12]%PokeImg('box')\_l[14,16]%PokeImg(poke_pic[0])\_l[68]%PokeImg(poke_pic[1])\_l[122]%PokeImg(poke_pic[2])\_l[176]%PokeImg(poke_pic[3])/
+		\_l[14,70]%PokeImg(poke_pic[4])\_l[68]%PokeImg(poke_pic[5])\_l[122]%PokeImg(poke_pic[5])\_l[176]%PokeImg(poke_pic[7])/
+		\_l[14,124]%PokeImg(poke_pic[8])\_l[68]%PokeImg(poke_pic[9])\_l[122]%PokeImg(poke_pic[10])/
+		\_l[176]%PokeImg(poke_pic[11])/
+		\_l[14,178]%PokeImg(poke_pic[12])\_l[68]%PokeImg(poke_pic[13])\_l[122]%PokeImg(poke_pic[14])\_l[176]%PokeImg(poke_pic[15])"
+		--
+		
+		"\_l[14,16]%PokeIcon(0)\_l[68]%PokeIcon(1)\_l[122]%PokeIcon(2)\_l[176]%PokeIcon(3)/
+		\_l[14,70]%PokeIcon(4)\_l[68]%PokeIcon(5)\_l[122]%PokeIcon(6)\_l[176]%PokeIcon(7)/
+		\_l[14,124]%PokeIcon(8)\_l[68]%PokeIcon(9)\_l[122]%PokeIcon(10)		\_l[176]%PokeIcon(11)/
+		\_l[14,178]%PokeIcon(12)\_l[68]%PokeIcon(13)\_l[122]%PokeIcon(14)\_l[176]%PokeIcon(15)\n\_l[15,250]"
+		--
+		_a=ASEARCHEX("poked",poked)
+		_p=ARRAYSIZE(_a)
+		--
+		if _p<16
+		{	"剩餘：%(16-_p)\_l[125]（一格%(poke_price[0])元）\n[150]/
+			\f[align,right]\f[height,12]持有抽獎券× %(lottery_ticket)    "
+		}
+		else ; "\f[align,center]\f[color,#FFD700]\__q[PokingLottery.Newbox]【開一盒新的（%(poke_price[1])）】\__q\f[color,default]"
+		--
+		"\n\_l[20,300]\f[height,12]\__q[OnPokingLottery.History.OnC,"
+		--
+		if poke_history_open==1 ; "0][ 關閉 "
+		else ; "1][ 開啟 "
+		--
+		"歷史紀錄 ]\__q\n\_l[-,300]\f[align,right]%(STdiscoin)"
+		--
+		"\f[default]\_l[-9,333]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+	}
+	//========================================================================
+	//---------------------------------雜貨區---------------------------------
+	//========================================================================
+	elseif storepage==(2,0)
+	{
+		_txt="%STimg('title')\_l[23]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 特供 ▪\f[default]\_l[110]< 1500 %ItemImg('Discoin')狄斯幣 >\n[170]\__q[OnStore.BuyingGroceries,1,1]\_l[10]%STimg('square4')\__q\_l[37]%STimg('commodity\energydrink_18px') 能量飲料\n[150]/
+		%STimg('title')\_l[8]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 強化材料 ▪\f[default]\_l[120]< 100 %ItemImg('hypercube_15px')異方晶 >\n[20]"
+		--
+		_enhpic=("enhancement_0_18px","enhancement_1_18px","enhancement_2_18px")
+		for _i=0 ; _i<3 ; _i++
+		{
+			_txt+="\n[150]\__q[OnStore.BuyingGroceries,2,%(_i)]\_l[10]%STimg('square4')\__q\_l[37]%ItemImg(_enhpic[_i]) %(enhancement_name[_i])"
+		}
+		_txt+="\n[150]%STimg('title')\_l[23]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 染劑 ▪\f[default]\_l[120]< 500 %ItemImg('hypercube_15px')異方晶 >\n[150]"
+		for _i=0 ; _i< ARRAYSIZE (dye_name) ; _i++
+		{
+			if _i==3 || _i==8 ; _txt+="\n[30]\f[align,center]"
+			elseif _i==5 || _i==10 ; _txt+="\n[130]\f[align,center]"
+			elseif _i>=1 ; _txt+="｜"
+			_txt+="\__q[OnStore.BuyingGroceries,3,%(_i)]"
+			if _i==3 || _i==4 || _i==8 || _i==9
+			_txt+="%STimg('square6')"
+			else
+			_txt+="%STimg('square5')"
+			_txt+="\__q"
+			//\_b[img\dressing\button\color%(_i).png,inline,--option=use_self_alpha]%(dye_color[_i])%(dye_name[_i])\f[default]
+		}
+		_s_pot=("\_l[11,185]","\_l[101]","\_l[189]","\n\_l[38,208]","\_l[137]","\n\_l[8,231]","\_l[97]","\_l[185]","\n\_l[38,254]","\_l[137]","\n\_l[8,278]","\_l[97]","\_l[185]")	//,"\_l[]"
+		for _i=0 ;  _i< ARRAYSIZE (_s_pot) ; _i++
+		{
+			_txt+="%(_s_pot[_i])\f[valign,center]\_b[img\dressing\button\color%(_i).png,inline,--option=use_self_alpha]%(dye_color[_i])%(dye_name[_i])\f[default]"
+		}
+		--
+		_txt
+		--
+		"\n\_l[,310]\f[align,right]\_b[img\items\hypercube_15px.png,inline,--option=use_self_alpha] /
+		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %(STdiscoin)/
+		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+	}
+	//========================================================================
+	//---------------------------------活動---------------------------------
+	//========================================================================
+	elseif storepage==(4,0)
+	{	if "%(year)" !_in_ holiday_celebrated_store[month]
+		{	if holiday_celebrated_store[month]=="" ; holiday_celebrated_store[month]="%(year)"
+			else ; holiday_celebrated_store[month]+="-%(year)"
+			case month
+			{	when 2
+				{ event_goods_max=(10,1,5) ; event_goods=event_goods_max ; event_goods_prise=(214,0,224) ; event_goods_name=(event_item_name[0],consumable_sp_name[2],gift_sp_name[3]) ; event_pic="items\event_item_0,items\consumable_sp_2,items\gift_sp_3"
+				}
+				when 3
+				{ event_goods_max=(1,5) ; event_goods=event_goods_max ; event_goods_prise=(301,301) ; event_goods_name=(event_item_name[1],gift_sp_name[4]+"（送禮用）") ; event_pic="items\event_item_1,items\event_item_1"
+				}
+			}
+		}
+		--
+		"\f[align,center]\f[color,#C6A300]\f[shadowcolor,none]\f[bold,1]◆ %(month)月的特供商品 ◆\f[default]\n%STimg('line')\n[-30]"
+		--
+		_goods="\f[height,12]"
+		for _i=0 ; _i<ARRAYSIZE(event_goods_name) ; _i++
+		{	
+			_pic=event_pic[_i]
+			_goods+="\n[30]\f[align,left]\_l[4]%Bimg(_pic)\n[40]\_l[70]%(event_goods_name[_i]) [ "
+			if event_goods[_i]>0 ; _goods+="剩餘\f[color,#82F3F3]%(event_goods[_i])\f[color,default]"
+			else ; _goods+="已售罄"
+			_goods+=" ]\n[150]\f[align,right]\f[bold,1]\f[color,#FFDC35]%(event_goods_prise[_i])\f[color,default]元\f[bold,0]"
+			_goods+="\n[-350]\_l[-1]"
+			if event_goods[_i]>0 ; _goods+="\__q[OnBuyingEventGoods,%(_i),%(event_goods_name[_i])]%STimg('square')\__q"
+			else ; _goods+="%STimg('square_x')"
+			_goods+="\n[20]"
+		}
+		_goods
+		--
+		"\n\_l[,310]\f[align,right]\_b[img\items\hypercube_15px.png,inline,--option=use_self_alpha] /
+		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %(STdiscoin)/
+		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+	}
+	//========================================================================
+	//--------------------------------販賣物品--------------------------------
+	//========================================================================
+	elseif storepage==(99,0)
+	{
+		"%STimg('title')\_l[8]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 變賣廢料 ▪\f[default]\n[150]/
+		\__q[OnSellItem,1,1] └ 換成 %ItemImg('Discoin') 狄斯幣（1：1） \__q\n[150]/
+		\__q[OnSellItem,1,2] └ 換成 %ItemImg('hypercube_15px') 異方晶（100：1） \__q\n[200]/
+		%STimg('title')\_l[15]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 戰利品 ▪\f[default]\n[150]/
+		\__q[OnSellItem,2,0] └ 賣出所有戰利品 \__q\n[150]/
+		\__q[OnSellItem,2,1] └ 賣出所有戰利品（包括鎖定物品）\__q\n[200]/
+		%STimg('title')\_l[8]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 染料原礦 ▪\f[default]\n[150]/
+		\__q[OnSellItem,3,0] └ 賣出所有原礦 \__q\n[150]/
+		\__q[OnSellItem,3,1] └ 賣出所有原礦（包括鎖定物品） \__q\n[150]"
+		--
+		"\n\_l[,310]\f[align,right]%ItemImg('hypercube_15px') /
+		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %(STdiscoin)/
+		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+	}
+}
+
+//=============轉換分頁=============
+OnStore.ChangePage
+{
+	storepage=reference
+	--
+	Store
+}
+
+
+//======================================================================
+//---------------------------服裝分區相關事件---------------------------
+//======================================================================
+OnChangeSCType
+{
+	_type=reference0
+	DressingPage[1]=_type
+	Store
+}
+STChangeHL
+{
+	DressingPage[0]=1
+	Store
+}
+STChangeHC
+{
+	DressingPage[0]=0
+	Store
+}
+
+BalloonTooltip_STChangeHL { "切換到 海拉" }
+BalloonTooltip_STChangeHC { "切換到 赫卡蒂" }
+
+//======================購買服裝事件======================
+OnBuyingClothes
+{
+	_file=reference0
+	_i=reference1
+	_price=reference2
+	_cloth=reference3
+	_ob=reference4
+	_ask=reference5
+	_pic=""
+	
+	_file_a=_file
+	SETDELIM(_file_a,".")
+	
+	
+	--
+	if _ask=='sure'
+	{
+		//-----定義獲取服裝
+		if	   storepage[1]==2 ; _cloth=ST.ClothPack.Package[_i]
+		elseif storepage[1]==3 ; _cloth=ST.ClothPack.Cosplay[_i]
+		_cloth=REPLACE(_cloth,"|",",")
+		//-----最終指派
+		case _ob
+		{
+			when "HC" ; clothes_box_HC,=_cloth
+			when "HL" ; clothes_box_HL,=_cloth
+		}
+		--
+		//-----獲取套裝
+		if	   _ob=="HC" && storepage[1]==2
+			outfit_box_HC,=_file_a[1]
+		elseif DressingPage[0]==1 && storepage[1]==2
+			outfit_box_HL,=REPLACE(_file_a[1],"+",",")
+		elseif _ob=="HC" && storepage[1]==3
+			outfit_box_HC,=_file_a[2]
+		elseif _ob=="HL" && storepage[1]==3
+			outfit_box_HL,=_file_a[2]
+		--
+		discoin-=_price
+		cum_cost_discoin[0]+=_price
+		--
+		Store
+		--
+		Store.Trade.End
+	}
+	elseif _ask=='cancel'
+	{
+		Store
+		--
+		"\p[3]\![quicksession,false]"
+		--
+		"\s[311000]慢慢看哦！"
+		"\s[311000]不著急、\w5不著急！"
+	}
+	else
+	{
+		case storepage[1]
+		{	when 1
+			_pic=Bimg("dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(_file)")
+			when 2 ; _pic=Bimg("store\package%(DressingPage[0])\%(_file)")
+			when 3 ; _pic=Bimg("store\cosplay\%(_file)")	
+		}
+		if "omit" _in_ _file
+			_pic=Bimg("store\package%(DressingPage[0])_full\%(_file)")
+		--
+		if discoin>=_price
+		{
+			"\p[7]\s[-1]\b[50]\![quicksession,true]\_l[236,-25]\__q[Store]%QTYimg('x')\__q"
+			--
+			case storepage[1]
+			{	when 1 ; "\n[260]%(_pic)   "
+				when 2 ; "\n[200]"
+				when 3 ; "\n[200]"
+			}
+			--
+			"\f[align,center]確定花費\f[color,185,159,40]%ThousandsSeparators(_price)\f[default]購買嗎？"
+			--
+			_pic2=Bimg("store\package%(DressingPage[0])\%(_file)")
+			if "omit" _in_ _file
+				_pic2=Bimg("store\package%(DressingPage[0])_full\%(_file)")
+			case storepage[1]
+			{	when 1 ; "\n[270]\_l[111,60]"
+				when 2 ; "\n[130]%(_pic)\n[170]"
+				when 3 ; "\n[130]%(_pic)\n[170]"
+			}
+			--
+			"\__q[OnBuyingClothes,%(_file),%(_i),%(_price),%(_cloth),%(_ob),sure]\_b[img\O.png,inline]\__q         /
+			\__q[OnBuyingClothes,%(_file),%(_i),%(_price),%(_cloth),%(_ob),cancel]\_b[img\X.png,inline]\__q"
+		}
+		else
+			"\p[3]\![quicksession,false]唉呀，您身上的狄斯幣好像不夠呢！"
+	}
+}
+
+
+
+//======================================================================
+//----------------------------戳戳樂相關事件----------------------------
+//======================================================================
+PokeIcon
+{	_n=_argv[0]
+	--
+	if poked[_n]=="" ; "\__q[OnPokingLottery.Poke,%(_n)]%PokeImg('frame')\__q"
+	else ; PokeImg(poked[_n])
+}
+PokeImg
+{	"\_b[img\poking lottery\%(_argv[0]).png,inline,--option=use_self_alpha]"	}
+poke_price
+{	(1000,2500)	}
+poke_prize_list
+{
+	(gift_name,consumable_name,enhancement_name)
+}
+//戳！
+OnPokingLottery.Poke
+{
+	if discoin<poke_price[0] ; Store.NotEnoughDiscoin
+	else
+	{
+		_n=reference0
+		poked[_n]="poked"
+		_s=ANY("interface1","interface2","interface3")
+		if lottery_ticket>=1 ; lottery_ticket--
+		else
+		{	discoin-=poke_price[0]
+			cum_cost_discoin[1]+=TOINT(poke_price[0])
+		}
+		//	寫入抽獎紀錄
+		_prize=ANY(poke_prize_list)
+		if "抽獎紀錄" !_in_ poke_history ; poke_history=poke_history_default
+		if "%(year).%(month).%(day)" !_in_ poke_history ; poke_history+="\n[150]\f[color,#E6C614]-----%(year).%(month).%(day)-----\f[default]"
+		poke_history+="\n[111]\f[height,12]  %(_prize)\f[default]"
+		//	實際獲得
+		_x=ASEARCH(_prize,gift_sp_name) 	; gift_sp[_x]++
+		_x=ASEARCH(_prize,gift_name) 		; { gift[_x]=TOINT(gift[_x]) ; gift[_x]++ }
+		_x=ASEARCH(_prize,consumable_name)
+		{ consumable[_x]=TOINT(consumable[_x]) ; consumable[_x]++ }
+		_x=ASEARCH(_prize,enhancement_name) ; enhancement[_x]++
+		--
+		"\![sound,play,sound/effect/%(_s).mp3]"
+		--
+		"\p[7]\s[-1]\b[44]\![quicksession,true]\_l[-,30]\f[align,center]\f[height,12]\f[bold,1]抽到了\f[default]\n[111]【\f[color,#FFFFFF]\f[shadowcolor,#726209] %(_prize) \f[default]】！"
+	}
+	--
+	if poke_history_open==1 ; PokingLottery.History
+	click_sound=0
+	--
+	Store
+}
+PokingLottery.Newbox
+{
+	poked=("","")
+	poke_pic=(0,0)
+	_a="A" ; _b=60
+	for _i=0 ; _i<16 ; _i++
+	{
+		_c=RAND(_b)
+		poke_pic[_i]=_a+"_"+_c
+	}
+	discoin-=poke_price[1]
+	cum_cost_discoin[1]+=TOINT(poke_price[1])
+	--
+	Store.Trade.End
+	--
+	if poke_history_open==1 ; PokingLottery.History
+	--
+	Store
+}
+PokingLottery.History
+{
+	if "抽獎紀錄" !_in_ poke_history ; poke_history=poke_history_default
+	--
+	"\p[8]\s[-1]\b[42]%(poke_history)"
+	--
+	if poke_history==poke_history_default ; ""
+	else
+	"\n\_l[150]\f[height,12]\f[color,#BEBEBE]\__q[OnPokingLottery.History.OnC,2][ 清空歷史紀錄 ]\__q"
+}
+OnPokingLottery.History.OnC
+{
+	if reference0==2 ; poke_history=poke_history_default
+	else ;  poke_history_open=reference0
+	--
+	if poke_history_open==1 ; PokingLottery.History
+	--
+	Store
+}
+poke_history_default
+{
+	"\![quicksession,true]\f[shadowcolor,#726209]\f[bold,1]\![*]抽獎紀錄\![*]\f[default]/
+	\_l[150]\f[height,12]\f[color,#BEBEBE]\__q[OnPokingLottery.History.OnC,2][ 清空歷史紀錄 ]\__q\f[default]"
+}
+
+
+
+//========================================================================
+//-----------------------------雜貨區相關事件-----------------------------
+//========================================================================
+OnStore.BuyingGroceries
+{
+	_tag=reference0 ; _item=reference1
+	
+	if reference2=="sure"
+	{	case _tag
+		{	when 1
+			{	consumable[0]++ ; discoin-=1500
+				cum_cost_discoin[2]=TOINT(cum_cost_discoin[2]) ; cum_cost_discoin[2]+=1500 
+			}
+			when 2 ; { enhancement[_item]++ ; hypercube-=100 ; cum_cost_hypercube[0]+=100 }
+			when 3 ; { dye[_item]++ ; hypercube-=500 ; cum_cost_hypercube[1]+=500 }
+		}
+		--
+		Store
+		--
+		Store.Trade.End
+	}
+	else
+	{
+		if _tag==1 && discoin-1500<0 ; Store.NotEnoughDiscoin
+		elseif (_tag==2 && hypercube<100) || (_tag==3 && hypercube<500)
+		{
+			Store
+			--
+			"\p[3]\s[311000]\![quicksession,false]唉呀……！您的異方晶不夠呢！"
+		}
+		else
+		{	
+			Store
+			--
+			"\p[7]\s[-1]\b[44]\![quicksession,true]\_l[10,20]"
+			--
+			_enhpic=("enhancement_0","enhancement_1","enhancement_2")
+			_dyepic=(0,0)
+			for _i=0 ; _i<13 ; _i++
+			{
+				_dyepic[_i]="powder dye_"+_i
+			}
+			case _tag
+			{
+				when 1 ; "%STimg('commodity\energydrink')\_l[66]\f[shadowcolor,#B19C3E]確定花費1,500\n\_l[66,40]狄斯幣"
+				when 2 ; "%ItemImg(_enhpic[_item])\_l[66]\f[shadowcolor,#B19C3E]確定花費100\n\_l[66,40]異方晶"
+				when 3 ; "%ItemImg(_dyepic[_item])\_l[66]\f[shadowcolor,#B19C3E]確定花費500\n\_l[66,40]異方晶"
+			}
+			--
+			"購買嗎？\n\_l[75,73]\__q[OnStore.BuyingGroceries,%(_tag),%(_item),sure]%STimg('O')\__q      /
+				\__q[Store]%STimg('X')\__q"
+			
+		}
+	}
+}
+//========================================================================
+//-----------------------------活動商品事件-----------------------------
+//========================================================================
+OnBuyingEventGoods
+{
+	_num  = reference0
+	_name = reference1
+	//放入倉庫
+	if month==2 && _num==0
+	{	event_item[0]= TOINT (event_item[0]) ; event_item[0]++ }
+	elseif month==2 && _num==1
+	{	consumable_sp[2]= TOINT (consumable_sp[2]) ; consumable_sp[2]+=6 }
+	elseif month==2 && _num==2
+	{	gift_sp[3]= TOINT (gift_sp[3]) ; gift_sp[3]++ }
+	elseif month==3 && _num==0
+	{	event_item[1]= TOINT (event_item[1]) ; event_item[1]++ }
+	elseif month==3 && _num==1
+	{	gift_sp[4]= TOINT (gift_sp[4]) ; gift_sp[4]++ }
+	--
+	//減少庫存
+	event_goods[_num]-=1
+	--
+	//結帳
+	cum_cost_discoin[3]=TOINT(cum_cost_discoin[3]) ; cum_cost_discoin[3]+=event_goods_prise[_n]
+	discoin-=event_goods_prise[_n]
+	--
+	Store
+	--
+	//特殊對話
+	if month==2 && _num==0
+	{	"\p[3]\s[311000]\![quicksession,false]"
+		--
+		OnBuyingEventGoods.Talk.200
+	}
+	elseif month==2 && _num==1
+		"%cp(0)\b[22]\![quicksession,false]\n[70]…\w2…\w3…\w2…\w5\n[150]……為什麼夜鶯送我的東西在妳這裡？\w9\w5\p[3]\s[311000]啊哈哈……  \w6別、\w3別誤會啊！\w6是夜鶯小姐要我轉交給%(username)%(you)的！\w9\n[130]%(you)看，我不也沒收%(you)錢嗎！\w9\w5%cp(0)\b[20]\c\n[70]嗯哼……"
+	elseif month==2 && _num==2
+	{	"\p[3]\s[311000]\![quicksession,false]"
+		--
+		OnBuyingEventGoods.Talk.202
+	}
+	else ; Store.Trade.End
+}
+OnBuyingEventGoods.Talk.200 : nonoverlap
+{	"哼哼…… \w3%(username)有想贈與的對象嗎？"
+	{ "祝福%(username)度過一個浪漫的情人節哦！"
+	  --
+	  if day>14 ; "\w7 ……已經晚了啊。"
+	}
+	"哇！\w3是哪位幸運的女士能收到%(username)的巧克力呢？"
+	"鼓起勇氣去表白吧！"
+}
+OnBuyingEventGoods.Talk.202 : nonoverlap
+{	"友情提示：\w5這是食物模型！"
+	"啊，\w3%(username)，\w5這不能吃哦。"
+	"做得很像對吧？"
+	"%(you)並非誤以為它是補給品才買的吧？\w8\n[130]牌子上寫得清清楚楚……\w8 我可沒有搞詐欺唷。"
+	"看起來美味卻不能吃－－\w7就是所謂的「中看不中用」！\w7\n[130]…………這個不好笑啊？"
+}
+
+
+
+//========================================================================
+//-----------------------------售物相關事件-----------------------------
+//========================================================================
+OnSellItem
+{
+	_type=reference0 ; _n=reference1
+	if reference2=="sure"
+	{
+		if _type==1 && _n==1
+		{
+			discoin+=scrap
+			cum_gain_discoin[2]=TOINT(cum_gain_discoin[2]) ; cum_gain_discoin[2]+=scrap
+			scrap=0
+		}
+		elseif _type==1 && _n==2
+		{
+			_a= TOINT (scrap/100)
+			hypercube+=_a
+			cum_gain_hypercube[0]+=_a
+			scrap-=_a*100
+		}
+		elseif _type==2
+		{
+			_price=0
+			for _i=0 ; _i< ARRAYSIZE (loot_name) ; _i++
+			{
+				if loot_lock[_i]==1 && _n==0 ; {}
+				else ; _price+= TOINT (loot_price[_i]*loot[_i])
+			}
+			_price = TOINT (_price)
+			discoin = TOINT (discoin)
+			discoin += _price
+			cum_gain_discoin[3]=TOINT(cum_gain_discoin[3]) ; cum_gain_discoin[3] += _price
+			if _n==1 ; loot=(0,0)
+			else
+			{	for _i=0 ; _i<ARRAYSIZE(loot) ; _i++
+				{ if loot_lock[_i]==1 ;{}
+				  else ; loot[_i]=0
+				}
+			}
+		}
+		elseif _type==3
+		{
+			_price=0
+			for _i=0 ; _i< ARRAYSIZE (dye_ingredient_name) ; _i++
+			{
+				if dye_ingredient_lock[_i]==1 && _n==0 ; {}
+				else ; _price+= TOINT (dye_ingredient_price[_i]*dye_ingredient[_i])
+			}
+			_price = TOINT (_price)
+			discoin = TOINT (discoin)
+			discoin += _price
+			cum_gain_discoin[4]=TOINT(cum_gain_discoin[4]) ; cum_gain_discoin[4] += _price
+			if _n==1 ; dye_ingredient=(0,0,0,0,0,0)
+			else
+			{	for _i=0 ; _i<ARRAYSIZE(dye_ingredient) ; _i++
+				{ if dye_ingredient_lock[_i]==1 ;{}
+				  else ; dye_ingredient[_i]=0
+				}
+			}
+			
+		}
+		--
+		Store
+		--
+		Store.Trade.End
+	}
+	else
+	{
+		Store
+		--
+		case _type
+		{
+			when 1
+			{
+				if scrap==0 ; "\p[3]\s[311000]\![quicksession,false]%(username)現在的庫存裡，沒有任何的廢料哦……"
+				elseif scrap<100 && _n==2
+					"\p[3]\s[311000]\![quicksession,false]啊，這個至少要有100個廢料才能兌換哦。"
+				else
+					{"\p[7]\s[-1]\b[44]\![quicksession,true]\_l[-,10]\f[align,center]\f[color,#FFFFFF]\f[shadowcolor,#0B0A04]\f[bold,1]"
+					--
+					if _n==1 ; "%(scrap) 廢料\n↓\n%(scrap) %ItemImg('Discoin')狄斯幣"
+					elseif _n==2 ; "%(scrap) 廢料\n↓\n%(scrap/100) %ItemImg('hypercube_15px')異方晶"
+					--
+					"\n\_l[-,73]\f[align,center]\__q[OnSellItem,%(_type),%(_n),sure]%STimg('O')\__q        /
+						\__q[Store]%STimg('X')\__q"
+				}
+			}
+			when 2
+			{
+				_txt="\p[7]\s[-1]\b[42]\![quicksession,true]\![set,autoscroll,disable]/
+				\f[align,center]是否賣出以下戰利品，\n賺取 "
+				_txt2=""
+				_price=0
+				--
+				for _i ; _i< ARRAYSIZE (loot) ; _i++
+				{
+					if loot_lock[_i]==1 && _n==0 ; {}
+					else
+					{
+						if loot[_i] >= 1 ; _txt2+="\n[111]%(loot_name[_i])×%(loot[_i])"
+						_price+=loot[_i]*loot_price[_i]
+					}
+				}
+				--
+				_txt+="\f[color,#DFC968]%(_price) %ItemImg('Discoin')狄斯幣\f[default]？\n[150]/
+				\f[align,center]\__q[OnSellItem,2,%(_n),sure]%STimg('O')\__q        /
+					\__q[Store]%STimg('X')\__q\n[150]/
+				\_l[-9]%STimg('line')\n[-150]\f[height,12]\f[color,#ADB3B8]\f[align,center]"
+				_txt+=_txt2
+				--
+				if _price==0 ; "\p[3]\s[311000]\![quicksession,false]%(username)沒有可以出售的戰利品呢……"
+				else ; _txt
+			}
+			when 3
+			{
+				_txt="\p[7]\s[-1]\b[42]\![quicksession,true]\![set,autoscroll,disable]/
+				\f[align,center]是否賣出以下原礦，\n賺取 "
+				_txt2=""
+				_price=0
+				--
+				for _i ; _i< ARRAYSIZE (dye_ingredient) ; _i++
+				{
+					if dye_ingredient_lock[_i]==1 && _n==0 ; {}
+					else
+					{
+						if dye_ingredient[_i] >= 1
+							_txt2+="\f[height,15]\n[130]%(dye_ingredient_name[_i])×%(dye_ingredient[_i])"
+						_price+=dye_ingredient[_i]*dye_ingredient_price[_i]
+					}
+				}
+				--
+				_txt+="\f[color,#DFC968]%(_price) %ItemImg('Discoin')狄斯幣\f[default]？\n[150]/
+				\f[align,center]\__q[OnSellItem,3,%(_n),sure]%STimg('O')\__q        /
+					\__q[Store]%STimg('X')\__q\n[150]/
+				\_l[-9]%STimg('line')\n[-150]\f[height,12]\f[color,#ADB3B8]\f[align,center]"
+				_txt+=_txt2
+				--
+				if _price==0 ; _txt="\p[3]\s[311000]\![quicksession,false]%(username)沒有可以出售的原礦哦……"
+				--
+				_txt
+			}
+		}
+	}
+}
+//======================================================================
+//------------------------------狄斯幣不足------------------------------
+//======================================================================
+Store.NotEnoughDiscoin
+{
+	"\p[3]\s[311000]\![quicksession,false]啊！您的狄斯幣不夠哦！"
+}
+Store.Trade.End
+{
+	"\![sound,play,sound/sfx/金額表示.mp3]\p[3]\s[311000]\![quicksession,false]"
+	--
+	"謝謝惠顧！"
+	"多謝惠顧！"
+	"\![sound,play,voice/store/slide_01.mp3]啊……令人迷醉的光澤……"
+}
+
+//======================================================================
+//---------------------------零食分區相關事件---------------------------
+//======================================================================
+STORE_Snack
+{
+	visit_store++
+	--
+	"\p[3]\s[311000]\b[42]\![quicksession,true]\![set,choicetimeout,0]"
+	--
+	"\_l[15]\f[color,223,158,62]🍬\f[color,default]\q[ 購買草莓糖果 ,BuyCandy]"
+	--
+	"\_l[7,350]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+}
+
+
+
+BuyCandy{	//購買草莓糖果
+	"\p[3]\s[311000]一顆草莓糖果售價2500元，客官要買多少呢？\![open,inputbox,OnHowMuchDoYouNeed]"
+}
+OnHowMuchDoYouNeed
+{
+	OnOrderQuantity_Candy(reference0)
+}
+OnOrderQuantity_Candy
+{
+	if reference0==0
+		"\p[3]\s[311000]不買了嗎？"
+	elseif TOINT(FLOOR(reference0))==0
+		"\p[3]\s[311000]請輸入數字！\![open,inputbox,OnHowMuchDoYouNeed]"
+	elseif discoin<(TOINT(FLOOR(reference0)))*2500
+		{"\p[3]\s[311000]不好意思，您的狄斯幣不夠哦！"
+		"\p[3]\s[311000]唉呀，您身上的狄斯幣好像不夠呢！"
+		--
+		Store}
+	elseif reference0<=10
+		{"\p[3]\s[311000]買%(reference0)顆就夠了嗎？馬上來。\w5\n/
+		⁃⁃\w2⁃⁃⁃\w3⁃⁃⁃⁃\w4⁃⁃⁃⁃⁃ \w9\w9"
+		--
+		BuyCandyEnd}
+	elseif reference0<=50
+		{"\p[3]\s[311000]%(reference0)顆是嗎？請稍等……\w9\n/
+		⁃⁃\w5⁃⁃⁃\w9⁃⁃⁃⁃\w4\w9⁃⁃⁃⁃⁃ \w9\w9"
+		--
+		BuyCandyEnd}
+	elseif reference0>50
+		{"\p[3]\s[311000]唉呀！客人真是大方！馬上為您包裝！\w9\w9\n/
+		⁃⁃\w9⁃⁃⁃\w9⁃⁃⁃⁃\w9\w4⁃⁃\w9⁃⁃⁃ \w9\w9"
+		--
+		BuyCandyEnd}
+	
+}
+
+BuyCandyEnd
+{
+		_cost=(TOINT(FLOOR(reference0)))*2500
+		strawberry_candy+=TOINT(FLOOR(reference0))
+		discoin-=(TOINT(FLOOR(reference0)))*2500
+		"\c\p[3]\s[311000]已購買\f[color,#FFD700]\f[bold,1]%TOINT(FLOOR(reference0))\f[default]顆草莓糖果，花費了\f[color,#FFD700]\f[bold,1]%(_cost)\f[default]狄斯幣。\n/
+		歡迎下次再來光顧哦！\w9\s[2100]\b[10]\e"
+}
+
+//離開商店
+OnLeaveStore
+{
+	StoreMode=0
+	storepage=(0,0)
+	--
+	"\p[3]\s[311000]\b[0]咦？\w3已經要走了嗎？\w5\n[150]下次再光臨哦！\w9\w5/
+	%SFX('sfx\door chime2')\c\s[-1]\b[-1]"
+	--
+	if reference0=="更衣室"
+		DressingRoom
+	
+}
+
+
+
+//=============賣出=============
+SellItem	//商店販售介面
+{
+	
+}
+SellAllScrap //賣掉所有廢料
+{
+	scrapZ=TOINT(FLOOR(scrap))
+	_earndiscoin=scrapZ
+	if scrapZ<1
+		"沒有可以變賣的廢料。"
+	elseif scrapZ>=1
+		discoin+=scrapZ
+		scrap-=scrapZ
+		--
+		"已賣出所有廢料，賺得\f[color,#FFD700]\f[bold,1]%(_earndiscoin)\f[default]狄斯幣。"
+		"販賣廢料獲得了\f[color,#FFD700]\f[bold,1]%(_earndiscoin)\f[default]狄斯幣。"
+}
+
+
+
+//=============插入圖片=============
+STimg
+{
+	_picname=_argv[0]
+	_txt="\_b[img\store\"
+	_txt+=_picname
+	_txt+=".png,inline,--option=use_self_alpha]"
+	_txt
+}
+SGimg
+{
+	_picname=_argv[0]
+	_txt="\_b[img\dressing\icon\"
+	_txt+="%(_picname)"
+	_txt+=".png,inline,--option=use_self_alpha]"
+	_txt
+}
+STdiscoin
+{
+	"\_b[img\items\Discoin.png,inline,--option=use_self_alpha]\f[default]\f[color,185,159,40] %ThousandsSeparators(discoin)"
+}
+
+
+
+

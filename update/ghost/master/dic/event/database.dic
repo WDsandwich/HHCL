@@ -1,0 +1,378 @@
+//===================================================================
+//								歸檔資料							  
+//===================================================================
+Database		//	歸檔資料
+{
+	if MenuCheif==2 ; "\p[2]"
+	else ; "\%(MenuChoice)"
+	--
+	"\b[2]\_q%(click)"
+	--
+	menu_title="檔案室"
+	menu_p_list=("├","├","├","└")
+	menu_o_list=("禁閉者檔案","局長檔案","統計資訊","圖鑑")
+	menu_func_list=("OpenSinnerInfo","CheifInfo","GoToCumulativeData","Menu_Illustrated")
+	--
+	Menu.Option
+	--
+	MuenBottomOption('OnMenu_Bureau')
+}
+
+
+//===================================================================
+//							禁閉者資料								 
+//===================================================================
+OpenSinnerInfo
+{
+	infopage=MenuChoice
+	SinnerInfo
+}
+SinnerInfo	//禁閉者檔案
+{
+	//分別設定二人變數
+	case infopage
+	{
+		when 0
+		{
+			info_head="\__q[ChangeSinnerInfoHL]\_b[img\head_HC_chose.png,inline,--option=use_self_alpha]\__q"
+			info_sinnernum="19"
+			info_birday="3月17日"
+			info_int=intimacy[0]
+			info_mood=mood[0]
+			info_hp=(HCinc_b[0],HCinc_ex[0])
+			info_atk=(HCinc_b[1],HCinc_ex[1])
+			int_event=event_history_HC
+			int_anniversary= dating_anniversary_HC
+		}
+		when 1
+		{
+			info_head="\__q[ChangeSinnerInfoHC]\_b[img\head_HL_chose.png,inline,--option=use_self_alpha]\__q"
+			info_sinnernum="98"
+			info_birday="12月2日"
+			info_int=intimacy[1]
+			info_mood=mood[1]
+			info_hp=(HLinc_b[0],HLinc_ex[0])
+			info_atk=(HLinc_b[1],HLinc_ex[1])
+			int_event=event_history_HL
+			int_anniversary= dating_anniversary_HL
+		}
+	}
+	case MenuChoice
+	{	when 0 ; "\0"
+		when 1 ; "\1"	}
+	--
+	"\b[2]\![quicksession,true]\![set,choicetimeout,0]%(click)"
+	--
+	"\f[height,12]\_l[148,25]%(info_head)\n/
+	\_l[0,-2]\![*]\f[bold,1]MBCC-S-0%(info_sinnernum) \![*]  \n[2]\f[align,right]\f[valign,center]"
+	--
+	_rs=""
+	for _i=0 ; _i<=3 ; _i++
+	{
+		if intimacy[infopage]>=relationship_intimacy[_i]
+		_rs="\_b[img\relationship\rs%(_i).png,inline,--option=use_self_alpha]"+relationship_name[_i]
+	}
+	if int_event[0]>=1 ; _rs=Bimg('\relationship\rs4')+relationship_name[4]
+	if relationship[infopage]%2==1 ; _rs=Bimg('\relationship\rs5')+relationship_name[5]
+	_rs
+	--
+	"\n[130]\f[align,left]\f[bold,0]\f[color,default]生日：%(info_birday)\n/
+	\f[valign,center]心情：%MoodPic(mood[infopage])\n%(DividingLine)\f[height,12]\n\f[bold,1]\f[valign,center]"
+	--
+	_intshow=""
+	if intimacy[infopage]>=10000 ; _intshow="max"
+	else ; _intshow=TOINT(intimacy[infopage]*0.01)+"%"
+	--
+	"\f[valign,top]\f[bold,0]✧ \f[color,#C4A1BE]服從度\f[color,default]：\f[shadowcolor,none] %(_intshow)\f[shadowcolor,none]%ProgressBar(9,60,100,intimacy[infopage],10000)\f[shadowcolor,default]\n[-20]\f[align,right]"
+	--
+	if intimacy[infopage]>=10000 && int_event[0]<1
+	"\__q[OnSubMaxEvent.First,%(infopage)]%Bimg('\relationship\…')\__q"
+	--
+	"\n\f[align,left]"
+	--
+	if intimacy[infopage]>=10000
+		"\n[20]✧ \f[color,#FFC1E0]親密度\f[color,default]： \f[color,#FFC1E0]%TOINT(intimacy[infopage]-10000)\f[color,default]\n"
+	--
+	if relationship[infopage]%2==1 && int_anniversary==""
+	"✧ 交往紀念日：\f[color,#80EEF4]\__q[OnSettingAnniversary,%(year),%(month),%(day)]《自行設定》\__q\f[color,default]\n"
+	elseif relationship[infopage]%2==1
+	"✧ 交往紀念日：%(int_anniversary[0])年%(int_anniversary[1])月%(int_anniversary[2])日\n"
+	--
+	DividingLine
+	--
+	"\f[height,12]\n✧ \f[color,#73ABAB]體　力\f[color,default]： \f[shadowcolor,none]%(stamina)/%(staminamax)%ProgressBar(6,60,111,stamina,staminamax)\f[shadowcolor,default]\n/
+	✧ \f[color,#A1C4A2]等　級\f[color,default]： \f[color,#A1C4A2]%(level)\f[color,default]\n/
+	✧ \f[color,#FFE66F]經驗值\f[color,default]： \f[shadowcolor,none]%(exp)/%(levelupexp)%(ProgressBar(3,60,111,exp,levelupexp))\f[shadowcolor,default]\n/
+	✧ \f[color,#FF7575]HP上限\f[color,default]： %(info_hp[0]) \f[color,#ACD6FF]+%(info_hp[1])\n/
+	✧ \f[color,#D8875F]攻擊力\f[color,default]： %(info_atk[0]) \f[color,#ACD6FF]+%(info_atk[1])\n"
+	--
+	MuenBottomOption("Database")
+}
+BalloonTooltip_ChangeSinnerInfoHC { "切換到 赫卡蒂" }
+BalloonTooltip_ChangeSinnerInfoHL { "切換到 海拉" }
+BalloonTooltip_OnSubMaxEvent.First { "（桌上放著一封信……）" }
+OnSettingAnniversary
+{
+	_ob=infopage
+	_y=reference0
+	_m=reference1
+	_d=reference2
+	SinnerInfo
+	--
+	SureWindow('SinnerInfo')
+	--
+	"手動設定交往紀念日（%(Char_Name[_ob])）：\n（僅此一次，不可早於2024/1/1）\![open,dateinput,OnSettingAnniversary.Sure,0,%(_y),%(_m),%(_d),--title=交往紀念日]"
+}
+OnSettingAnniversary.Sure
+{
+	_ob=infopage
+	_date=reference0
+	SETDELIM (_date,",")
+	_y=_date[0]
+	if _y<2024 ; _y=2024
+	_m=_date[1]
+	_d=_date[2]
+	SinnerInfo
+	--
+	SureWindow('SinnerInfo')
+	--
+	"\n[-100]設定交往紀念日（%(Char_Name[infopage])）在\n\f[bold,1]\f[color,#FFE153]【%(_y)年%(_m)月%(_d)日】\f[default]嗎？\n[150]\f[color,#80EEF4]%(opp)\__q[OnSettingAnniversary.End,%(_y),%(_m),%(_d)] 確定 \__q\n[111]%(opp)\__q[OnSettingAnniversary,%(_y),%(_m),%(_d)] 變更 \__q\n[111]%(opp)\__q[SinnerInfo] 取消 \__q"
+}
+OnSettingAnniversary.End
+{
+	_ob=infopage
+	_y=reference0
+	_m=reference1
+	_d=reference2
+	if _ob==1 ; dating_anniversary_HL=(_y,_m,_d)
+	else	  ; dating_anniversary_HC=(_y,_m,_d)
+	--
+	SinnerInfo
+}
+
+
+
+
+
+//===================================================================
+//							局長資料								 
+//===================================================================
+CheifInfo	//資料頁
+{
+	"\p[4]\s[-1]\b[2]\c\![quicksession,true]\![set,choicetimeout,0]%(click)"
+	--
+	"\f[height,12]\![*]\f[bold,1]SHEPERD-13\f[bold,0]\![*]/
+	\__q[CheifInfo.Photo]＜\f[color,#A6FFFF]編輯證件照\f[color,default]＞\__q\n[150]✧ 第一人稱：\f[color,#A6FFFF]\q[  %(you)  ,CheifInfo.You.Input]\f[color,default]\n[150]✧ "
+	--
+	if usernameHC == usernameHL && usernameHC == username
+		"稱呼：\f[color,#A6FFFF]\q[  %(username)  ,OnCheifInfo.Name.Input,%(username)]\f[color,default]"
+	else 
+		"赫卡蒂的稱呼：\f[color,#A6FFFF]\q[  %(usernameHC)  ,OnCheifInfo.Name.Input,%(usernameHC)]\f[color,default]\n/
+		✧ 海拉的稱呼：\f[color,#A6FFFF]\q[  %(usernameHL)  ,OnCheifInfo.Name.Input,%(usernameHL)]\f[color,default]\n/
+		✧ 其他人的稱呼：\f[color,#A6FFFF]\q[  %(username)  ,OnCheifInfo.Name.Input,%(username)]\f[color,default]"
+	--
+	"\n[150]✧ 生日：\f[color,#A6FFFF]\q[  %(chief_birthday[0])年%(chief_birthday[1])月%(chief_birthday[2])日  ,CheifInfo.Birthday.Input]\f[color,default]\n[150]"
+	--
+	DividingLine
+	--
+	"\f[height,12]\n\f[color,#BEBEBE]/
+	✧ 打卡：%ARRAYSIZE(open_date)天   /
+	\f[color,#84C1FF]\q[<修復>,DailyCheckOut.Fix]\f[color,#BEBEBE]\n/
+	✧ 資料登記：%(firstboottime[0])年%(firstboottime[1])月%(firstboottime[2])日\n/
+	✧ 當前工作時間：%(ghostupmin/60)時%(ghostupmin - ghostupmin/60*60)分\n/
+	✧ 累計工作時長：%(ghostupmin_total/60/24)天%(ghostupmin_total/60-ghostupmin_total/60/24*24)時%(ghostupmin_total - ghostupmin_total/60*60)分"
+	--
+	if MenuCheif==2
+		"\_q\f[color,150,150,150]\_l[7,220]\f[height,12]\q[前往辦公室>>,Office]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	else ; MuenBottomOption("Database")
+}
+CheifInfo.You.Input				//更改第一人稱
+{
+	"\p[7]\s[-1]\![open,inputbox,OnCheifInfo.You.Sure,0,%(you)]"
+	--
+	CheifInfo
+}
+OnCheifInfo.You.Sure
+{
+	you=reference0
+	CheifInfo
+}
+OnCheifInfo.Name.Input			//更改名稱
+{
+	"\p[7]\s[-1]\![open,inputbox,OnCheifInfo.Name.Confirm,0,%(reference0)]"
+	--
+	CheifInfo
+}
+OnCheifInfo.Name.Confirm
+{
+	_name=reference0
+	--
+	CheifInfo
+	--
+	"\p[2]%(cp)\b[22]\f[align,center]\![quicksession,true]/
+	\q[更改赫卡蒂的稱呼,OnCheifInfo.Name.Sure,%(_name),0]\n[125]/
+	\f[align,center]\q[更改海拉的稱呼,OnCheifInfo.Name.Sure,%(_name),1]\n[125]/
+	\q[更改其他人的稱呼,OnCheifInfo.Name.Sure,%(_name),3]\n[125]"
+	--
+	if "親愛的" _in_ _name||"老婆" _in_ _name||"老公" _in_ _name||"Honey" _in_ _name||"哈尼" _in_ _name||"達令" _in_ _name||"Darling" _in_ _name||"寶貝" _in_ _name||_name=="baby"||_name=="北鼻"
+		""
+	else
+	"\q[更改所有人的稱呼,OnCheifInfo.Name.Sure,%(_name),2]"
+}
+OnCheifInfo.Name.Sure			//確定名稱 
+{	//||"" _in_ reference0
+	"%(click)"
+	--
+	_name=reference0 ; _ob=reference1 ; click_sound=1
+	--
+	if (_name==usernameHC&&_ob==0)||(_name==usernameHL&&_ob==1)||(_name==username&&_ob==3)||(_name==username&&usernameHC==usernameHL&&usernameHC==username&&_ob==2)
+		"\p[2]%(cp)\b[20]（還是維持原樣好了……）\w9"
+	elseif "親愛的" _in_ _name||"老婆" _in_ _name||"老公" _in_ _name||"Honey" _in_ _name||"哈尼" _in_ _name||"達令" _in_ _name||"Darling" _in_ _name||"寶貝" _in_ _name||_name=="baby"||_name=="北鼻"
+	{	if _ob == 0  && relationship[0]%2==1
+		{
+			usernameHC=_name
+			mood[0]+=6
+			--
+			"\0\s[5]…\w2…\w3…嗯，\w3好的……"
+			"\0\s[8]這也是「戀愛」的一部份嗎？"
+			--
+			"\w9\p[2]%(cp)\b[20]（在管理局這樣，多少有些難為情呢。）\w9"
+		}
+		elseif _ob == 0
+		{
+			usernameHC=_name
+			--
+			"\0\s[1]…\w2…\w3…\w4…\w5如果%(you)希望如此的話……"
+			"\0\s[1]這樣…\w3…\w5不會不妥嗎？"
+			--
+			"\w9\p[2]%(cp)\b[20]（好像讓她為難了\n……）\w9"
+		}
+		elseif _ob == 1  && relationship[1]%2==1
+		{
+			usernameHL=_name
+			--
+			"\1\s[13]也不是…\w2…\w5不行啦……"
+			"\1\s[37]就知道占便宜，\w8哼……"
+			--
+			"\w9\p[2]%(cp)\b[20]（太好了，她答應了。）\w9"
+		}
+		elseif _ob == 1
+		{
+			"\1\s[14]……想都別想！"
+			"\1\s[14]%(you)、%(you)想得美啊！"
+			"\1\s[14]%(you)做白日夢呢！"
+			--
+			"\w9\w5\p[2]%(cp)\b[20]（和海拉的關係還沒那麼親密……）\w9"
+		}
+		elseif _ob == 1
+		{
+			usernameHL=_name
+			mood[1]+=6
+			--
+			"\1\s[13]…\w2…\w2也不是\w2…\w2…\w5不行\w2…\w2…"
+			"\1\s[13]…\w2…\w2唔\w2…\w2…\w5嗯\w2…\w2…"
+			--
+			"\w9\p[2]%(cp)\b[20]（……沒想到被她接受了）\w9"
+		}
+		elseif _ob == 3
+		{
+			
+			"\w5\p[2]%(cp)\b[20]（「系統拒絕訪問」……？）\w9"
+		}
+	}
+	else
+	{	case reference1
+		{
+			when 0
+			{	usernameHC=reference0
+				--
+				OnCheifInfo.Name.Sure.Line(0)
+			}
+			when 1
+			{	usernameHL=reference0
+				--
+				OnCheifInfo.Name.Sure.Line(1)
+			}
+			when 3
+			{	username=reference0
+				--
+				OnCheifInfo.Name.Sure.Line(3)
+			}
+			when 2
+			{	username=reference0
+				usernameHC=username
+				usernameHL=username
+				--
+				OnCheifInfo.Name.Sure.Line(0)
+				OnCheifInfo.Name.Sure.Line(1)
+				OnCheifInfo.Name.Sure.Line(3)
+			}
+		}
+	}
+	--
+	CheifInfo
+}
+OnCheifInfo.Name.Sure.Line
+{
+	case _argv[0]
+	{	when 0
+		{
+			"\0\s[0]我%ANY('知道','明白')了，%(usernameHC)。\w9\w5"
+			"\0\s[0]好的，%(usernameHC)。\w9\w9"
+		}
+		when 1
+		{
+			"\1\s[18]%(usernameHL)……\w5 %(you)更喜歡這個稱呼是嗎？\w9\w5"
+			"\1\s[18]嗯，以後就這麼叫%(you)囉，%(usernameHL)！\w9\w5"
+		}
+		when 3
+		{
+			"\p[2]%cp(0)\b[20]\_l[-,-5]（直接登陸進資料庫裡……\w5 工作人員應該能看見吧。）\w9"
+		}
+	}
+}
+CheifInfo.Birthday.Input		//更改生日
+{
+	"\p[7]\s[-1]\![open,dateinput,OnCheifInfo.Birthday.Sure,0,%(chief_birthday[0]),%(chief_birthday[1]),%(chief_birthday[2]),--title=局長生日]"
+	--
+	CheifInfo
+}
+OnCheifInfo.Birthday.Sure	//確認生日
+{
+	chief_birthday=reference0
+	CheifInfo
+}
+CheifInfo.Photo					//編輯證件照
+{
+	"\p[4]\s[-1]\b[2]\![quicksession,true]\![set,choicetimeout,0]%(click)\f[height,12]%Subtitle('編輯局長證件照')\n[150]\f[default]/
+	【更換人物】\n[120]  \f[valign,center]/
+	\__q[OnCheifInfo.Photo.Change,char,1]%Checkbox(chief_photo_choise[1])A\__q   /
+	\__q[OnCheifInfo.Photo.Change,char,2]%Checkbox(chief_photo_choise[2])B\__q   /
+	\__q[OnCheifInfo.Photo.Change,char,0]%Checkbox(chief_photo_choise[0])不使用\__q\n[180]"
+	
+	--
+	_txt="【更換背景顏色】\n[120]"
+	for _i=0 ; _i<=13 ; _i++
+	{
+		if _i==7 ; _txt+="\n[125]"
+		_txt+="\__q[OnCheifInfo.Photo.Change,background,%(_i)]\_b[img\cheif\bg_%(_i).png,inline,--option=use_self_alpha]\__q "
+	}
+	_txt
+	--
+	MuenBottomOption("CheifInfo")
+}
+OnCheifInfo.Photo.Change
+{
+	if reference0 == "char" 
+	{
+		chief_photo_choise=(0,0,0)
+		chief_photo_choise[reference1]=1
+		chief_photo=reference1
+	}
+	--
+	"\p[2]%cp(0)\![bind,%(reference0),%(reference1),1]"
+	--
+	CheifInfo.Photo
+}
+
+

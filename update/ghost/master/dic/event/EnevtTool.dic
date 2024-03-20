@@ -1,0 +1,320 @@
+//
+Char_Name
+{
+	("赫卡蒂","海拉","%(username)")
+}
+Char_Code
+{
+	("HC","HL","C")
+}
+opp{"▶ "}
+nl
+{
+	"\n--\n"
+}
+//=======================進度條=======================
+//%ProgressBar(顏色,x軸位置,寬度,數值,數值max)
+ProgressBar{
+	_img="\_l[%(_argv[1])]"
+	_imgcutb=(_argv[0]+1)*12
+	_percent=_argv[3]*100/_argv[4]
+	_percent2=100-_percent
+	_barzoom=_argv[2]*_percent/100
+	_barblank=(218*_argv[3])/_argv[2]
+	if _argv[3]>=_argv[4]
+	_img+="\_b[img\progressbar.png,inline,--option=use_self_alpha,--clipping=0 %(_argv[0]*12) %(_argv[2]) %(_imgcutb)]"
+	elseif _argv[3]==0
+	_img+="\_b[img\progressbar.png,inline,--option=use_self_alpha,--clipping=0 0 %(_argv[2]) 12]"
+	elseif _argv[3]>0
+	{
+	_img+="\_b[img\progressbar.png,inline,--option=use_self_alpha,--clipping=0 0 %(_argv[2]) 12]\_b[img\progressbar.png,inline,--option=use_self_alpha,--clipping=217 0 218 12]"
+	_img+="\_l[%(_argv[1])]\_b[img\progressbar.png,inline,--option=use_self_alpha,--clipping=0 %(_argv[0]*12) %(_barzoom) %(_imgcutb)]"
+	
+	}
+	_img+="\_b[img\progressbar.png,inline,--option=use_self_alpha,--clipping=217 0 218 12]"
+	_img
+}
+//=======================技能條=======================
+//%EnergyBar(x軸位置,充能,充能max)120x24
+EnergyBar
+{
+	_xpos=_argv[0]
+	_energyleft=_argv[1]
+	_energymax=_argv[2]
+	_emptybar=_energymax-_energyleft
+	_img="\_l[%(_xpos)]"
+	_img+="\_b[img\battle\energybar.png,inline,--option=use_self_alpha,--clipping=0 12 %(_energyleft*12) 24]"
+	_img+="\_b[img\battle\energybar.png,inline,--option=use_self_alpha,--clipping=0 0 %(_emptybar*12) 12]"
+	
+	_img
+	
+}
+//=======================小視窗=======================
+SureWindow
+{
+	_op=_argv[0]
+	_txt="\p[7]\s[-1]\b[50]\![quicksession,true] \_l[236,-25]\__q["
+	_txt+=_op
+	_txt+="]%QTYimg('x')\__q\n[260]\f[align,center]"
+	_txt
+}
+SureWindow.Button
+{
+	_op1=_argv[0]
+	_op2=_argv[1]
+	_txt="\f[align,center]\__q["
+	_txt+=_op1
+	_txt+="]\_b[img\O.png,inline]\__q         \__q["
+	_txt+=_op2
+	_txt+="]\_b[img\X.png,inline]\__q"
+	_txt
+}
+
+//=======================短暫改變部分字體格式=======================
+//ChangePartFontStyle
+//%CPFS(輸入文字,粗體0/1,R,G,B,字體大小,對齊1/2/3,是否改回預設)
+CPFS
+{
+	if _argv[2]!="-"{
+		_fontcolor="%(_argv[2]),%(_argv[3]),%(_argv[4])"
+		_txt="\f[color,"
+		_txt+=_fontcolor
+		_txt+="]"}
+	--
+	if _argv[1]== 0 || 1{
+		if _argv[1]==0
+			_txt+="\f[bold,0]"
+		elseif _argv[1]==1
+			_txt+="\f[bold,1]"
+		}
+	--
+	if _argv[5]!="-"{
+		_txt+="\f[height,"
+		_txt+=_argv[5]
+		_txt+="]"
+	}
+	--
+	if _argv[6]== 1 || 2 || 3{
+		if _argv[6]==1
+			_fontalign=left
+		elseif _argv[6]==2
+			_fontalign=center
+		elseif _argv[6]==3
+			_fontalign=right
+	}
+	--
+	_txt+="%(_argv[0])"
+	if _argv[7]!=no
+	_txt+="\f[default]"
+	_txt
+}
+//----------ChangePartFontBoldClolor只改粗體顏色
+//%CPFBC(輸入文字,粗體0/1,R,G,B)
+CPFBC
+{
+	
+	_fontcolor="%(_argv[2]),%(_argv[3]),%(_argv[4])"
+	
+	_txt="\f[color,"
+	_txt+=_fontcolor
+	_txt+="]"
+	
+	--
+	if _argv[1]== 0 || 1
+		{
+		if _argv[1]==0
+			_txt+="\f[bold,0]"
+		elseif _argv[1]==1
+			_txt+="\f[bold,1]"
+		}
+	--
+	_txt+="%(_argv[0])"
+	_txt+="\f[default]"
+	_txt
+}
+//----------ChangePartFontBoldClolor只改粗體
+CPFB
+{
+	if _argv[1]== 0 || 1
+		{
+		if _argv[1]==0
+			_txt+="\f[bold,0]"
+		elseif _argv[1]==1
+			_txt+="\f[bold,1]"
+		}
+	--
+	_txt+="%(_argv[0])"
+	_txt+="\f[default]"
+	_txt
+}
+
+//=======================小標題=======================
+Subtitle
+{
+	"\f[color,#E0FFFF]\f[bold,1]\![*]%(_argv[0]) \![*]\f[bold,0]\f[color,default]"
+}
+//=======================選項工具=======================
+Menu.Option
+{
+	_option="\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(menu_title)\![*]\f[default]\n\n[half]\f[default]\_q\_l[0,30]\f[height,20]"
+	for _i=0 ; _i<ARRAYSIZE(menu_o_list) ; _i++
+	{
+		_option+="\f[color,200,0,0]%(menu_p_list[_i])\f[default]\q[ %(menu_o_list[_i]) ,%(menu_func_list[_i])]\f[height,20]\n"
+	}
+	_option
+}
+Checkbox
+{
+	_box=""
+	if _argv[0] ==1 ; _box+="\_b[img\dressing\button\mark1.png,inline,--option=use_self_alpha]"
+	else ; _box+="\_b[img\dressing\button\mark0.png,inline,--option=use_self_alpha]"
+	_box
+}
+check0{"\_b[img\dressing\button\mark0.png,inline,--option=use_self_alpha]"}
+check1{"\_b[img\dressing\button\mark1.png,inline,--option=use_self_alpha]"}
+
+//=======================選單底部=======================
+//%BottomOption(y軸位置,編號(0首頁/1互動/2管理局/3外出/4採購部/5局長命令),關閉按鈕的x軸位置)
+BottomOption{
+	if _argv[0]==0
+		_ypos=230
+	else
+		_ypos=_argv[0]
+	_prepage=_argv[1]
+	if _argv[2]==0
+		_argv[1]=170
+	else
+		_argv[1]=_argv[2]
+	_txt="\![quicksession,true]\f[color,#F0F0F0]\f[cursorstyle,none]\_l[4,_ypos]\f[bold,1]\f[height,20]\q[ ↩ ,"
+	if _prepage==0
+		_txt+="OpenMenu"
+	elseif _prepage==1
+		_txt+="Menu_Interact"
+	elseif _prepage==2
+		_txt+="OnMenu_Bureau"
+	elseif _prepage==3
+		_txt+="Menu_GoOutside"
+	elseif _prepage==4
+		_txt+="Menu_STORE"
+	elseif _prepage==5
+		_txt+="Menu_Function"
+	_txt+="]\_l[_argv[1]]\f[bold,0]\q[ ☒ ,CANCEL]"
+	_txt
+}
+
+//=======================取消按鈕=======================
+CANCEL_Button
+{
+	click
+	--
+	CANCEL
+}
+//=======================\x提示字樣=======================
+NEXT_txt
+{
+	_txt="\n\_l[-,"
+	--
+	if _argv[0]=="b" ; _txt+="40"
+	elseif _argv[0]==32 ; _txt+="280"
+	else ; _txt+="30"
+	--
+	_txt+="]\f[align,right]\f[color,#FFE66F]\f[height,12]\f[bold,1]\![quicksession,false]NEXT>>\x"
+	_txt
+}
+//=======================播放聲音=======================
+SFX
+{
+	_file=_argv
+	--
+	_sound= "\![sound,play,sound/"	//"
+	_sound+=_file
+	_sound+= ".mp3]"
+	_sound
+}
+
+//=======================按鍵音=======================
+click
+{
+	if click_sound>=1 ; click_sound=0
+	elseif BattleMode>=1 ; "\![sound,play,sound/sfx/decision button38.mp3]"
+	else ; "\![sound,play,sound/effect/click.mp3]"
+}
+batlle_click
+{
+	if click_sound>=1 ; click_sound=0
+	else ; "\![sound,play,sound/sfx/decision button38.mp3]"
+}
+batlle_msg {"\_v[sound/sfx/battle msg2.mp3]"}
+
+//=======================debuff音效=======================
+sfx_poison {"\_v[sound/sfx/46_Poison_01.mp3]"}
+
+//=======================插入圖片=======================
+QTYimg
+{
+	_pic=_argv[0]
+	_qty="\_b[img\qty\"
+	_qty+="%(_pic)"
+	_qty+=".png,inline,--option=use_self_alpha]"
+	_qty
+}
+ItemImg
+{
+	_img=_argv[0]
+	_txt="\_b[img\items\"
+	_txt+="%(_img)"
+	_txt+=".png,inline,--option=use_self_alpha]"
+	_txt
+
+}
+Bimg
+{
+	"\_b[img\%(_argv[0]),inline,--option=use_self_alpha]"
+}
+
+//=======================時間快記=======================
+WhatTimeNow
+{
+	(year,month,day,hour,minute)
+}
+
+//=======================千位數分隔號=======================
+ThousandsSeparators
+{
+	_num=_argv[0]
+	_temp=TOSTR(TOINT(_num))
+	_tempQ=STRLEN(_temp)
+	//將輸入字串反轉
+	_reverse=""
+	for _a=_tempQ ; _a>0 ; _a--
+	{
+		_reverse+=SUBSTR(_temp,_a-1,1)
+		
+	}
+	//為反轉後的字串插入分隔號
+	_reverseQ=STRLEN(_reverse)
+	_comma=""
+	for _a=0 ; _a<_reverseQ ; _a++
+	{
+		_comma+=SUBSTR(_reverse,_a,1)
+		if _a%3==2 && _a != _reverseQ-1
+			_comma+=","
+	}
+	--
+	//將已反轉的字串回復
+	_c=STRLEN(_comma)
+	_txt=""
+	for _a=_c ; _a>0 ; _a--
+	{
+		_txt+=SUBSTR(_comma,_a-1,1)
+	}
+	--
+	_txt
+}
+
+
+TRSTRtoARRAY
+{	_t=_argv[0] ; _d=_argv[1]
+	_array= REPLACE (_t,_d,",")
+	_array
+}

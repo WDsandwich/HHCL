@@ -1,0 +1,51 @@
+//經驗值獲得事件
+WhenExpGet
+{
+	LevelCheck
+	--
+	if exp>=levelupexp
+	{	exp-=levelupexp
+		level++
+		--
+		if BattleMode=1 ; "\n[150]"
+		else ; "\p[6]\s[-1]\b[32]"
+		--
+		"%SFX('sfx/glassbell')%(bp) 等級提升至Lv.%(level)！%(bp)\w9\w3"
+		--
+		_lv=(2,5,10,15,20)
+		_ob="海拉,赫卡蒂,海拉,赫卡蒂,海拉"
+		_s="文明迪斯,無光之鏡,武力全開,召喚夢魘,奮力一擊"
+		for _i=0 ; _i<5 ; _i++
+		{
+			if level==_lv[_i]
+			"\n[150]%SFX('sfx/chipquest')%(bp) %(_ob[_i]) 學會了【%(_s[_i])】！%(bp)\w9\w3"
+		}
+	}
+	--
+	LevelCheck
+}
+
+//檢查等級是否超過100，以重新定義相關數值
+LevelCheck
+{
+	_expmax=((level*10)*(level*10))
+	//定義經驗值上限
+	if level<100
+		levelupexp=_expmax
+	elseif level>=100
+		levelupexp=1000000
+	--
+	//定義體力上限
+	if level<100
+		staminamax=100+level
+	elseif level>=100
+		staminanax=200
+}
+
+//升級事件
+LevelUp
+{
+	level++
+	--
+	LevelCheck
+}

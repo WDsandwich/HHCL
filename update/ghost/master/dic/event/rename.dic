@@ -1,0 +1,951 @@
+﻿////////////////批量文件重命名辭書/////////////////
+///////////////////////v1.1////////////////////////
+/////////////////////歡迎使用//////////////////////
+
+
+
+
+
+//         /*
+OnSystemDialog           //系統事件,不能有重命,如有重名,刪除最開始的'//'，並將內容添加到OnSystemDialog內
+{
+        if reference1 == "filesrenameopencon"{
+               DialogFilesRenameOpenCon(reference2);
+               OnFilesRename
+        }  
+        elseif reference1 == "filesrenamesavecon"{
+               DialogFilesRenameSaveCon(reference2);
+        }
+} 
+//          */
+
+LEFT//功能得到字符串左部指定個數的字符。 
+{
+	_str=_argv[0];
+	_n=_argv[1];
+	_l=STRLEN(_str);
+	if _l-_n>=0
+	{SUBSTR(_str,0,_n);return;}
+	else
+	{SUBSTR(_str,0,_l);return;}
+}
+
+RIGHT//功能得到字符串右部指定個數的字符。 
+{
+	_str=_argv[0];
+	_n=_argv[1];
+	_l=STRLEN(_str);
+	if _l-_n>=0
+	{SUBSTR(_str,_l-_n,_n);return;}
+	else
+	{SUBSTR(_str,0,_l);return;}
+}
+
+//入口函數
+OnInterFileRename
+{
+        renamecondition=IARRAY;
+	//DialogFilesRenameOpenCon     // 5.34以下YAYA版本可能有錯誤提示，將此註釋掉
+         DialogFilesRenameOpenCon      //5.34以上版本或沒有錯誤提示
+        OnFilesRename;
+}
+
+
+OnFilesRename
+{
+	_txt="";
+	_submenu=reference0;
+	if _argc>0
+		_submenu=_argv[0];
+	_txt+=FilesRenameMenu(_submenu);
+	option=NULL;
+	rename=1;
+	_total=ARRAYSIZE(renamecondition);
+	
+	for _i=0;_i<_total;_i++
+	{
+		if renamecondition[_i][0]!=""
+		{
+			_txt+="\q[↑,OnFilesRenameSet,%(_submenu),up,%(_i)] \q[↓,OnFilesRenameSet,%(_submenu),down,%(_i)] \q[刪,OnFilesRenameSet,%(_submenu),del,%(_i)]%(_i+1)\__q[OnFilesRenameSet,%(_submenu),rename_editconid,%(_i)]"+renamecondition[_i][0]+"\__q\n";
+			
+		}
+	}
+	
+	_txt+="\n[half]";
+        _txt+="用鼠標拖入文件或文件夾\n"
+        _t="子目錄關,子目錄開";
+			_txt+="\![*]\q[%(_t[TOINT(rename_submenu)]),OnFilesRenameSet,%(_submenu),assign,rename_submenu,%(TOINT(rename_submenu+1)%2)]\n[150]"
+
+	_txt+="\f[color,127,179,230]\f[bold,true]原文件名  \_l[140,-]新文件名   \_l[260]狀態\n";
+	_total=ARRAYSIZE(filerenamelist);
+	
+	for _i=0;_i<_total;_i++
+	{
+		_txt+=SPLITPATH(filerenamelist[_i])[2]+SPLITPATH(filerenamelist[_i])[3];
+		
+		if _argv[1]=="editlist"
+		{
+			_txt+="\_l[220,-]\q[頂,OnFilesRenameSet,%(_submenu),top,%(_i)]\q[底,OnFilesRenameSet,%(_submenu),bottom,%(_i)]\q[↑,OnFilesRenameSet,%(_submenu),fileup,%(_i)] \q[↓,OnFilesRenameSet,%(_submenu),filedown,%(_i)] \q[刪,OnFilesRenameSet,%(_submenu),filedel,%(_i)]";
+		}
+		
+		
+		elseif reference1=="preview"
+		{
+			
+			_replace=OnReNameGet(_i);
+			if _replace!=-1
+				_txt+="\_l[120,-]"+_replace;
+			
+			
+		}
+		elseif reference1=="rename"
+		{
+			_replace=OnReNameGet(_i);
+                        _txt+="\_l[120]"+_replace;
+			_name=filerenamelist[_i];
+			_replace=SPLITPATH(filerenamelist[_i])[0]+SPLITPATH(filerenamelist[_i])[1]+_replace;
+			_temp=FRENAME(_name,_replace);
+			_txt+="\_l[260]"+"失敗,成功"[_temp];
+			if _temp
+			{
+				filerenamenewlist[_i]=filerenamelist[_i];
+				filerenamelist[_i]=_replace;
+			}
+		}
+		
+		elseif reference1=="restore"
+		{
+			if ISVAR("filerenamenewlist")==1
+			{
+				_name=filerenamelist[_i];
+				_replace=filerenamenewlist[_i];
+                                _txt+="\_l[120]"+SPLITPATH(filerenamenewlist[_i])[2]+SPLITPATH(filerenamenewlist[_i])[3];
+				_temp=FRENAME(_name,_replace);
+				if _temp
+					filerenamelist[_i]=filerenamenewlist[_i];
+				_txt+="\_l[240]"+"恢復失敗,恢復成功"[_temp];
+			}
+			
+			
+			
+			
+		}
+		
+		_txt+="\n";
+		
+	}
+	if reference1=="rename"
+		_txt+="\x\![raise,OnFilesRename,%(_submenu)]";
+	
+	elseif reference1=="restore"
+	{
+		if ISVAR("filerenamenewlist")==1
+		{
+			ERASEVAR("filerenamenewlist");
+			_txt+="\x\![raise,OnFilesRename,%(_submenu)]";
+		}
+	}
+	
+	
+	_txt;
+	
+	
+}
+
+OnReNameGet
+{
+	_i=TOINT(_argv[0]);
+	_str=SPLITPATH(filerenamelist[_i])[2];
+	_ext=SPLITPATH(filerenamelist[_i])[3];
+	_replace=_str;
+	_k=ARRAYSIZE(renamecondition);
+	for _j=0;_j<_k;_j++
+	{
+		if renamecondition[_j][0]!=""
+		{
+			if renamecondition[_j][1]==0
+			{
+				_replace=TXTREPLACE(_str,renamecondition[_j][2],renamecondition[_j][3],renamecondition[_j][4]);
+				
+			}
+			
+			elseif renamecondition[_j][1]==1
+			{
+				_replace=POSREPLACE(_str,renamecondition[_j][2],renamecondition[_j][3],renamecondition[_j][4]);
+				
+			}
+			elseif renamecondition[_j][1]==2
+			{
+				_ext=REPLACE(_ext,renamecondition[_j][2],renamecondition[_j][3]);
+			}
+			elseif renamecondition[_j][1]==3
+				_replace=FIXREPLACE(_str,TOINT(renamecondition[_j][2])+_i,renamecondition[_j][3],renamecondition[_j][4],renamecondition[_j][5]);
+			elseif renamecondition[_j][1]==4
+	        	{
+			if renamecondition[_j][2]==0
+				_replace=TOUPPER(_str);
+			elseif renamecondition[_j][2]==1
+				_replace=TOLOWER(_str);
+			if renamecondition[_j][2]==2
+				_ext=TOUPPER(_ext);
+			elseif renamecondition[_j][2]==3
+				_ext=TOLOWER(_ext);
+			
+		        }
+			_str=_replace;
+		}
+		
+	}
+	
+
+	
+	
+	_replace=_replace+_ext;
+	_replace;
+	
+}
+
+
+TXTREPLACE
+{
+	//TXTREPLACE("AabBaabb","aa","",0)=bBbb           //替換指定內容”:將“aa”替換成為“”區分大小寫“否”
+	_str=_argv[0];
+	_ori=_argv[1];
+	_rep=_argv[2];
+	_case=TOINT(_argv[3]);
+	_l=STRLEN(_str);
+	_o=STRLEN(_ori);
+	_result="";
+
+	if _case==0
+	{
+                    _ori=REPLACE(_ori,'?','.?')
+                    _ori="(?i)"+_ori
+                    _ori=REPLACE(_ori,'*','.*')
+                    _result=RE_REPLACE(_str,_ori,_rep)
+	}
+	else
+	{
+	 _result=RE_REPLACE(_str,_ori,_rep);
+	}
+	_result;
+}
+
+
+POSREPLACE
+{
+	//POSREPLACE("1234",1,2,"sss")=sss34   //替換指定位置”:將自第“1”字開始，長度為“2”的字區哉替換為“sss”
+	_str=_argv[0];
+	_start=TOINT(_argv[1]);
+	_len=TOINT(_argv[2]);
+	_txt=_argv[3];
+	_temp="";
+	_result="";
+	_l=STRLEN(_str);
+	if _l-_start-len+1>0
+	{
+		_temp=SUBSTR(_str,0,_start-1);
+		_temp=_temp+_txt+SUBSTR(_str,_start+_len-1,_l);
+	}
+	else
+		_temp=_str;
+	
+	_result=_temp;
+	_result;
+	
+	
+}
+
+
+FIXREPLACE
+{
+	//FIXREPLACE("a",1,4,"",0)=0001a   //前後綴設置:添加內容“”並且補充長度為“4”的數字編號 添加方式為前綴，以數字“1”開始
+	_str=_argv[0];
+	_numbegin=TOINT(_argv[1]);
+	_numlen=TOINT(_argv[2]);
+	_add=_argv[3];
+	_fix=TOINT(_argv[4]);
+	_num="";
+	_zero="";
+	_result="";
+	_temp="";
+	_len=STRLEN(_numbegin);
+	if _numbegin<POW(10,_numlen-1)
+	{
+		for _i=_numlen-_len;_i>0;_i--
+		{
+			_zero+="0";
+		}
+		_num=_zero+_numbegin;
+	}
+	else
+		_num=_numbegin;
+	
+	if _fix==0
+		_temp=_add+_num+_str;
+	else
+		_temp=_str+_add+_num;
+	
+	_sesult=_temp;
+	_sesult;
+	
+}
+
+FilesRenameMenu
+{
+	"\p[2]\b[4]"
+	--
+	_submenu=0;
+	
+	if _argc > 0 {
+		_submenu = TOINT(_argv[0]);
+	}
+	_txt="\C\![quicksession,true]\c\![set,choicetimeout,0]\![set,autoscoll,false]\b[4]";
+	_txt+="■魔法 - 批量文件重命名■\n";
+	_txt+="\![*]\q[選擇目錄	,OnFileRenameListAdd,folder]";
+	_txt+="\_l[85]\![*]\q[清空文件,OnFilesRenameSet,%(_submenu),clearfile]";
+	_txt+="\_l[170]\![*]\q[編輯列表,OnFilesRenameSet,%(_submenu),editlist]";
+	_txt+="\_l[255]\![*]\q[說明,OnFileRenameIntro,%(_submenu)]";
+	_txt+="\_l[310]\![*]\q[退出,OnExitFileRename]";
+	_txt+="\n";
+	
+	_sub[_submenu]="\f[color,192,192,192]";
+	_subend[_submenu]="\f[color,default]";
+	_txt+="\__q[OnFilesRenameSub,0]%(_sub[0])替換內容  %(_subend[0])\__q";
+	_txt+="\__q[OnFilesRenameSub,1]%(_sub[1])替換位置  %(_subend[1])\__q";
+	_txt+="\__q[OnFilesRenameSub,2]%(_sub[2])替換擴展名  %(_subend[2])\__q";
+	_txt+="\__q[OnFilesRenameSub,3]%(_sub[3])前後綴設置  %(_subend[3])\__q";
+	_txt+="\__q[OnFilesRenameSub,4]%(_sub[4])全局配置  %(_subend[4])\__q\n";
+	
+	_txt+=FilesRenameCondition(_submenu);
+	_txt;
+	
+}
+
+OnFileRenameIntro
+{
+_submenu=reference0
+_txt="\0\![quicksession,true]\![set,choicetimeout,0]\b[4]"
+_txt+="批量文件重命名工具V1.1\n[150]"
+_txt+="工具使用：\n/
+　　1、支持多命名條件設定。\n/
+　　2、支持多文件批量處理。\n/
+　　3、支持子目錄,並能設定子目錄開關\n/
+　　4、你可以用鼠標把文件夾拖入，以便命名文件夾。\n/
+　　5、可以導出，導入配置文件以便以後應用。\n/
+　　6、支持替換內容的通配符號（*匹配任意多個字符，?匹配一個字符）。\x"
+_txt+=OnFilesRename(_submenu)
+_txt
+
+}
+
+
+
+OnFilesRenameSub
+{
+	
+	OnFilesRename(reference0);
+	
+	
+	
+}
+
+OnClickOption
+{
+	_txt="";
+	_w="";
+	_hexnum="1,2,3,4,5,6,7,8,9,0";
+	_submenu=reference0;
+	_varname=reference1;
+	_exp=reference2;
+	if _exp=="0"&&_varname=="rename_pos"
+		_exp=1;
+	
+	if _exp!=""
+		EVAL("%(_varname)=%(_exp)");
+	
+	for _i=0;_i<10;_i++
+	{
+		_num=_hexnum[_i];
+		_w+="\q[%(_num),OnClickOption,%(_submenu),%(_varname),%(_exp+_num)]";
+	}
+	_back=LEFT(_exp,STRLEN(_exp)-1);
+	_w+=" \q[Backspace,OnClickOption,%(_submenu),%(_varname),%(LEFT(_exp,STRLEN(_exp)-1))]";
+	option=_w;
+	
+	_txt+=OnFilesRename(_submenu);
+	_txt;
+}
+
+OnFilesRenameSet
+{
+	_submenu=reference0;
+	_state=reference1;
+	if ISVAR("renamecondition")==0
+		renamecondition=IARRAY;
+	
+	if reference1=="add"
+                    renamecondition,=RenameConSub(reference0);
+
+	elseif reference1=="delall"
+              renamecondition=IARRAY;
+         
+	elseif reference1=="assign"
+		EVAL("%(reference2)=%(reference3)");
+	
+	
+	elseif reference1=="clearfile"
+              filerenamelist=IARRAY;
+	
+	elseif reference1=="rename_fix"
+		rename_fix=reference2;
+	
+	elseif reference1=="rename_case"
+		rename_case=reference2;
+
+        elseif reference1=="rename_editconid"
+              {
+               rename_editconid=reference2
+                _submenu=renamecondition[rename_editconid][1]
+                }
+        elseif reference1=="saveconid"
+             {
+               renamecondition[rename_editconid]=RenameConSub(reference0);
+               ERASEVAR("rename_editconid")
+              }
+
+
+	elseif reference1=="up"
+	{
+		_id=reference2;
+		if _id>0
+		{
+			_temp=renamecondition[_id];
+			renamecondition[_id]=renamecondition[_id-1];
+			renamecondition[_id-1]=_temp;
+		}
+		
+	}
+	
+	elseif reference1=="del"
+	{
+		_id=reference2;
+		renamecondition[_id]=IARRAY;
+	}
+	
+	
+	elseif reference1=="down"
+	{
+		_total=ARRAYSIZE(renamecondition);
+		_id=reference2;
+		if _id<_total-1
+		{
+			_temp=renamecondition[_id];
+			renamecondition[_id]=renamecondition[_id+1];
+			renamecondition[_id+1]=_temp;
+			
+		}
+		
+		
+	}
+	
+	elseif reference1=="top"
+	{
+		_id=reference2;
+		_temp=filerenamelist[_id];
+		filerenamelist[_id]=IARRAY;
+		filerenamelist=(_temp,filerenamelist);
+		_state="editlist";
+	}
+	elseif reference1=="bottom"
+	{
+		_total=ARRAYSIZE(filerenamelist);
+		_id=reference2;
+		_temp=filerenamelist[_id];
+		filerenamelist[_id]=IARRAY;
+		filerenamelist=(filerenamelist,_temp);
+		_state="editlist";
+	}
+	
+	elseif reference1=="fileup"
+	{
+		_id=reference2;
+		if _id>0
+		{
+			_temp=filerenamelist[_id];
+			filerenamelist[_id]=filerenamelist[_id-1];
+			filerenamelist[_id-1]=_temp;
+		}
+		_state="editlist";
+	}
+	
+	elseif reference1=="filedown"
+	{
+		_total=ARRAYSIZE(filerenamelist);
+		_id=reference2;
+		if _id<_total-1
+		{
+			_temp=filerenamelist[_id];
+			filerenamelist[_id]=filerenamelist[_id+1];
+			filerenamelist[_id+1]=_temp;
+			
+		}
+		_state="editlist";
+	}
+	
+	elseif reference1=="filedel"
+	{
+		_id=reference2;
+		filerenamelist[_id]=IARRAY;
+		_state="editlist";
+	}
+	
+	
+	OnFilesRename(_submenu,_state);
+}
+
+RenameConSub
+{
+_sub=TOINT(reference0)
+if _argc>0
+_sub=TOINT(_argv[0])
+
+case _sub
+{
+   when 0
+    {
+"%(CHR(34))替換指定內容%(CHR(34))：將%(CHR(34))%(rename_ori)%(CHR(34))替換成為%(CHR(34))%(rename_text)%(CHR(34))區分大小寫%(CHR(34))%('否,是'[rename_case])%(CHR(34)),%(reference0),%(rename_ori),%(rename_text),%(TOINT(rename_case))"
+    }
+    when 1
+    {
+"%(CHR(34))替換指定位置%(CHR(34))：將自第%(CHR(34))%(rename_pos)%(CHR(34))字開始，長度為%(CHR(34))%(TOINT(rename_len))%(CHR(34))的字區哉替換為%(CHR(34))%(rename_postext)%(CHR(34)),%(reference0),%(TOINT(rename_pos)),%(rename_len),%(rename_postext)";
+    }
+   when 2
+    {
+"%(CHR(34))替換擴展名%(CHR(34))：將擴展名%(CHR(34))%(rename_oriextension)%(CHR(34))替換成擴展名%(CHR(34))%(rename_newextension)%(CHR(34)),%(reference0),%(rename_oriextension),%(rename_newextension)";
+    }
+   when 3
+    {
+"%(CHR(34))前後綴設置%(CHR(34))：添加內容%(CHR(34))%(rename_add)%(CHR(34))並且補充長度為%(CHR(34))%(rename_numlen)%(CHR(34))的數字編號，添加方式為%(CHR(34))%('前綴,後綴'[rename_fix])%(CHR(34))，以數字“%(rename_numbegin)”開始,%(reference0),%(TOINT(rename_numbegin)),%(TOINT(rename_numlen)),%(rename_add),%(TOINT(rename_fix))";
+    }
+   when 4
+    {
+"%(CHR(34))全局配置%(CHR(34))：將執行%(CHR(34))%('文件名大寫,文件名小寫,擴展名大寫,擴展名小寫'[rename_globle])%(CHR(34)),%(reference0),%(TOINT(rename_globle))";
+    }
+
+}
+
+
+}
+
+OnRenameInput
+{
+	"\p[2]\b[4]"
+	--
+	submenu=reference0;
+	rename_var=reference1;
+	"\C\![open,inputbox,OnRenameText,-1,%(EVAL(rename_var))]";
+	
+}
+
+OnRenameText
+{
+        if (rename_var=="rename_text"||rename_var=="rename_postext"||rename_var=="rename_add"||rename_var=="rename_newextension")&&RenameCheck(reference0)==0
+       {
+          '包含非法字符（\ / : * ? " < > |）請修改\![open,inputbox,OnRenameText,-1,%(EVAL(rename_var))]';
+          return;
+        }
+
+
+	EVAL("%(rename_var)=%(CHR(34))%(reference0)%(CHR(34))");
+	OnFilesRename(submenu);
+	submenu=null;
+	rename_var=null;
+}
+
+RenameCheck
+{
+	"\p[2]\b[4]"
+	--
+_str=_argv[0]
+_forbidden=('\','/',':','*','?','"','<','>','|')
+_check=1
+foreach _forbidden;_i
+{
+if _i _in_ _str
+_check=0
+
+}
+
+_check
+
+
+}
+
+FilesRenameCondition
+{
+	_submenu=_argv[0];
+	_txt="";
+	_txt+="\![*]\q[添加條件,OnFilesRenameSet,%(_submenu),add]";
+	_txt+="\_l[l85]\![*]\q[導入條件,OnFileRenameListAdd,opencon]";
+	_txt+="\_l[170]\![*]\q[導出條件,OnFileRenameListAdd,savecon]";
+        if ISVAR("rename_editconid")
+        _txt+="\_l[210]\![*]\q[保存條件%(TOINT(rename_editconid)+1),OnFilesRenameSet,%(_submenu),saveconid,TOINT(rename_editconid)]\n"   
+         else
+        _txt+="\n"
+	_txt+="\![*]\q[清空條件,OnFilesRenameSet,%(_submenu),delall]";
+	_txt+="\_l[85]\![*]\q[預覽,OnFilesRename,%(_submenu),preview]";
+	_txt+="\_l[170]\![*]\q[重命名,OnFilesRename,%(_submenu),rename]";
+	_txt+="\_l[255]\![*]\q[撤消重命名,OnFilesRename,%(_submenu),restore]\n[150]";
+	
+	
+	case _submenu
+	{
+		
+		when 0
+		{
+			
+			_t="□,■";
+			_txt+="\q[%(_t[rename_case]),OnFilesRenameSet,%(_submenu),assign,rename_case,%(TOINT(rename_case+1)%2)]區分大小寫\n";
+			_txt+="\q[原有內容：,OnRenameInput,%(_submenu),rename_ori]%(rename_ori)\n";
+			_txt+="\q[替換內容：,OnRenameInput,%(_submenu),rename_text]%(rename_text)\n[150]";
+		}
+		
+		when 1
+		{
+			_txt+="\q[起始位置：,OnClickOption,%(_submenu),rename_pos,1]%(TOINT(rename_pos))";
+			_txt+="\_l[80]\q[截取長度：,OnClickOption,%(_submenu),rename_len,0]%(TOINT(rename_len))\_l[170]";
+			if option
+				_txt+=option;
+			_txt+="\n\q[替換內容：,OnRenameInput,%(_submenu),rename_postext]%(rename_postext)\n[150]";
+			
+		}
+		when 2
+		{
+			_txt+="修改擴展名可能會導致文件無法使用，請確認\n";
+			_txt+="\q[原擴展名：,OnRenameInput,%(_submenu),rename_oriextension]%(rename_oriextension)（不填則匹配所有）\n";
+			_txt+="\q[新擴展名：,OnRenameInput,%(_submenu),rename_newextension]%(rename_newextension)\n[150]";
+		}
+		
+		when 3
+		{
+			_t="前綴,後綴";
+			_txt+="\![*]\q[%(_t[TOINT(rename_fix)]),OnFilesRenameSet,%(_submenu),assign,rename_fix,%(TOINT(rename_fix+1)%2)]";
+			_txt+="\_l[80]\q[添加內容：,OnRenameInput,%(_submenu),rename_add]%(rename_add)\n";
+			_txt+="\q[編號長度：,OnClickOption,%(_submenu),rename_numlen,0]%(TOINT(rename_numlen))";
+			_txt+="\_l[80]\q[號碼初始值：,OnClickOption,%(_submenu),rename_numbegin,1]%(TOINT(rename_numbegin))\_l[170]";
+			if option
+				_txt+=option;
+			_txt+="\n[150]";
+		}
+		
+		when 4
+		{
+			_t="文件名大寫,文件名小寫,擴展名大寫,擴展名小寫";
+			_txt+="\![*]\q[%(_t[rename_globle]),OnRenameGloble,%(_submenu),rename_globle,0]\n";
+			if option
+				_txt+=option;
+			_txt+="\n[150]";
+		}
+	}
+		_txt;
+		
+}
+
+OnRenameGloble
+{
+	_submenu=reference0;
+	EVAL("%(reference1)=%(reference2)");
+	_txt="";
+	_t="文件名大寫,文件名小寫,擴展名大寫,擴展名小寫";
+	_w+="\![*]\q[%(_t[1]),OnRenameGloble,%(_submenu),rename_globle,1]\n";
+	_w+="\![*]\q[%(_t[2]),OnRenameGloble,%(_submenu),rename_globle,2]\n";
+	_w+="\![*]\q[%(_t[3]),OnRenameGloble,%(_submenu),rename_globle,3]\n";
+	
+	option=_w;
+	if _submenu==0;
+	i=0;
+	i++;
+	if i%2==1;
+	option=null;
+	_txt+=OnFilesRename(_submenu);
+	_txt;
+}
+
+
+OnFileRenameListAdd
+{
+	if reference0 == 'folder' {
+		"\C\![open,dialog,folder,--id=filerenamefolder,--title=請選擇要重命名文件的文件夾]";
+	}
+	elseif reference0 == 'opencon'
+       	"\C\![open,dialog,open,--id=filesrenameopencon,--title=請選擇配置文件,--filter=規則文件(rncfg)|*.rncfg,--ext=rncfg]";
+	elseif reference0=='savecon'
+		"\C\![open,dialog,save,--id=filesrenamesavecon,--title=請輸入要保存的配置文件名,--filter=規則文件(rncfg)|*.rncfg,--ext=rncfg]";
+}
+
+OnGood
+{
+	"\p[2]\b[4]"
+	--
+
+_t=FOPEN("","r")
+
+
+}
+
+#define		RNCFGPATH		"profile\\filesrename.rncfg"
+
+DialogFilesRenameOpenCon
+{
+	_rncfg=RNCFGPATH;
+	if _argc > 0 {
+		_rncfg = _argv[0];
+	}
+	_submenuname=("替換指定內容","替換指定位置","替換擴展名","前後綴設置","全局配置");
+	_txtnum=0;
+	_varname="";
+   	if FOPEN(_rncfg,'r') 
+	{
+		_buff = FREAD(_rncfg);
+		while _buff != -1 
+		{
+			if '[FilesRename Config]' !_in_ _buff 
+			{
+				_varname=_buff[1,'"'];
+				_submenu=ASEARCH(_varname,_submenuname);
+				if _submenu==0
+				{
+					rename_ori=_buff[3,'"'];
+					rename_text=_buff[5,'"'];
+					rename_case=_buff[7,'"'];
+					_t=("否","是");
+					rename_case=ASEARCH(rename_case,_t);
+					renamecondition,="%(_buff),%(_submenu),%(rename_ori),%(rename_text),%(rename_case)";
+					
+				}
+				elseif _submenu==1
+				{
+					rename_pos=_buff[3,'"'];
+					rename_len=TOINT(_buff[5,'"']);
+					rename_postext=_buff[7,'"'];
+					renamecondition,="%(_buff),%(_submenu),%(rename_pos),%(rename_len),%(rename_postext)";
+				}
+				elseif _submenu==2
+				{
+					rename_oriextension=_buff[3,'"'];
+					rename_newextension=_buff[5,'"'];
+					renamecondition,="%(_buff),%(_submenu),%(rename_oriextension),%(rename_newextension)";
+					
+				}
+				elseif _submenu==3
+				{
+					rename_numbegin=_buff[1,'“'];
+//'"前後綴設置"：添加內容""並且補充長度為"3"的數字編號，添加方式為"後綴"，以數字“1”開始'[1,'“'];
+                                        if rename_numbegin==""
+                                                rename_numbegin=1
+	                                rename_numbegin=TOINT(rename_numbegin[0,'”']);
+					rename_add=_buff[3,'"'];
+					rename_numlen=TOINT(_buff[5,'"']);
+					rename_fix=_buff[7,'"'];
+					_t=("前綴","後綴");
+					rename_fix=ASEARCH(rename_fix,_t);    
+					
+					renamecondition,="%(_buff),%(_submenu),%(rename_numbegin),%(rename_numlen),%(rename_add),%(rename_fix)";
+				}
+				elseif _submenu==4
+				{
+					rename_globle=_buff[3,'"'];
+					_t=("文件名大寫","文件名小寫","擴展名大寫","擴展名小寫");
+					rename_globle=ASEARCH(rename_globle,_t);
+					renamecondition,="%(_buff),%(_submenu),%(rename_globle)";
+				}
+				
+			}
+			_txtnum++;
+			_buff = FREAD(_rncfg);
+		}
+	}
+	FCLOSE(_rncfg);
+	DialogFilesRenameSaveCon
+}
+
+
+DialogFilesRenameSaveCon
+{
+	_rncfg=RNCFGPATH;
+	if _argc > 0 {
+		_rncfg = _argv[0];
+	}
+	
+	FCHARSET(1);
+	
+	_t = FOPEN(_rncfg,'w');
+	_t = FWRITE(_rncfg,"[FilesRename Config]");
+	foreach renamecondition; _i 
+	{
+		_t = FWRITE(_rncfg,_i[0]);
+	}
+	FCLOSE(_rncfg);
+	FCHARSET(1);
+}
+
+
+
+FileRenameLoadFile
+{
+	filerenamelist ,= REPLACE(_argv[0],'/','\');
+}
+
+OnFileRenameDrop
+{
+         if _argc>0
+	temp = _argv[0];
+        _buff=temp
+        _txt=""
+        _num=0;
+        _id=reference1
+	foreach _buff; _ref 
+	{
+		if SUBSTR(_ref,STRLEN(_ref)-1,1) == '\' 
+		     {
+                          _menuname=REPLACE(_ref,'\','\\')
+                          _w="\_q要添加%(_menuname)文件夾下的文件還是該文件夾？\n/
+                             選擇是添加文件，選擇否添加文件夾。\n/
+                              \q[是,OnFileRenameDrop,yes,%(_id)]\n/
+                              \q[否,OnFileRenameDrop,no,%(_id)]\n/
+                              \q[全是,OnFileRenameDrop,allyes]\n/
+                              \q[全否,OnFileRenameDrop,allno]"
+                        
+                          if reference0=="yes"&&_num==_id
+                            {
+                                      FileRenameLoadFolder(_ref,"yes");
+                            }
+                          elseif reference0=="no"&&_num==_id
+                            {
+                                _temp=POSREPLACE(_ref,STRLEN(_ref),1,'')
+                                filerenamelist,= REPLACE(_temp,'/','\');
+                                txt=REPLACE(_ref,'/','\')
+                                FileRenameLoadFolder(_ref,"no");   
+                            }
+                          elseif reference0=="allyes"
+                            {
+                                      FileRenameLoadFolder(_ref,"yes");
+                            }
+                          elseif reference0=="allno"
+                            {
+                                _temp=POSREPLACE(_ref,STRLEN(_ref),1,'')
+                                filerenamelist,= REPLACE(_temp,'/','\');
+                                txt=REPLACE(_ref,'/','\')
+                                FileRenameLoadFolder(_ref,"no");   
+                            }
+
+                          else
+                               {
+                                      _id=_num
+                                     _txt+=_w
+                                     _txt;
+                                     return;
+                                }
+                  }
+		else 
+                     {
+                         _fileext = TOLOWER(SPLITPATH(_ref)[3]);
+                          if _fileext==".rncfg"
+                          DialogFilesRenameOpenCon(_ref);
+                          else
+			FileRenameLoadFile(_ref);
+
+                      }
+              temp[_num]=IARRAY
+              _num++
+	}
+
+	_total=ARRAYSIZE(filerenamelist);
+	
+	for _i=0;_i<_total;_i++
+	{
+		for _j=_i;_j<_total;_j++
+		{
+			_namei=SPLITPATH(filerenamelist[_i])[2]
+                        if ISINTSTR(_namei)
+                         _namei=TOINT(_namei)
+                        _namej=SPLITPATH(filerenamelist[_j])[2]
+                        if ISINTSTR(_namej)
+                        _namej=TOINT(_namej)
+			if _namej<_namei
+                       {
+				_temp=filerenamelist[_j];
+				filerenamelist[_j]=filerenamelist[_i];
+				filerenamelist[_i]=_temp;
+                       }
+		}
+		
+	}
+	
+
+	OnFilesRename;
+}
+
+
+DialogFileRenameFolder
+{
+	FileRenameLoadFolder(_argv[0]);
+}
+
+FileRenameLoadFolder
+{
+	_path = _argv[0];
+	_file = FENUM(_path);
+	foreach _file; _f {
+		
+		_f = _path +"/"+ _f;
+		_fileext = TOLOWER(SPLITPATH(_f)[3]);
+		if _fileext =="" 
+                       {      
+                        if rename_submenu==1
+                        {
+                               if _argv[1]=="no"
+                                filerenamelist ,= REPLACE(_f,'/','\');
+		        	FileRenameLoadFolder(_f,_argv[1]);
+                         }
+                        }
+		elseif _fileext !="" && _argv[1]=="yes"
+			filerenamelist ,= REPLACE(_f,'/','\');
+	}
+
+
+
+
+		
+}
+
+
+OnExitFileRename
+{
+	DialogFilesRenameSaveCon;
+	ClearFilesRenameVar;
+	"\0\s[40]好的。"
+}
+
+ClearFilesRenameVar
+{
+	ERASEVAR("rename");
+	ERASEVAR("renamecondition");
+	ERASEVAR("rename_fix");
+	ERASEVAR("rename_case");
+	ERASEVAR("rename_ori");
+	ERASEVAR("rename_text");
+	ERASEVAR("rename_pos");
+	ERASEVAR("rename_len");
+	ERASEVAR("rename_postext");
+	ERASEVAR("rename_numbegin");
+	ERASEVAR("rename_numlen");
+	ERASEVAR("rename_globle");
+	ERASEVAR("rename_editconid")
+	ERASEVAR("temp");
+}
+
+
+
+

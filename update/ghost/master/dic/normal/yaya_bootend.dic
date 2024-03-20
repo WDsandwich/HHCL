@@ -1,0 +1,342 @@
+//******************************************************************************
+// YAYA　ゴーストテンプレート
+// 起動/終了トーク辞書
+//******************************************************************************
+
+//******************************************************************************
+//初回起動 OnFirstBoot
+//******************************************************************************
+
+OnFirstBoot
+{
+	Initialize.Data
+	--
+	"\w9\![change,balloon,赫卡蒂＆海拉＆局長的日常]"
+	--
+	ChiefRegister
+}
+
+
+//******************************************************************************
+//通常の起動 OnBoot
+//******************************************************************************
+// 打卡
+DailyCheckOut
+{
+	_m=month ; _d=day
+	if month<10 ; _m="0"+month
+	if day<10 	; _d="0"+day
+	if "%(year).%(_m).%(_d)" _in_ TOSTR (open_date) ; ""
+	else ; open_date = ("%(year).%(_m).%(_d)",open_date)
+	void ARRAYDEDUP (open_date)
+}
+DailyCheckOut.Fix
+{
+	void ARRAYDEDUP (open_date)
+	--
+	CheifInfo
+}
+OnBoot
+{
+	BattleMode=0
+	ill_mode=0
+	DressingMode=0
+	StoreMode=0
+	HotkeyMode=0
+	storepage=(0,0)
+	Last_Offline[1]=Last_Offline[0]
+	Last_Offline[0]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
+	cloth_line_hc=(0,0)
+	HolidayCheck
+	OnSaveBackup.Save('boot')
+	DailyCheckOut
+	/*if version_name=="0.9.4" ; version_code="0,09,04"*/
+	--
+	"\0\s[0]\1\s[10]\p[2]%cp(0)"
+	--                   
+	//檢查離線間隔
+	_interval = TimeSpan(Last_Offline[0],Last_Offline[1])
+	//	扣除心情
+	_ml=TOINT(TOREAL(_interval/600))
+	mood-=_ml
+	if mood[0]<400 ; mood[0]=400
+	if mood[1]<400 ; mood[1]=400
+	if _interval >= 2592000
+	{	if mood[0]>200 ; mood[0]=200
+		if mood[1]>200 ; mood[1]=200
+	}
+	if _interval >= 15552000
+	{	if mood[0]>50 ; mood[0]=50
+		if mood[1]>50 ; mood[1]=50
+	}
+	--
+	//節日特殊事件
+	if MenuChoice==1 { _eh=event_holiday_HL ; _hc=holiday_celebrated_HL }
+	else			 { _eh=event_holiday_HC ; _hc=holiday_celebrated_HC }
+	_he=0 ; _hcy=""
+	for _i=0 ; _i<ARRAYSIZE(holiday_name) ; _i++
+	{	if "%(month).%(day)"== holiday_date[_i] && "%(year)" !_in_ _hc[_i]
+		_he=_i+1
+	}
+	_hee=_he-1
+	--
+	//亂摸摸海拉胸部
+	if first_boot_event<6 ; ChiefRegister
+	elseif touch_hella_chest>=10
+		"\1\s[11]……好好反省過了嗎？\w5/
+		\p[2]\![set,choicetimeout,0]\f[align,center]%(opp)\q[「反省過了。」,TouchTooMuch1Bust2]\n[130]/
+	%(opp)\q[「沒有。」,TouchTooMuch1Bust3]"
+	elseif DispatchMode>=1 ; OnDispatch.Window
+	elseif SpaMode==2 ; SpaMode=0
+	elseif SpaMode>=1 ; OnSpa.Window
+	elseif "%(year)" !_in_ TOSTR (birthday_celebrated_chief) && "%(month).%(day)"=="%(chief_birthday[1]).%(chief_birthday[2])"
+		OnChiefBirthday_Option.Menu
+	elseif _he>0 && ((relationship%2==(1,1)&&intimacy[0]>intimacy[1]) || (relationship[0]%2==1&&relationship[1]%2==0)) && "%(year)" !_in_ holiday_celebrated_HC[_hee]
+	{	MenuChoice=0 ; "\![raise,OnHolidayEvent_Start,%(_hee)]"	}
+	elseif _he>0 && ((relationship%2==(1,1)&&intimacy[1]>intimacy[0]) || (relationship[1]%2==1&&relationship[0]%2==0)) && "%(year)" !_in_ holiday_celebrated_HL[_hee]
+	{	MenuChoice=1 ; "\![raise,OnHolidayEvent_Start,%(_hee)]"	}
+	else
+	{
+		/*case hour
+		{	when 1-3
+			{	"\1\s[16]咦？\w3這個時間來辦公？\w7\s[30]%(you)也太拚了吧？"
+				"\0\s[1]這麼晚了……"
+			}
+			when 4-5
+			{
+				"\1\s[15]"
+			}
+		
+		}*/
+		"\0\s[0]\![sound,play,voice/原始_獲得禁閉者.mp3]我一直都在等你。\_V"
+		"\0\s[0]\![sound,play,voice/原始_問候.mp3]昨晚睡得好嗎，%(usernameHC)？ 請給我今天的命令。\_V"
+		"\1\s[10]\![sound,play,sound/line/HL/Hl profile 特別關注.mp3]怎\w2麼\w1，\w8\s[18]又\w1想\w1我\w1啦\w1？\_V"
+	}
+	--
+	if holiday_today!="" &&_he==0 ; "\__w[2000]\0\s[1]\c今天是\f[bold,1]\f[color,#89B8B8]%(holiday_today[1])\f[default]喔。"
+	
+	
+	/*_timeslot = GetTimeSlot
+	case _timeslot{
+		when "朝"{
+			"\0早安，局長。"
+		}
+		when "點心時間"{
+			"\0%(usernameHC)，你來了。\w6……\w6\n/
+			那個……\w3我做了%(Dessert)，你要吃嗎？/
+			\p[2]\s[2100]\b[20]\f[align,center]\q[「好呀，謝謝妳。」,AskDessertYes]\n\n[half]\q[「不用了。」,AskDessertNo]"
+		}
+		others{
+		}
+
+	}*/
+}
+AskDessertNo{"\0那麼……\w6我拿去給海拉吃吧。"}
+AskDessertYes
+{
+	"\0……請問，還合您的口味嗎？/
+	\p[2]\s[2100]\b[20]\f[align,center]\q[「很美味哦。」,AskTastyYes]\n\n[half]\q[「呃……」,AskTastyNo]"
+}
+AskTastyYes{"\0嗯，太好了……我下次再做給您吃吧。\e:eval()"}
+AskTastyNo{"\0抱歉……我會繼續增進烹飪技巧的。\e"}
+
+//------------------------------------------------------------------------------
+//朝/昼/夜などをおおざっぱに調べる関数
+//------------------------------------------------------------------------------
+GetTimeSlot
+{
+	case hour{
+	when 22,23,0,1,2,3 {'深夜'}
+	when 4,5,6,7,8,9,10,11 {'朝'}
+	when 12,13 {'昼'}
+	when 14,15,16,17 {'日中'}
+	when 18,19,20,21 {'夜'}
+	when 15,16,17,18,19,20,21,22,23 {'點心時間'}
+	when 22,23,0 {'深夜'}
+	}//caseの終わり
+}
+
+
+//******************************************************************************
+//終了 OnClose
+//******************************************************************************
+
+OnClose
+{
+	if first_boot_event<6 ; "\p[3]\s[310001]咦？\w5局長\w2…\w2…\w2？\w5您要去哪？"
+	else ; GoodbyeMSG
+	--
+	"\w9\w9\-\e"
+}
+GoodbyeMSG
+{
+	if MenuChoice==1
+	{
+		"\1\s[30]掰掰啦。"
+		"\1\s[18]明天見哦！"
+	}
+	else
+	{
+		"\0\s[0]\![sound,play,voice/原始_閒置.mp3]做個好夢。"
+		"\0\s[1]晚安，\w4%(usernameHC)。"
+	}
+	--
+	"\w9"
+}
+
+
+//******************************************************************************
+//最小化からの復帰 OnWindowStateRestore
+//******************************************************************************
+
+OnWindowStateRestore
+{
+}
+
+
+//===============================================
+//初次啟動-登記程序
+//===============================================
+ChiefRegister
+{
+	
+	case first_boot_event
+	{
+		when 0
+		{
+			first_boot_event=0
+			"\0\s[-1]\1\s[-1]\p[3]\s[310000]\![bind,pad,1,1]\![set,choicetimeout,0]您好，局長。\w7今天又見面了。\x/
+			\p[3]\s[310001]不好意思，在您進入辦公室前，有件事要麻煩您—\w2—\w9/
+			MBCC的安全系統剛進行過更新，需要您重新輸入個人資訊以認證身份。\w9\n[150]/
+			我當然信任您…\w2…\w7 但這是規定程序，我無能為力…\w2…\w9\w5/
+			\p[2]%cp(0)\b[20]\![set,choicetimeout,0]%(opp)\__q[OnChiefRegister.Event,1]「給我輸入身份的工具吧。」\__q"
+		}
+		when 1
+		{
+			_bg=RAND(14)
+			--
+			"\0\s[-1]\1\s[-1]\p[3]\s[310002]\![set,choicetimeout,0]\![bind,pad,,0]好的，麻煩您了。\p[2]%cp(0)\![bind,background,%(_bg),1]\w9"
+			--
+			first_boot_event=2
+			ChiefRegister
+		}
+		when 2
+		{
+			"\0\s[-1]\1\s[-1]\p[2]%cp(0)\p[4]\s[-1]\b[2]\![set,choicetimeout,0]%(click)\![quicksession,true]\f[height,12]（以下資訊可在日後隨時更改）\f[height,15]\n[170]局長形象：\n"
+			--
+			_txt+=""
+			_list="不使用,A,B"
+			for _i=0 ; _i<3 ; _i++
+			{
+				_txt+="\__q[OnChiefRegister2.Photo,%(_i)]\_b[img\dressing\button\mark"
+				if chief_photo==_i ; _txt+="1"
+				else ; _txt+="0"
+				_txt+=".png,inline,--option=use_self_alpha]%(_list[_i])\__q  "
+			}
+			_txt
+			--
+			"\n[150]/
+			生日：\f[italic,1]\f[color,#EAC100]\q[ %(chief_birthday[0])年%(chief_birthday[1])月%(chief_birthday[2])日 ,ChiefRegister2.Birthday.Input]\f[default]\_l[40]\f[underline,1]                      \f[default]\n[150]/
+			簽名：\f[italic,1]\f[color,#EAC100]\q[  %(username)  ,ChiefRegister2.Name.Input]\f[default]\_l[40]\f[underline,1]                    \f[default]\n[200]/
+			\_l[123,200]\f[height,12]\f[color,#EAC100]\__q[OnChiefRegister.Event,3] >完成登記 \__q"
+		}
+		when 3
+		{
+			"\0\s[-1]\1\s[-1]\p[2]%cp(0)\p[3]%(click)\![set,choicetimeout,0]\s[310000]那麼，這樣認證就完成了，\w4十分感謝您的配合。\w9\w9\n[150]/
+			\s[310002]歡迎回來，%(username)。\x"
+			--
+			"\p[3]\s[-1]\p[2]%cp(0)\![set,choicetimeout,0]\n[50]\f[align,center]%(opp)\__q[OnChiefRegister.Event,4]（進入辦公室）\__q"
+		}
+		when 4
+		{
+			"\w5\0\s[1]%(usernameHC)，%(you)終於來了。\w9\w9/
+			\1\s[16]是不是被耽誤了？\w7剛剛聽見門外有兮兮窣窣的動靜。\w9\w9/
+			\0\s[0]\n--\n好像是要重新認證身份……\w7什麼的。\w9\w9/
+			\1\s[12]\n--\n欸，妳說，這傢伙會不會是冒牌貨啊？\w9\w9/
+			\0\s[0]\n--\n但他的氣息和局長是相同的……\w9\w9/
+			\1\s[16]\n--\n喂\w2—\w2—\w2！\w2！\w2\w5%(ChiefRegister4.Call)\w7/
+			\p[2]%(cp)\![set,choicetimeout,0]\n[50]\f[align,center]%(opp)\__q[OnChiefRegister.Event,5]「什麼事，海拉？」\__q"
+		}
+		when 5
+		{
+			"\1\s[10]有反應耶，那他是本人喔！\w9\w9/
+			\0\s[1]妳只是想逗他玩吧？\w9\w9/
+			\1\s[12]\n--\n嘿嘿。\w9\w9/
+			\0\s[0]\n--\n歡迎回來，%(usernameHC)，今天也要努力工作。\w9\w9/
+			\1\s[13]\n--\n可以的話我比較想要放假。\w9\w9/
+			\0\s[1]\n--\n有什麼吩咐就喊我們吧，我和海拉會一直在這裡待命。\w9\w9/
+			\1\s[18]\n--\n嗯嗯，要打架的話隨時OK哦！儘管包在我們身上！"
+			--
+			first_boot_event=6
+		}
+	}
+	
+}
+OnChiefRegister.Event
+{
+	first_boot_event=reference0
+	ChiefRegister
+}
+OnChiefRegister2.Photo
+{
+	_r=reference0
+	//頭像穿衣指令
+	chief_photo=_r
+	--
+	if _r==1 ; you="妳"
+	elseif _r==2 ; you="你"
+	--
+	if _r >0 ; "\p[2]%cp(0)\![bind,char,%(_r),1]"
+	else ; "\p[2]%cp(0)\![bind,char,,0]"
+	--
+	ChiefRegister
+}
+ChiefRegister2.Birthday.Input
+{
+	"\p[7]\s[-1]\![open,dateinput,OnChiefRegister2.Birthday.Sure,0,%(chief_birthday[0]),%(chief_birthday[1]),%(chief_birthday[2]),--title=局長生日]"
+	--
+	ChiefRegister
+}
+OnChiefRegister2.Birthday.Sure
+{
+	
+	chief_birthday=reference0
+	ChiefRegister
+}
+ChiefRegister2.Name.Input
+{
+	"\p[7]\s[-1]\![open,inputbox,OnChiefRegister2.Name.Sure,0,%(username)]"
+	--
+	ChiefRegister
+}
+OnChiefRegister2.Name.Sure
+{
+	_name=reference0
+	--
+	if "親愛的" _in_ _name||"老婆" _in_ _name||"老公" _in_ _name||"Honey" _in_ _name||"哈尼" _in_ _name||"達令" _in_ _name||"Darling" _in_ _name||"寶貝" _in_ _name||_name=="baby"
+	{	
+		click
+		--
+		click_sound=1
+		--
+		"\p[3]\s[310001]……\w5局長，請您不要胡鬧……"
+	}
+	else ; { username=reference0 ; usernameHC=username ; usernameHL=username }
+	--
+	ChiefRegister
+}
+ChiefRegister4.Call
+{
+	_q=STRLEN(username)
+	_txt=""
+	for _i=0 ; _i<_q ; _i++
+	{
+		_txt+=SUBSTR(username,_i,1)
+		_txt+="－－\w3"
+	}
+	_txt
+}
+
+
+
+

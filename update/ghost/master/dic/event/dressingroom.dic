@@ -1,0 +1,964 @@
+GoIntoDressingRoom
+{
+	DressingMode=0
+	DressingPage[0]=MenuChoice
+	DressingPage[1]=0
+	DRpage_now=1
+	DRpage_max=0
+	battle_preview_BG=0
+	DressingRoom
+}
+OpenDressingRoom
+{
+	if DressingMode==0
+		DressingRoom
+	else
+		OnLeaveDressingRoom
+}
+DressingRoom
+{
+	DressingMode=1
+	case DressingPage[0]
+	{
+		when 0
+		{
+			wearing_cloth_ob=wearing_cloth_HC
+			haircut_ob=haircut_HC
+			wearing_accessory_ob=wearing_accessory_HC
+			dressing_ob="HC"
+			outfit_box=outfit_box_HC
+			hair_box=hair_box_HC
+			clothes_box=clothes_box_HC
+			pack_normal=PageageHC
+			pack_cosplay=CostumHC
+			drpage_max_check=CCL.Qty.HC
+		}
+		when 1
+		{
+			wearing_cloth_ob=wearing_cloth_HL
+			haircut_ob=haircut_HL
+			wearing_accessory_ob=wearing_accessory_HL
+			dressing_ob="HL"
+			outfit_box=outfit_box_HL
+			hair_box=hair_box_HL
+			clothes_box=clothes_box_HL
+			pack_normal=PageageHL
+			pack_cosplay=CostumHL
+			drpage_max_check=CCL.Qty.HL
+		}
+	}
+	if DressingPage[1]==0 ; clothes_box=outfit_box
+	if DressingPage[1]==1 ; clothes_box=hair_box
+	_dr1=DressingPage[1]
+	DRpage_max=0
+	DR_cloth_list=FENUM("img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])")
+	DRpage_max=ARRAYSIZE(DR_cloth_list)
+	if DressingPage[1]==0 ; DRpage_max=(DRpage_max-2)/4+1
+	else ; DRpage_max=(DRpage_max-2)/9+1
+	--
+	"\p[5]%(DRBPsurface)\p[3]\s[-1]\b[6]\![set,choicetimeout,0]\![quicksession,true]%(click)"
+	--
+	"\_l[3,3]%DRimg('HC_1')\_l[92]\__q[TipOption_ClothesShopping]%DRimg('shop')\__q\_l[143]%DRimg('HL_1')"
+	--
+	case DressingPage[0]
+	{
+		when 0 ; "\_l[143,3]\__q[OnChangeDressPerson,1]%DRimg('HL_0')\__q"
+		when 1 ; "\_l[3,3]\__q[OnChangeDressPerson,0]%DRimg('HC_0')\__q"
+	}
+	--
+	pack_all="%TOSTR(pack_normal),%TOSTR(pack_cosplay)"
+	--
+	"\n\f[bold,1]\f[height,12]\_l[3]\f[color,#8B0000]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍/
+	\n\_l[4]%DRimg('rectangle0')\_l[4]\__q[OnChangeDressType,0]%DRimg('type0')\__q/
+	\_l[39]%DRimg('rectangle1')\_l[39]\__q[OnChangeDressType,1]%DRimg('type01')\__q/
+	\_l[83]%DRimg('rectangle1')\_l[83]\__q[OnChangeDressType,2]%DRimg('type02')\__q/
+	\_l[127]%DRimg('rectangle1')\_l[127]\__q[OnChangeDressType,3]%DRimg('type03')\__q/
+	\_l[171]%DRimg('rectangle1')\_l[171]\__q[OnChangeDressType,4]"
+	--
+	case DressingPage[0]
+	{
+		when 0 ; "%DRimg('type04_0')"
+		when 1 ; "%DRimg('type04_1')"
+	}
+	--
+	"\__q\n[130]/
+	\_l[39]%DRimg('rectangle1')\_l[39]\__q[OnChangeDressType,5]%DRimg('type05')\__q/
+	\_l[83]%DRimg('rectangle1')\_l[83]\__q[OnChangeDressType,6]%DRimg('type06')\__q/
+	\_l[127]%DRimg('rectangle1')\_l[127]\__q[OnChangeDressType,7]%DRimg('type07')\__q/
+	\_l[171]%DRimg('rectangle1')\_l[171]\__q[OnChangeDressType,8]%DRimg('type08')\__q\n[130]/
+	\_l[4]%DRimg('rectangle2')\_l[4]\__q[OnChangeDressType,13]%DRimg('type13')\__q/
+	\_l[39]%DRimg('rectangle1')\_l[39]\__q[OnChangeDressType,9]%DRimg('type09')\__q/
+	\_l[83]%DRimg('rectangle1')\_l[83]\__q[OnChangeDressType,10]%DRimg('type10')\__q/
+	\_l[127]%DRimg('rectangle1')\_l[127]\__q[OnChangeDressType,11]%DRimg('type11')\__q/
+	\_l[171]%DRimg('rectangle1')\_l[171]\__q[OnChangeDressType,12]%DRimg('type12')\__q"
+	--
+	"\n[150]\f[default]"
+	--
+	//套裝
+	case DressingPage[1]
+	{
+		when 0 
+		{
+			"\_l[10,153]%DRimg('square0')\_l[113]%DRimg('square0')/
+			\_l[10,293]%DRimg('square0')\_l[113]%DRimg('square0')"
+		}
+		when 1-13
+		{
+			"\_l[54,146]\__q[OnDRTakeOff]%DRimg('remove type')\__q"
+		}
+		
+	}
+	--
+	case DressingPage[1]
+	{
+		when 2 ; removetypename="帽子"
+		when 3 ; removetypename="頸飾"
+		when 5 ; removetypename="外套"
+		when 6 ; removetypename="連身裝"
+		when 7 ; removetypename="上衣"
+		when 8 ; removetypename="下裝"
+		when 9 ; removetypename="襪子"
+		when 10 ; removetypename="鞋子"
+		when 11 ; removetypename="手套"
+		when 12 ; removetypename="所有飾品"
+	}
+	--
+	"\n[1]\_l[-,153]\f[align,center]"
+	--
+	case DressingPage[1]
+	{
+		when 1 , 13 ; "預設"
+		when 2,3,5-12 ; "脫掉 %(removetypename)"
+		when 4
+		{case DressingPage[0]
+			{
+				when 0 ; "預設"
+				when 1 ; "脫掉 口罩"
+			}
+		}
+	}
+	--
+	case DressingPage[1]
+	{
+		when 1-13
+		{
+			"\n\_l[5,180]%DRimg('square1')\_l[75]%DRimg('square1')\_l[145]%DRimg('square1')/
+			\_l[5,265]%DRimg('square1')\_l[75]%DRimg('square1')\_l[145]%DRimg('square1')/
+			\_l[5,350]%DRimg('square1')\_l[75]%DRimg('square1')\_l[145]%DRimg('square1')"
+		}
+	}
+	--
+	//顯示圖示
+	case DressingPage[1]
+	{
+		when 0 
+		{
+			"\n\_l[10,153]%DRicon(1,10,153)\_l[113]%DRicon(2,113,153)/
+			\_l[10,293]%DRicon(3,10,293)\_l[113]%DRicon(4,113,293)"
+		}
+		when 1-13
+		{
+			"\n \_l[5,180]%DRicon(1,5,180)\_l[75,180]%DRicon(2,75,180)\_l[145,180]%DRicon(3,145,180)/
+			\_l[5,265]%DRicon(4,5,265)\_l[75,265]%DRicon(5,75,265)\_l[145,265]%DRicon(6,145,265)/
+			\_l[5,350]%DRicon(7,5,350)\_l[75,350]%DRicon(8,75,350)\_l[145,350]%DRicon(9,145,350)"	
+		}
+	}
+	--
+	"\n\_l[-,442]\f[align,center]\f[bold,1]\f[height,15]%(DRpage_now[_dp1])\f[default]/
+	\n\_l[7,440]"
+	--
+	if DRpage_now==1
+		""
+	else
+		"\__q[OnDRTypePage,%(DressingPage[1]),1]%DRimg('page1')\__q\_l[34]\__q[OnDRTypePage,%(DressingPage[1]),2]%DRimg('page2')\__q"
+	--
+	if DRpage_now==DRpage_max
+		""
+	else
+		"\_l[129]\__q[OnDRTypePage,%(DressingPage[1]),3]%DRimg('page3')\__q\_l[186]\__q[OnDRTypePage,%(DressingPage[1]),4]%DRimg('page4')\__q"
+	--
+	"\n\f[bold,1]\f[height,12]\_l[3]\f[color,#8B0000]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍/
+	\f[color,150,150,150]\f[height,12]\_l[15,481]\_b[img/BackIcon,inline]\__q[OnLeaveDressingRoom,管理局]返回\__q/
+	/
+	\_l[160]\f[height,12]\_b[img/CancelIcon,inline]\__q[OnLeaveDressingRoom,0]關閉\__q/
+	\_l[75,475]\__q[DRBattlePreview]%DRimg('battlepreview')\__q/
+	\_l[115,475]\__q[RemoveAllClothesBottom]%DRimg('default')\__q\![quicksession,false]"
+
+}
+//==============================上方前往採購部==============================
+TipOption_ClothesShopping
+{
+	OnLeaveDressingRoom
+	--
+	if DressingMode==0
+	{
+		DressingPage[1]=2
+		--
+		"\w9\w9\b[-1]"
+		--
+		Store
+		--
+		if StoreMode==0	; { Menu_STORE.MenuTalk0 ; StoreMode=1 }
+		else ; Menu_STORE.MenuTalk1
+	}
+}
+
+//==============================離開更衣室反應==============================
+OnLeaveDressingRoom
+{
+	click
+	--
+	//有穿好衣服
+	if (wearing_cloth_HC[6]>0 || wearing_cloth_HC[7]*wearing_cloth_HC[8]!=0) && (wearing_cloth_HL[6]>0 || wearing_cloth_HL[7]*wearing_cloth_HL[8]!=0)
+	{
+		"\p[5]\b[-1]\s[-1]"
+		--
+		if wearing_cloth_HC==wearing_cloth_HC_last && wearing_cloth_HL==wearing_cloth_HL_last
+		{
+			if DressingPage[0]==0 ; "\0\s[0]維持原樣就行了嗎？"
+			else ; "\1\s[10]還是原來的衣服更好對吧？"
+		}
+		if wearing_cloth_HC!=wearing_cloth_HC_last
+		{
+			"\0\s[1]……新的裝扮，好看嗎？"
+			"\0\s[1]%(usernameHC)更喜歡這樣的打扮嗎？"
+		}
+		if wearing_cloth_HL!=wearing_cloth_HL_last
+		{
+			"\1\s[12]哇－－\w3新衣服！！"
+			"\1\s[12]%(usernameHC)，我新的穿搭好看嗎？"
+		}
+		--
+		wearing_cloth_HC_last=wearing_cloth_HC
+		wearing_cloth_HL_last=wearing_cloth_HL
+		hair_box_HC_last=hair_box_HC
+		hair_box_HL_last=hair_box_HL
+		wearing_accessory_HC_last=wearing_accessory_HC
+		wearing_accessory_HL_last=wearing_accessory_HL
+		--
+		DressingMode=0
+	}
+	//沒穿衣服
+	elseif wearing_cloth_HL[6]==0 && wearing_cloth_HL[7]*wearing_cloth_HL[8]==0
+	{
+		"\1%SFX('exc/01-HL-34-ei (fluster)')我……\s[14]我還沒穿衣好服啊！\w5%(you)打算帶我去哪裡啦！"
+		--
+		DressingPage[0]=1
+		DressingRoom
+	}
+	elseif wearing_cloth_HC[6]==0 && wearing_cloth_HC[7]*wearing_cloth_HC[8]==0
+	{
+		"\0%(usernameHC)，\s[1]那個……\w5我現在穿著不得體，\w2不適合離開更衣室……"
+		--
+		DressingPage[0]=0
+		DressingRoom
+	}
+	--
+	if DressingMode==0
+	{
+		click_sound=1
+		--
+		"\w9"
+		--
+		case reference0
+		{	when 0 		  ; CANCEL
+			when "管理局" ; OnMenu_Bureau
+			when "研磨坊" ; { MenuChoice=DressingPage[0] ; Dye.Grind.GoTo }
+			when "採購部" ; { MenuChoice=DressingPage[0] ; Menu_STORE }
+		}
+	}
+}
+
+
+
+//在更衣室觸摸
+DressingRoomTouch
+{
+	DressingRoom
+	--
+	case _argv[0]
+	{
+		when 0 ; "\0\s[1]只要%(usernameHC)喜歡，就好了。"
+		when 1 ; {"\1\s[12]怎麼樣怎麼樣？\w5\s[18]好看嗎？";"\1\s[10]這套裝扮如何呢？"}
+	}
+}
+DressingRoomTouchBust
+{
+	DressingRoom
+	--
+	case _argv[0]
+	{
+		when 0 {
+			"\0……\w3\s[1]在這裡……\w3不合適……"
+			"\0\s[1]等、\w3等一下，我還沒換好……"
+		}
+		when 1 {
+			"\1\s[14]%SFX('exc/02-HL-17-waaaaa')喂！\w3不要在這種地方動手動腳的！"
+			"\1\s[14]%SFX('exc/02-HL-17-waaaaa')%(you)趁人換衣服時在亂摸什麼啊！"
+		}
+	}
+}
+
+
+//==============================切換按鈕==============================
+OnChangeDressPerson
+{
+	DressingPage[0]=reference0
+	DRpage_now=1
+	DressingRoom
+}
+OnChangeDressType
+{
+	DressingPage[1]=reference0
+	DRpage_now=1
+	DressingRoom
+}
+DRLastPageCheck
+{
+	case DressingPage[1]
+	{
+		when 0 ; DRlastpage=DRpageQty[0]
+		when 1 ; DRlastpage=DRpageQty[1]
+		when 2 ; DRlastpage=DRpageQty[2]
+		when 3 ; DRlastpage=DRpageQty[3]
+		when 4 ; DRlastpage=DRpageQty[4]
+		when 5 ; DRlastpage=DRpageQty[5]
+		when 6 ; DRlastpage=DRpageQty[6]
+		when 7 ; DRlastpage=DRpageQty[7]
+		when 8 ; DRlastpage=DRpageQty[8]
+		when 9 ; DRlastpage=DRpageQty[9]
+		when 10 ; DRlastpage=DRpageQty[10]
+		when 11 ; DRlastpage=DRpageQty[11]
+		when 11 ; DRlastpage=DRpageQty[12]
+		when 13 ; DRlastpage=DRpageQty[13]
+	}
+}
+
+OnDRTakeOff
+{
+	case DressingPage[0]
+	{
+		when 0 ; "\0"
+		when 1 ; "\1"
+	}
+	--
+	if DressingPage[1]==6 || DressingPage[1]==7
+		"\![bind,%(ClothTypeName2),underwear,1]"
+	else
+		"\![bind,%(ClothTypeName2),,0]"
+	--
+	if DressingPage[1]==6 || DressingPage[1]==7
+		"\p[5]%(DRBPsurface)\![bind,%(dressing_ob)%(ClothTypeName2),underwear,1]"
+	else
+		"\p[5]%(DRBPsurface)\![bind,%(dressing_ob)%(ClothTypeName2),,0]"
+	--
+	_ct=DressingPage[1]
+	case DressingPage[0]
+	{
+		when 0
+		{
+			if DressingPage[1]==1
+				haircut_HC=1
+			elseif DressingPage[1]==12
+				wearing_accessory_HC=(0,0)
+			elseif (DressingPage[1]>=2 && DressingPage[1]<=11)
+				wearing_cloth_HC[_ct]=0
+		}
+		when 1
+		{
+			if DressingPage[1]==1
+				haircut_HL=1
+			elseif DressingPage[1]==12
+				wearing_accessory_HL=(0,0)
+			elseif (DressingPage[1]>=2 && DressingPage[1]<=11)
+				wearing_cloth_HL[_ct]=0
+		}
+	}
+	
+	--
+	DressingRoom
+}
+
+
+//================================翻頁按鈕================================
+OnDRTypePage
+{
+	_dp=reference0
+	_mode=reference1
+	case _mode
+	{	when 1 ; DRpage_now=1
+		when 2 ; DRpage_now--
+		when 3 ; DRpage_now++
+		when 4 ; DRpage_now=DRpage_max
+	}
+	DressingRoom
+}
+OnDRTypeBackPage
+{
+	_dp=reference0
+	DRpage_now[_dp]-=1
+	DressingRoom
+}
+OnDRTypeNextPage
+{
+	_dp=reference0
+	DRpage_now[_dp]+=1
+	DressingRoom
+}
+OnDRTypeFirstPage
+{
+	_dp=reference0
+	DRpage_now[_dp]=1
+	DressingRoom
+}
+OnDRTypeLastPage
+{
+	_dp=reference0
+	DRpage_now[_dp]=DRpage_max
+	DressingRoom
+}
+BalloonTooltip_TipOption_OnDRTypeBackPage { "上一頁" }
+BalloonTooltip_TipOption_OnDRTypeNextPage { "下一頁" }
+BalloonTooltip_TipOption_OnDRTypeFirstPage { "首頁" }
+BalloonTooltip_TipOption_OnDRTypeLastPage { "尾頁" }
+
+
+//================================戰鬥畫面預覽================================
+DRBattlePreview
+{
+	DressingRoom
+	--
+	"\p[4]\s[-1]\b[36]\![set,choicetimeout,0]\![quicksession,true]/
+	\f[color,#CE0000]\f[bold,1]\f[align,center]- 戰鬥畫面預覽 -\f[default]\f[align,left]\n[130] "
+	--
+	if battle_preview_BG==0
+		"\f[color,#F5D894]%DRimg('mark1') 關閉預覽\f[default]"
+	else
+		"\__q[OnDRBattlePreviewChange,0]%DRimg('mark0') 關閉預覽\__q"
+	--
+	"\n[120] "
+	--
+	if battle_preview_BG==1
+		"\f[color,#F5D894]%DRimg('mark1') 辛迪加\f[default]"
+	else
+		"\__q[OnDRBattlePreviewChange,1]%DRimg('mark0') 辛迪加\__q"
+	--
+	"\n[120] "
+	--
+	if battle_preview_BG==2
+		"\f[color,#F5D894]%DRimg('mark1') 實驗室廢墟\f[default]"
+	else
+		"\__q[OnDRBattlePreviewChange,2]%DRimg('mark0') 實驗室廢墟\__q"
+	--
+	"\n[120] "
+	--
+	if battle_preview_BG==3
+		"\f[color,#F5D894]%DRimg('mark1') 銹河河道\f[default]"
+	else
+		"\__q[OnDRBattlePreviewChange,3]%DRimg('mark0') 銹河河道\__q"
+	--
+	"\n[120] "
+	--
+	if battle_preview_BG==4
+		"\f[color,#F5D894]%DRimg('mark1') 內海\f[default]"
+	else
+		"\__q[OnDRBattlePreviewChange,4]%DRimg('mark0') 內海\__q"
+	--
+	"\n[120] "
+	--
+	if battle_preview_BG==5
+		"\f[color,#F5D894]%DRimg('mark1') 無背景\f[default]"
+	else
+		"\__q[OnDRBattlePreviewChange,5]%DRimg('mark0') 無背景\__q"
+	--
+	"\p[5]%(DRBPsurface)"
+	
+}
+OnDRBattlePreviewChange
+{
+	battle_preview_BG=reference0
+	--
+	case battle_preview_BG
+	{
+		when 1 ; "\p[5]\![bind,background,Syndicate,1]"
+		when 2 ; "\p[5]\![bind,background,ParmaRuins,1]"
+		when 3 ; "\p[5]\![bind,background,RustRiver,1]"
+		when 4 ; "\p[5]\![bind,background,DisSea,1]"
+		when 5 ; "\p[5]\![bind,background,none,1]"
+	}
+	--
+	DRBattlePreview
+}
+DRBPsurface
+{
+	if battle_preview_BG==0
+		"\s[-1]"
+	else
+		"\s[520010]"
+}
+
+
+//==========================================================================
+//								服裝圖示									
+//==========================================================================
+//================================快捷插入圖片================================
+DRimg
+{
+	_picname=_argv[0]
+	_txt="\_b[img\dressing\button\"
+	_txt+=_picname
+	_txt+=".png,inline,--option=use_self_alpha]"
+	_txt
+}
+//服裝圖示.step1
+DRicon
+{
+	_pot=_argv[0]
+	_x=_argv[1]
+	_y=_argv[2]
+	//-----頁數
+	_a=DRpage_now-1
+	if DressingPage[1]==0
+		_a=_a*4
+	else
+		_a=_a*9
+	_num=_pot+_a
+	//-----定義編號名稱
+	_pic=DR_cloth_list[_num]
+	_code=SUBSTR(_pic,0,6)
+	
+	_scr_o=REPLACE(_pic,"+",",")
+	
+	_pack=""
+	_txt=""
+	--
+	//是否已穿戴
+	_ct=DressingPage[1]
+	if (DressingPage[1]==1 && haircut_ob==_num) || (DressingPage[1]==12 && wearing_accessory_ob[_num]==1) || (DressingPage[1]>1 && DressingPage[1]<12 && wearing_cloth_ob[_ct]==_num)
+		"\_b[img\dressing\button\square1_d.png,inline,--option=use_self_alpha]\_l[%(_x),%(_y)]"
+	--
+	//判定是否持有
+	if _code _in_ TOSTR (clothes_box)	//持有
+		_txt+="\__q[OnDRChangCloth,%(_num)"
+	elseif "_forge" _in_ _pic
+		_txt+="\__q[OnDrTOSt,6,%(_pic)"
+	elseif "_int.10000" _in_ _pic
+		_txt+="\__q[OnDrTOSt,5,1,%(_pic)"
+	elseif "_d" _in_ _pic && SUBSTR(_scr_o[1],0,6) _in_ TOSTR (clothes_box)
+		_txt+="\__q[OnDrTOSt,4,0,%(_pic)"
+	elseif "_d" _in_ _pic && "p" _in_ _scr_o[2]
+		_txt+="\__q[OnDrTOSt,4,2,%(_pic)"
+	elseif "_d" _in_ _pic && "c" _in_ _scr_o[2]
+		_txt+="\__q[OnDrTOSt,4,3,%(_pic)"
+	elseif "_d" _in_ _pic
+		_txt+="\__q[OnDrTOSt,4,1,%(_pic)"
+	elseif "_p" _in_ _pic
+		_txt+="\__q[OnDrTOSt,1,2,%(_pic)"
+	elseif "_c" _in_ _pic
+		_txt+="\__q[OnDrTOSt,1,3,%(_pic)"
+	else
+		_txt+="\__q[OnDrTOSt,1,1,%(_pic)"
+	_txt+="]\_b[img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(_pic)"
+	//--------未持有
+	if _code !_in_ TOSTR(clothes_box)
+	{	
+		_txt+=",inline,overlay,--option=use_self_alpha]\_l[%(_x),%(_y)]\_b[img\dressing\icon\"
+		if DressingPage[1]==0 ; _txt+="pack_x"
+		else				  ; _txt+="garment_x"
+		
+	}
+	_txt+=",inline,overlay,--option=use_self_alpha]\__q"
+	--
+	_txt
+}
+
+
+//============================前往購買服裝============================
+OnDrTOSt
+{	
+	if reference0==4 && reference1==0
+		OnDrTOSt.SCR(reference2)
+	elseif reference0==6
+	{
+		_pic=reference1
+		--
+		DressingRoom
+		--
+		"\p[7]\s[-1]\b[50]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q\n[260]/
+		\_l[10]\_b[img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(_pic),inline,--option=use_self_alpha]  \f[align,center]\f[height,13]  該物品須經由鍛造取得，\n\_l[110,40]要前往鍛造室嗎？\n\_l[123,73]/
+		\__q[OnDrTOSt.Sure,6]\_b[img\O.png,inline]\__q         \__q[DressingRoom]\_b[img\X.png,inline]\__q"
+	}
+	elseif reference0==4
+	{
+		_scr_o=REPLACE(reference2,"+",",")
+		_scr_o_n=TOINT(SUBSTR(_scr_o[1],3,3))
+		_scr_o_c=DR_cloth_list[_scr_o_n]
+		storepage[0]=1
+		storepage[1]=reference1
+		--
+		DressingRoom
+		--
+		"\p[7]\s[-1]\b[50]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q\n[260]/
+		\_b[img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(_scr_o_c),inline,--option=use_self_alpha]  \f[align,center]\f[height,13]     未持有原版衣裝，\n\_l[120,40]前往採購部嗎？\n\_l[123,73]/
+		\__q[OnDrTOSt.Sure]\_b[img\O.png,inline]\__q         \__q[DressingRoom]\_b[img\X.png,inline]\__q"
+	}
+	elseif reference0==5 && reference1==1
+	{
+		_ob=DressingPage[0]
+		if intimacy[_ob]<10000
+			"\p[7]\s[-1]\b[50]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q\n/
+			\_b[img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(reference2),20,50,inline,--option=use_self_alpha]  \f[align,center]\f[height,13]\n\_l[100,40]服從度達到100%解鎖"
+		else
+		{	if DressingPage[0]==0 ; clothes_box_HC,="05_001"
+			elseif DressingPage[0]==1 ; clothes_box_HL,="05_002"
+			"\p[7]\s[-1]\b[50]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q\n/
+			\_b[img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(reference2),20,50,inline,--option=use_self_alpha]  \f[align,center]\f[height,13]\n\_l[100,40]獲得囚服外套！\n\_l[120,40]"
+		}
+		--
+		DressingRoom
+	}
+	else
+	{
+		DressingRoom
+		--
+		storepage=(reference0,reference1)
+		--
+		"\p[7]\s[-1]\b[50]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q\n[260]"
+		--
+		if DressingPage[1]==0
+			"\f[align,center]\f[height,13]未持有該套裝，\n[130]前往採購部嗎？\n[200]"
+		else
+			"\_b[img\dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(reference2),inline,--option=use_self_alpha]  \f[align,center]\f[height,13]     未持有該衣裝，\n\_l[120,40]前往採購部嗎？\n\_l[123,73]"
+		--
+		"\__q[OnDrTOSt.Sure]\_b[img\O.png,inline]\__q         \__q[DressingRoom]\_b[img\X.png,inline]\__q"
+	}
+}
+OnDrTOSt.Sure
+{
+	DressingMode=0
+	if reference0==6 ; OnForgeRoom.Open
+	else
+	{
+	if DressingPage[1]==0
+		{ DressingPage[1]=2 ; storepage=(1,0) }
+	--
+	Store
+	--
+	if StoreMode==0	; { Menu_STORE.MenuTalk0 ; StoreMode=1 }
+	else ; Menu_STORE.MenuTalk1
+	}
+}
+
+//============================前往服裝染色============================
+OnDrTOSt.SCR
+{
+	_file=_argv[0]
+	_code=SUBSTR(_file,0,6)
+	_file_a=_file
+	SETDELIM (_file_a,"_")
+	_dye=_file_a[2]
+	_dye= TOINT ( ERASE (_dye,0,2) )
+	
+	//持有原色，進行染色解鎖
+	if dye[_dye]>=1
+		{DressingRoom
+		--
+		"\p[7]\s[-1]\b[50]\![quicksession,true]\_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q/
+		\n[260]\_b[img\dressing\icon\%(_chra)%(_code).png,inline,--option=use_self_alpha]  \f[align,center]\f[height,13]要消耗1個 %(dye_color[_dye])%(dye_name[_dye])染劑\f[default] 嗎？\n\f[height,12]\_l[117,40]/
+		（現在有 \f[color,#FFED97]\f[bold,1]%(dye[_dye])\f[bold,0]\f[color,default] 個）\n\_l[111,70]/
+		\__q[OnDrTOSt.SCR.Unlock,%(_code),%(_dye)]\_b[img\O.png,inline]\__q         /
+		\__q[DressingRoom]\_b[img\X.png,inline]\__q"}
+	//染劑不足
+	else 
+		{DressingRoom
+		--
+		"\p[7]\s[-1]\b[50]\![quicksession,true]\_l[236,-25]\__q[DressingRoom]%QTYimg('x')\__q/
+		\n[260]\f[align,center]未持有 %(dye_color[_dye])%(dye_name[_dye])染劑\f[default]\n[200]/
+		\__q[OnLeaveDressingRoom,研磨坊]\f[bold,1]\f[color,#BFA0CF]\f[height,12][ →前往研磨坊 ]\__q"}
+}
+//染色解鎖
+OnDrTOSt.SCR.Unlock
+{
+	_code=reference0 ; _dye=reference1
+	case DressingPage[0]
+	{
+		when 0 ; clothes_box_HC,=_code
+		when 1 ; clothes_box_HL,=_code
+	}
+	dye[_dye]--
+	--
+	DressingRoom
+}
+
+//================================換裝事件================================
+//OnDRChangCloth,服裝編號  step2
+OnDRChangCloth
+{
+	_clothNum=reference0
+	_ob=DressingPage[0]
+	_cmd="\%(DressingPage[0])"
+	if DressingPage[1]==12 && wearing_accessory_ob[_clothNum]==1
+	{//裝飾穿戴
+		_cmd+="\![bind,裝飾,%(_clothNum),0]\p[5]\![bind,"
+		--
+		case DressingPage[0]
+		{	when 0 ; _cmd+="HC"
+			when 1 ; _cmd+="HL"		}
+		--
+		_cmd+="裝飾,%(_clothNum),0]"
+		--
+		case DressingPage[0]
+		{
+			when 0 ; wearing_accessory_HC[_clothNum]=0
+			when 1 ; wearing_accessory_HL[_clothNum]=0
+		}
+	
+	}
+	else
+	{
+		if DressingPage[1]==0	//穿戴套裝
+		{
+			RemoveAllClothes
+			--
+			_typename=("套裝","髮型","帽子","頸飾","面飾","外套","上衣","上衣","下裝","襪","鞋","手套","手持","裝飾")
+			_pack_code=DR.Outfit[_clothNum]
+			_pack=REPLACE(_pack_code,"-",",")
+			_pack_name=_pack
+			_pack_name[6]="D"+_pack_name[6]
+			_pack_name[7]="T"+_pack_name[7]
+			_ob=DressingPage[0]
+			
+			
+			//	實際穿戴
+			for _i=1 ; _i<ARRAYSIZE(_pack_name) ; _i++
+			{
+				if _pack[_i] > 0
+				{	
+					if _i>=13 ; _typename[_i]="裝飾"
+					_cmd+="\%(DressingPage[0])\![bind,%(_typename[_i]),%(_pack_name[_i]),1]\p[5]\![bind,%(Char_Code[_ob])%(_typename[_i]),%(_pack_name[_i]),1]"
+					
+				}
+				_acc=TOINT(_pack[_i])
+				if	   _i>=12 && DressingPage[0]==0
+					wearing_accessory_HC[_acc]=1
+				elseif _i>=12 && DressingPage[0]==1
+					wearing_accessory_HL[_acc]=1
+			}
+			//	變數指派
+			for _i=1 ; _i<=11 ; _i++
+			{
+				if _i==1 && _pack[1]>=1 && DressingPage[0]==0 ; haircut_pack_HC=_pack[1]
+				elseif _i==1 && _pack[1]>=1 && DressingPage[0]==0 ; haircut_pack_HL=_pack[1]
+				elseif DressingPage[0]==0 ; wearing_cloth_HC[_i]=_pack[_i]
+				elseif DressingPage[0]==1 ; wearing_cloth_HL[_i]=_pack[_i]
+			}
+		}
+		else
+		{
+			_cmd+="\![bind,%(ClothTypeName2),"
+			--
+			//パーツ名
+			if DressingPage[1]==6
+				_cmd+="D"
+			if DressingPage[1]==7
+				_cmd+="T"
+			--
+			_cmd+="%(_clothNum)"
+			_cmd+=",1]"
+			--
+			if DressingPage[1]==6
+				_cmd+="\![bind,下裝,,0]"
+			--
+			if DressingPage[0]==0 && DressingPage[1]==6
+			{	wearing_cloth_HC[7]=0 ; wearing_cloth_HC[8]=0 }
+			elseif DressingPage[0]==0 && DressingPage[1]==7
+				wearing_cloth_HC[6]=0
+			elseif DressingPage[0]==1 && DressingPage[1]==6
+			{	wearing_cloth_HL[7]=0 ; wearing_cloth_HL[8]=0 }
+			elseif DressingPage[0]==1 && DressingPage[1]==7
+				wearing_cloth_HL[6]=0
+		}
+		--
+		//戰鬥端同步(char5)
+		_cmd+="\p[5]"
+		--
+		if DressingPage[1]!=0
+		{
+			_cmd+="\![bind,%(Char_Code[_ob])%(ClothTypeName2),"
+			--
+			//連身上衣前綴
+			if DressingPage[1]==6
+				_cmd+="D"
+			if DressingPage[1]==7
+				_cmd+="T"
+			--
+			_cmd+="%(_clothNum)"
+			_cmd+=",1]"
+			--
+			if DressingPage[1]==6
+				_cmd+="\![bind,%(Char_Code[_ob])下裝,,0]"
+		}
+		--
+		//紀錄穿戴衣裝（單件）
+		if DressingPage[1]==12
+			{
+				case DressingPage[0]
+			   {  when 0 ; wearing_accessory_HC[_clothNum]=1
+				  when 1 ; wearing_accessory_HL[_clothNum]=1  }
+			}
+		elseif DressingPage[1]==1
+			{
+				case DressingPage[0]
+			   {  when 0 ; haircut_HC=_clothNum
+				  when 1 ; haircut_HL=_clothNum  }
+			}
+		elseif DressingPage[1]>=2
+			{
+				_ct=DressingPage[1]
+				--
+				case DressingPage[0]
+			   {  when 0 ; wearing_cloth_HC[_ct]=_clothNum
+				  when 1 ; wearing_cloth_HL[_ct]=_clothNum  }
+			}
+		}
+	--
+	_cmd
+	--
+	DressingRoom
+}
+
+
+
+//脫下所有衣物
+RemoveAllClothes
+{
+	_ob=DressingPage[0]
+	"\%(DressingPage[0])\![bind,髮型,,0]\![bind,帽子,,0]\![bind,頸飾,,0]\![bind,面飾,,0]\![bind,帽子,,0]\![bind,外套,,0]\![bind,上衣,underwear,1]\![bind,下裝,,0]\![bind,襪,,0]\![bind,鞋,,0]\![bind,手套,,0]\![bind,裝飾,,0]/
+	\p[5]\![bind,%(Char_Code[_ob])髮型,,0]\![bind,%(Char_Code[_ob])帽子,,0]\![bind,%(dressing_ob)頸飾,,0]\![bind,%(dressing_ob)面飾,,0]\![bind,%(dressing_ob)帽子,,0]\![bind,%(dressing_ob)外套,,0]\![bind,%(dressing_ob)上衣,underwear,1]\![bind,%(dressing_ob)下裝,,0]\![bind,%(dressing_ob)襪,,0]\![bind,%(dressing_ob)鞋,,0]\![bind,%(dressing_ob)手套,,0]\![bind,%(dressing_ob)裝飾,,0]"
+	--
+	case DressingPage[0]
+	{
+		when 0
+		{
+			wearing_cloth_HC=(0,0,0,0,0,0,0,0,0,0,0,0)
+			haircut_HC=1
+			wearing_accessory_HC=(0,0)
+		}
+		when 1
+		{
+			wearing_cloth_HL=(0,0,0,0,0,0,0,0,0,0,0,0)
+			haircut_HL=1
+			wearing_accessory_HL=(0,0)
+		}
+	}
+}
+RemoveAllClothesBottom
+{
+	RemoveAllClothes
+	--
+	DressingRoom
+}
+RemoveAllClothesInBattle
+{
+	"\p[5]"
+	--
+	case DressingPage[0]
+	{
+		when 0 ; "\![bind,HC髮型,,0]\![bind,HC帽子,,0]\![bind,HC頸飾,,0]\![bind,HC面飾,,0]\![bind,HC帽子,,0]\![bind,HC外套,,0]\![bind,HC上衣,underwear,1]\![bind,HC下裝,,0]\![bind,HC襪,,0]\![bind,HC鞋,,0]\![bind,HC手套,,0]\![bind,HC裝飾,,0]"
+		when 1 ; "\![bind,HL髮型,,0]\![bind,HL帽子,,0]\![bind,HL頸飾,,0]\![bind,HL面飾,,0]\![bind,HL帽子,,0]\![bind,HL外套,,0]\![bind,HL上衣,underwear,1]\![bind,HL下裝,,0]\![bind,HL襪,,0]\![bind,HL鞋,,0]\![bind,HL手套,,0]\![bind,HL裝飾,,0]"
+	}
+	--
+	case battle_preview_BG
+	{
+		when 0 ; "\s[-1]"
+		when 1 ; "\s[5100]"
+		when 2 ; "\s[5200]"
+		when 3 ; "\s[5300]"
+		when 4 ; "\s[5400]"
+	}
+}
+DRBattleScreen
+{
+	case battle_preview_BG
+	{
+		when 0 ; "\s[-1]"
+		when 1 ; "\s[5100]"
+		when 2 ; "\s[5200]"
+		when 3 ; "\s[5300]"
+		when 4 ; "\s[5400]"
+	}
+}
+
+
+//=========================滑鼠氣泡提示文字=========================
+BalloonTooltip_TipOption_ClothesShopping { "購買服裝" }
+BalloonTooltip_RemoveAllClothesBottom { "脫下全身衣物" }
+BalloonTooltip_DRBattlePreview { "戰鬥畫面預覽" }
+
+
+
+
+
+//================更衣室圖示位置================
+DRdata.iconPot
+{
+	_n=_argv[0]
+	_a=(0,0)
+	_txt="\_l["
+	if DressingPage[1]==0
+		_a=(0,"10_153","113_153","10_293","113_293")
+	else
+		_a=(0,"5_180","75_180","145_180","5_265","75_265","145_265","5_350","75_350","145_350")
+	_pot=_a[_n]
+	_pot=REPLACE(_pot,"_",",")
+	_txt+=_pot+"]"
+	_txt
+}
+
+
+//
+//================部位編號================
+ClothTypeName
+{
+	_i=_argv[0]
+	switch _i
+	{
+		"套裝"
+		"髮型"
+		"帽子"
+		"頸飾"
+		"面飾"
+		"外套"
+		"連身裙"
+		"上衣"
+		"下裝"
+		"襪"
+		"鞋"
+		"手套"
+		"裝飾"
+		"手持"
+	}
+}
+ClothTypeName2
+{
+	case DressingPage[1]
+	{
+		when 0 ; "套裝"
+		when 1 ; "髮型"
+		when 2 ; "帽子"
+		when 3 ; "頸飾"
+		when 4 ; "面飾"
+		when 5 ; "外套"
+		when 6-7 ; "上衣"
+		when 8 ; "下裝"
+		when 9 ; "襪"
+		when 10 ; "鞋"
+		when 11 ; "手套"
+		when 12 ; "裝飾"
+		when 13 ; "手持"
+	}
+}
+ClothTypeName3
+{
+	("套裝","髮型","帽子","頸飾","面飾","外套","上衣","上衣","下裝","襪","鞋","手套")
+}

@@ -1,0 +1,257 @@
+HolidayCheck
+{
+	holiday_today=""
+	for _i=0 ; holiday_list(_i)!="," ; _i++
+	{
+		if holiday_list(_i)[0]=="%(month).%(day)"
+		holiday_today=holiday_list(_i)
+	}
+}
+holiday_list
+{
+	_n=_argv[0]
+	switch _n
+	{	"%(chief_birthday[1]).%(chief_birthday[2]),%(username)的生日"
+		"1.1,元旦"
+		"2.14,情人節"
+		"2.24,元宵節"
+		"3.1,國際海豹日"
+		"3.17,赫卡蒂的生日"
+		"3.8,婦女節"
+		"4.1,愚人節"
+		"4.4,清明節"
+		"4.5,清明節"
+		"4.6,清明節"
+		"4.22,世界地球日"
+		"4.23,世界閱讀日"
+		"5.1,勞動節"
+		"5.12,國際護士節,母親節"
+		"6.1,兒童節"
+		"6.10,端午節"
+		"7.7,世界巧克力日"
+		"8.10,七夕"
+		"8.13,左撇子日"
+		"8.18,中元節"
+		"10.4,世界動物節"
+		"10.11,重陽節"
+		"10.14,世界標準節"
+		"10.16,世界糧食節"
+		"10.31,萬聖節"
+		"12.1,世界愛滋病日"
+		"12.2,海拉的生日"
+		"12.10,世界人權日"
+		"12.24,平安夜"
+		"12.25,聖誕節"
+		","
+	}
+}
+OnChiefBirthday
+{
+	_ed=event_dialogue
+	case _ed
+	{	when 0
+		"%cp(0)\b[20]\f[align,center]（辦公室怎麼一片漆黑……）\w9\n[130]\_q%(opp)\__q[OnChiefBirthday_Option,1]（開燈）\__q\_q"
+		when 1
+		{
+			"\1\s[18]生日快樂！！\0\s[21]生日快樂，\w5%(usernameHC)。\w9\1%(nl)\s[12]今天是%(usernameHL)……\w7\s[35]嗯……\w3\s[18]%(chief_birthday[0]-year+1)歲的生日！！\w9%cp(0)  哇啊……\w5/
+			\n[130]\_q%(opp)\__q[OnChiefBirthday_Option,2]（收下兩人遞來的紙盒）\__q\_q"
+		
+		}
+		when 2
+		{
+			"\1\s[18]快打開看看！\w7%cp(0)\n[70]\f[align,center]\_q%(opp)\__q[OnChiefBirthday_Option,3]（打開紙盒）\__q\_q"
+		}
+		when 3
+		{
+			"%cp(0)\b[20]\n[70]（是蛋糕……）\w5\0\s[22]我和海拉一起做的。\w9/
+			%cp(0)\b[26]\c\f[align,center]\n[70]\_q是我喜歡的……\_q\n[170]/
+			\w2\_q%(opp) \__q[OnChiefBirthday_Option,4,0]草莓奶油\__q\_q\n[130]/
+			\w2\_q%(opp) \__q[OnChiefBirthday_Option,4,1]巧克力　\__q\_q\n[130]/
+			\w2\_q%(opp) \__q[OnChiefBirthday_Option,4,2]堅果　　\__q\_q\n[130]/
+			\w2\_q%(opp) \__q[OnChiefBirthday_Option,4,3]紅絲絨　\__q\_q\n[170]/
+			\w2\_q……蛋糕。\_q"
+		}
+		when 4
+		{
+			_flavor=_argv[0]
+			"\1\s[18]嘿嘿……\w5我們有偷問過夜鶯%(you)喜歡的口味喔！\w9/
+			%cp(0)\b[22]真的很謝謝妳們。\w5\_q\n[150]\f[align,center]（收到了 \n\f[bold,1]生日蛋糕\n（%(birthdaycake_flavor[_flavor])口味）\f[bold,0]）\_q\x/
+			%cp(0)\c\b[20]（先收進倉庫裡……\w5待會兒再來嚐嚐吧。）"
+			--
+			if event_history_HC[2]<1 || event_history_HL[2]<1
+			{	event_history_HC[2]=1 ; event_history_HL[2]=1 }
+			if "%(year)" !_in_ TOSTR (birthday_celebrated_chief)
+			{
+				birthdaycake[_flavor]=TOINT(birthdaycake[_flavor]) ; birthdaycake[_flavor]++
+				if birthday_celebrated_chief=="" ; birthday_celebrated_chief=year
+				else ; birthday_celebrated_chief,=year
+			}
+		}
+	}
+	
+}
+OnChiefBirthday_Option
+{
+	event_dialogue=reference0
+	OnChiefBirthday(reference1)
+}
+OnChiefBirthday_Option.Menu
+{	event_dialogue=0
+	OnChiefBirthday
+}
+birthdaycake_flavor{"草莓奶油,巧克力,堅果,紅絲絨"}
+
+//節日事件通用起始
+OnHolidayEvent_Start
+{	event_ob  = Char_Code[MenuChoice]
+	event_num = reference0
+	intimacy[event_ob]++
+	event_dialogue = 0
+	EVAL("OnHolidayEvent_"+event_ob+"_"+event_num)
+}
+//節日事件通用選項
+OnHolidayEvent_Option
+{	intimacy[event_ob]++
+	event_dialogue = reference0
+	event_option   = reference1
+	EVAL("OnHolidayEvent_"+event_ob+"_"+event_num)
+}
+holiday_date{"2.14"}
+holiday_name{"西洋情人節"}
+//============== 2.14 西洋情人節 ==============
+OnHolidayEvent_HC_0
+{
+	_ed=event_dialogue
+	case _ed
+	{	when 0
+		{	"\0\s[5]%(usernameHC)，\w5這個給%(you)。\x/
+			%cp(0)\b[22]（收到了 \n\f[bold,1]手工巧克力×1\f[bold,0]）\w7\n[200]%(opp)\__q[OnHolidayEvent_Option,1]「巧克力？」\__q"
+		}
+		when 1
+		{	if event_holiday_HC[0]<1 ; event_holiday_HC[0]=1
+			if "%(year)" !_in_ holiday_celebrated_HC[0]	//今年未使用
+			{	event_holiday_HC[0]=1
+				if "-" !_in_ holiday_celebrated_HC[0] ; holiday_celebrated_HC[0]="%(year)"
+				else ; holiday_celebrated_HC[0]+="-%(year)"
+				consumable_sp[0]+=6
+			}
+			"\0\s[3]今天是西洋情人節，\w7我聽說在這天有贈送親手做巧克力送給戀人的習俗。\w9/
+			%cp(0)\b[20]%(opp)\__q[OnHolidayEvent_Option,2]「赫卡蒂真的很認真在和我交往呢。」\__q"
+		}
+		when 2
+		{	"\0\s[5]嗯……\w3\s[7]因為我很喜歡%(usernameHC)。\w9/
+			%cp(0)\b[20]\n[70]……！\w9/
+			\0%(nl)\s[3]那個\w2…\w2…\w3我說錯話了嗎？\w9/
+			%cp(0)\b[20]\c%(opp)\__q[OnHolidayEvent_Option,3]「我只是沒想到妳這麼直接。」\__q"
+		}
+		when 3
+		{	"\0\s[8]我也是下意識就回答了……\w9/
+			%cp(0)\b[20]%(opp)\__q[OnHolidayEvent_Option,4]「那麼，\w4能再說一次嗎？」\__q"
+		}
+		when 4
+		{	"\0\s[5]嗯\w2…\w3…\w2…\w3…\w9\n[130]\s[7]我……\w3我很喜歡%(usernameHC)……\w9/
+			%cp(0)\b[20]%(opp)\__q[OnHolidayEvent_Option,5]「我也很喜歡赫卡蒂喔。」\__q"
+		}
+		when 5
+		{	"\0\s[5]…\w3…\w2…\w4…\w2唔…\w2\s[8]…\w5嗯……\w9/
+			%cp(0)\b[20]呵呵，\w4赫卡蒂作為聽的那一方更容易害羞嗎？\w9/
+			\0%(nl)\s[7]是的……\w9/
+			%cp(0)\b[22]\c（在她面前吃巧克力，\w5會不會讓她更害臊呢……）\w5\n[150]  /
+			\_q%(opp)\__q[OnHolidayEvent_Option,6,0]放一顆到口中\__q\_q\w2\n  /
+			\_q%(opp)\__q[OnHolidayEvent_Option,6,1]先放一邊\__q\_q"
+		}
+		when 6
+		{	
+			if event_option==1
+			{	"\0\s[3]…\w2…\w3…\w2…\w9/
+				%cp(0)\b[20]（赫卡蒂似乎有些失落……）"
+			}
+			else
+			{	if event_holiday_HC[0]<2 { consumable_sp[0]-- ; stamina+=20	}
+				--
+				"\0\s[4]味道如何呢？\w6%(usernameHC)……\w9/
+				%cp(0)\b[20]\_q%(opp)\__q[OnHolidayEvent_Option,7,0]「是我喜歡的味道。」\__q\_q\w2\n  /
+				\_q%(opp)\__q[OnHolidayEvent_Option,7,1]「很好吃喔。」\__q\_q"
+			}
+			if event_holiday_HC[0]<2 ;  event_holiday_HC[0]=2
+		}
+		when 7
+		{	"\0\s[8]太好了。\w9/
+			%cp(0)\b[20]\_q%(opp)\__q[OnHolidayEvent_Option,8]「赫卡蒂一定很用心吧。」\__q"
+		}
+		when 8
+		{	"\0\s[5]……畢竟是非常重要的日子。\w9/
+			%cp(0)\b[20]謝謝妳，\w4有了赫卡蒂的禮物，\w7我今日格外開心呢。\x/
+			%cp(0)\b[20]\c%(opp)\__q[OnHolidayEvent_Option,9]「情人節快樂，赫卡蒂。」\__q"
+		}
+		when 9
+		{	"\0\s[20]嗯，\w3情人節快樂，\w5%(usernameHC)。"
+		}
+	}
+}
+OnHolidayEvent_HL_0
+{
+	_ed=event_dialogue
+	case _ed
+	{	when 0
+		{	"\1\s[13]%cp(0)\b[20]（海拉把什麼藏到背後了……）\w7\n[130]/
+			%(opp)\__q[OnHolidayEvent_Option,1]「海拉？」\__q"
+		}
+		when 1
+		{	"\1\s[13]唔…… \w6\s[30]喏，\w3這個給%(you)。\w9/
+			%cp(0)\b[22]（收到了 \n\f[bold,1]手工巧克力×1\f[bold,0]）\w7\n[200]\_q%(opp)\__q[OnHolidayEvent_Option,2]「情人節巧克力嗎？謝謝。」\__q\_q"
+			--
+			if event_holiday_HL[0]<1 ; event_holiday_HL[0]=1
+			if "%(year)" !_in_ holiday_celebrated_HL[0]	//今年未使用
+			{	event_holiday_HL[0]=1
+				if "-" !_in_ holiday_celebrated_HL[0] ; holiday_celebrated_HL[0]="%(year)"
+				else ; holiday_celebrated_HL[0]+="-%(year)"
+				consumable_sp[1]+=6
+			}
+		}
+		when 2
+		{	"\1\s[13]我好歹是%(you)的女朋友嘛。\w9/
+			%cp(0)\b[20]是親手做的嗎？\w5能感覺到海拉的用心喔。\w9/
+			\1%(nl)\s[37]沒有……！\w6\s[38]隨便買的啦！\w6%(you)愛吃不吃！\w9/
+			%cp(0)\b[22]\c（但是海拉一直盯著這邊……）\1\s[30]%cp(0)\w9\n[170]/
+			\_q%(opp)\__q[OnHolidayEvent_Option,3,0]放一顆到口中\__q\_q\w2\n[130]/
+			\_q%(opp)\__q[OnHolidayEvent_Option,3,1]先放到一邊\__q\_q"
+		}
+		when 3
+		{	if event_option==1
+			{	"\1\s[13]哼…\w2…\w3…\w2…\w9/
+				%cp(0)\b[20]（她看起來有點失望……）"
+			}
+			else
+			{	if event_holiday_HL[0]<2 { consumable_sp[1]-- ; stamina+=20 }
+				--
+				"%cp(0)\b[22]（味道很甜，\w5但是口感有點奇怪，\w7是煮過頭了嗎？）\n\w9/
+				\_q%(opp)\__q[OnHolidayEvent_Option,4,0]「很好吃，謝謝妳。」\__q\_q\w2\n/
+				\_q%(opp)\__q[OnHolidayEvent_Option,4,1]「口感很奇怪。」\__q\_q"
+			}
+			if event_holiday_HL[0]<2 ; event_holiday_HL[0]=2
+		}
+		when 4
+		{	if event_option==1
+				"\1\s[31]嗚……！\w5明明照著食譜做了很多次，\w8怎麼還是……"
+			else
+				"\1\s[33]哼，\w3那就好，\w5不枉費我費了那麼大功夫！"
+			--
+			"\w9%cp(0)\b[20]%(opp)\__q[OnHolidayEvent_Option,5]「嗯？不是買的嗎？」\__q"
+		}
+		when 5
+		{	"\1\s[14]呃……！！\w9/
+			%cp(0)\b[22]\_q%(opp)\__q[OnHolidayEvent_Option,6,0]「謝謝妳，我很高興喔。」\__q\_q\w2\n[180]/
+			\_q%(opp)\__q[OnHolidayEvent_Option,6,1]「這麼有心，回報海拉一個吻怎麼樣？」\__q\_q"
+		}
+		when 6
+		{	if event_option==1
+			{	"\1\s[38]那、\w3那就不必了！！！\w9\s[-1]/
+				%cp(0)\b[20]（海拉飛也似地逃走了……）\w9\w9\w9\w9\w9/
+				\1%(nl)\s[37]…\w2…\w3…\w2…"
+			}
+			else
+				"\1\s[13]%(you)、\w3%(you)開心就好啦！"
+		}
+	}
+}

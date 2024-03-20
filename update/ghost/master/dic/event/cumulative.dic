@@ -1,0 +1,333 @@
+GoToCumulativeData
+{
+	if level<50 && developermode!=1
+	{
+		"\p[3]\s[310001]%(click)啊，\w3%(username)，\w5這個地方需要您的等級達到50才能開啟權限。/
+		\p[2]%cp(0)\f[align,center]\n[70]%(opp)\q[ 離開 ,CumulativeData.Cancel]"
+	}
+	else
+	{
+		cumulativepage=0
+		CumulativeData
+	}
+}
+CumulativeData.Cancel
+{
+	"\p[3]\s[-1]"
+	--
+	CANCEL_Button
+}
+CumulativeData
+{
+	"\p[4]\s[-1]\b[6]%(click)\![quicksession,true]\![set,choicetimeout,0]\![set,autoscroll,disable]"
+	--
+	if cumulativepage[0]==1
+	{
+		"\_l[-,10]%Subtitle('收支')"
+		--
+		cumList_title = "累計消費狄斯幣"
+		cumList_list = ("服裝","抽獎","雜貨","活動")
+		cumList_array = cum_cost_discoin
+		cumList_suffix = "元"
+		CumList
+		--
+		cumList_title = "累計賺取狄斯幣"
+		cumList_list = ("任務報酬","敵人掉落","變賣廢料","變賣戰利品","變賣原礦")
+		cumList_array = cum_gain_discoin
+		cumList_suffix = "元"
+		CumList
+		--
+		cumList_title = "累計消費異方晶"
+		cumList_list = ("強化道具","染劑")
+		cumList_array = cum_cost_hypercube
+		cumList_suffix = "個"
+		CumList
+		--
+		cumList_title = "累計賺取異方晶"
+		cumList_list = ("變賣廢料","月領薪水")
+		cumList_array = cum_gain_hypercube
+		cumList_suffix = "個"
+		CumList
+		--
+		"\_l[65]\f[color,#BBFFFF]（%ARRAYSIZE(get_pay_date)\f[default]次）"
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==2
+	{
+		"\_l[-,10]%Subtitle('戰鬥')"
+		--
+		cumList_title = "完成任務"
+		cumList_list = ("辛迪加","實驗室廢墟","銹河河道")
+		cumList_array = cum_battle_complete
+		cumList_suffix = "次"
+		CumList
+		--
+		cumList_title = "戰鬥中被擊敗"
+		cumList_list = ("辛迪加","實驗室廢墟","銹河河道")
+		cumList_array = cum_battle_fall
+		cumList_suffix = "次"
+		CumList
+		--
+		cumList_title = "從戰鬥中逃走"
+		cumList_list = ("辛迪加","實驗室廢墟","銹河河道")
+		cumList_array = cum_battle_runaway
+		cumList_suffix = "次"
+		CumList
+		--
+		cumList_title = "擊敗敵人"
+		cumList_list = enemy_list_name
+		cumList_array = cum_enemy
+		cumList_suffix = "次"
+		CumList
+		--
+		"\n[200]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==3
+	{
+		_list="" ; _t=""
+		case MenuChoice
+		{	when 0
+			{
+				_t="和赫卡蒂度過的時光"
+				cum_int=cum_int_HC
+				cum_sendgift_sp=cum_sendgift_sp_HC
+				cum_sendgift=cum_sendgift_HC
+				cum_touch=cum_touch_HC
+				_list=("摸頭","摸臉","捏臉","摸胸","揉胸")
+			}
+			when 1
+			{
+				_t="和海拉度過的時光"
+				cum_int=cum_int_HL
+				cum_sendgift_sp=cum_sendgift_sp_HL
+				cum_sendgift=cum_sendgift_HL
+				cum_touch=cum_touch_HL
+				_list=("摸頭","摸臉","捏臉","摸胸","揉胸","捶肩")
+			}
+		
+		}
+		
+		"\_l[-,10]%Subtitle(_t)"
+		--
+		cumList_title="好感提升"
+		cumList_list=("觸摸","玩耍","任務","贈禮")
+		cumList_array=cum_int
+		cumList_suffix="點"
+		CumList
+		--
+		if MenuChoice==1
+		{
+			_list_d=("觸摸","戰敗","贈禮")
+			_txt="\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1]好感下降\f[default]\n[150]"
+			for _i=0 ; _i< ARRAYSIZE (_list_d) ; _i++
+			{
+				_txt+="\_l[20]%(_list_d[_i])  \f[color,#F26464]%ThousandsSeparators(cum_int_down_HL[_i])\f[default] 點\n[120]"
+			}
+			_txt
+		}
+		--
+		cumList_title="互動"
+		cumList_list=_list
+		cumList_array=cum_touch
+		cumList_suffix="次"
+		CumList
+		--
+		cumList_title="禮物贈送"
+		cumList_list=(gift_sp_name,gift_name)
+		cumList_array=(cum_sendgift_sp,cum_sendgift)
+		cumList_suffix="個"
+		CumList
+		--
+		"\n[200]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==4
+	{
+		"\_l[-,10]%Subtitle('角色養成')"
+		--
+		cumList_title="赫卡蒂的強化"
+		cumList_list=("狂亂精粹","異能原液")
+		cumList_array=cum_enh_HC
+		cumList_suffix="次"
+		CumList
+		--
+		cumList_title="海拉的強化"
+		cumList_list=("狂亂精粹","狂暴原液")
+		cumList_array=cum_enh_HL
+		cumList_suffix="次"
+		CumList
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==5
+	{
+		"\_l[-,10]%Subtitle('服飾')"
+		--
+		cumList_title="赫卡蒂"
+		CumList.Cloth(0)
+		--
+		cumList_title="海拉"
+		CumList.Cloth(1)
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==6
+	{
+		"\_l[-,10]%Subtitle('研磨')"
+		--
+		cumList_title = "累計取得原礦"
+		cumList_list = dye_ingredient_name
+		cumList_array = cum_ingredient
+		cumList_suffix = "個"
+		CumList
+		--
+		cumList_title = "累計製作染劑"
+		cumList_list = dye_name
+		cumList_array = cum_grind
+		cumList_suffix = "個"
+		CumList
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==7
+	{
+		"\_l[-,10]%Subtitle('外出')"
+		--
+		_list = (,"普通溫泉","泥漿泉","薩拉路之池")
+		_array = cum_spa
+		_time = cum_spa_time
+		_txt="\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1] 溫泉\f[default]\n[150]"
+		for _i=1 ; _i< 4 ; _i++
+		{
+			_t=(cum_spa_time[_i]/3600,cum_spa_time[_i]/60%60,cum_spa_time[_i]%60)
+			_txt+="\_l[20]%(_list[_i])  \f[color,#BBFFFF]%ThousandsSeparators(cum_spa[_i])\f[default] 次／\f[color,#BBFFFF]%(_t[0])\f[default]時\f[color,#BBFFFF]%(_t[1])\f[default]分\f[color,#BBFFFF]%(_t[2])\f[default]秒\n[120]"
+		}
+		_txt
+		--
+		_t=(cum_dispatch_time[0]/3600,cum_dispatch_time[0]/60%60)
+		_r=(cum_dispatch_time[1]/3600,cum_dispatch_time[1]/60%60)
+		"\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1] 累計派遣\f[default]\n[150]/
+		\_l[20]完成  \f[color,#BBFFFF]%ThousandsSeparators(cum_dispatch[0])\f[default] 次／\f[color,#BBFFFF]%(_t[0])\f[default]時\f[color,#BBFFFF]%(_t[1])\f[default]分\n[120]/
+		\_l[20]緊急召回  \f[color,#BBFFFF]%ThousandsSeparators(cum_dispatch[1])\f[default] 次／\f[color,#BBFFFF]%(_r[0])\f[default]時\f[color,#BBFFFF]%(_r[1])\f[default]分\n[120]"
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	elseif cumulativepage[0]==8
+	{
+		"\_l[-,10]%Subtitle('體力')"
+		--
+		"\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1] 消耗 \f[default]\n[150]/
+		\_l[20]共 \f[color,#BBFFFF]%(cum_stamina_use)\f[default] 點"
+		--
+		cumList_title = "體力回復"
+		cumList_list = "道具,溫泉"
+		cumList_array = cum_stamina_heal
+		cumList_suffix = "點"
+		CumList
+		--
+		cumList_title = "道具使用"
+		cumList_list = (birthdaycake_name,consumable_name)
+		cumList_array = (cum_birthdaycake,cum_consumable)
+		cumList_suffix = "個"
+		CumList
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('GoToCumulativeData')
+	}
+	else
+	{
+		"\b[2]"
+		--
+		menu_title="統計資訊"
+		menu_p_list=("├","├","├","├","├","├","├","└")
+		
+		menu_o_list=("收支","戰鬥","感情","體力","角色養成","服飾蒐集","研磨","外出")
+		menu_func_list=("OnCumulativeData.ChangePage,1","OnCumulativeData.ChangePage,2","OnCumulativeData.ChangePage,3","OnCumulativeData.ChangePage,8","OnCumulativeData.ChangePage,4","OnCumulativeData.ChangePage,5","OnCumulativeData.ChangePage,6","OnCumulativeData.ChangePage,7")
+		--
+		Menu.Option
+		--
+		MuenBottomOption('Database')
+		
+		/*_title="統計資訊"
+		_list_p=("├","├","├","├","├","├","└")
+		
+		_list_n=("狄斯幣","戰鬥","感情","角色養成","服飾蒐集","研磨","外出")
+		_func=("OnCumulativeData.ChangePage,1","OnCumulativeData.ChangePage,2","OnCumulativeData.ChangePage,3","OnCumulativeData.ChangePage,4","OnCumulativeData.ChangePage,5","OnCumulativeData.ChangePage,6","OnCumulativeData.ChangePage,7")
+		--
+		_option="\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(_title)\![*]\f[default]\n\n[half]\f[default]\_q\_l[0,35]\f[height,20]"
+		for _i=0 ; _i<ARRAYSIZE(menu_o_list) ; _i++
+		{
+			_option+="\f[color,200,0,0]%(_list_p[_i])\f[default]\f[height,15]\q[ %(_list_n[_i]) ,%(_func[_i])]\f[height,20]\n"
+		}
+		_option
+		--
+		"\n\_l[-,480]"
+		--
+		MuenBottomOption2('Database')*/
+	}
+}
+
+CumList
+{
+	_txt="\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1]%(cumList_title)\f[default]\n[150]"
+	for _i=0 ; _i< ARRAYSIZE (cumList_list) ; _i++
+	{
+		_txt+="\_l[20]%(cumList_list[_i])  \f[color,#BBFFFF]%ThousandsSeparators(cumList_array[_i])\f[default] %(cumList_suffix)\n[120]"
+	}
+	_txt
+}
+CumList.Cloth
+{
+	_ob=_argv[0]
+	_allpack= ARRAYSIZE ( FENUM ("img\dressing\icon\%(_ob)\0"))-1
+	_allhair= ARRAYSIZE ( FENUM ("img\dressing\icon\%(_ob)\1"))-1
+	_allcloth=0
+	for _i=1 ; _i<=13 ; _i++
+	{
+		_allcloth+= ARRAYSIZE ( FENUM ("img\dressing\icon\%(_ob)\%(_i)"))-1
+	}
+	case _ob
+	{	when 0
+		{	outfit_box=outfit_box_HC
+			hair_box=hair_box_HC
+			clothes_box=clothes_box_HC
+		}
+		when 1
+		{	outfit_box=outfit_box_HL
+			hair_box=hair_box_HL
+			clothes_box=clothes_box_HL
+		}
+	}
+	_pack= ARRAYSIZE ( outfit_box )
+	_hair= ARRAYSIZE ( hair_box )
+	_cloth= ARRAYSIZE ( clothes_box )
+	_name=("套裝","髮型","服裝")
+	_all=(_allpack,_allhair,_allcloth)
+	_box=(_pack,_hair,_cloth)
+	_txt="\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1]%(cumList_title)\f[default]\n[150]"
+	for _i=0 ; _i< ARRAYSIZE (_name) ; _i++
+	{
+		_txt+="\_l[20]%(_name[_i])  \f[color,#BBFFFF]%(_box[_i])\f[default] ／%(_all[_i])\n[120]"
+	}
+	_txt
+}
+OnCumulativeData.ChangePage
+{
+	cumulativepage=reference0
+	CumulativeData
+}

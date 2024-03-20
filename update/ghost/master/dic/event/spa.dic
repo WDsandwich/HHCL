@@ -1,0 +1,267 @@
+//%ProgressBar(顏色,x軸位置,寬度,數值,數值max)
+GoToSpa
+{
+	if MenuChoice==1 ; "\1\s[18]哇－－\w9"
+	else ; "\0\s[3]其實……%(usernameHC)不用這麼做也沒關係的。\w9"
+	--
+	OnSpa.Menu
+}
+
+OnSpa.Menu
+{
+	SpaMode=0
+	spatime=0
+	_pay="570,4090,10"
+	_coin="狄斯幣,狄斯幣,異方晶"
+	_name="普通溫泉,泥漿泉,薩拉路之池"
+	_mode=(1,2,3)
+	_color=("FFE153","FFE153","84C1FF")
+	--
+	_txt="\p[4]\b[40]\s[-1]\![set,choicetimeout,0]要泡什麼哪種溫泉呢？\![quicksession,true]\n[170]\w5"
+	--
+	for _i=0 ; _i<3 ; _i++
+	{
+		_txt+="\f[align,left]\_l[5]\f[bold,1]\f[color,#8FBC8F]-\__q[OnSpa.Pay,%(_mode[_i]),%(_name[_i]),%(_pay[_i]),%(_coin[_i]),%(_color[_i])] %(_name[_i])  \__q\f[default]\n[1]\f[align,right] ┈ \f[color,#%(_color[_i])]%(_pay[_i])%(_coin[_i])\n[150]"
+	}
+	--
+	_txt+="\f[align,left]\f[bold,0]\_l[140,130]\f[color,193,174,156]\f[height,12]\q[ 離開 ➧ ,OnSpa.Leave]"
+	_txt
+	
+}
+//普通570
+//泥漿泉1080
+//薩拉路之池4090
+OnSpa.Pay
+{
+	_r=reference0
+	_detail=",,"
+	_func=",每10秒回復1點體力。,隨著時間提升心情，達到某個程度後將停止上升。,每分鐘提升1點經驗值，但會使心情降低。"
+	_max=",8小時,無,24小時"
+	"\p[4]\b[40]\s[-1]\![quicksession,true]\![set,choicetimeout,0]\f[align,center]\f[color,#8FBC8F]\f[bold,1]\f[height,12]- %(reference1) -\f[default]\n[150]\f[align,left]\f[color,#C4E1E1]\f[height,12]- %(_func[_r])\n/
+	- 單次使用上限：%(_max[_r])\f[default]\n[150]/
+	\f[height,12]要用\f[color,#%(reference4)]\f[bold,1]%(reference2)%(reference3)\f[default]\f[height,12]購買一次入場資格嗎？\_l[-,108]\n[1]/
+	\f[default]\f[align,center]\f[color,#ADADAD]"
+	--
+	if level<10 && _r==2 ; "（等級10開放）"
+	elseif level<70 && _r==3 ; "（等級70開放）"
+	else ; "\f[color,#ADECFF]\f[bold,1]\__q[OnSpa.Enter,%(reference0),%(reference2)][ 確定結帳 ]\__q"
+	--
+	"\n\f[default]\f[color,193,174,156]\f[height,12]\_l[7,130]\q[ « 返回 ,OnSpa.Menu]\_l[140,130]\q[ 離開 ➧ ,OnSpa.Leave]"
+}
+OnSpa.Leave
+{
+	SpaMode=0
+	"\p[4]\b[40]\s[-1]想放鬆的時候再來喔！\w5\p[8]\s[-1]\0\s[0]\1\s[10]%cp(0)\e"
+}
+OnSpa.Count
+{
+	if SpaMode>=1
+	{
+		_time=spatime_max-spatime_laft
+		if (SpaMode==1||SpaMode==3) && spatime_laft<=0 ; _time=spatime_max
+		if SpaMode==2 ; _time=SecondFrom2024("%(year).%(month).%(day).%(hour).%(minute).%(second)")-spatime_start
+		cum_spa_time[SpaMode] += TOINT(_time)
+		if SpaMode==1
+			cum_stamina_heal[1] += TOINT(stamina-spa_start_stamina)
+	}
+	stamina=TOINT(stamina)
+}
+OnSpa.NotEnoughDiscoin
+{
+	if reference0==3 ; "\p[2]%cp(0)（異方晶不夠啊……）"
+	else ; "\p[2]%cp(0)（狄斯幣不夠啊……）"
+	--
+	OnSpa.Menu
+}
+
+OnSpa.Enter
+{
+	_type=reference0 ; _price=reference1
+	if (_type<3 && discoin<_price) || (_type==3 && hypercube<_price)
+		Spa_NotEnoughDiscoin
+	else
+	{
+		cum_spa[_type]=TOINT(cum_spa[_type]) ; cum_spa[_type]++
+		if _type==3 ; hypercube-=_price
+		else ; discoin-=_price
+		SpaMode=_type
+		spa_start_stamina=stamina
+		spatime_start = SecondFrom2024("%(year).%(month).%(day).%(hour).%(minute).%(second)")
+		if _type==1 ; spatime_max = 28800
+		elseif _type==3 ; spatime_max = 86400
+		spatime_full = spatime_start + spatime_max
+		if _type==1 ; spatime = spatime_start + (staminamax-stamina)*10
+		--
+		if _type==1 ; "\s[800011]"
+		elseif _type==2 ; "\s[800021]"
+		elseif _type==3 ; "\s[800031]"
+		--
+		OnSpa.Window
+	}
+}
+OnSpa.End
+{
+	"\p[8]\b[60]\c\n[90]\_l[5]"
+	--
+	"要結束溫泉模式嗎？"
+	"不泡了嗎？"
+	--
+	"\n[180]\_l[8]\f[color,#800000]◈\f[default]\q[ 繼續泡 ,OnSpa.Window]\_l[80]\f[color,#800000]◈\f[default]\q[ 換池泡 ,OnSpa.Change]\n[130]\_l[8]\f[color,#800000]◈\f[default]\q[ 起身 ,OnSpa.Out]"
+}
+OnSpa.Change
+{
+	OnSpa.Count
+	OnSpa.Menu
+}
+OnSpa.Out
+{
+	OnSpa.Count
+	OnSpa.Leave
+}
+OnSpa.LeaveButton
+{
+	"\_l[100]\f[color,#808080]\q[ 離開 ➧ ,OnSpa.End]"
+}
+
+
+
+
+/*
+普通：回體
+泥巴：提升心情
+薩：提升經驗值
+*/
+OnSpa.Window
+{
+	"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\b[60]\c\![quicksection,true]\n[110]\f[shadowcolor,none]"
+	--
+	case SpaMode
+	{
+		when 1
+		{
+			spatime_laft = spatime_full - SecondFrom2024("%(year).%(month).%(day).%(hour).%(minute).%(second)")
+			spatime_clock = spatime-SecondFrom2024("%(year).%(month).%(day).%(hour).%(minute).%(second)")
+			_min=spatime_clock%60
+			--
+			if spatime_laft<=0 ; "\s[800010]\f[align,center]她們已經離開了……\n[200]%(OnSpa.LeaveButton)"
+			else
+			{
+				if spatime_laft<10800 ; "\s[800013]"
+				elseif spatime_laft<18000 ; "\s[800012]"
+				else ; "\s[800011]"
+				--
+				"%ProgressBar(6,10,120,stamina,staminamax)"
+				--
+				if stamina>=staminamax
+					"\![set,balloontimeout,0]\_l[30]體力已完全回復\n[300]%(OnSpa.LeaveButton)"
+				else
+				{
+					"\![set,balloontimeout,0]\_l[30]%TOINT(stamina) / %(staminamax)\n[120]/
+					\_l[10]回滿用時：%TOINT(spatime_clock/60)分%TOINT(_min)秒\n[200]%(OnSpa.LeaveButton)"
+					--
+					"\_w[1000]\![raise,OnSpa.Window]"
+				}
+			}
+		}
+		when 2
+		{
+			"\s[800021]\f[valign,center]赫卡蒂：%MoodPic(mood[0])"
+			--
+			if developermode==1 ; "%(mood[0])"
+			--
+			if mood[0]<2000 ; "（上升中）"
+			--
+			"\n海拉：%MoodPic(mood[1])"
+			--
+			if developermode==1 ; "%(mood[1])"
+			--
+			if mood[1]<2000 ; "（上升中）"
+			--
+			"\n%(OnSpa.LeaveButton)"
+			--
+			"\__w[5000]\![raise,OnSpa.Window]"
+		}
+		when 3
+		{
+			LevelCheck
+			spatime_laft = spatime_full - SecondFrom2024("%(year).%(month).%(day).%(hour).%(minute).%(second)")
+			--
+			if spatime_laft<=0 ; "\s[800030]\f[align,center]她們已經離開了……\n[200]%(OnSpa.LeaveButton)"
+			else
+			{
+				"\s[800031]\_l[10]\f[color,#FFE66F]Lv.%(level)\n%ProgressBar(3,10,120,exp,levelupexp)/
+				\_l[30]\f[default]\f[shadowstyle,outline]%(exp) / %(levelupexp)\f[default]\n/
+				\_l[10]剩餘：%(spatime_laft/3600)時%(spatime_laft/60-(spatime_laft/3600*60))分%(spatime_laft-spatime_laft/60*60)秒/
+				\n[140]%(OnSpa.LeaveButton)"
+				--
+				"\__w[1000]\![raise,OnSpa.Window]"
+			}
+		}
+	}
+	
+}
+
+
+
+
+/*
+ConfirmPay_MudBath
+{
+	"\p[4]\b[40]\s[-1]\![set,choicetimeout,0]\f[bold,1]泥漿溫泉\f[bold,0]將持續獲得少量經驗值。\n/
+	要用%CPFBC(1080,1,255,209,5)狄斯幣購買一次入場資格嗎？\n[200]/
+	%SpaPayOption(2)"
+}
+
+OnMudBath
+{
+
+	"\0\s[2201]\b[20]\c\![quicksection,true]\![set,balloontimeout,0]\n[110]/
+	%(ProgressBar(3,10,120,exp,levelupexp))\f[shadowcolor,none]\_l[15]%(exp) / %(levelupexp)\_l[100]\n[120]/
+	\_l[10]目前等級：%(level)\n[200]%(OnSpa.LeaveButton)\_w[60000]"
+	--
+	getexp=level
+	WhenExpGet
+	--
+	"\![raise,OnMudBath] "
+}
+ConfirmPay_LazarusPit
+{
+	"\p[4]\b[40]\s[-1]\![set,choicetimeout,0]\f[bold,1]拉薩路斯之池\f[bold,0]能夠緩慢地持續強化禁閉者的能力。\n/
+	要用%CPFBC(4090,1,255,209,5)狄斯幣購買一次入場資格嗎？\n[200]/
+	%SpaPayOption(3)"
+}
+OnLazarusPit
+{
+	"\0\s[2201]\b[20]\c\![quicksection,true]\n[110]當前累積強化值：\n/
+	%(onceVget[0])HP上限　%(onceVget[1])攻擊力)\n[200]%(OnSpa.LeaveButton)\_w[600000]"
+	--
+	onceVget[0]+=(level/50)
+	onceVget[1]+=(level/50*4)
+	Hinc_ex[0]+=(level/50)
+	Hinc_ex[1]+=(level/50*4)
+	--
+	"\![raise,OnLazarusPit]"
+}
+
+
+BackToSpa
+{
+  case SpaMode{
+    when 1
+      OnSpa_normal
+    when 2
+      OnMudBath
+    when 3
+      OnLazarusPit
+  }
+}
+
+
+EndSpa
+{
+	SpaMode=0
+	ERASEVAR('onceVget')
+	--
+	"\0謝謝，%(usernameHC)，我的疲勞一掃而空了。"
+}
+*/

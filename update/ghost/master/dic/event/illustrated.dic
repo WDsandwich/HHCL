@@ -1,0 +1,350 @@
+Menu_Illustrated
+{	ill_mode=1
+	Illustrated
+}
+HotKey_Illustrated
+{	if ill_mode>=1 ; OnIllustrated_Close
+	else ; Menu_Illustrated
+}
+Illustrated
+{
+	click
+	--
+	"\p[4]\s[-1]\b[6]\![quicksession,true]\![set,choicetimeout,0]\f[align,center]\![set,autoscroll,disable]/
+	\n[50]\f[height,12]\f[bold,1]\f[color,#9D9D9D]"
+	--
+	if page[0]==1 ; "\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\__q[OnIllustrated.ChangePage,1] 敵方 \__q\f[shadowcolor,default]\f[color,#9D9D9D]    "
+	--
+	if page[0]==2 ; "\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\__q[OnIllustrated.ChangePage,2] 物品 \__q\f[shadowcolor,default]\f[color,#9D9D9D]    "
+	--
+	if page[0]==3 ; "\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\__q[OnIllustrated.ChangePage,3] 服裝 \__q\f[shadowcolor,default]\f[color,#9D9D9D]    "
+	--
+	if page[0]==4 ; "\f[shadowcolor,#930000]\f[color,default]"
+	--
+	"\__q[OnIllustrated.ChangePage,4] 其他 \__q\f[shadowcolor,default]\f[color,#9D9D9D]\n   \f[shadowcolor,#930000]"
+	--
+	DividingLine
+	--
+	if page[0]==1
+	{
+		_txt="\n[111]\f[align,center]\f[color,#6C6C6C]|"
+		_s="編號,地圖,原礦,源液,物種"
+		for _i=0 ; _i<ARRAYSIZE(_s) ; _i++
+		{	
+			if page[1]==_i ; _txt+="|\f[color,#FFF8D7][%(_s[_i])]\f[color,#6C6C6C]"
+			else ; _txt+= "| \__q[OnIllustrated.ChangeSort,%(_i)]%(_s[_i])\__q "
+			//_txt+="     "
+		}
+		_txt+="||\n\f[align,center]  "
+		_txt
+		--
+		DividingLine
+		--
+		"\n\f[align,center]"
+		--
+		if page[1]==1
+		{	illustrated_list=EnemyC
+			illustrated_title="　辛迪加　"
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=EnemyP
+			illustrated_title="實驗室廢墟"
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=EnemyR
+			illustrated_title="　銹　河　"
+			Illustrated_Type_Enemy
+			--
+			"\n[-150]"
+		}
+		elseif page[1]==2
+		{	illustrated_list=enemy_ingredient_0
+			illustrated_title=dye_ingredient_name[0]
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=enemy_ingredient_1
+			illustrated_title=dye_ingredient_name[1]
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=enemy_ingredient_2
+			illustrated_title=dye_ingredient_name[2]
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=enemy_ingredient_3
+			illustrated_title=dye_ingredient_name[3]
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=enemy_ingredient_4
+			illustrated_title=dye_ingredient_name[4]
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=enemy_ingredient_5
+			illustrated_title=dye_ingredient_name[5]
+			Illustrated_Type_Enemy
+		}
+		elseif page[1]==3
+		{	illustrated_list=enemy_enhancement_A
+			illustrated_title=enhancement_name[2]
+			Illustrated_Type_Enemy
+			--
+			//"\n"
+			--
+			illustrated_list=enemy_enhancement_B
+			illustrated_title=enhancement_name[1]
+			Illustrated_Type_Enemy
+		}
+		elseif page[1]==4
+		{	illustrated_list=enemy_species_0
+			illustrated_title="人　類"
+			Illustrated_Type_Enemy
+			--
+			//"\n[200]"
+			--
+			illustrated_list=enemy_species_1
+			illustrated_title="異化種"
+			Illustrated_Type_Enemy
+			--
+			"\n[200]"
+			--
+			illustrated_list=enemy_species_2
+			illustrated_title="原生種"
+			Illustrated_Type_Enemy
+			--
+			//"\n[200]"
+			--
+			illustrated_list=enemy_species_3
+			illustrated_title="人造物"
+			Illustrated_Type_Enemy
+		}
+		else
+		{	_list=enemy_list_name
+			_txt=""
+			for _i=0 ; _i<ARRAYSIZE(_list) ; _i++
+			{	if cum_enemy[_i]>=1
+				_txt+="\__q[OnIllustrated_Enemy_Icon,%(enemy_list_name[_i])]\_b[img\battle\enemy\%(_list[_i]).png,inline,--option=use_self_alpha]\__q"
+				else ; _txt+="\_b[img\battle\enemy\none.png,inline,--option=use_self_alpha]"
+				if (_i+1)%3==0 ; _txt+="\n[250]"
+				else ; _txt+="     "
+			}
+			_txt
+		}
+		--
+		if page[1]==0 || page[1]==3 ; "\n\_l[-,465]"
+		else ; "\n[200]"
+	}
+	else ; "\n[200]"
+	--
+	"\f[align,center]\f[shadowcolor,#930000]   %(DividingLine)\f[default]\n[111]\f[color,150,150,150]\_l[20]\_b[img/BackIcon,inline]\f[height,12]\q[返回,Database]/
+	\_l[150]\_b[img/CancelIcon,inline]\q[關閉,OnIllustrated_Close]"
+}
+OnIllustrated.ChangePage
+{	page[0]=reference0
+	Illustrated
+}
+OnIllustrated.ChangeSort
+{	page[1]=reference0
+	Illustrated
+}
+Illustrated_Type_Enemy
+{	
+	_txt="\f[align,center]----------- \![*]%(illustrated_title) \![*]-----------\n[130]\f[align,left]"
+	--
+	for _i=0 ; _i<ARRAYSIZE(illustrated_list) ; _i++
+	{	
+		_e=ASEARCH(illustrated_list[_i],enemy_list_name)
+		if cum_enemy[_e]>=1
+		{	_txt+="    \__q[OnIllustrated_Enemy_Icon,%(illustrated_list[_i])]\_b[img\battle\enemy\%(illustrated_list[_i]).png,inline,--option=use_self_alpha]\__q"
+		}
+		else ; _txt+="    \_b[img\battle\enemy\none.png,inline,--option=use_self_alpha]"
+		if (_i+1)%3==0 ; _txt+="\n[200]"
+	}
+	--
+	_txt
+}
+OnIllustrated_Enemy_Icon
+{	ill_mode=2
+	ill_pic_page=0
+	_name=reference0
+	ill_info_page = ASEARCH (_name,enemy_list_name)
+	OnIllustrated_Enemy_Info
+}
+OnIllustrated_Enemy_Info
+{	
+	/*_name="" ; _num=0
+	if GETTYPEEX (reference0) == 3
+	{	_name=reference0 ; _num= ASEARCH (_name,enemy_list_name)	}
+	else ; { _num=reference0 ; _name=enemy_list_name[_num] }*/
+	_num = ill_info_page
+	_name = enemy_list_name[_num]
+	_no=_num+1
+	if _num+1<100 ; _no="0"+_no
+	if _num+1<10  ; _no="0"+_no
+	_no1=_num
+	if _num-1<100 ; _no1="0"+_no1
+	if _num-1<10  ; _no1="0"+_no1
+	_no2=_num+2
+	if _num+2<100 ; _no2="0"+_no2
+	if _num+2<10  ; _no2="0"+_no2
+	//圖片
+	_pic_path="img/illustrated/%(_num)"
+	_pic_a= FENUM (_pic_path)
+	if ill_pic_page >= ARRAYSIZE (_pic_a) ; ill_pic_page=0
+	if ill_pic_page<0 ; ill_pic_page = ARRAYSIZE(_pic_a)-1
+	_pic_file=REPLACE(_pic_a[ill_pic_page],".",",")
+	_pic_act=_pic_file[1]
+	//物種
+	_species=""
+	if     ASEARCH (_name,enemy_species_3) >=0 ; _species="\f[shadowcolor,#0D633F]人造物"
+	elseif ASEARCH (_name,enemy_species_0) >=0 ; _species="\f[shadowcolor,#69626F]人類"
+	elseif ASEARCH (_name,enemy_species_2) >=0 ; _species="\f[shadowcolor,#E43E21]原生種"
+	elseif ASEARCH (_name,enemy_species_1) >=0 ; _species="\f[shadowcolor,#2E7FC2]異化種"
+	_species=TOSTR(_species)
+	//出沒地圖
+	_map=""
+	if _name=="藍蠕蟲" ; _map+="實驗室廢墟"
+	if ASEARCH (_name,EnemyC)>=0 ; _map+="辛迪加"
+	if ASEARCH (_name,EnemyP)>=0 ; _map+="實驗室廢墟"
+	if ASEARCH (_name,EnemyR)>=0
+	{	if "實驗室廢墟" _in_ _map || "辛迪加" _in_ _map ; _map+="、"
+		_map+="銹河"
+	}
+	//掉落物
+	_drop=""
+	_loot = ASEARCHEX (_name,loot_enemy_name)
+	_loot = loot_name[_loot]
+	_drop += REPLACE (TOSTR(_loot),",","、")
+	if ASEARCH (_name,enemy_ingredient_0)>=0 ; _drop += "、"+dye_ingredient_name[0]
+	if ASEARCH (_name,enemy_ingredient_1)>=0 ; _drop += "、"+dye_ingredient_name[1]
+	if ASEARCH (_name,enemy_ingredient_2)>=0 ; _drop += "、"+dye_ingredient_name[2]
+	if ASEARCH (_name,enemy_ingredient_3)>=0 ; _drop += "、"+dye_ingredient_name[3]
+	if ASEARCH (_name,enemy_ingredient_4)>=0 ; _drop += "、"+dye_ingredient_name[4]
+	if ASEARCH (_name,enemy_ingredient_5)>=0 ; _drop += "、"+dye_ingredient_name[5]
+	if ASEARCH (_name,enemy_enhancement_A)>=0 ; _drop += "、狂暴源液"
+	if ASEARCH (_name,enemy_enhancement_B)>=0 ; _drop += "、異能源液"
+	--
+	Illustrated
+	--
+	"\p[7]\s[-1]\b[8]\![quicksession,true]\![set,choicetimeout,0]\![set,autoscroll,disable]\f[align,left]"
+	--
+	if _num>0 ; "\f[color,#FFDC35]\__q[OnIllustrated_Enemy_Info.Changepage,A]< No.%(_no1)\__q\f[color,default]"
+	--	
+	"\n[1]\f[align,center]\f[bold,1]［ No.%(_no) ］\f[default]\n[-1]\f[align,right]"
+	--
+	if _num+1 < ARRAYSIZE (enemy_list_name) ; "\f[color,#FFDC35]\__q[OnIllustrated_Enemy_Info.Changepage,B]No.%(_no2) >\__q\f[color,default]"
+	--
+	"\n[200]\f[align,center]/
+	\__q[OnIllustrated_Enemy_Info.ChangePic,1]\_b[img/illustrated/%(_num)/%(_pic_a[ill_pic_page]),inline,--option=use_self_alpha]\__q\n"
+	--
+	_ieip = "\__q[OnIllustrated_Enemy_Info.ChangePic,-1]%Bimg('botton/IEIPa')\__q      "
+	for _i=0 ; _i<ARRAYSIZE(_pic_a) ; _i++
+	{	if _i == ill_pic_page ; _ieip += Bimg("botton/IEIP1")
+		else ; _ieip += Bimg("botton/IEIP0")
+	}
+	_ieip += "      \__q[OnIllustrated_Enemy_Info.ChangePic,1]%Bimg('botton/IEIPb')\__q"
+	_ieip
+	--
+	"\n[1]\f[align,right]\f[color,#E1C4C4]- %TOUPPER(_pic_act) -"
+	--
+	"\n[200]\f[align,center]\f[height,15]\f[bold,1]\f[color,#12F3F3]《 "
+	--
+	if _name=="？？？"&&cum_enemy[14]>=5 ; "深潛者"
+	elseif _name=="憂鬱的婦人" ; "死神"
+	else ; "%(_name)"
+	--
+	" 》\f[default]\n[200]/
+	\f[bold,1]%(_species)\f[default]\n[200]/
+	\f[align,center]%(enemy_description[_num])"
+	--
+	if ill_info_page==14
+	{	
+		_line=""
+		_msg="0,姣嶈Κ鍦ㄧ湅钁梱ou,蹇粸锛岄亷渚嗘垜閫欓倞,鍜屾垜涓€璧峰洖home,鎴愮偤锛屾垜鍊戠殑涓€浠藉瓙"
+		for _i=1 ; _i<=4 ; _i++
+		{	_line += "\n[150]"
+			if cum_enemy[14]>=_i ; _line += "\f[color,#CF9E9E]%(_msg[_i]) \f[color,#FFE153]\__q[OnIllustrated_Enemy_Info_TheDeepLine,%(_i)]<查看字條%(_i)>\__q"
+			else{
+				_line += "\f[color,#8E8E8E]僅僅%(cum_enemy[14])次的戰鬥還來不及紀錄完整，之後在實驗室持續蒐集牠的資訊吧。"
+				_i=5
+			}
+		}
+		_line += "\f[color,default]\n[150]（無法理解，要不要聽聽禁閉者的說法呢？）"
+		_line
+	}
+	--
+	"\n[250]\f[shadowcolor,#D6D6AD]\f[color,#616130]- 出沒 - \f[default]\f[color,#D6D6AD]\n[130]%(_map)\n[200]/
+	\f[shadowcolor,#B3D9D9]\f[color,#336666]- 掉落物 - \f[default]\f[color,#C4E1E1]\n[130]%(_drop)\n[300]/
+	\f[color,#9D9D9D][操作方式]  ←→切換敵人  ↑↓切換圖片\n[300]/
+	\f[height,15]\f[color,#FFDC35]\q[ × 關閉 ,OnIllustrated_Enemy_Info_Close]\n[150]  "
+	/*case page[0]
+	{	when 0
+		{	
+			""
+		}
+	}*/
+}
+OnIllustrated_Enemy_Info_TheDeepLine
+{	OnIllustrated_Enemy_Info
+	--
+	"\![open,file,ghost/master/order/the_deep_line%(reference0).txt]"
+}
+OnIllustrated_Enemy_Info_TheDeepLine.HC : nonoverlap
+{	
+	"\s[0]這些文字是什麼意思呢……"
+	"\s[1]或許需要\f[bold,1]\f[color,#FF2D2D]管理局以外的手段\f[default]才能看懂……"
+	"\s[0]聽夜鶯小姐說，\w6有些看似難以理解的文字，\w8被正確\f[bold,1]\f[color,#FF2D2D]解碼\f[default]之後，\w5可能就能變成正常的語言了。"
+}
+OnIllustrated_Enemy_Info_TheDeepLine.HL : nonoverlap
+{	
+	"\s[35]看不懂……\w5\n[130]這些都是生僻字嗎？"
+	"\s[36]咦？\w3原來%(usernameHL)也看不懂？\w7\n[130]這些文字看起來確實很奇怪……"
+	"\s[30]赫卡蒂的\f[bold,1]\f[color,#FF2D2D]中文\f[default]比較好，\w6要不咱們去問問她？"
+}
+OnIllustrated_Enemy_Info.Changepage
+{	_r=reference0
+	if _r =="A" ; ill_info_page--
+	elseif _r =="B" ; ill_info_page++
+	while TOINT(cum_enemy[ill_info_page])<1
+	{	if _r =="A" ; ill_info_page--
+		elseif _r =="B" ; ill_info_page++
+		if ill_info_page<0 ; ill_info_page=ARRAYSIZE(enemy_list_name)-1
+		if  ill_info_page>=ARRAYSIZE(enemy_list_name) ; ill_info_page=0
+	}
+	if ill_info_page<0 ; ill_info_page=ARRAYSIZE(enemy_list_name)-1
+	if  ill_info_page>=ARRAYSIZE(enemy_list_name) ; ill_info_page=0
+	ill_pic_page=0
+	OnIllustrated_Enemy_Info
+}
+OnIllustrated_Enemy_Info.ChangePic
+{	ill_pic_page+=reference0
+	OnIllustrated_Enemy_Info
+}
+OnIllustrated_Enemy_Info_Close
+{	ill_mode=1
+	Illustrated
+}
+OnIllustrated_Close
+{	ill_mode=0
+	CANCEL_Button
+}
+
+

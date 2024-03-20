@@ -1,0 +1,123 @@
+//******************************************************************************
+// YAYA　ゴーストテンプレート
+// 文字列リソース辞書
+//******************************************************************************
+
+//------------------------------------------------------------------------------
+//ユーザー名
+//------------------------------------------------------------------------------
+On_username
+{
+	username
+}
+
+//------------------------------------
+////////////////網址選單//////////////
+//------------------------------------
+On_recommendrootbutton.caption
+{
+	"◇ 關於偽春菜/伺か ◇"
+}
+On_sakura.recommendsites_EX : array
+{
+	"SSP官方網站           | http://ssp.shillest.net/ | "
+	"YAYA github頁面       | https://github.com/ponapalt/yaya-shiori/wiki | "
+	"中文偽春菜後援會論壇  | http://cuc.moe.hm/index.php | "
+}
+On_portalrootbutton.caption
+{
+	"◇ 反饋渠道 ◇"
+}
+On_sakura.portalsites_EX : array
+{
+	"discord群組		| https://discord.gg/RjAkPFQRmw |"
+}
+
+
+//------------------------------------------------------------------------------
+//使魔側推薦網站
+On_kero.recommendbuttoncaption
+{
+	"相關網頁"
+}
+On_kero.recommendsites_EX : array
+{
+	"▽無期迷途▽                |			     | "
+	"台服官網                | https://ptn.aisnogames.com/zh-TW/home "
+	"BWIKI                | https://wiki.biligame.com/wqmt/%E9%A6%96%E9%A1%B5 | "
+	"-"
+	"▽開發軟體▽                |		 | "
+	"YAYA                | https://github.com/ponapalt/yaya-shiori/wiki | "
+	"-"
+	"▽音效素材▽                |		 | "
+	"効果音ラボ                | https://soundeffect-lab.info/ | "
+}
+
+//------------------------------------
+////////////////其他選單//////////////
+//------------------------------------
+//人格更新
+On_updatebutton.caption
+{"（暫不支持線上更新）"}
+//打開readme文件
+On_readmebutton.caption
+{"◇ 詳情 ◇"}
+//------------------------------------------------------------------------------
+On_shellscalerootbutton.caption
+{"◇ 人物大小縮放 ◇"}
+On_balloonscalerootbutton.caption
+{"◇ 對話框大小縮放 ◇"}
+On_utilityrootbutton.caption
+{""}
+On_biffbutton.caption
+{"e-mail"}
+On_pluginrootbutton.visible
+{"外掛"}
+On_shellrootbutton.caption
+{"外觀"}
+On_dressuprootbutton.caption
+{"（欲換裝請使用更衣室）"}
+On_hidebutton.caption
+{"◇ 隱藏 ◇"}
+On_closebutton.caption
+{"◇ 離開管理局 ◇"}
+On_quitbutton.caption
+{"◇ 關閉程式 ◇"}
+
+
+//------------------------------------
+////////////////刪除人格//////////////
+//------------------------------------
+On_vanishbutton.caption
+{
+	"***與禁閉者分離***"
+}
+
+//------------------------------------------------------------------------------
+//消滅指示ボタン表示切り替え
+//------------------------------------------------------------------------------
+On_vanishbutton.visible
+{
+	//---- "0"で非表示、それ以外で表示
+	"0"
+}
+
+
+//******************************************************************************
+//おすすめサイトのリストを書きやすくするためのコア
+//基本的には以下はいじらなくていいです。
+//******************************************************************************
+On_sakura.recommendsites
+{
+	AYATEMPLATE.LinkMenuConvert(On_sakura.recommendsites_EX)
+}
+
+On_sakura.portalsites
+{
+	AYATEMPLATE.LinkMenuConvert(On_sakura.portalsites_EX)
+}
+
+On_kero.recommendsites
+{
+	AYATEMPLATE.LinkMenuConvert(On_kero.recommendsites_EX)
+}

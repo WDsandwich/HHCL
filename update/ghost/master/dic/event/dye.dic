@@ -1,0 +1,317 @@
+//========================================
+///////////////////研磨坊/////////////////
+//========================================
+Dye.Grind.Initial
+{
+	qty_ing=(0,0,0,0,0)
+	qty_dye=(0,0,0,0,0,0,0,0,0,0,0,0,0)
+}
+Dye.Grind.GoTo
+{
+	Dye.Grind.Initial
+	Dye.Grind
+}
+Dye.Grind
+{
+	click
+	--
+	"\0\b[-1]\1\b[-1]"
+	--
+	"\p[4]\s[-1]\b[6]\c\![set,balloontimeout,0]\![quicksession,true]\f[align,center]\n[50]/
+	\f[height,15]%Subtitle('研磨坊')\n   %(DividingLine)\n[150]\f[align,center]/
+	\f[height,12]\f[shadowcolor,#930000]- 消耗材料 -\f[default]\n[40]"
+	--
+	Dye.Grind.Ingredient
+	_txt=""
+	for _i=0 ; _i<ARRAYSIZE(dye_ingredient_name) ; _i++
+	{
+		_txt+="\n%(dye_ingredient_name[_i])："
+		if qty_ing[_i]>=1;_txt+="\f[color,#FFE66F]"
+		if dye_ingredient[_i]<qty_ing[_i];_txt+="\f[color,#FF2D2D]"
+		_txt+=" %(qty_ing[_i]) \f[default] / %(dye_ingredient[_i])"
+	}
+	--
+	_txt+="\n[200]\f[height,12]\f[shadowcolor,#930000]- 欲製作染料 -\f[default]\n[40]"
+	--
+	for _i=0 ; _i<ARRAYSIZE(dye_name) ; _i++
+	{
+		_txt+="\n[130]%(dye_color[_i])%(dye_name[_i])\f[default]\f[height,12]： \__q[OnDye.Grind.Qty,%(_i),-1]%QTYimg('-')\__q"
+		if qty_dye[_i]>=1;_txt+="\f[color,#80FFFF]"
+		_txt+=" %(qty_dye[_i]) \f[default]\__q[OnDye.Grind.Qty,%(_i),1]%QTYimg('+')\__q  \__q[OnDye.Grind.Qty,%(_i),-999]%QTYimg('reset')\__q"
+	}
+	_txt+="\n[200]"
+	_txt
+	--
+	_a=0 ; _b=0
+	for _i=0 ; _i<ARRAYSIZE(dye_ingredient_name) ; _i++
+	{
+		if qty_ing[_i]>dye_ingredient[_i];_a++
+		_b+=qty_ing[_i]
+	}
+	if _a>0 ; "\f[color,#FF2D2D]所持原礦不足！\f[default]"
+	elseif _b>0 ; "\__q[Dye.Grind.End][ \f[bold,1]\f[color,#BFA0CF]開始研磨！\f[color,default]\f[bold,0] ]\__q"
+	--
+	"\_q\f[color,150,150,150]\_l[10,480]\_b[img/BackIcon,inline]\f[height,12]\q[返回,OnMenu_Bureau]\_l[170]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	
+}
+Dye.Grind.Ingredient
+{
+	qty_ing[0]=qty_dye[0]*10+qty_dye[1]*5+qty_dye[7]*5+qty_dye[8]*6+qty_dye[9]*4
+	qty_ing[1]=qty_dye[1]*5+qty_dye[2]*10+qty_dye[3]*7+qty_dye[4]*3+qty_dye[8]*1+qty_dye[9]*4
+	qty_ing[2]=qty_dye[3]*3+qty_dye[4]*6+qty_dye[5]*10+qty_dye[6]*7+qty_dye[7]*5
+	qty_ing[3]=qty_dye[4]*1+qty_dye[6]*3+qty_dye[9]*2+qty_dye[11]*10+qty_dye[12]*5
+	qty_ing[4]=qty_dye[8]*3+qty_dye[10]*10+qty_dye[12]*5
+	qty_ing[5]=0
+	for _i=0 ; _i<ARRAYSIZE(dye_name) ; _i++
+	{
+		qty_ing[5]+=qty_dye[_i]
+	}
+}
+OnDye.Grind.Qty
+{
+	_n=reference0
+	_a=reference1
+	qty_dye[_n]+=_a
+	if qty_dye[_n]<0 ; qty_dye[_n]=0
+	if qty_dye[_n]>999 ; qty_dye[_n]=999
+	Dye.Grind
+}
+Dye.Grind.End
+{
+	"\%(MenuChoice)"
+	--
+	case MenuChoice
+	{	when 0
+		{
+			"%SFX('sfx/メニューを開く2')"
+			--
+			"%SFX('skill/01-HC-54-dreamshadow')"
+			"%SFX('skill/02-HC-27-dreamshadow')"
+			"%SFX('skill/02-HC-29-dreamshadow')"
+			"%SFX('skill/02-HC-57-nightmare')"
+			--
+			"\s[9]夢魘！\w9\p[4]\s[-1]\b[32]%(bp) 赫卡蒂 對著金屬大缽內部施展了 無光之境！%(bp)\w9\n[110]/
+			%(bp) 缽中的礦物被轟成碎渣了！%(bp)"
+		}
+		when 1
+		{
+			"%SFX('ineterjection/HL 05-he')%SFX('effect/grind')"
+			--
+			"\s[34]喝、啊、哼！\w9\w5\p[4]\s[-1]\b[32]%(bp) 海拉 對著金屬大缽內部猛槌猛敲！%(bp)\w9\n[110]/
+			%(bp) 缽中的礦物被打成碎渣了！%(bp)"
+		}
+		
+	}
+	--
+	"\w5"
+	--
+	qty_dye_type=0
+	_txt=""
+	for _i=0 ; _i<ARRAYSIZE(dye_name) ; _i++
+	{
+		dye[_i]+=qty_dye[_i]
+		if qty_dye[_i]>0
+		{
+			_txt+="\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得了 %(dye_color[_i])%(qty_dye[_i])個 %(dye_name[_i])染料\f[default]！%(bp)\_q\w9"
+			--
+			cum_grind[_i]=TOINT(cum_grind[_i]) ; cum_grind[_i]+=qty_dye[_i]
+			qty_dye_type++	//行數計算用
+		}
+	}
+	_txt
+	--
+	for _i=0 ; _i<ARRAYSIZE(dye_ingredient_name) ; _i++ {
+		dye_ingredient[_i]-=qty_ing[_i]
+	}
+	--
+	"\w9\![quicksession,true]\f[default]\n[300]\__q[Dye.Grind.GoTo][ \f[color,#BFA0CF]繼續研磨\f[default] ]\__q\n[150]\__q[GoIntoDressingRoom][ \f[color,#E085AB]前往更衣室\f[default] ]\__q/
+	\n[150]\__q[OnBagItem][ \f[color,#FFED97]打開倉庫\f[default] ]\__q"
+	--
+	if qty_dye_type<=6 ; "\_l[-,280]"
+	else			   ; "\n[300]"
+	--
+	"\f[color,150,150,150]\_l[5]\_b[img/BackIcon,inline]\f[height,12]\q[返回,OnMenu_Bureau]\_l[135]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]"
+	
+}
+
+
+
+
+
+//可染色服裝列表(角色-部位-編號-原色-染色)
+SCR.List
+{
+	("HC-7-001",10,11,"HC-8-001",10,11,"HC-10-003",10,11,"HL-9-003",9,13)
+}
+DyeIconPos
+{
+	(10,80,150,247,332,417)
+}
+DyeButton
+{
+	_gird=_argv[0]
+	_n=(DRpage_now-1)*9+_argv[0]
+	_ncode=_n
+	_ob=""
+	_txt=""
+	if _n<100 ; _ncode="0"+_ncode
+	if _n<10 ; _ncode="0"+_ncode
+	case DressingPage[0] ; { when 0;_ob="HC" ; when 1 ;_ob="HL" }
+	_cloth=_ob+"-"+DressingPage[1]+"-"+_ncode
+	--
+	if _cloth _in_ TOSTR(SCR.List)
+	{
+		_xpos=_n%3-1
+		_ypos=(_n-1)/3+3
+		if _xpos <0 ; _xpos=2
+		_xpos=DyeIconPos[_xpos]
+		_ypos=DyeIconPos[_ypos]	//V
+		_txt+="\_l[%(_xpos),%(_ypos)]"
+		--
+		_a=ASEARCHEX(_cloth,SCR.List)
+		_b=_a+2
+		_code=SCR.List[_a,_b]
+		--
+		//_txt+=_xpos
+		--
+		_color="color%(_code[1])"
+		_txt+="\__q[OnChangeIconSCR,%(_gird),%(_gird)]"
+		_txt+=DRimg(_color)
+		_txt+="\__q"
+		--
+		_dye=REPLACE(_code[2],"+",",")
+		if _dye[0] ==13
+			_txt+="%DRimg('color_full')"
+		else
+			{ _color="color%(_dye[0])" ; _txt+=DRimg(_color) }
+		--
+		if ARRAYSIZE(_dye) == 2
+			{ _color="color%(_dye[1])" ; _txt+=DRimg(_color) }
+	}
+	--
+	_txt
+}
+//轉色紀錄，可用於(直接)icon顯示或(間接)著裝紀錄
+SCR.Record
+{
+	_n=reference0
+	_scr=reference1
+	_a=-1	//起始[]為0
+	_clothsum
+	case DressingPage[0] ; { when 0 ; _clothsum=ClothSum.HC ; when 1 ; _clothsum=ClothSum.HL}
+	for _i=2 ; _i<DressingPage[1] ; _i++ {
+		_a+=_clothsum[_i]
+	}
+	_a+=_n
+	case DressingPage[0] ; { when 0 ; dr_scr_hc[_a]=_scr ; when 1 ; dr_scr_hl[_a]=_scr }
+}
+//解鎖染色
+SCR.Unlock
+{
+	_n=_argv[0]
+	_c=_argv[1]
+	case DressingPage[0]
+	{
+		when 0
+		{ case DressingPage[1]
+		  {	when 2 ; scr_box=scr_HC_2
+		  	when 3 ; scr_box=scr_HC_3
+		  	when 4 ; scr_box=scr_HC_4
+		  	when 5 ; scr_box=scr_HC_5
+		  	when 6 ; scr_box=scr_HC_6
+		  	when 7 ; scr_box=scr_HC_7
+		  	when 8 ; scr_box=scr_HC_8
+		  	when 9 ; scr_box=scr_HC_9
+		  	when 10 ; scr_box=scr_HC_10
+		  	when 11 ; scr_box=scr_HC_11
+		  	when 12 ; scr_box=scr_HC_12  }	
+		}
+		when 1
+		{ case DressingPage[1]
+		  {	when 2 ; scr_box=scr_HL_2
+		  	when 3 ; scr_box=scr_HL_3
+		  	when 4 ; scr_box=scr_HL_4
+		  	when 5 ; scr_box=scr_HL_5
+		  	when 6 ; scr_box=scr_HL_6
+		  	when 7 ; scr_box=scr_HL_7
+		  	when 8 ; scr_box=scr_HL_8
+		  	when 9 ; scr_box=scr_HL_9
+		  	when 10 ; scr_box=scr_HL_10
+		  	when 11 ; scr_box=scr_HL_11
+		  	when 12 ; scr_box=scr_HL_12  }
+		}
+	}
+	scr_box[_n]+="-%(_c)"
+	case DressingPage[0]
+	{
+		when 0
+		{ case DressingPage[1]
+		  {	when 2 ; scr_HC_2=scr_box
+		  	when 3 ; scr_HC_3=scr_box
+		  	when 4 ; scr_HC_4=scr_box
+		  	when 5 ; scr_HC_5=scr_box
+		  	when 6 ; scr_HC_6=scr_box
+		  	when 7 ; scr_HC_7=scr_box
+		  	when 8 ; scr_HC_8=scr_box
+		  	when 9 ; scr_HC_9=scr_box
+		  	when 10 ; scr_HC_10=scr_box
+		  	when 11 ; scr_HC_11=scr_box
+		  	when 12 ; scr_HC_12=scr_box  }	
+		}
+		when 1
+		{ case DressingPage[1]
+		  {	when 2 ; scr_HL_2=scr_box
+		  	when 3 ; scr_HL_3=scr_box
+		  	when 4 ; scr_HL_4=scr_box
+		  	when 5 ; scr_HL_5=scr_box
+		  	when 6 ; scr_HL_6=scr_box
+		  	when 7 ; scr_HL_7=scr_box
+		  	when 8 ; scr_HL_8=scr_box
+		  	when 9 ; scr_HL_9=scr_box
+		  	when 10 ; scr_HL_10=scr_box
+		  	when 11 ; scr_HL_11=scr_box
+		  	when 12 ; scr_HL_12=scr_box  }
+		}
+	}
+}
+SCR.ChangeIcon
+{
+	_code=reference
+	_cloth=_code[0]
+	_color=reference1
+}
+
+//更衣室改色視窗
+jkjsefkf
+{
+	_origin=9
+	--
+	"\p[7]\s[-1]\b[38]\![quicksession,true]\![set,balloontimeout,0]"
+	--
+	"\f[align,center]\_b[img\dressing\icon\HL-09_003.png,inline,--option=use_self_alpha]/
+	\n[200]\f[align,center]%DRimg('color'+_origin)\n[50]"
+	--
+	_chart=""
+	_c=0
+	for _i=1 ; _c<=12 ; _c++
+	{
+		if _c==_origin
+			_chart+=""
+		else
+		{
+			if _i%2==1
+				_chart+="\n[150]\f[align,center]"
+			else
+				_chart+="   "
+			--
+			_chart+="\__q[jkjsefkf]%DRimg('color'+_c)\__q"
+			--
+			_i++
+		}
+		--
+		
+	}
+	--
+	"%(_chart)\n[210]\f[align,center]%QTYimg('x')"
+}
+

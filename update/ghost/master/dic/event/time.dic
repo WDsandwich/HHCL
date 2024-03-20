@@ -1,0 +1,238 @@
+
+/*OnSecondChangeイベント
+1 秒毎に実行される。ここではあまり重い処理を行わないことこのテンプレートでは、見切れ処理のみ行っている*/
+OnSecondChange
+{
+
+	if SpaMode==1 && stamina<staminamax ; stamina+=0.1
+	if mood[0]<0 ; mood[0]=0
+	if mood[1]<0 ; mood[1]=0
+	if mood[0]>2500 ; mood[0]=2500
+	if mood[1]>2500 ; mood[1]=2500
+	if AYATEMPLATE.mikireflag == 1 && reference[1] == 0
+	{
+		//---- 見切れの終了
+		EndMikireTalk
+	}
+	AYATEMPLATE.mikireflag = reference[1]
+	//if second==0 && SpaMode==1 && stamina<staminamax ; stamina++
+	//if SpaMode>0 ; OnSpa.Window
+	
+}
+OnMinuteChange
+{
+	
+	Last_Offline[0]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
+	
+	if hour == 0 && minute == 0
+	{	DailyCheckOut ; HolidayCheck }
+	if SpaMode==2
+	{	if mood[0]<2000 ; mood[0]+=35
+		if mood[1]<2000 ; mood[1]+=35
+	}
+	if SpaMode==3 && spatime_laft>0
+	{	if mood[0]>0 ; mood[0]-=4
+		if mood[1]>0 ; mood[1]-=4
+		exp++
+	}
+	if mood[0]>400 && minute%10==0 ; mood[0]--
+	if mood[1]>400 && minute%10==0 ; mood[1]--
+	if TOINT (BattleMode+DressingMode+GameMode+DispatchMode+SpaMode)==0
+		MinuteChange.Talk
+}
+MinuteChange.Talk
+{
+	
+	//---- 檢查分鐘數，0→報時；其他→進行重疊檢查
+
+	if minute == 0
+	{
+		//---- 分 = 0 だったので時報
+		_tp=""
+		case hour
+		{
+			when 0-4 ; _tp="凌晨"
+			when 5 ; _tp="清晨"
+			when 6-9 ; _tp="早上"
+			when 10-11 ; _tp="上午"
+			when 12 ; _tp="中午"
+			when 13-16 ; _tp="下午"
+			when 17-18 ; _tp="傍晚"
+			when 19-22 ; _tp="晚上"
+			when 23 ; _tp="深夜"
+		}
+		--
+		if hour==0 { DailyCheckOut ; OnSaveBackup.Save('boot') }
+		--
+		_h=hour12
+		if _h==0 ; _h=12
+		--
+		"\0\![quicksession,false]"
+		--
+		"\s[0]現在時間是%(_tp)%(_h):00。\n[130]\w9"
+		"\s[0]現在已經%(_tp)%(_h)點了，%(usernameHC)。\n[130]\w9"
+		--
+		//---- 特定の時間ではさらに追加で話す
+		case hour
+		{
+			when 0
+			{
+				// 打卡
+				_m=month ; _d=day
+				if month<10 ; _m="0"+month
+				if day<10 	; _d="0"+day
+				if "%(year).%(_m).%(_d)" !_in_ open_date ; open_date = ("%(year).%(_m).%(_d)",open_date)
+				--
+				"\0請您注意休息。"
+			}
+			when 1
+			{
+				"\0管理局沒有異常情況。\1\s[32]（呵欠）大家都睡了……"
+			}
+			when 2
+			{
+				"\1\s[30]喂，%(usernameHL)，%(you)還沒睡啊……"
+			}
+			when 5
+			{
+				"\1\s[30]通宵了啊……"
+			}
+			when 6
+			{
+				"\1\s[16]啊，\w5到點了，\w5\s[10]我去把大家叫起來。\w9\w9/
+				\n[130]\s[17]喂——\w5起床起床起床！\w7太陽曬屁股啦！\w9\w9/
+				\0%(nl)海拉，\w5這樣用水管敲打牆壁會……\w9\w9/
+				\1%(nl)\s[18]安啦，\w5管理局的建材結實著呢！\w9\w9/
+				\0%(nl)說得也是，\w6考慮到必須應付各種緊急情況。\w9\w5/
+				\n[130]……\w3\s[1]反正，\w6要是打壞了，\w8也是從海拉的生活費裡扣。\w9\w9/
+				\1%(nl)\s[14]欸欸欸欸欸——？！"
+				"\0\s[1]早餐時間到了。\1\s[18]我已經餓得前胸貼後背啦！"
+				"\1\s[10]早餐時間！\w9\w9/
+				\0\s[0]\c走吧，海拉。\w9\w9/
+				\1\s[10]%(nl)早就等不及囉！\w9\w9/
+				\1\s[10]%(nl)哇，今天食堂的飯特別好吃——\w9\w9/
+				\0\s[0]%(nl)還有附%ANY('玉米湯','羅宋湯','味增湯','可樂','奶茶')呢。\w9\w9/
+				\1\s[10]%(nl)啊，%(usernameHC)你不會一直在工作沒有吃早飯吧！\w9這可不行，吃了早餐才有力氣。\w9\n來，我偷偷幫你多拿了一些點心哦！\w9哈哈，好好感謝你爺爺我吧！"
+			}
+			when 7
+			{
+				"\1\s[16]%(usernameHL)，\w5要記得刷牙哦！\w8不然牙齒會壞光光的！"
+			}
+			when 8
+			{
+				"\0\s[1]%(usernameHC)，今天也要認真工作。\1\s[18]上工囉！"
+				"\0\s[0]要開始訓練了，為了%(usernameHC)，\s[1]我會努力的。"
+			}
+			when 11
+			{
+				"\0報告，\w5海拉在偷吃蛋糕。\w9\w9/
+				\1\s[14]……啊！\w9\w9/
+				\0%(nl)\s[1]明明待會就要吃午餐了。\w9\w9/
+				\1%(nl)\s[11]甜點是另外的胃！\w9\w9/
+				\0%(nl)…\w3…\w4\s[6]？\w5原來海拉還有這種能力嗎？\w9\s[1]這樣的話，\w6必須紀錄進檔案裡。\w9\w9/
+				\1%(nl)\s[30]笨蛋，\w5這只是比喻啦！\w9\s[18]反正蛋糕和午餐我都能吃得下的！\w9\w9/
+				\0%(nl)\s[0]這樣。"
+				"\0\s[1]很快就能吃午餐了，\w7再撐一下吧，\w7%(usernameHC)。\1\s[19]我已經開始餓了……"
+			}
+			when 12
+			{
+				"\1\s[34]可以吃午餐了。"
+				"\1\s[12]終於可以吃飯了－－"
+				"\1\s[30]其實，有時候比起食物，更期待能夠從工作中休息的機會呢。"
+				"\0\s[0]一小時前才剛吃過蛋糕，還吃得下嗎？\w9\w9/
+				\1\s[12]當然，我又開始餓了！\w7走吧走吧！\w9\w9/
+				\1\s[10]%(nl)哇，好飽好飽——\w9\w9/
+				\0\s[1]%(nl)海拉的肚子，鼓鼓的。\w9\w9/
+				\1\s[15]%(nl)我塞不下了……\w9\w9/
+				\0\s[0]%(nl)會不會影響到任務呢？\w9\w9/
+				\1\s[10]%(nl)哼，區區腹脹，豈是如此不便之物！那些敵人，老娘三兩下就……嗝——"
+			}
+			when 13
+			{
+				"\1\s[15]午餐吃得好飽－－\w7 害我現在有點睏……"
+			}
+			when 18
+			{
+				"\0\s[0]天一黑，辦公室內的燈就會自動調節至更亮。\w9\w9/
+				\1\s[16]哇－－\w3高科技欸。"
+				"\0\s[0]今日的晚餐，提前了。\w9\w9/
+				\1\s[16]咦？\w9\w9/
+				\0\s[1]%(nl)白逸小姐派遣時偷釣的魚，被沒收了，還很新鮮。\w9\w9/
+				\1\s[12]%(nl)烤魚——！！\w9\w9/
+				\0\s[0]%(nl)%(usernameHC)也過來一起享用吧。"
+			}
+			when 21
+			{
+				"\1\s[19]唔……嗚嗚……\w9\w9/
+				\0%(nl)\s[0]海拉，\w5怎麼了？\w9\w9/
+				\1%(nl)\s[19]晚餐吃得太快，\w7有點消化不良……\w9\w9/
+				\0%(nl)\s[1]這裡有腸胃藥。\w9\w9/
+				\1%(nl)\s[19]幫大忙了\w1…\w3…\w9辦公室還備有這種東西。\w9\w9/
+				\0%(nl)\s[0]也有各式止痛藥、\w3暈車藥、\w3瀉藥，\w5這些實用的成藥。\w8如果產生嚴重的症狀，\w9還是得去趟醫務室。\w9\w9/
+				\1%(nl)\s[19]為什麼\w1…\w2…\w8會有瀉藥啊\w1…\w3…\w3？"
+			}
+		}
+		--
+		"\e"
+	}
+	//elseif AYATEMPLATE.mikireflag == 1
+	//{
+	//	//---- 分 != 0 、かつ見切れていたら見切れ中のトークを行う
+	//	MikireTalk
+	//}
+	//elseif reference[2] == 1
+	//{
+		//---- 分 != 0 、かつ見切れておらず本体とkeroが重なっていたら重なり処理
+		//---- 大抵はkero側を引き離す処理を行う
+	//	"\0\s[0]重ならないでよっ。\1\s[10]ちぇー。\4\e"
+	//}
+}
+
+
+CheckMonthDay
+{
+	_y=_argv[0]
+	if (_y%4==0 && _y%100!=0) || _y%400==0
+	{	(0,0,31,29,31,30,31,30,31,31,30,31,30,31)	}
+	else
+	{	(0,0,31,28,31,30,31,30,31,31,30,31,30,31)	}
+}
+
+TimeSpan
+{
+	_date_b=_argv[0] ; _date_a=_argv[1]
+	SecondFrom2024(_date_a)-SecondFrom2024(_date_b)
+}
+SecondFrom2024
+{
+	_date=_argv[0]
+	SETDELIM (_date,".")
+	_y= TOINT (_date[0])
+	_m= TOINT (_date[1])
+	_d= TOINT (_date[2])
+	_h= TOINT (_date[3])
+	_min= TOINT (_date[4])
+	_s= TOINT (_date[5])
+	_allday=_d
+	//加上前一個月的日數
+	for _j=_m ; _j>=2 ; _j--
+	{
+		_md=""
+		if (_y%4==0 && _y%100!=0) || _y%400==0
+		{	_md=(0,0,31,29,31,30,31,30,31,31,30,31,30,31)	}
+		else
+		{	_md=(0,0,31,28,31,30,31,30,31,31,30,31,30,31)	}
+		_allday+= TOINT (_md[_j])
+	}
+	//若超過2024，計算前幾年的日數
+	for _i=_y-1 ; _i>=2024 ; _i--
+	{
+		if (_i%4==0 && _i%100!=0) || _i%400==0
+			_allday+=366
+		else
+			_allday+=365
+	}
+	_allminute=_allday*24*60+_h*60+_min
+	_allsecond=_allminute*60+_s
+	_allsecond
+}
