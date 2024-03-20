@@ -1,0 +1,4 @@
+charset,UTF-8
+type,ghost
+name,豌豆三明治
+directory,WDsandwich
