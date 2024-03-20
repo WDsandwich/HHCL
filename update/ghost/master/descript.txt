@@ -17,6 +17,7 @@ shiori,yaya.dll
 craftman,WDsandwich
 craftmanw,豌豆三明治
 craftmanurl,https://discord.gg/xkqRvTNKuk
+homeurl,http://raw.githubusercontent.com/WDsandwich/HHCL/main/update/
 
 sakura.seriko.defaultsurface,0
 kero.seriko.defaultsurface,10
