@@ -1,0 +1,675 @@
+descript
+{
+	version,1
+}
+//=====================================
+/////////////海拉面部surface///////////
+//=====================================
+//-----------全臉
+surface1510611		//atk
+{
+	element0,base,battle/hella/face_atk.png,0,0
+}
+surface1510613		//atk 2
+{
+	element0,base,battle/hella/face_atk_2.png,0,0
+}
+surface1510612		//skil
+{
+	element0,base,battle/hella/face_skill.png,0,0
+}
+surface1510614		//skil 2
+{
+	element0,base,battle/hella/face_skill_2.png,0,0
+}
+//-----------拆分
+surface510600	//idle
+{
+	element0,base,battle/hella/eyebrow_0.png,0,0
+}
+surface510601	//嘲諷
+{
+	element0,base,battle/hella/eyebrow_1.png,0,0
+}
+surface510602	//受擊
+{
+	element0,base,battle/hella/eyebrow_2.png,0,0
+}
+surface510603	//驚訝
+{
+	element0,base,battle/hella/eyebrow_3.png,0,0
+}
+surface510604	//豎眉
+{
+	element0,base,battle/hella/eyebrow_4.png,0,0
+}
+surface1510600	//普攻
+{
+	element0,base,battle/hella/eyebrow_atk_0.png,0,0
+}
+surface1510601	//技能
+{
+	element0,base,battle/hella/eyebrow_atk_1.png,0,0
+}
+surface510400
+{
+	element0,base,battle/hella/eye_0.png,0,0
+}
+surface510401
+{
+	element0,base,battle/hella/eye_1.png,0,0
+}
+surface510402
+{
+	element0,base,battle/hella/eye_2.png,0,0
+}
+surface510403	//閉眼
+{
+	element0,base,battle/hella/eye_3.png,0,0
+}
+surface510404
+{
+	element0,base,battle/hella/eye_4.png,0,0
+}
+surface510405
+{
+	element0,base,battle/hella/eye_5.png,0,0
+}
+surface510406
+{
+	element0,base,battle/hella/eye_6.png,0,0
+}
+surface570110		//氣噗噗！
+{
+	element0,base,battle/emotion/angry_0.png,0,0
+}
+surface570111
+{
+	element0,base,battle/emotion/angry_1.png,0,0
+}
+
+//=====================================
+/////////////海拉衣裝surface///////////
+//=====================================
+
+//==============髮型(前)==============
+surface515500	//預設
+{
+	element0,base,battle/hella/hairF_00.png,0,0
+}
+surface1515500
+{
+	element0,base,battle/hella/hairF_00_atk.png,0,0
+}
+//==============髮型(後)==============
+surface511200	//預設
+{
+	element0,base,battle/hella/hair_00.png,0,0
+}
+surface1511200
+{
+	element0,base,battle/hella/hair_00_atk.png,0,0
+}
+
+
+//==============帽子==============
+surface515600	//預設
+{
+	element0,base,battle/hella/hat_00.png,0,0
+}
+surface1515600
+{
+	element0,base,battle/hella/hat_00_atk.png,0,0
+}
+surface515601	//玫瑰
+{
+	element0,base,battle/hella/hat_1.png,0,0
+}
+surface1515601
+{
+	element0,base,battle/hella/hat_1_atk.png,0,0
+}
+surface515602	//色慾惡魔-莫蒂斯
+{
+	element0,base,battle/hella/hat_2.png,0,0
+}
+surface1515602
+{
+	element0,base,battle/hella/hat_2_atk.png,0,0
+}
+
+
+//==============口罩==============
+surface513100	//預設
+{
+	element0,base,battle/hella/mask_00.png,0,0
+}
+surface1513100
+{
+	element0,base,battle/hella/mask_00_atk.png,0,0
+}
+
+
+//==============外套==============
+surface514200	//預設
+{
+	element0,base,battle/hella/coat_00.png,0,0
+}
+surface515000
+{
+	element0,base,battle/hella/coat_00_s.png,0,0
+}
+surface511900
+{
+	element0,base,battle/hella/coat_00_b.png,0,0
+}
+surface1514200
+{
+	element0,base,battle/hella/coat_00_atk.png,0,0
+}
+surface1515000
+{
+	element0,base,battle/hella/coat_00_atk_s.png,0,0
+}
+surface515501	//囚服外套
+{
+	element0,base,battle/hella/coat_1.png,0,0
+}
+surface511901
+{
+	element0,base,battle/hella/coat_1_b.png,0,0
+}
+surface1514701	//囚服外套 atk
+{
+	element0,base,battle/hella/coat_1_atk.png,0,0
+}
+surface1515501
+{
+	element0,base,battle/hella/coat_1_atk_s.png,0,0
+}
+surface1511901
+{
+	element0,base,battle/hella/coat_1_atk_b.png,0,0
+}
+surface514202	//色慾惡魔-莫蒂斯
+{
+	element0,base,battle/hella/coat_2.png,0,0
+}
+surface515002
+{
+	element0,base,battle/hella/coat_2_s.png,0,0
+}
+surface511902
+{
+	element0,base,battle/hella/coat_2_b.png,0,0
+}
+surface1514202
+{
+	element0,base,battle/hella/coat_2_atk.png,0,0
+}
+surface1515002
+{
+	element0,base,battle/hella/coat_2_atk_s.png,0,0
+}
+surface514203	//JK
+{
+	element0,base,battle/hella/coat_3.png,0,0
+}
+surface511903
+{
+	element0,base,battle/hella/coat_3_b.png,0,0
+}
+surface515003
+{
+	element0,base,battle/hella/coat_3_s.png,0,0
+}
+surface1514203
+{
+	element0,base,battle/hella/coat_3_atk.png,0,0
+}
+surface1511903
+{
+	element0,base,battle/hella/coat_3_atk_b.png,0,0
+}
+surface1515003
+{
+	element0,base,battle/hella/coat_3_atk_s.png,0,0
+}
+surface514204
+{
+	element0,base,battle/hella/coat_4.png,0,0
+}
+surface515004
+{
+	element0,base,battle/hella/coat_4_s.png,0,0
+}
+surface1514204
+{
+	element0,base,battle/hella/coat_4_atk.png,0,0
+}
+
+
+//==============上衣/連身裝==============
+surface513800	//預設
+{
+	element0,base,battle/hella/top_00.png,0,0
+}
+surface1513800
+{
+	element0,base,battle/hella/top_00_atk.png,0,0
+}
+surface1512200
+{
+	element0,base,battle/hella/top_00_atk_b.png,0,0
+}
+surface513801	//set1
+{
+	element0,base,battle/hella/top_1.png,0,0
+}
+surface514601
+{
+	element0,base,battle/hella/top_1_s.png,0,0
+}
+surface512201
+{
+	element0,base,battle/hella/top_1_b.png,0,0
+}
+surface1513801
+{
+	element0,base,battle/hella/top_1_atk.png,0,0
+}
+surface1514601
+{
+	element0,base,battle/hella/top_1_atk_s.png,0,0
+}
+surface1512201
+{
+	element0,base,battle/hella/top_1_atk_b.png,0,0
+}
+surface513802	//內衣
+{
+	element0,base,battle/hella/top_2.png,0,0
+}
+surface513803	//紅色小洋裝
+{
+	element0,base,battle/hella/top_3.png,0,0
+}
+surface1513803
+{
+	element0,base,battle/hella/top_3_atk.png,0,0
+}
+surface1512203
+{
+	element0,base,battle/hella/top_3_atk_b.png,0,0
+}
+surface513804	//色慾惡魔
+{
+	element0,base,battle/hella/top_4.png,0,0
+}
+surface514604
+{
+	element0,base,battle/hella/top_4_s.png,0,0
+}
+surface1513804
+{
+	element0,base,battle/hella/top_4_atk.png,0,0
+}
+surface1514604
+{
+	element0,base,battle/hella/top_4_atk_s.png,0,0
+}
+surface513805	//JK-襯衫
+{
+	element0,base,battle/hella/top_5.png,0,0
+}
+surface512205
+{
+	element0,base,battle/hella/top_5_b.png,0,0
+}
+surface1513805
+{
+	element0,base,battle/hella/top_5_atk.png,0,0
+}
+surface1512205
+{
+	element0,base,battle/hella/top_5_atk_b.png,0,0
+}
+surface513806	//JK-扣外套(全身)
+{
+	element0,base,battle/hella/top_6.png,0,0
+}
+surface1513806
+{
+	element0,base,battle/hella/top_6_atk.png,0,0
+}
+surface513807	//JK-扣外套
+{
+	element0,base,battle/hella/top_7.png,0,0
+}
+surface1513807
+{
+	element0,base,battle/hella/top_7_atk.png,0,0
+}
+surface513808	//JK-開外套
+{
+	element0,base,battle/hella/top_8.png,0,0
+}
+surface1513808
+{
+	element0,base,battle/hella/top_8_atk.png,0,0
+}
+
+
+//==============下裝==============
+surface513600	//內褲
+{
+	element0,base,battle/hella/bottom_00.png,0,0
+}
+surface514101	//set1
+{
+	element0,base,battle/hella/bottomC_1.png,0,0
+}
+surface1514101
+{
+	element0,base,battle/hella/bottomC_1_atk.png,0,0
+}
+surface1512101
+{
+	element0,base,battle/hella/bottomC_1_atk_b.png,0,0
+}
+surface513601	//色慾惡魔-莫蒂斯
+{
+	element0,base,battle/hella/bottom_1.png,0,0
+}
+surface1513601
+{
+	element0,base,battle/hella/bottom_1_atk.png,0,0
+}
+surface513602	//JK
+{
+	element0,base,battle/hella/bottom_3.png,0,0
+}
+surface1513602
+{
+	element0,base,battle/hella/bottom_3_atk.png,0,0
+}
+surface1512502
+{
+	element0,base,battle/hella/bottom_3_atk_b.png,0,0
+}
+surface514102
+{
+	element0,base,battle/hella/bottom_3.png,0,0
+}
+surface1514102
+{
+	element0,base,battle/hella/bottom_3_atk.png,0,0
+}
+surface1512102
+{
+	element0,base,battle/hella/bottom_3_atk_b.png,0,0
+}
+
+
+//==============襪==============
+surface513200	//預設
+{
+	element0,base,battle/hella/sock_00.png,0,0
+}
+surface1513200
+{
+	element0,base,battle/hella/sock_00_atk.png,0,0
+}
+surface513201	//set1
+{
+	element0,base,battle/hella/sock_1.png,0,0
+}
+surface1513201
+{
+	element0,base,battle/hella/sock_1_atk.png,0,0
+}
+surface513202	//12色連身襪-00棕(舊玫瑰)
+{
+	element0,base,battle/hella/sock_2.png,0,0
+}
+surface513204	//12色連身襪-0紅
+{
+	element0,base,battle/hella/sock_2_0.png,0,0
+}
+surface513205	//12色連身襪-1橙
+{
+	element0,base,battle/hella/sock_2_1.png,0,0
+}
+surface513206	//12色連身襪-2黃
+{
+	element0,base,battle/hella/sock_2_2.png,0,0
+}
+surface513207	//12色連身襪-3綠
+{
+	element0,base,battle/hella/sock_2_3.png,0,0
+}
+surface513208	//12色連身襪-4深綠
+{
+	element0,base,battle/hella/sock_2_4.png,0,0
+}
+surface513209	//12色連身襪-5藍
+{
+	element0,base,battle/hella/sock_2_5.png,0,0
+}
+surface513210	//12色連身襪-6靛
+{
+	element0,base,battle/hella/sock_2_6.png,0,0
+}
+surface513211	//12色連身襪-7紫
+{
+	element0,base,battle/hella/sock_2_7.png,0,0
+}
+surface513212	//12色連身襪-8粉紅
+{
+	element0,base,battle/hella/sock_2_8.png,0,0
+}
+surface513213	//12色連身襪-10白
+{
+	element0,base,battle/hella/sock_2_10.png,0,0
+}
+surface513214	//12色連身襪-11黑
+{
+	element0,base,battle/hella/sock_2_11.png,0,0
+}
+surface513215	//12色連身襪-12灰
+{
+	element0,base,battle/hella/sock_2_12.png,0,0
+}
+surface1513202
+{
+	element0,base,battle/hella/sock_2_atk.png,0,0
+}
+surface1513204	//12色連身襪-0紅
+{
+	element0,base,battle/hella/sock_2_0_atk.png,0,0
+}
+surface1513205	//12色連身襪-1橙
+{
+	element0,base,battle/hella/sock_2_1_atk.png,0,0
+}
+surface1513206	//12色連身襪-2黃
+{
+	element0,base,battle/hella/sock_2_2_atk.png,0,0
+}
+surface1513207	//12色連身襪-3綠
+{
+	element0,base,battle/hella/sock_2_3_atk.png,0,0
+}
+surface1513208	//12色連身襪-4深綠
+{
+	element0,base,battle/hella/sock_2_4_atk.png,0,0
+}
+surface1513209	//12色連身襪-5藍
+{
+	element0,base,battle/hella/sock_2_5_atk.png,0,0
+}
+surface1513210	//12色連身襪-6靛
+{
+	element0,base,battle/hella/sock_2_6_atk.png,0,0
+}
+surface1513211	//12色連身襪-7紫
+{
+	element0,base,battle/hella/sock_2_7_atk.png,0,0
+}
+surface1513212	//12色連身襪-8粉紅
+{
+	element0,base,battle/hella/sock_2_8_atk.png,0,0
+}
+surface1513213	//12色連身襪-10白
+{
+	element0,base,battle/hella/sock_2_10_atk.png,0,0
+}
+surface1513214	//12色連身襪-11黑
+{
+	element0,base,battle/hella/sock_2_11_atk.png,0,0
+}
+surface1513215	//12色連身襪-12灰
+{
+	element0,base,battle/hella/sock_2_12_atk.png,0,0
+}
+
+surface513203	//色慾惡魔-莫蒂斯
+{
+	element0,base,battle/hella/sock_3.png,0,0
+}
+surface1513203
+{
+	element0,base,battle/hella/sock_3_atk.png,0,0
+}
+
+//==============鞋==============
+surface513400	//預設
+{
+	element0,base,battle/hella/shoe_00.png,0,0
+}
+surface1513400
+{
+	element0,base,battle/hella/shoe_00_atk.png,0,0
+}
+surface513401	//set1
+{
+	element0,base,battle/hella/shoe_1.png,0,0
+}
+surface1513401
+{
+	element0,base,battle/hella/shoe_1_atk.png,0,0
+}
+surface513402	//玫瑰
+{
+	element0,base,battle/hella/shoe_2.png,0,0
+}
+surface1513402
+{
+	element0,base,battle/hella/shoe_2_atk.png,0,0
+}
+surface513403	//色慾惡魔-莫蒂斯
+{
+	element0,base,battle/hella/shoe_3.png,0,0
+}
+surface1513403
+{
+	element0,base,battle/hella/shoe_3_atk.png,0,0
+}
+surface513404	//JK
+{
+	element0,base,battle/hella/shoe_5.png,0,0
+}
+surface1513404
+{
+	element0,base,battle/hella/shoe_5_atk.png,0,0
+}
+
+
+//==============手套==============
+surface514500	//預設
+{
+	element0,base,battle/hella/glove_00.png,0,0
+}
+surface1514500
+{
+	element0,base,battle/hella/glove_00_atk.png,0,0
+}
+
+
+//==============武器==============
+surface511400	//預設
+{
+	element0,base,battle/hella/weapon_00.png,0,0
+}
+surface514400
+{
+	element0,base,battle/hella/weapon_00_c.png,0,0
+}
+surface1514400
+{
+	element0,base,battle/hella/weapon_00_atk.png,0,0
+}
+surface511401	//狼牙棒
+{
+	element0,base,battle/hella/weapon_3_b.png,0,0
+}
+surface514401
+{
+	element0,base,battle/hella/weapon_3.png,0,0
+}
+surface1514401
+{
+	element0,base,battle/hella/weapon_3_atk.png,0,0
+}
+surface511402	//海豹
+{
+	element0,base,battle/hella/weapon_4_b.png,0,0
+}
+surface514402
+{
+	element0,base,battle/hella/weapon_4.png,0,0
+}
+surface1514402
+{
+	element0,base,battle/hella/weapon_4_atk.png,0,0
+}
+surface1511402
+{
+	element0,base,battle/hella/weapon_4_atk_b.png,0,0
+}
+
+
+//==============裝飾==============
+surface515801	//色慾惡魔-莫蒂斯.❤
+{
+	element0,base,battle/hella/other_1.png,0,0
+}
+surface1515801
+{
+	element0,base,battle/hella/other_1_atk.png,0,0
+}
+surface511201	//色慾惡魔-莫蒂斯.尾巴
+{
+	element0,base,battle/hella/back_1.png,0,0
+}
+surface1511201	//色慾惡魔-莫蒂斯.尾巴
+{
+	element0,base,battle/hella/back_1_atk.png,0,0
+}
+surface515399	//JK-蝴蝶結
+{
+	element0,base,battle/hella/scarf_199.png,0,0
+}
+surface1515399	//JK-蝴蝶結
+{
+	element0,base,battle/hella/scarf_199_atk.png,0,0
+}
+surface515802	//JK-襪套
+{
+	element0,base,battle/hella/other_5.png,0,0
+}
+surface1515802
+{
+	element0,base,battle/hella/other_5_atk.png,0,0
+}
+

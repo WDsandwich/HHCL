@@ -1,0 +1,441 @@
+descript
+{
+	version,1
+}
+surface20000	//原始表情
+{
+	 //------女局
+	animation25100.interval,bind
+	animation25100.option,background
+	animation25100.pattern0,overlay,25100,0,0,0
+	//女局	頭髮
+	animation25150.interval,bind
+	animation25150.option,background
+	animation25150.pattern0,overlay,25150,0,0,0
+	//女局	眉毛
+	animation25110.interval,bind
+	animation25110.option,background
+	animation25110.pattern0,overlay,25110,0,0,0
+	//女局	眼睛（眨眼）
+	animation25130.interval,bind+runonce+random,3
+	animation25130.option,background
+	animation25130.pattern0,overlay,25130,0,0,0
+	animation25130.pattern1,overlay,25131,30,0,0
+	animation25130.pattern2,overlay,25132,30,0,0
+	animation25130.pattern3,overlay,25133,80,0,0
+	animation25130.pattern4,overlay,25131,50,0,0
+	animation25130.pattern5,overlay,25130,80,0,0
+	//女局	嘴
+	animation25120.interval,bind
+	animation25120.option,background
+	animation25120.pattern0,overlay,25120,0,0,0
+	
+	//------男局
+	animation25200.interval,bind
+	animation25200.option,background
+	animation25200.pattern0,overlay,25200,0,0,0
+	//男局	頭髮
+	animation25250.interval,bind
+	animation25250.option,background
+	animation25250.pattern0,overlay,25250,0,0,0
+	//男局	眉毛
+	animation25210.interval,bind
+	animation25210.option,background
+	animation25210.pattern0,overlay,25210,0,0,0
+	//男局	眼睛（眨眼）
+	animation25230.interval,bind+runonce+random,3
+	animation25230.option,background
+	animation25230.pattern0,overlay,25230,0,0,0
+	animation25230.pattern1,overlay,25231,30,0,0
+	animation25230.pattern2,overlay,25232,30,0,0
+	animation25230.pattern3,overlay,25233,80,0,0
+	animation25230.pattern4,overlay,25231,50,0,0
+	animation25230.pattern5,overlay,25230,80,0,0
+	//男局	嘴
+	animation25220.interval,bind
+	animation25220.option,background
+	animation25220.pattern0,overlay,25220,0,0,0
+	
+	
+}
+
+
+
+//背景(共通)
+surface20000,522000-522003
+{
+	element0,base,chief\frame.png,0,0
+	
+	//------名稱
+	//	SHEPERD-13
+	animation22000.interval,bind
+	animation22000.pattern0,overlay,22000,0,0,0
+	
+	//------背景
+	//	13色
+	animation21000.interval,bind
+	animation21000.option,background
+	animation21000.pattern0,overlay,21000,0,0,0
+	animation21001.interval,bind
+	animation21001.option,background
+	animation21001.pattern0,overlay,21001,0,0,0
+	animation21002.interval,bind
+	animation21002.option,background
+	animation21002.pattern0,overlay,21002,0,0,0
+	animation21003.interval,bind
+	animation21003.option,background
+	animation21003.pattern0,overlay,21003,0,0,0
+	animation21004.interval,bind
+	animation21004.option,background
+	animation21004.pattern0,overlay,21004,0,0,0
+	animation21005.interval,bind
+	animation21005.option,background
+	animation21005.pattern0,overlay,21005,0,0,0
+	animation21006.interval,bind
+	animation21006.option,background
+	animation21006.pattern0,overlay,21006,0,0,0
+	animation21007.interval,bind
+	animation21007.option,background
+	animation21007.pattern0,overlay,21007,0,0,0
+	animation21008.interval,bind
+	animation21008.option,background
+	animation21008.pattern0,overlay,21008,0,0,0
+	animation21009.interval,bind
+	animation21009.option,background
+	animation21009.pattern0,overlay,21009,0,0,0
+	animation21010.interval,bind
+	animation21010.option,background
+	animation21010.pattern0,overlay,21010,0,0,0
+	animation21011.interval,bind
+	animation21011.option,background
+	animation21011.pattern0,overlay,21011,0,0,0
+	animation21012.interval,bind
+	animation21012.option,background
+	animation21012.pattern0,overlay,21012,0,0,0
+	animation21013.interval,bind
+	animation21013.option,background
+	animation21013.pattern0,overlay,21013,0,0,0
+}
+
+
+
+surface522000-522003	//共通圖像(戰鬥)
+{
+	//------女局 頭
+	animation530100.interval,bind
+	animation530100.option,background
+	animation530100.pattern0,overlay,530100,0,0,0
+	//------男局 頭
+	animation530200.interval,bind
+	animation530200.option,background
+	animation530200.pattern0,overlay,530200,0,0,0
+	
+}
+
+surface522000-522002	//眨眼(戰鬥)
+{
+	//------女局 眼睛（眨眼）
+	animation530110.interval,bind+runonce+random,3
+	animation530110.option,background
+	animation530110.pattern0,overlay,530110,0,0,0
+	animation530110.pattern1,overlay,530111,30,0,0
+	animation530110.pattern2,overlay,530112,30,0,0
+	animation530110.pattern3,overlay,530113,80,0,0
+	animation530110.pattern4,overlay,530111,50,0,0
+	animation530110.pattern5,overlay,530110,80,0,0
+	//------男局 眼睛（眨眼）
+	animation530210.interval,bind+runonce+random,3
+	animation530210.option,background
+	animation530210.pattern0,overlay,530210,0,0,0
+	animation530210.pattern1,overlay,530211,30,0,0
+	animation530210.pattern2,overlay,530212,30,0,0
+	animation530210.pattern3,overlay,530213,80,0,0
+	animation530210.pattern4,overlay,530211,50,0,0
+	animation530210.pattern5,overlay,530210,80,0,0
+}
+
+surface522000		// 原始表情(戰鬥)
+{
+	//------女局 臉
+	animation530120.interval,bind
+	animation530120.option,background
+	animation530120.pattern0,overlay,530120,0,0,0
+	//------男局 臉
+	animation530220.interval,bind
+	animation530220.option,background
+	animation530220.pattern0,overlay,530220,0,0,0
+}
+surface522001		// 攻擊表情(戰鬥)
+{
+	//------女局 臉
+	animation530120.interval,bind
+	animation530120.option,background
+	animation530120.pattern0,overlay,530121,0,0,0
+	//------男局 臉
+	animation530220.interval,bind
+	animation530220.option,background
+	animation530220.pattern0,overlay,530221,0,0,0
+}
+surface522002		// 受傷表情(戰鬥)
+{
+	//------女局 臉
+	animation530120.interval,bind
+	animation530120.option,background
+	animation530120.pattern0,overlay,530122,0,0,0
+	//------男局 臉
+	animation530220.interval,bind
+	animation530220.option,background
+	animation530220.pattern0,overlay,530222,0,0,0
+}
+surface522003		// 逃走表情(戰鬥)
+{
+	//------女局 臉
+	animation530120.interval,bind
+	animation530120.option,background
+	animation530120.pattern0,overlay,530123,0,0,0
+	//------女局 眼
+	animation530110.interval,bind
+	animation530110.option,background
+	animation530110.pattern0,overlay,530114,0,0,0
+	//------男局 臉
+	animation530220.interval,bind
+	animation530220.option,background
+	animation530220.pattern0,overlay,530223,0,0,0
+	//------男局 眼
+	animation530210.interval,bind
+	animation530210.option,background
+	animation530210.pattern0,overlay,530214,0,0,0
+}
+
+
+
+
+
+
+//=============================================================
+//						surface編號
+//=============================================================
+//百位數：1女 2男
+//十位數：1眉 2嘴 3眼 5髮
+//===========================女局===========================
+surface25100	//女頭
+{
+	element0,base,chief\female_00.png,0,0
+}
+surface25150	//女-頭髮
+{
+	element0,base,chief\female_hair_00.png,0,0
+}
+surface25110	//女-眉毛
+{
+	element0,base,chief\female_brow_00.png,0,0
+}
+surface25120	//女-嘴
+{
+	element0,base,chief\female_mouth_00.png,0,0
+}
+surface25130	//女-眼睛
+{
+	element0,base,chief\female_eyes_00.png,0,0
+}
+surface25131	//女-眼睛1
+{
+	element0,base,chief\female_eyes_1.png,0,0
+}
+surface25132	//女-眼睛2
+{
+	element0,base,chief\female_eyes_2.png,0,0
+}
+surface25133	//女-眼睛3
+{
+	element0,base,chief\female_eyes_3.png,0,0
+}
+
+
+//===========================男局===========================
+surface25200	//男頭
+{
+	element0,base,chief\male_00.png,0,0
+}
+surface25250	//男-頭髮
+{
+	element0,base,chief\male_hair_00.png,0,0
+}
+surface25210	//男-眉毛
+{
+	element0,base,chief\male_brow_00.png,0,0
+}
+surface25220	//男-嘴
+{
+	element0,base,chief\male_mouth_00.png,0,0
+}
+surface25230	//男-眼睛
+{
+	element0,base,chief\male_eyes_00.png,0,0
+}
+surface25231	//男-眼睛1
+{
+	element0,base,chief\male_eyes_1.png,0,0
+}
+surface25232	//男-眼睛2
+{
+	element0,base,chief\male_eyes_2.png,0,0
+}
+surface25233	//男-眼睛3
+{
+	element0,base,chief\male_eyes_3.png,0,0
+}
+
+
+
+//===========================代號===========================
+surface22000	//SHEPERD-13
+{
+	element0,base,chief\name_SHEPERD-13.png,0,0
+}
+
+
+
+//===========================背景===========================
+surface21000	//紅
+{
+	element0,base,chief\bg\bg_0.png,0,0
+}
+surface21001	//橙
+{
+	element0,base,chief\bg\bg_1.png,0,0
+}
+surface21002	//黃
+{
+	element0,base,chief\bg\bg_2.png,0,0
+}
+surface21003	//青綠
+{
+	element0,base,chief\bg\bg_3.png,0,0
+}
+surface21004	//深綠
+{
+	element0,base,chief\bg\bg_4.png,0,0
+}
+surface21005	//淺藍
+{
+	element0,base,chief\bg\bg_5.png,0,0
+}
+surface21006	//靛
+{
+	element0,base,chief\bg\bg_6.png,0,0
+}
+surface21007	//紫
+{
+	element0,base,chief\bg\bg_7.png,0,0
+}
+surface21008	//粉紅
+{
+	element0,base,chief\bg\bg_8.png,0,0
+}
+surface21009	//棕
+{
+	element0,base,chief\bg\bg_9.png,0,0
+}
+surface21010	//白
+{
+	element0,base,chief\bg\bg_10.png,0,0
+}
+surface21011	//黑
+{
+	element0,base,chief\bg\bg_11.png,0,0
+}
+surface21012	//冷灰
+{
+	element0,base,chief\bg\bg_12.png,0,0
+}
+surface21013	//暖灰
+{
+	element0,base,chief\bg\bg_13.png,0,0
+}
+
+
+//===========================戰鬥===========================
+surface530100	//女頭B
+{
+	element0,base,battle\cheif\BF_b.png,0,0
+}
+surface530110	//女-眼睛 B
+{
+	element0,base,battle\cheif\BF_e0.png,0,0
+}
+surface530111	//女-眼睛1 B
+{
+	element0,base,battle\cheif\BF_e1.png,0,0
+}
+surface530112	//女-眼睛2 B
+{
+	element0,base,battle\cheif\BF_e2.png,0,0
+}
+surface530113	//女-眼睛3 B
+{
+	element0,base,battle\cheif\BF_e3.png,0,0
+}
+surface530114	//女-眼睛4 B
+{
+	element0,base,battle\cheif\BF_e4.png,0,0
+}
+surface530120	//女-臉 B
+{
+	element0,base,battle\cheif\BF_f0.png,0,0
+}
+surface530121	//女-臉1 B
+{
+	element0,base,battle\cheif\BF_f1.png,0,0
+}
+surface530122	//女-臉2 B
+{
+	element0,base,battle\cheif\BF_f2.png,0,0
+}
+surface530123	//女-臉3 B
+{
+	element0,base,battle\cheif\BF_f3.png,0,0
+}
+
+
+surface530200	//男頭B
+{
+	element0,base,battle\cheif\BM_b.png,0,0
+}
+surface530210	//男-眼睛 B
+{
+	element0,base,battle\cheif\BM_e0.png,0,0
+}
+surface530211	//男-眼睛1 B
+{
+	element0,base,battle\cheif\BM_e1.png,0,0
+}
+surface530212	//男-眼睛2 B
+{
+	element0,base,battle\cheif\BM_e2.png,0,0
+}
+surface530213	//男-眼睛3 B
+{
+	element0,base,battle\cheif\BM_e3.png,0,0
+}
+surface530214	//男-眼睛4 B
+{
+	element0,base,battle\cheif\BM_e4.png,0,0
+}
+surface530220	//男-臉 B
+{
+	element0,base,battle\cheif\BM_f0.png,0,0
+}
+surface530221	//男-臉1 B
+{
+	element0,base,battle\cheif\BM_f1.png,0,0
+}
+surface530222	//男-臉2 B
+{
+	element0,base,battle\cheif\BM_f2.png,0,0
+}
+surface530223	//男-臉3 B
+{
+	element0,base,battle\cheif\BM_f3.png,0,0
+}
+

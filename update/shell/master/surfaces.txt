@@ -1,0 +1,725 @@
+charset,UTF-8
+
+descript
+{
+	version,1
+}
+
+//原始大小檔案(測試用)
+surface9999999
+{
+	element0,base,origin000.png,0,0
+}
+//透明
+surface999
+{
+	element0,base,hide0.png,0,0
+}
+
+//部位判定
+surface0-9,20-21
+{
+	collisionex0,Hair,polygon,134,106,149,114,164,115,172,102,172,85,152,62,135,54,104,58,90,76,84,106,82,140,86,158,100,142,116,138,120,111,128,102
+	collisionex1,Face,polygon,124,108,118,123,118,138,130,148,146,154,160,135,161,124,149,123,132,110
+	collisionex2,Bust,polygon,117,204,131,232,138,241,158,230,164,220,165,207,160,189,152,180,118,196
+	collisionex3,Book,polygon,154,387,210,346,216,460,163,500
+}
+surface10-19,30-39,50
+{
+	collisionex0,Hair,polygon,124,101,109,130,118,137,131,130,155,131,169,142,177,169,182,183,209,200,212,182,192,148,192,115,184,93,137,87
+	collisionex1,Face,polygon,120,140,125,162,141,180,161,171,168,162,164,143,146,141,125,139
+	collisionex2,Bust,polygon,124,207,110,221,108,238,112,244,120,251,143,263,161,265,179,255,183,238,183,221,158,213,129,205
+	collisionex3,Weapon,polygon,271,259,269,296,281,276,284,270,291,255,291,236
+	collisionex4,Weapon,polygon,243,326,251,334,208,426,208,405
+	collisionex5,Shoulder,polygon,142,183,132,184,120,189,118,201,132,199,141,191,148,197,164,197,179,202,184,213,204,219,206,212,202,200,180,186,154,194,147,190
+}
+
+
+//==================赫卡蒂表情==================
+//赫卡蒂素體
+surface0-9,20-29
+{
+	element0,base,surface0000.png,0,0
+}
+
+//無表情
+surface0-2
+{
+  element1,overlay,face/hecate/eyebrow_0.png,0,0
+  element2,overlay,face/hecate/mouth_0.png,0,0
+}
+//閉眼
+surface1
+{
+  element3,overlay,face/hecate/eye_3.png,0,0	
+}
+//瞇閉眼
+surface2
+{
+  element3,overlay,face/hecate/eye_4.png,0,0
+}
+//看旁邊
+surface3
+{
+  element1,overlay,face/hecate/eyebrow_0.png,0,0
+  element2,overlay,face/hecate/mouth_1.png,0,0
+  element3,overlay,face/hecate/eye_5.png,0,0
+}
+//害羞(睜大眼)
+surface4
+{
+  element1,overlay,face/hecate/shy_0.png,0,0
+  element2,overlay,face/hecate/eyebrow_0.png,0,0
+  element3,overlay,face/hecate/mouth_0.png,0,0
+}
+//害羞(低眼)
+surface5
+{
+	element1,overlay,face/hecate/shy_0.png,0,0
+	element2,overlay,face/hecate/eyebrow_0.png,0,0
+	element3,overlay,face/hecate/mouth_0.png,0,0
+	element4,overlay,face/hecate/eye_5.png,0,0
+}
+//驚訝
+surface6
+{
+  element1,overlay,face/hecate/eyebrow_0.png,0,0
+  element2,overlay,face/hecate/mouth_1.png,0,0
+}
+//很害羞
+surface7
+{
+	element1,overlay,face/hecate/shy_1.png,0,0
+	element2,overlay,face/hecate/mouth_2.png,0,0
+	element4,overlay,face/hecate/eye_7.png,0,0
+	element6,overlay,face/hecate/eyebrow_0.png,0,0
+}
+//很害羞
+surface8
+{
+	element1,overlay,face/hecate/shy_1.png,0,0
+	element2,overlay,face/hecate/mouth_3.png,0,0
+	element4,overlay,face/hecate/eye_3.png,0,0
+	element6,overlay,face/hecate/eyebrow_2.png,0,0
+}
+//攻擊
+surface9
+{
+	element1,overlay,face/hecate/skin_2.png,0,0
+	element2,overlay,face/hecate/mouth_1.png,0,0
+	element4,overlay,face/hecate/eye_8.png,0,0
+	element6,overlay,face/hecate/eyebrow_3.png,0,0
+}
+//微笑(臉紅)
+surface20
+{
+	element1,overlay,face/hecate/face_20.png,0,0
+}
+//微笑
+surface21
+{
+	element1,overlay,face/hecate/face_21.png,0,0
+}
+//微笑(閉眼)
+surface22
+{
+	element1,overlay,face/hecate/face_22.png,0,0
+}
+
+
+
+//眨眼
+surface0
+{
+  //眨眼一下
+	animation0.interval,runonce+random,3
+	animation0.pattern0,overlay,400,0,0,0
+	animation0.pattern1,overlay,401,30,0,0
+	animation0.pattern2,overlay,402,30,0,0
+	animation0.pattern3,overlay,403,80,0,0
+	animation0.pattern4,overlay,401,50,0,0
+	animation0.pattern5,overlay,400,80,0,0
+}
+surface6
+{
+  //眨眼一下(驚訝)
+  animation0.interval,runonce+random,3
+  animation0.pattern0,overlay,406,0,0,0
+  animation0.pattern1,overlay,401,50,0,0
+  animation0.pattern2,overlay,402,50,0,0
+  animation0.pattern3,overlay,401,50,0,0
+  animation0.pattern4,overlay,400,80,0,0
+  animation0.pattern5,overlay,406,80,0,0
+}
+surface4
+{
+  //眨眼二下
+  animation0.interval,runonce+random,3
+  animation0.pattern0,overlay,406,0,0,0
+  animation0.pattern1,overlay,402,50,0,0
+  animation0.pattern2,overlay,401,50,0,0
+  animation0.pattern3,overlay,400,50,0,0
+  animation0.pattern4,overlay,406,80,0,0
+  animation0.pattern5,overlay,402,50,0,0
+  animation0.pattern6,overlay,400,50,0,0
+  animation0.pattern7,overlay,406,200,0,0
+}
+
+
+
+
+
+//==================海拉表情==================
+surface10-19,30-39,50
+{
+	element0,base,surface0010.png,0,0
+}
+
+surface10
+{
+	element1,overlay,face/hella/eyebrow_0.png,0,0
+	element2,overlay,face/hella/mouth_0.png,0,0
+}
+surface11
+{
+	element1,overlay,face/hella/eyebrow_3.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_3.png,0,0
+	element4,overlay,face/hella/eyes_3.png,0,0
+}
+surface12
+{
+	element1,overlay,face/hella/eyebrow_1.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_0.png,0,0
+	element4,overlay,face/hella/eyes_4.png,0,0
+}
+surface13
+{
+	element1,overlay,face/hella/eyebrow_2.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_2.png,0,0
+	element4,overlay,face/hella/eyes_5.png,0,0
+}
+surface14
+{
+	element1,overlay,face/hella/eyebrow_3.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_4.png,0,0
+}
+surface15
+{
+	element1,overlay,face/hella/eyebrow_6.png,0,0
+	element2,overlay,face/hella/mouth_6.png,0,0
+	element3,overlay,face/hella/eyes_3.png,0,0
+}
+surface16
+{
+	element1,overlay,face/hella/eyebrow_4.png,0,0
+	element2,overlay,face/hella/mouth_5.png,0,0
+}
+surface17
+{
+	element1,overlay,face/hella/eyebrow_5.png,0,0
+	element2,overlay,face/hella/mouth_1.png,0,0
+	element3,overlay,face/hella/eyes_4.png,0,0
+	element4,overlaymultiply,face/hella/emotion_1.png,0,0
+	
+	animation19000.interval,always
+	animation19000.pattern0,overlay,175,0,0,0
+	animation19000.pattern1,overlay,176,77,0,0
+	animation19000.pattern2,overlay,177,77,0,0
+	animation19000.pattern3,overlay,176,77,0,0
+	animation19000.pattern4,overlay,175,77,0,0
+}
+surface18
+{
+	element1,overlay,face/hella/eyebrow_4.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_1.png,0,0
+	element4,overlay,face/hella/eyes_4.png,0,0
+}
+surface19
+{
+	element1,overlay,face/hella/eyebrow_7.png,0,0
+	element2,overlay,face/hella/mouth_8.png,0,0
+	element3,overlay,face/hella/eyes_4.png,0,0
+	element4,overlaymultiply,face/hella/emotion_2.png,0,0
+}
+surface30
+{
+	element1,overlay,face/hella/eyebrow_3.png,0,0
+	element3,overlay,face/hella/mouth_2.png,0,0
+	element4,overlay,face/hella/eyes_9.png,0,0
+}
+surface31
+{
+	element1,overlay,face/hella/eyebrow_7.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_9.png,0,0
+	element4,overlay,face/hella/eyes_9.png,0,0
+	element5,overlay,face/hella/emotion_4.png,0,0
+}
+surface32
+{
+	element1,overlay,face/hella/eyebrow_3.png,0,0
+	element3,overlay,face/hella/mouth_5.png,0,0
+	element4,overlay,face/hella/eyes_4.png,0,0
+}
+surface33
+{
+	element1,overlay,face/hella/eyebrow_3.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_7.png,0,0
+	element4,overlay,face/hella/eyes_3.png,0,0
+}
+surface34
+{
+	element1,overlay,face/hella/eyebrow_3.png,0,0
+	element2,overlay,face/hella/emotion_0.png,0,0
+	element3,overlay,face/hella/mouth_1.png,0,0
+	element4,overlay,face/hella/eyes_10.png,0,0
+}
+surface35
+{
+	element1,overlay,face/hella/eyebrow_5.png,0,0
+	element3,overlay,face/hella/mouth_10.png,0,0
+	element4,overlay,face/hella/eyes_3.png,0,0
+}
+surface36
+{
+	element1,overlay,face/hella/face_36.png,0,0
+}
+surface37
+{
+	element1,overlay,face/hella/face_37.png,0,0
+}
+surface38
+{
+	element1,overlay,face/hella/face_38.png,0,0
+}
+surface39
+{
+	element1,overlay,face/hella/face_39.png,0,0
+}
+surface50
+{
+	element1,overlay,face/hella/face_50.png,0,0
+}
+
+//海拉眨眼
+surface10,36-37
+{
+	animation1000.interval,runonce+random,3
+	animation1000.pattern0,overlay,0130,0,0,0
+	animation1000.pattern1,overlay,0131,30,0,0
+	animation1000.pattern2,overlay,0132,30,0,0
+	animation1000.pattern3,overlay,0133,80,0,0
+	animation1000.pattern4,overlay,0131,50,0,0
+	animation1000.pattern5,overlay,0130,80,0,0
+}
+surface14,16,50
+{
+  animation1000.interval,runonce+random,3
+  animation1000.pattern0,overlay,0136,0,0,0
+  animation1000.pattern1,overlay,0137,30,0,0
+  animation1000.pattern2,overlay,0138,30,0,0
+  animation1000.pattern3,overlay,0133,50,0,0
+  animation1000.pattern4,overlay,0136,30,0,0
+  animation1000.pattern5,overlay,0137,20,0,0
+  animation1000.pattern6,overlay,0133,80,0,0
+  animation1000.pattern7,overlay,0136,80,0,0
+}
+
+
+
+
+//========================================================
+////////////////////////////換裝//////////////////////////
+//========================================================
+//==================赫卡蒂換裝==================
+surface0-9,20-29
+{
+//=====瀏海=====
+	animation1200.interval,bind
+	animation1200.pattern0,add,1200,0,0,0
+//=====後髮=====
+	animation6300.interval,bind
+	animation6300.pattern0,add,6300,0,0,0
+//=====帽子=====
+	//賽伯洛斯
+	animation6401.interval,bind
+	animation6401.pattern0,add,6401,0,0,0
+//=====眼罩=====
+	animation3500.interval,bind
+	animation3500.pattern0,add,3500,0,0,0
+//=====外套=====
+	//囚服外套
+	animation5501.interval,bind
+	animation5501.pattern0,add,5501,0,0,0
+	animation1301.interval,bind
+	animation1301.option,background
+	animation1301.pattern0,add,1301,0,0,0
+	//賽伯洛斯
+	animation4702.interval,bind
+	animation4702.pattern0,add,4702,0,0,0
+//=====上衣=====
+	//實驗服
+	animation4200.interval,bind
+	animation4200.pattern0,add,4200,0,0,0
+	animation5100.interval,bind
+	animation5100.pattern0,add,5100,0,0,0
+	animation2300.interval,bind
+	animation2300.pattern0,add,2300,0,0,0
+	//set01
+	animation4201.interval,bind
+	animation4201.pattern0,add,4201,0,0,0
+	animation5101.interval,bind
+	animation5101.pattern0,add,5101,0,0,0
+	//繃帶內衣
+	animation4202.interval,bind
+	animation4202.pattern0,add,4202,0,0,0
+	//中式(藍)
+	animation4203.interval,bind
+	animation4203.pattern0,add,4203,0,0,0
+	animation5103.interval,bind
+	animation5103.pattern0,add,5103,0,0,0
+	//中式(黑)
+	animation4204.interval,bind
+	animation4204.pattern0,add,4204,0,0,0
+	animation5104.interval,bind
+	animation5104.pattern0,add,5104,0,0,0
+	//賽伯洛斯
+	animation4205.interval,bind
+	animation4205.pattern0,add,4205,0,0,0
+	animation5105.interval,bind
+	animation5105.pattern0,add,5105,0,0,0
+	//黑無袖高領
+	animation4206.interval,bind
+	animation4206.pattern0,add,4206,0,0,0
+	//JK
+	animation4207.interval,bind
+	animation4207.pattern0,add,4207,0,0,0
+	animation5107.interval,bind
+	animation5107.pattern0,add,5107,0,0,0
+//=====下裝=====
+	//繃帶內褲
+	animation4000.interval,bind
+	animation4000.pattern0,add,4000,0,0,0
+	//馬面裙{藍}
+	animation4501.interval,bind
+	animation4501.pattern0,add,4501,0,0,0
+	//馬面裙{黑}
+	animation4502.interval,bind
+	animation4502.pattern0,add,4502,0,0,0
+	//賽伯洛斯
+	animation4503.interval,bind
+	animation4503.pattern0,add,4503,0,0,0
+	//JK
+	animation4001.interval,bind
+	animation4001.pattern0,add,4001,0,0,0
+//=====襪子=====
+	//set1
+	animation3601.interval,bind
+	animation3601.pattern0,add,3601,0,0,0
+	//賽伯洛斯
+	animation3602.interval,bind
+	animation3602.pattern0,add,3602,0,0,0
+	//JK
+	animation3603.interval,bind
+	animation3603.pattern0,add,3603,0,0,0
+//=====鞋=====
+	animation3800.interval,bind
+	animation3800.pattern0,add,3800,0,0,0
+	//set1
+	animation3801.interval,bind
+	animation3801.pattern0,add,3801,0,0,0
+	//珍珠鍊(白&黑)
+	animation3802.interval,bind
+	animation3802.pattern0,add,3802,0,0,0
+	animation3803.interval,bind
+	animation3803.pattern0,add,3803,0,0,0
+	//賽伯洛斯
+	animation3804.interval,bind
+	animation3804.pattern0,add,3804,0,0,0
+	//JK
+	animation3805.interval,bind
+	animation3805.pattern0,add,3805,0,0,0
+//=====手套=====
+	//賽伯洛斯
+	animation5001.interval,bind
+	animation5001.pattern0,add,5001,0,0,0
+//=====手持=====
+	//素描本
+	animation4901.interval,bind
+	animation4901.pattern0,add,4901,0,0,0
+	//透明
+	animation4401.interval,bind
+	animation4401.pattern0,add,4401,0,0,0
+//=====裝飾=====
+	//賽伯洛斯
+	animation1001.interval,bind
+	animation1001.option,background
+	animation1001.pattern0,add,1001,0,0,0
+	//JK
+	animation6601.interval,bind
+	animation6601.pattern0,add,6601,0,0,0
+}
+
+//===================================================================
+//							海拉換裝
+//===================================================================
+surface10-19,30-39,50
+{
+//=====瀏海=====
+	animation16300.interval,bind
+	animation16300.pattern0,add,16300,0,0,0
+	animation16301.interval,bind
+	animation16301.pattern0,add,16301,0,0,0
+//=====後髮=====
+	animation11200.interval,bind
+	animation11200.option,background
+	animation11200.pattern0,add,11200,0,0,0
+//=====帽子=====
+	animation16400.interval,bind
+	animation16400.pattern0,add,16400,0,0,0
+	//玫瑰髮箍
+	animation16401.interval,bind
+	animation16401.pattern0,add,16401,0,0,0
+	//色慾惡魔
+	animation16402.interval,bind
+	animation16402.pattern0,add,16402,0,0,0
+//=====口罩=====
+	//街頭
+	animation16200.interval,bind
+	animation16200.pattern0,add,16200,0,0,0
+//=====頸飾=====
+	//JK （裝飾）
+	animation16199.interval,bind
+	animation16199.pattern0,add,16199,0,0,0
+//=====外套=====
+	animation14700.interval,bind
+	animation14700.pattern0,add,14700,0,0,0
+	animation11900.interval,bind
+	animation11900.option,background
+	animation11900.pattern0,add,11900,0,0,0
+	//囚服外套
+	animation14701.interval,bind
+	animation14701.pattern0,add,14701,0,0,0
+	animation11901.interval,bind
+	animation11901.option,background
+	animation11901.pattern0,add,11901,0,0,0
+	animation13301.interval,bind
+	animation13301.pattern0,add,13301,0,0,0
+	//色慾惡魔
+	animation14702.interval,bind
+	animation14702.pattern0,add,14702,0,0,0
+	animation11902.interval,bind
+	animation11902.option,background
+	animation11902.pattern0,add,11902,0,0,0
+	animation13302.interval,bind
+	animation13302.pattern0,add,13302,0,0,0
+	////JK
+	animation14704.interval,bind
+	animation14704.pattern0,add,14704,0,0,0
+	animation13304.interval,bind
+	animation13304.pattern0,add,13304,0,0,0
+	animation14705.interval,bind
+	animation14705.pattern0,add,14705,0,0,0
+//=====上衣=====
+	//原始
+	animation14200.interval,bind
+	animation14200.pattern0,add,14200,0,0,0
+	animation12300.interval,bind
+	animation12300.option,background
+	animation12300.pattern0,add,12300,0,0,0
+	//set01
+	animation14201.interval,bind
+	animation14201.pattern0,add,14201,0,0,0
+	animation12301.interval,bind
+	animation12301.option,background
+	animation12301.pattern0,add,12301,0,0,0
+	animation12901.interval,bind
+	animation12901.pattern0,add,12901,0,0,0
+	//內衣
+	animation14202.interval,bind
+	animation14202.pattern0,add,14202,0,0,0
+	//紅色小洋裝
+	animation14203.interval,bind
+	animation14203.pattern0,add,14203,0,0,0
+	//色慾惡魔
+	animation14204.interval,bind
+	animation14204.pattern0,add,14204,0,0,0
+	animation12904.interval,bind
+	animation12904.pattern0,add,12904,0,0,0
+	//JK
+	animation14205.interval,bind
+	animation14205.pattern0,add,14205,0,0,0
+	animation14206.interval,bind
+	animation14206.pattern0,add,14206,0,0,0
+	animation12906.interval,bind
+	animation12906.pattern0,add,12906,0,0,0
+	animation14207.interval,bind
+	animation14207.pattern0,add,14207,0,0,0
+	animation14208.interval,bind
+	animation14208.pattern0,add,14208,0,0,0
+//=====下裝=====
+	//set01
+	animation14501.interval,bind
+	animation14501.pattern0,add,14501,0,0,0
+	animation12101.interval,bind
+	animation12101.pattern0,add,12101,0,0,0
+	//內褲
+	animation14000.interval,bind
+	animation14000.pattern0,add,14000,0,0,0
+	//色慾惡魔
+	animation14001.interval,bind
+	animation14001.pattern0,add,14001,0,0,0
+	//JK
+	animation14002.interval,bind
+	animation14002.pattern0,add,14002,0,0,0
+	animation14502.interval,bind
+	animation14502.pattern0,add,14502,0,0,0
+//=====襪子=====
+	//原始
+	animation13600.interval,bind
+	animation13600.pattern0,add,13600,0,0,0
+	//set01
+	animation13601.interval,bind
+	animation13601.pattern0,add,13601,0,0,0
+	//12色連身襪-00棕(舊玫瑰)
+	animation13602.interval,bind
+	animation13602.pattern0,add,13602,0,0,0
+	animation13604.interval,bind
+	animation13604.pattern0,add,13604,0,0,0
+	animation13605.interval,bind
+	animation13605.pattern0,add,13605,0,0,0
+	animation13606.interval,bind
+	animation13606.pattern0,add,13606,0,0,0
+	animation13607.interval,bind
+	animation13607.pattern0,add,13607,0,0,0
+	animation13608.interval,bind
+	animation13608.pattern0,add,13608,0,0,0
+	animation13609.interval,bind
+	animation13609.pattern0,add,13609,0,0,0
+	animation13610.interval,bind
+	animation13610.pattern0,add,13610,0,0,0
+	animation13611.interval,bind
+	animation13611.pattern0,add,13611,0,0,0
+	animation13612.interval,bind
+	animation13612.pattern0,add,13612,0,0,0
+	animation13613.interval,bind
+	animation13613.pattern0,add,13613,0,0,0
+	animation13614.interval,bind
+	animation13614.pattern0,add,13614,0,0,0
+	animation13615.interval,bind
+	animation13615.pattern0,add,13615,0,0,0
+	//色慾惡魔
+	animation13603.interval,bind
+	animation13603.pattern0,add,13603,0,0,0
+//=====鞋=====
+	//原始
+	animation13800.interval,bind
+	animation13800.pattern0,add,13800,0,0,0
+	//set01
+	animation13801.interval,bind
+	animation13801.pattern0,add,13801,0,0,0
+	//紅色圓頭鞋
+	animation13802.interval,bind
+	animation13802.pattern0,add,13802,0,0,0
+	//色慾惡魔
+	animation13803.interval,bind
+	animation13803.pattern0,add,13803,0,0,0
+	animation12603.interval,bind
+	animation12603.pattern0,add,12603,0,0,0
+	//JK
+	animation13804.interval,bind
+	animation13804.pattern0,add,13804,0,0,0
+//=====手套=====
+	animation12800.interval,bind
+	animation12800.pattern0,add,12800,0,0,0
+	animation15800.interval,bind
+	animation15800.pattern0,add,15800,0,0,0
+//=====武器=====
+	//水管
+	animation11100.interval,bind
+	animation11100.pattern0,add,11100,0,0,0
+	animation11100.option,background
+	animation15700.interval,bind
+	animation15700.pattern0,add,15700,0,0,0
+	//透明
+	animation11101.interval,bind
+	animation11101.pattern0,add,11101,0,0,0
+	//狼牙棒
+	animation11102.interval,bind
+	animation11102.pattern0,add,11102,0,0,0
+	animation11102.option,background
+	animation15702.interval,bind
+	animation15702.pattern0,add,15702,0,0,0
+	//海豹
+	animation11103.interval,bind
+	animation11103.pattern0,add,11103,0,0,0
+	animation11103.option,background
+	animation15703.interval,bind
+	animation15703.pattern0,add,15703,0,0,0
+	animation16604.interval,bind
+	animation16604.pattern0,add,16604,0,0,0
+//=====背飾=====
+	//色慾惡魔.尾巴
+	animation11001.interval,bind
+	animation11001.option,background
+	animation11001.pattern0,add,11001,0,0,0
+//=====最上層裝飾=====
+	//色慾惡魔.❤
+	animation16601.interval,bind
+	animation16601.pattern0,add,16601,0,0,0
+	//JK.襪子
+	animation16602.interval,bind
+	animation16602.pattern0,add,16602,0,0,0
+	//JK.蝴蝶結
+	animation16603.interval,bind
+	animation16603.pattern0,add,16603,0,0,0
+}
+
+
+//===================================================
+//                     游標
+//===================================================
+sakura.cursor
+{
+mouseup0,Hair,cursor\pet3.cur
+mouseup1,Face,cursor\pinch5.cur
+mouseup2,Bust,cursor\grab1.cur
+mouseup3,Book,cursor\point1.cur
+
+mousedown0,Hair,cursor\pet4.cur
+mousedown1,Face,cursor\pinch4.cur
+mousedown2,Bust,cursor\grab2.cur
+mousedown3,Book,cursor\point2.cur
+}
+
+kero.cursor
+{
+mousedown0,Hair,cursor\pet2.cur
+mousedown1,Face,cursor\pinch6.cur
+mousedown2,Bust,cursor\grab4.cur
+mousedown3,Weapon,cursor\point2.cur
+
+mouseup0,Hair,cursor\pet1.cur
+mouseup1,Face,cursor\pinch7.cur
+mouseup2,Bust,cursor\grab3.cur
+mouseup3,Weapon,cursor\point1.cur
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

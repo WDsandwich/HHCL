@@ -1,0 +1,470 @@
+descript
+{
+	version,1
+}
+//==========================================
+///////////////////海拉面部/////////////////
+//==========================================
+//------------眉毛------------
+surface120
+{
+	element0,base,face/hella/eyebrow_0.png,0,0
+}
+surface121
+{
+	element0,base,face/hella/eyebrow_1.png,0,0
+}
+surface122
+{
+	element0,base,face/hella/eyebrow_2.png,0,0
+}
+surface123
+{
+	element0,base,face/hella/eyebrow_3.png,0,0
+}
+surface124
+{
+	element0,base,face/hella/eyebrow_4.png,0,0
+}
+surface125
+{
+	element0,base,face/hella/eyebrow_5.png,0,0
+}
+surface126
+{
+	element0,base,face/hella/eyebrow_6.png,0,0
+}
+surface127
+{
+	element0,base,face/hella/eyebrow_7.png,0,0
+}
+//------------眼睛------------
+surface130
+{
+	element0,base,face/hella/eyes_0.png,0,0
+}
+surface131
+{
+	element0,base,face/hella/eyes_1.png,0,0
+}
+surface132
+{
+	element0,base,face/hella/eyes_2.png,0,0
+}
+surface133
+{
+	element0,base,face/hella/eyes_3.png,0,0
+}
+surface134
+{
+	element0,base,face/hella/eyes_4.png,0,0
+}
+surface135
+{
+	element0,base,face/hella/eyes_5.png,0,0
+}
+surface136
+{
+	element0,base,face/hella/eyes_6.png,0,0
+}
+surface137
+{
+	element0,base,face/hella/eyes_7.png,0,0
+}
+surface138
+{
+	element0,base,face/hella/eyes_8.png,0,0
+}
+surface139
+{
+	element0,base,face/hella/eyes_9.png,0,0
+}
+//------------嘴巴------------
+surface150
+{
+	element0,base,face/hella/mouth_0.png,0,0
+}
+surface151
+{
+	element0,base,face/hella/mouth_1.png,0,0
+}
+surface152
+{
+	element0,base,face/hella/mouth_2.png,0,0
+}
+surface153
+{
+	element0,base,face/hella/mouth_3.png,0,0
+}
+surface154
+{
+	element0,base,face/hella/mouth_4.png,0,0
+}
+surface155
+{
+	element0,base,face/hella/mouth_5.png,0,0
+}
+surface156
+{
+	element0,base,face/hella/mouth_6.png,0,0
+}
+surface157
+{
+	element0,base,face/hella/mouth_7.png,0,0
+}
+surface158
+{
+	element0,base,face/hella/mouth_8.png,0,0
+}
+surface159
+{
+	element0,base,face/hella/mouth_9.png,0,0
+}
+//------------表情特效------------
+surface170
+{
+	element0,base,face/hella/emotion_0.png,0,0
+}
+surface175
+{
+	element0,base,face/hella/emotion_5.png,0,0
+}
+surface176
+{
+	element0,base,face/hella/emotion_6.png,0,0
+}
+surface177
+{
+	element0,base,face/hella/emotion_7.png,0,0
+}
+
+
+//==========================================
+///////////////////海拉換裝/////////////////
+//==========================================
+
+//==============帽子==============
+surface16400	//預設
+{
+	element0,base,dressing/hella/hat_00.png,0,0
+}
+surface16401	//玫瑰
+{
+	element0,base,dressing/hella/hat_1.png,0,0
+}
+surface16402	//色慾惡魔-莫蒂斯
+{
+	element0,base,dressing/hella/hat_2.png,0,0
+}
+//==============髮型(前)==============
+surface16300	//預設
+{
+	element0,base,dressing/hella/hairF_00.png,0,0
+}
+surface16301	//預設
+{
+	element0,base,dressing/hella/hairF_1.png,0,0
+}
+//==============髮型(後)==============
+surface11200	//預設
+{
+	element0,base,dressing/hella/hair_00.png,0,0
+}
+//==============口罩==============
+surface16200	//預設
+{
+	element0,base,dressing/hella/mask_1.png,0,0
+}
+
+//==============外套==============
+surface14700	//預設
+{
+	element0,base,dressing/hella/coat_00.png,0,0
+}
+surface11900
+{
+	element0,base,dressing/hella/coat_00_b.png,0,0
+}
+surface14701	//囚服外套
+{
+	element0,base,dressing/hella/coat_1.png,0,0
+}
+surface11901
+{
+	element0,base,dressing/hella/coat_1_b.png,0,0
+}
+surface13301
+{
+	element0,base,dressing/hella/coat_1_s.png,0,0
+}
+surface14702	//色慾惡魔-莫蒂斯
+{
+	element0,base,dressing/hella/coat_2.png,0,0
+}
+surface11902
+{
+	element0,base,dressing/hella/coat_2_b.png,0,0
+}
+surface13302
+{
+	element0,base,dressing/hella/coat_2_s.png,0,0
+}
+surface14704	//JK
+{
+	element0,base,dressing/hella/coat_4.png,0,0
+}
+surface13304
+{
+	element0,base,dressing/hella/coat_4_s.png,0,0
+}
+surface14705
+{
+	element0,base,dressing/hella/coat_5.png,0,0
+}
+
+//==============上衣/連身裝==============
+surface14200	//預設
+{
+	element0,base,dressing/hella/top_00.png,0,0
+}
+surface12300
+{
+	element0,base,dressing/hella/top_00_b.png,0,0
+}
+surface14201	//set1
+{
+	element0,base,dressing/hella/top_1.png,0,0
+}
+surface12301
+{
+	element0,base,dressing/hella/top_1_b.png,0,0
+}
+surface12901
+{
+	element0,base,dressing/hella/top_1_s.png,0,0
+}
+surface14202	//內衣
+{
+	element0,base,dressing/hella/top_2.png,0,0
+}
+surface14203	//玫瑰
+{
+	element0,base,dressing/hella/top_3.png,0,0
+}
+surface14204	//色慾惡魔-莫蒂斯
+{
+	element0,base,dressing/hella/top_4.png,0,0
+}
+surface12904
+{
+	element0,base,dressing/hella/top_4_s.png,0,0
+}
+surface14205	//JK
+{
+	element0,base,dressing/hella/top_5.png,0,0
+}
+surface14206
+{
+	element0,base,dressing/hella/top_6.png,0,0
+}
+surface12906
+{
+	element0,base,dressing/hella/coat_4_s.png,0,0
+}
+surface14207
+{
+	element0,base,dressing/hella/top_7.png,0,0
+}
+surface14208
+{
+	element0,base,dressing/hella/top_8.png,0,0
+}
+
+
+//==============下裝==============
+surface14000	//內褲
+{
+	element0,base,dressing/hella/bottom_00.png,0,0
+}
+surface14501	//set1
+{
+	element0,base,dressing/hella/bottomC_1.png,0,0
+}
+surface12101
+{
+	element0,base,dressing/hella/bottomC_1_b.png,0,0
+}
+surface14001	//色慾惡魔-莫蒂斯
+{
+	element0,base,dressing/hella/bottom_1.png,0,0
+}
+surface14002	//JK
+{
+	element0,base,dressing/hella/bottom_3.png,0,0
+}
+surface14502
+{
+	element0,base,dressing/hella/bottom_3.png,0,0
+}
+
+
+//==============襪==============
+surface13600	//預設
+{
+	element0,base,dressing/hella/sock_00.png,0,0
+}
+surface13601	//set1
+{
+	element0,base,dressing/hella/sock_1.png,0,0
+}
+surface13602	//12色連身襪-00棕(舊玫瑰)
+{
+	element0,base,dressing/hella/sock_2.png,0,0
+}
+surface13604	//12色連身襪-0紅
+{
+	element0,base,dressing/hella/sock_2_0.png,0,0
+}
+surface13605	//12色連身襪-1橙
+{
+	element0,base,dressing/hella/sock_2_1.png,0,0
+}
+surface13606	//12色連身襪-2黃
+{
+	element0,base,dressing/hella/sock_2_2.png,0,0
+}
+surface13607	//12色連身襪-3綠
+{
+	element0,base,dressing/hella/sock_2_3.png,0,0
+}
+surface13608	//12色連身襪-4深綠
+{
+	element0,base,dressing/hella/sock_2_4.png,0,0
+}
+surface13609	//12色連身襪-5藍
+{
+	element0,base,dressing/hella/sock_2_5.png,0,0
+}
+surface13610	//12色連身襪-6靛
+{
+	element0,base,dressing/hella/sock_2_6.png,0,0
+}
+surface13611	//12色連身襪-7紫
+{
+	element0,base,dressing/hella/sock_2_7.png,0,0
+}
+surface13612	//12色連身襪-8粉紅
+{
+	element0,base,dressing/hella/sock_2_8.png,0,0
+}
+surface13613	//12色連身襪-10白
+{
+	element0,base,dressing/hella/sock_2_10.png,0,0
+}
+surface13614	//12色連身襪-11黑
+{
+	element0,base,dressing/hella/sock_2_11.png,0,0
+}
+surface13615	//12色連身襪-12灰
+{
+	element0,base,dressing/hella/sock_2_12.png,0,0
+}
+surface13603	//色慾惡魔-莫蒂斯
+{
+	element0,base,dressing/hella/sock_3.png,0,0
+}
+
+//==============鞋==============
+surface13800	//預設
+{
+	element0,base,dressing/hella/shoe_00.png,0,0
+}
+surface13801	//set1
+{
+	element0,base,dressing/hella/shoe_1.png,0,0
+}
+surface13802	//玫瑰
+{
+	element0,base,dressing/hella/shoe_2.png,0,0
+}
+surface13803	//色慾惡魔-莫蒂斯
+{
+	element0,base,dressing/hella/shoe_3.png,0,0
+}
+surface12603
+{
+	element0,base,dressing/hella/shoe_3.png,0,0
+}
+surface13804	//JK
+{
+	element0,base,dressing/hella/shoe_4.png,0,0
+}
+
+
+//==============手套==============
+surface12800	//預設
+{
+	element0,base,dressing/hella/glove_00.png,0,0
+}
+surface15800
+{
+	element0,base,dressing/hella/glove_00_c.png,0,0
+}
+
+//==============武器==============
+surface11100	//預設
+{
+	element0,base,dressing/hella/weapon_00.png,0,0
+}
+surface15700
+{
+	element0,base,dressing/hella/weapon_00_c.png,0,0
+}
+surface11101	//X
+{
+	element0,base,hide0.png,0,0
+}
+surface11102	//狼牙棒
+{
+	element0,base,dressing/hella/weapon_3_b.png,0,0
+}
+surface15702
+{
+	element0,base,dressing/hella/weapon_3.png,0,0
+}
+surface11103	//海豹
+{
+	element0,base,dressing/hella/weapon_4_b.png,0,0
+}
+surface15703
+{
+	element0,base,dressing/hella/weapon_4.png,0,0
+}
+surface16604
+{
+	element0,base,dressing/hella/weapon_4_f.png,0,0
+}
+
+
+//==============裝飾==============
+surface16601	//色慾惡魔-莫蒂斯.❤
+{
+	element0,base,dressing/hella/other_1.png,0,0
+}
+surface11001	//色慾惡魔-莫蒂斯.尾巴
+{
+	element0,base,dressing/hella/back_1.png,0,0
+}
+surface16602	//JK
+{
+	element0,base,dressing/hella/other_2.png,0,0
+}
+surface16603
+{
+	element0,base,dressing/hella/other_3.png,0,0
+}
+surface16199
+{
+	element0,base,dressing/hella/scarf_199.png,0,0
+}
+//surface16604已使用

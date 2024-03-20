@@ -1,0 +1,409 @@
+descript
+{
+	version,1
+}
+//[SERIKO] Line=12 新定義，舊版本。（重複定義）
+//===============================================
+//////////////////定義敵人surface////////////////
+//===============================================
+surface560000	//空白
+{
+	element0,base,hide0.png,0,0
+}
+//=======================C=======================
+surface561100	//刀狩
+{
+	element0,base,battle/enemy/110.png,0,0
+}
+surface561110
+{
+	element0,base,battle/enemy/111.png,0,0
+}
+surface561150
+{
+	element0,base,battle/enemy/115_1.png,0,0
+}
+surface561151
+{
+	element0,base,battle/enemy/115_2.png,0,0
+}
+surface561152
+{
+	element0,base,battle/enemy/115_3.png,0,0
+}
+surface561200	//幫派打手
+{
+	element0,base,battle/enemy/120.png,0,0
+}
+surface561210
+{
+	element0,base,battle/enemy/121.png,0,0
+}
+surface561250
+{
+	element0,base,battle/enemy/125_1.png,0,0
+}
+surface561251
+{
+	element0,base,battle/enemy/125_2.png,0,0
+}
+surface561252
+{
+	element0,base,battle/enemy/125_3.png,0,0
+}
+surface561300	//失心者
+{
+	element0,base,battle/enemy/130.png,0,0
+}
+surface561310
+{
+	element0,base,battle/enemy/131.png,0,0
+}
+surface561350
+{
+	element0,base,battle/enemy/135_1.png,0,0
+}
+surface561351
+{
+	element0,base,battle/enemy/135_2.png,0,0
+}
+surface561352
+{
+	element0,base,battle/enemy/135_3.png,0,0
+}
+surface561400	//兜帽客工匠
+{
+	element0,base,battle/enemy/140.png,0,0
+}
+surface561430
+{
+	element0,base,battle/enemy/141.png,0,0
+}
+surface561450
+{
+	element0,base,battle/enemy/145_1.png,0,0
+}
+surface561451
+{
+	element0,base,battle/enemy/145_2.png,0,0
+}
+surface561452
+{
+	element0,base,battle/enemy/145_3.png,0,0
+}
+surface561500	//厄種
+{
+	element0,base,battle/enemy/150.png,0,0
+}
+surface561520
+{
+	element0,base,battle/enemy/152.png,0,0
+}
+surface561550	//厄種-defeated 1
+{
+	element0,base,battle/enemy/155_1.png,0,0
+}
+surface561551	//厄種-defeated 2
+{
+	element0,base,battle/enemy/155_2.png,0,0
+}
+surface561552	//厄種-defeated 3
+{
+	element0,base,battle/enemy/155_3.png,0,0
+}
+surface561600	//三角頭
+{
+	element0,base,battle/enemy/160.png,0,0
+}
+surface561630	
+{
+	element0,base,battle/enemy/163.png,0,0
+}
+surface561650	//三角頭-defeated 1
+{
+	element0,base,battle/enemy/165_1.png,0,0
+}
+surface561651	//三角頭-defeated 2
+{
+	element0,base,battle/enemy/165_2.png,0,0
+}
+surface561652	//三角頭-defeated 3
+{
+	element0,base,battle/enemy/165_3.png,0,0
+}
+surface561700	//藍蠕蟲
+{
+	element0,base,battle/enemy/170.png,0,0
+}
+surface561730
+{
+	element0,base,battle/enemy/173.png,0,0
+}
+surface561750
+{
+	element0,base,battle/enemy/175_1.png,0,0
+}
+surface561751
+{
+	element0,base,battle/enemy/175_2.png,0,0
+}
+surface561752
+{
+	element0,base,battle/enemy/175_3.png,0,0
+}
+surface561760	//藍蠕蟲-實驗人員
+{
+	element0,base,battle/enemy/176.png,0,0
+}
+surface561800	//聚合體
+{
+	element0,base,battle/enemy/180.png,0,0
+}
+surface561820
+{
+	element0,base,battle/enemy/182.png,0,0
+}
+surface561830
+{
+	element0,base,battle/enemy/183.png,0,0
+}
+surface561850	//聚合體-defeated 1
+{
+	element0,base,battle/enemy/185_1.png,0,0
+}
+surface561851	//聚合體-defeated 2
+{
+	element0,base,battle/enemy/185_2.png,0,0
+}
+surface561852	//聚合體-defeated 3
+{
+	element0,base,battle/enemy/185_3.png,0,0
+}
+surface561900	//紅水母
+{
+	element0,base,battle/enemy/190.png,0,0
+}
+surface561950	//紅水母-defeated 1
+{
+	element0,base,battle/enemy/195_1.png,0,0
+}
+surface561951	//紅水母-defeated 2
+{
+	element0,base,battle/enemy/195_2.png,0,0
+}
+surface561952	//紅水母-defeated 3
+{
+	element0,base,battle/enemy/195_3.png,0,0
+}
+surface561930
+{
+	element0,base,battle/enemy/193.png,0,0
+}
+surface562000	//深潛者
+{
+	element0,base,battle/enemy/200.png,0,0
+}
+surface562020	//深潛者-海
+{
+	element0,base,battle/enemy/202.png,0,0
+}
+surface562050	//深潛者-defeated 1
+{
+	element0,base,battle/enemy/205_1.png,0,0
+}
+surface562051	//深潛者-defeated 2
+{
+	element0,base,battle/enemy/205_2.png,0,0
+}
+surface562052	//深潛者-defeated 3
+{
+	element0,base,battle/enemy/205_3.png,0,0
+}
+surface562100	//魟魚
+{
+	element0,base,battle/enemy/210.png,0,0
+}
+surface562140	//魟魚-甩尾
+{
+	element0,base,battle/enemy/214.png,0,0
+}
+surface562150	//魟魚-defeated 1
+{
+	element0,base,battle/enemy/215_1.png,0,0
+}
+surface562151	//魟魚-defeated 2
+{
+	element0,base,battle/enemy/215_2.png,0,0
+}
+surface562152	//魟魚-defeated 3
+{
+	element0,base,battle/enemy/215_3.png,0,0
+}
+surface562200	//淚人兒
+{
+	element0,base,battle/enemy/220.png,0,0
+}
+surface562210	//淚人兒-赫
+{
+	element0,base,battle/enemy/221.png,0,0
+}
+surface562220	//淚人兒-海
+{
+	element0,base,battle/enemy/222.png,0,0
+}
+surface562230	//淚人兒-AOE
+{
+	element0,base,battle/enemy/223.png,0,0
+}
+surface562251	//淚人兒-defeated 1
+{
+	element0,base,battle/enemy/225_1.png,0,0
+}
+surface562252	//淚人兒-defeated 2
+{
+	element0,base,battle/enemy/225_2.png,0,0
+}
+surface562253	//淚人兒-defeated 3
+{
+	element0,base,battle/enemy/225_3.png,0,0
+}
+surface562270	//淚人兒-eyes 1
+{
+	element0,base,battle/enemy/220_1.png,0,0
+}
+surface562271	//淚人兒-eyes 2
+{
+	element0,base,battle/enemy/220_2.png,0,0
+}
+surface562272	//淚人兒-eyes 3
+{
+	element0,base,battle/enemy/220_3.png,0,0
+}
+surface562280	//淚人兒-tears 1
+{
+	element0,base,battle/enemy/220_5.png,0,0
+}
+surface562281	//淚人兒-tears 2
+{
+	element0,base,battle/enemy/220_6.png,0,0
+}
+surface562282	//淚人兒-tears 3
+{
+	element0,base,battle/enemy/220_7.png,0,0
+}
+surface562300	//婕克南瓜
+{
+	element0,base,battle/enemy/230.png,0,0
+}
+surface562310	//婕克南瓜-單體
+{
+	element0,base,battle/enemy/231.png,0,0
+}
+surface562340	//婕克南瓜-詭計1
+{
+	element0,base,battle/enemy/234_1.png,0,0
+}
+surface562341	//婕克南瓜-詭計2
+{
+	element0,base,battle/enemy/234_2.png,0,0
+}
+surface562342	//婕克南瓜-詭計3
+{
+	element0,base,battle/enemy/234_3.png,0,0
+}
+surface562350	//婕克南瓜-defeated 0
+{
+	element0,base,battle/enemy/235.png,0,0
+}
+surface562351	//婕克南瓜-defeated 1
+{
+	element0,base,battle/enemy/235_1.png,0,0
+}
+surface562352	//婕克南瓜-defeated 2
+{
+	element0,base,battle/enemy/235_2.png,0,0
+}
+surface562353	//婕克南瓜-defeated 3
+{
+	element0,base,battle/enemy/235_3.png,0,0
+}
+surface562370	//婕克南瓜-fire 0
+{
+	element0,base,battle/enemy/237.png,0,0
+}
+surface562371	//婕克南瓜-fire 1
+{
+	element0,base,battle/enemy/237_1.png,0,0
+}
+surface562372	//婕克南瓜-fire 2
+{
+	element0,base,battle/enemy/237_2.png,0,0
+}
+surface562373	//婕克南瓜-fire 3
+{
+	element0,base,battle/enemy/237_3.png,0,0
+}
+surface562374	//婕克南瓜-fire 4
+{
+	element0,base,battle/enemy/237_4.png,0,0
+}
+surface562400	//憂鬱的婦人
+{
+	element0,base,battle/enemy/240.png,0,0
+}
+surface562440	//憂鬱的婦人-收割
+{
+	element0,base,battle/enemy/244.png,0,0
+	element1,overlay,battle/enemy/244_5.png,0,0
+}
+surface562441	//憂鬱的婦人-收割2
+{
+	element0,base,battle/enemy/244_2.png,0,0
+}
+surface562442	//憂鬱的婦人-收割3
+{
+	element0,base,battle/enemy/244_3.png,0,0
+}
+surface562443	//憂鬱的婦人-收割4
+{
+	element0,base,battle/enemy/244_4.png,0,0
+}
+surface562444	//憂鬱的婦人-收割5
+{
+	element0,base,battle/enemy/244.png,10,5
+	element1,overlay,battle/enemy/244_5.png,0,0
+}
+surface562445	//憂鬱的婦人-收割6
+{
+	element0,base,battle/enemy/244.png,15,7
+	element1,overlay,battle/enemy/244_5.png,0,0
+}
+surface562446	//憂鬱的婦人-收割7
+{
+	element0,base,battle/enemy/244.png,20,9
+	element1,overlay,battle/enemy/244_5.png,0,0
+}
+surface562451	//憂鬱的婦人-defeated 1
+{
+	element0,base,battle/enemy/245_1.png,0,0
+}
+surface562452	//憂鬱的婦人-defeated 2
+{
+	element0,base,battle/enemy/245_2.png,0,0
+}
+surface562453	//憂鬱的婦人-defeated 3
+{
+	element0,base,battle/enemy/245_3.png,0,0
+}
+
+//==============================================
+//				我方受擊特效						
+//==============================================
+surface580000
+{
+	element0,base,battle/hit/hit0.png,0,0
+}
+surface580010
+{
+	element0,base,battle/hit/hit1.png,0,0
+}

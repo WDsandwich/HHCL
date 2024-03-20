@@ -1,0 +1,347 @@
+descript
+{
+	version,1
+}
+//[SERIKO] Line=7 新定義，舊版本。（重複定義）
+//==========================================
+///////////////////buff特效/////////////////
+//==========================================
+surface520010-520012,520024-520025,520027,520030-520033,520039
+{
+	//回血-赫卡蒂
+	animation676100.interval,never
+	animation676100.pattern0,overlay,676100,50,30,160
+	animation676100.pattern1,overlay,676101,50,30,160
+	animation676100.pattern2,overlay,676102,50,30,160
+	animation676100.pattern3,overlay,676103,50,30,160
+	animation676100.pattern4,overlay,676100,50,30,160
+	animation676100.pattern5,overlay,676101,50,30,160
+	animation676100.pattern6,overlay,676102,50,30,160
+	animation676100.pattern7,overlay,676103,50,30,160
+	animation676100.pattern8,overlay,676000,150,0,0
+	//回血-海拉
+	animation676101.interval,never
+	animation676101.pattern0,overlay,676100,50,150,200
+	animation676101.pattern1,overlay,676101,50,150,200
+	animation676101.pattern2,overlay,676102,50,150,200
+	animation676101.pattern3,overlay,676103,50,150,200
+	animation676101.pattern4,overlay,676100,50,150,200
+	animation676101.pattern5,overlay,676101,50,150,200
+	animation676101.pattern6,overlay,676102,50,150,200
+	animation676101.pattern7,overlay,676103,50,150,200
+	animation676101.pattern8,overlay,676000,150,0,0
+	//增攻
+	animation676200.interval,never
+	animation676200.pattern0,overlay,676200,50,166,233
+	animation676200.pattern1,overlay,676201,50,166,233
+	animation676200.pattern2,overlay,676202,50,166,233
+	animation676200.pattern3,overlay,676203,50,166,233
+	animation676200.pattern4,overlay,676000,150,0,0
+	//增防-赫卡蒂
+	animation676300.interval,never
+	animation676300.pattern0,overlay,676300,10,50,144
+	animation676300.pattern1,overlay,676301,20,50,144
+	animation676300.pattern2,overlay,676302,20,50,144
+	animation676300.pattern3,overlay,676303,30,50,144
+	animation676300.pattern4,overlay,676304,30,50,144
+	animation676300.pattern5,overlay,676305,30,50,144
+	animation676300.pattern6,overlay,676306,30,50,144
+	animation676300.pattern7,overlay,676307,30,50,144
+	animation676300.pattern8,overlay,676308,30,50,144
+	animation676300.pattern9,overlay,676309,30,50,144
+	animation676300.pattern10,overlay,676310,30,50,144
+	animation676300.pattern11,overlay,676311,30,50,144
+	animation676300.pattern13,overlay,676000,150,0,0
+	//增防-海拉
+	animation676301.interval,never
+	animation676301.pattern0,overlay,676300,10,155,190
+	animation676301.pattern1,overlay,676301,20,155,190
+	animation676301.pattern2,overlay,676302,20,155,190
+	animation676301.pattern3,overlay,676303,30,155,190
+	animation676301.pattern4,overlay,676304,30,155,190
+	animation676301.pattern5,overlay,676305,30,155,190
+	animation676301.pattern6,overlay,676306,30,155,190
+	animation676301.pattern7,overlay,676307,30,155,190
+	animation676301.pattern8,overlay,676308,30,155,190
+	animation676301.pattern9,overlay,676309,30,155,190
+	animation676301.pattern10,overlay,676310,30,155,190
+	animation676301.pattern11,overlay,676311,30,155,190
+	animation676301.pattern12,overlay,676000,150,0,0
+	
+//赫卡蒂無光之鏡
+	animation650031.interval,never
+	animation650031.pattern0,overlay,650031,32,0,0
+	animation650031.pattern1,overlay,650032,32,0,0
+	animation650031.pattern2,overlay,650033,32,0,0
+	animation650031.pattern3,overlay,650034,32,0,0
+	animation650031.pattern4,overlay,650035,32,0,0
+	animation650031.pattern5,overlay,650036,32,0,0
+	animation650031.pattern6,overlay,650037,32,0,0
+	animation650031.pattern7,overlay,650038,32,0,0
+	animation650031.pattern8,overlay,650039,32,0,0
+	animation650031.pattern9,overlay,650040,32,0,0
+}
+//赫卡蒂普攻
+surface520011,520031
+{
+	animation650010.interval,runonce
+	animation650010.pattern0,overlay,650011,10,0,0
+	animation650010.pattern1,overlay,650012,20,0,0
+	animation650010.pattern2,overlay,650013,20,0,0
+	animation650010.pattern3,overlay,650014,30,0,0
+	animation650010.pattern4,overlay,650015,30,0,0
+	animation650010.pattern5,overlay,650016,30,0,0
+	animation650010.pattern6,overlay,650017,30,0,0
+	animation650010.pattern7,overlay,650018,30,0,0
+	animation650010.pattern8,overlay,650019,30,0,0
+	animation650010.pattern9,overlay,650020,30,0,0
+	animation650010.pattern10,overlay,650021,30,0,0
+	animation650010.pattern13,overlay,676000,150,0,0
+}
+surface520012,520032
+{
+	animation650041.interval,always
+	animation650041.pattern0,overlay,650041,36,0,0
+	animation650041.pattern1,overlay,650042,36,0,0
+	animation650041.pattern2,overlay,650043,36,0,0
+}
+
+
+surface676000
+{
+	element0,base,hide0.png,0,0
+}
+
+//====回血====
+surface676100
+{
+	element0,base,battle/effect/heal.png,0,0
+	element1,reduce,battle/effect/heal0.png,0,0
+}
+surface676101
+{
+	element0,base,battle/effect/heal.png,-176,0
+	element1,reduce,battle/effect/heal0.png,0,0
+}
+surface676102
+{
+	element0,base,battle/effect/heal.png,-352,0
+	element1,reduce,battle/effect/heal0.png,0,0
+}
+surface676103
+{
+	element0,base,battle/effect/heal.png,-528,0
+	element1,reduce,battle/effect/heal0.png,0,0
+}
+//====增攻====
+surface676200
+{
+	element0,base,battle/effect/atkUP.png,0,0
+	element1,reduce,battle/effect/atkUP0.png,0,0
+}
+surface676201
+{
+	element0,base,battle/effect/atkUP.png,-96,0
+	element1,reduce,battle/effect/atkUP0.png,0,0
+}
+surface676202
+{
+	element0,base,battle/effect/atkUP.png,-192,0
+	element1,reduce,battle/effect/atkUP0.png,0,0
+}
+surface676203
+{
+	element0,base,battle/effect/atkUP.png,-288,0
+	element1,reduce,battle/effect/atkUP0.png,0,0
+}
+//====增防====
+surface676300
+{
+	element0,base,battle/effect/defUP.png,0,0
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676301
+{
+	element0,base,battle/effect/defUP.png,-131,0
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676302
+{
+	element0,base,battle/effect/defUP.png,-262,0
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676303
+{
+	element0,base,battle/effect/defUP.png,-393,0
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676304
+{
+	element0,base,battle/effect/defUP.png,-524,0
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676305
+{
+	element0,base,battle/effect/defUP.png,0,-152
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676306
+{
+	element0,base,battle/effect/defUP.png,-131,-152
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676307
+{
+	element0,base,battle/effect/defUP.png,-262,-152
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676308
+{
+	element0,base,battle/effect/defUP.png,-393,-152
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676309
+{
+	element0,base,battle/effect/defUP.png,-524,-152
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676310
+{
+	element0,base,battle/effect/defUP.png,0,-304
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+surface676311
+{
+	element0,base,battle/effect/defUP.png,-131,-304
+	element1,reduce,battle/effect/defUP0.png,0,0
+}
+//====嘲諷====
+surface651010
+{
+	element0,base,battle/skill/taunt.png,0,0
+	element1,reduce,battle/skill/taunt0.png,0,0
+}
+surface651011
+{
+	element0,base,battle/skill/taunt.png,-111,0
+	element1,reduce,battle/skill/taunt0.png,0,0
+}
+surface651012
+{
+	element0,base,battle/skill/taunt.png,-222,0
+	element1,reduce,battle/skill/taunt0.png,0,0
+}
+surface651013
+{
+	element0,base,battle/skill/taunt.png,-333,0
+	element1,reduce,battle/skill/taunt0.png,0,0
+}
+surface651014
+{
+	element0,base,battle/skill/taunt.png,-444,0
+	element1,reduce,battle/skill/taunt0.png,0,0
+}
+//====赫卡蒂普攻====
+surface650011
+{
+	element0,base,battle/skill/HC_atk_01.png,0,0
+}
+surface650012
+{
+	element0,base,battle/skill/HC_atk_02.png,0,0
+}
+surface650013
+{
+	element0,base,battle/skill/HC_atk_03.png,0,0
+}
+surface650014
+{
+	element0,base,battle/skill/HC_atk_04.png,0,0
+}
+surface650015
+{
+	element0,base,battle/skill/HC_atk_05.png,0,0
+}
+surface650016
+{
+	element0,base,battle/skill/HC_atk_06.png,0,0
+}
+surface650017
+{
+	element0,base,battle/skill/HC_atk_07.png,0,0
+}
+surface650018
+{
+	element0,base,battle/skill/HC_atk_08.png,0,0
+}
+surface650019
+{
+	element0,base,battle/skill/HC_atk_09.png,0,0
+}
+surface650020
+{
+	element0,base,battle/skill/HC_atk_10.png,0,0
+}
+surface650021
+{
+	element0,base,battle/skill/HC_atk_11.png,0,0
+}
+//====赫卡蒂普攻====
+//匯能
+surface650031
+{
+	element0,base,battle/skill/HC_skill_energy_01.png,0,0
+}
+surface650032
+{
+	element0,base,battle/skill/HC_skill_energy_02.png,0,0
+}
+surface650033
+{
+	element0,base,battle/skill/HC_skill_energy_03.png,0,0
+}
+surface650034
+{
+	element0,base,battle/skill/HC_skill_energy_04.png,0,0
+}
+surface650035
+{
+	element0,base,battle/skill/HC_skill_energy_05.png,0,0
+}
+surface650036
+{
+	element0,base,battle/skill/HC_skill_energy_06.png,0,0
+}
+surface650037
+{
+	element0,base,battle/skill/HC_skill_energy_07.png,0,0
+}
+surface650038
+{
+	element0,base,battle/skill/HC_skill_energy_08.png,0,0
+}
+surface650039
+{
+	element0,base,battle/skill/HC_skill_energy_09.png,0,0
+}
+surface650040
+{
+	element0,base,battle/skill/HC_skill_energy_10.png,0,0
+}
+//激光
+surface650041
+{
+	element0,base,battle/skill/HC_skill_laser_01.png,0,0
+}
+surface650042
+{
+	element0,base,battle/skill/HC_skill_laser_02.png,0,0
+}
+surface650043
+{
+	element0,base,battle/skill/HC_skill_laser_03.png,0,0
+}
+
+//==============================================
+//					受擊						
+//==============================================

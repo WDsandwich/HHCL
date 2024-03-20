@@ -1,0 +1,33 @@
+surface810010
+{
+	element0,base,outside\dispatch.png,0,0
+}
+
+surface800010
+{
+	element0,base,outside\spa1_0.png,0,0
+}
+surface800011
+{
+	element0,base,outside\spa1.png,0,0
+}
+surface800012
+{
+	element0,base,outside\spa1_2.png,0,0
+}
+surface800013
+{
+	element0,base,outside\spa1_3.png,0,0
+}
+surface800021
+{
+	element0,base,outside\spa2.png,0,0
+}
+surface800030
+{
+	element0,base,outside\spa3_0.png,0,0
+}
+surface800031
+{
+	element0,base,outside\spa3.png,0,0
+}

@@ -1,0 +1,337 @@
+descript
+{
+	version,1
+}
+//=======================================
+/////////////赫卡蒂面部surface///////////
+//=======================================
+surface500400
+{
+	element0,base,battle/hecate/eye_0.png,0,0
+}
+surface500401
+{
+	element0,base,battle/hecate/eye_1.png,0,0
+}
+surface500402
+{
+	element0,base,battle/hecate/eye_2.png,0,0
+}
+surface500403	//閉眼
+{
+	element0,base,battle/hecate/eye_3.png,0,0
+}
+
+//=======================================
+/////////////赫卡蒂衣裝surface///////////
+//=======================================
+
+//==============髮型(前)==============
+surface505500	//預設
+{
+	element0,base,battle/hecate/hairF_00.png,0,0
+}
+//==============髮型(後)==============
+surface501200	//預設
+{
+	element0,base,battle/hecate/hair_00.png,0,0
+}
+surface1501200
+{
+	element0,base,battle/hecate/hair_00_atk.png,0,0
+}
+surface2501200
+{
+	element0,base,battle/hecate/hair_00_skill.png,0,0
+}
+
+
+//==============帽子==============
+surface505601	//賽伯洛斯
+{
+	element0,base,battle/hecate/hat_1.png,0,0
+}
+
+
+//==============眼罩==============
+surface503100	//預設
+{
+	element0,base,battle/hecate/blindfold_00.png,0,0
+}
+
+
+//==============外套==============
+surface505501	//囚服外套
+{
+	element0,base,battle/hecate/coat_1.png,0,0
+}
+surface501901
+{
+	element0,base,battle/hecate/coat_1_b.png,0,0
+}
+surface504202	//賽伯洛斯
+{
+	element0,base,battle/hecate/coat_2.png,0,0
+}
+surface1504202
+{
+	element0,base,battle/hecate/coat_2_atk.png,0,0
+}
+surface1501902
+{
+	element0,base,battle/hecate/coat_2_atk_b.png,0,0
+}
+surface2504202
+{
+	element0,base,battle/hecate/coat_2_skill.png,0,0
+}
+
+//==============上衣/連身裝==============
+surface503800	//預設
+{
+	element0,base,battle/hecate/top_00.png,0,0
+}
+surface504600
+{
+	element0,base,battle/hecate/top_00_r.png,0,0
+}
+surface1503800
+{
+	element0,base,battle/hecate/top_00_atk.png,0,0
+}
+surface1504600
+{
+	element0,base,battle/hecate/top_00_r_atk.png,0,0
+}
+surface2503800
+{
+	element0,base,battle/hecate/top_00_skill.png,0,0
+}
+surface502200
+{
+	element0,base,battle/hecate/top_00_b.png,0,0
+}
+	
+surface503801	//set1
+{
+	element0,base,battle/hecate/top_1.png,0,0
+}
+surface504601
+{
+	element0,base,battle/hecate/top_1_r.png,0,0
+}
+surface1503801
+{
+	element0,base,battle/hecate/top_1_atk.png,0,0
+}
+surface1504601
+{
+	element0,base,battle/hecate/top_1_r_atk.png,0,0
+}
+surface2503801
+{
+	element0,base,battle/hecate/top_1_skill.png,0,0
+}
+surface502201
+{
+	element0,base,battle/hecate/top_1_b.png,0,0
+}
+surface503802	//內衣
+{
+	element0,base,battle/hecate/top_2.png,0,0
+}
+surface503803	//中式(藍)
+{
+	element0,base,battle/hecate/top_3.png,0,0
+}
+surface504603
+{
+	element0,base,battle/hecate/top_3_r.png,0,0
+}
+surface1503803
+{
+	element0,base,battle/hecate/top_3_atk.png,0,0
+}
+surface1504603
+{
+	element0,base,battle/hecate/top_3_r_atk.png,0,0
+}
+surface2503803
+{
+	element0,base,battle/hecate/top_3_skill.png,0,0
+}
+surface503804	//中式(黑)
+{
+	element0,base,battle/hecate/top_4.png,0,0
+}
+surface504604
+{
+	element0,base,battle/hecate/top_4_r.png,0,0
+}
+surface1503804
+{
+	element0,base,battle/hecate/top_4_atk.png,0,0
+}
+surface1504604
+{
+	element0,base,battle/hecate/top_4_r_atk.png,0,0
+}
+surface2503804
+{
+	element0,base,battle/hecate/top_4_skill.png,0,0
+}
+surface503805	//賽伯洛斯
+{
+	element0,base,battle/hecate/top_5.png,0,0
+}
+surface504605
+{
+	element0,base,battle/hecate/top_5_r.png,0,0
+}
+surface1503805
+{
+	element0,base,battle/hecate/top_5_atk.png,0,0
+}
+surface1504605
+{
+	element0,base,battle/hecate/top_5_r_atk.png,0,0
+}
+surface2503805
+{
+	element0,base,battle/hecate/top_5_skill.png,0,0
+}
+surface503806	//黑無袖高領
+{
+	element0,base,battle/hecate/top_6.png,0,0
+}
+surface1503806
+{
+	element0,base,battle/hecate/top_6_atk.png,0,0
+}
+surface503807	//JK
+{
+	element0,base,battle/hecate/top_7.png,0,0
+}
+surface504607
+{
+	element0,base,battle/hecate/top_7_r.png,0,0
+}
+surface1503807
+{
+	element0,base,battle/hecate/top_7_atk.png,0,0
+}
+surface1504607
+{
+	element0,base,battle/hecate/top_7_r_atk.png,0,0
+}
+surface2503807
+{
+	element0,base,battle/hecate/top_7_skill.png,0,0
+}
+
+
+//==============下裝==============
+surface503600	//內褲
+{
+	element0,base,battle/hecate/bottom_00.png,0,0
+}
+surface504101	//馬面裙{藍}
+{
+	element0,base,battle/hecate/bottomC_1.png,0,0
+}
+surface1504101
+{
+	element0,base,battle/hecate/bottomC_1_atk.png,0,0
+}
+surface504102	//馬面裙{黑}
+{
+	element0,base,battle/hecate/bottomC_2.png,0,0
+}
+surface1504102
+{
+	element0,base,battle/hecate/bottomC_2_atk.png,0,0
+}
+surface504103	//賽伯洛斯
+{
+	element0,base,battle/hecate/bottomC_3.png,0,0
+}
+surface503601	//JK
+{
+	element0,base,battle/hecate/bottom_1.png,0,0
+}
+surface1503601
+{
+	element0,base,battle/hecate/bottom_1_atk.png,0,0
+}
+
+
+//==============襪==============
+surface503201	//set1
+{
+	element0,base,battle/hecate/sock_1.png,0,0
+}
+surface503202	//賽伯洛斯
+{
+	element0,base,battle/hecate/sock_2.png,0,0
+}
+surface503203	//JK
+{
+	element0,base,battle/hecate/sock_3.png,0,0
+}
+
+//==============鞋==============
+surface503400	//預設
+{
+	element0,base,battle/hecate/shoe_00.png,0,0
+}
+surface503401	//set1
+{
+	element0,base,battle/hecate/shoe_1.png,0,0
+}
+surface503402	//珍珠鍊(白&黑)
+{
+	element0,base,battle/hecate/shoe_2.png,0,0
+}
+surface503403
+{
+	element0,base,battle/hecate/shoe_3.png,0,0
+}
+surface503404	//賽伯洛斯
+{
+	element0,base,battle/hecate/shoe_4.png,0,0
+}
+surface503405	//JK
+{
+	element0,base,battle/hecate/shoe_5.png,0,0
+}
+
+
+//==============手套==============
+surface504501	//賽伯洛斯
+{
+	element0,base,battle/hecate/glove_1.png,0,0
+}
+surface502901
+{
+	element0,base,battle/hecate/glove_1_r.png,0,0
+}
+surface1504501
+{
+	element0,base,battle/hecate/glove_1_atk.png,0,0
+}
+surface2502901
+{
+	element0,base,battle/hecate/glove_1_skill.png,0,0
+}
+
+
+//==============裝飾==============
+surface505801	//JK髮夾
+{
+	element0,base,battle/hecate/other_1.png,0,0
+}
+surface501201	//賽伯洛斯.尾巴
+{
+	element0,base,battle/hecate/back_1.png,0,0
+}
+

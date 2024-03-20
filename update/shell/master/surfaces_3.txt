@@ -1,0 +1,170 @@
+descript
+{
+	version,1
+}
+//=============================================================
+//								菲							
+//=============================================================
+surface311000
+{
+	element0,base,npc\fei\fei_00.png,0,0
+	
+	//-----墨鏡
+	animation311050.interval,bind
+	animation311050.pattern0,overlay,311050,0,0,0
+}
+surface311050
+{
+	element0,base,npc\fei\glass.png,0,0
+}
+
+
+//=============================================================
+//								夜鶯							
+//=============================================================	
+surface310000-310002
+{
+	element0,base,npc\yeying\body.png,0,0
+	//-----頭髮
+	animation310050.interval,runonce
+	animation310050.pattern0,overlay,310050,0,0,0
+	//-----pad
+	animation310070.interval,bind
+	animation310070.pattern0,overlay,310070,0,0,0
+}
+surface310000
+{
+	element1,base,npc\yeying\face_0.png,0,0
+	//-----眨眼
+	animation310030.interval,runonce+random,3
+	animation310030.pattern0,overlay,310030,0,0,0
+	animation310030.pattern1,overlay,310031,30,0,0
+	animation310030.pattern2,overlay,310032,30,0,0
+	animation310030.pattern3,overlay,310033,80,0,0
+	animation310030.pattern4,overlay,310031,50,0,0
+	animation310030.pattern5,overlay,310030,80,0,0
+}
+
+
+surface310001
+{
+	element1,base,npc\yeying\face_1.png,0,0
+	element2,base,npc\yeying\eye_3.png,0,0
+}
+surface310002
+{
+	element1,base,npc\yeying\face_2.png,0,0
+	element2,base,npc\yeying\eye_4.png,0,0
+}
+surface310050
+{
+	element0,base,npc\yeying\hair.png,0,0
+}
+surface310070
+{
+	element0,base,npc\yeying\pad.png,0,0
+}
+surface310030
+{
+	element0,base,npc\yeying\eye_0.png,0,0
+}
+surface310031
+{
+	element0,base,npc\yeying\eye_1.png,0,0
+}
+surface310032
+{
+	element0,base,npc\yeying\eye_2.png,0,0
+}
+surface310033
+{
+	element0,base,npc\yeying\eye_3.png,0,0
+}
+surface310034
+{
+	element0,base,npc\yeying\eye_4.png,0,0
+}
+//=============================================================
+//								莓絲							
+//=============================================================
+surface312000-312012
+{
+	element0,base,npc\mess\mess_0.png,0,0
+}
+surface312000,312003,31209
+{
+	animation312050.interval,runonce+random,3
+	animation312050.pattern0,overlay,312050,0,0,0
+	animation312050.pattern1,overlay,312051,30,0,0
+	animation312050.pattern2,overlay,312052,30,0,0
+	animation312050.pattern3,overlay,312053,80,0,0
+	animation312050.pattern4,overlay,312051,50,0,0
+	animation312050.pattern5,overlay,312050,80,0,0
+}
+surface312001	//表情
+{
+	element1,base,npc\mess\face_1.png,0,0
+}
+surface312002
+{
+	element1,base,npc\mess\face_2.png,0,0
+}
+surface312003
+{
+	element1,base,npc\mess\face_3.png,0,0
+}
+surface312004
+{
+	element1,base,npc\mess\face_4.png,0,0
+}
+surface312005
+{
+	element1,base,npc\mess\face_5.png,0,0
+}
+surface312006
+{
+	element1,base,npc\mess\face_6.png,0,0
+}
+surface312007
+{
+	element1,base,npc\mess\face_7.png,0,0
+}
+surface312008
+{
+	element1,base,npc\mess\face_8.png,0,0
+}
+surface312009
+{
+	element1,base,npc\mess\face_9.png,0,0
+}
+surface312010
+{
+	element1,base,npc\mess\face_10.png,0,0
+}
+surface312011
+{
+	element1,base,npc\mess\face_11.png,0,0
+}
+surface312012
+{
+	element1,base,npc\mess\face_12.png,0,0
+}
+surface312050	//眨眼
+{
+	element0,base,npc\mess\wink_0.png,0,0
+}
+surface312051
+{
+	element0,base,npc\mess\wink_1.png,0,0
+}
+surface312052
+{
+	element0,base,npc\mess\wink_2.png,0,0
+}
+surface312053
+{
+	element0,base,npc\mess\wink_3.png,0,0
+}
+
+
+

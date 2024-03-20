@@ -1,0 +1,28 @@
+descript
+{
+	version,1
+}
+//=============================================
+///////////////////地圖surface/////////////////
+//=============================================
+
+surface490000	//空白
+{
+	element0,base,hide0.png,0,0
+}
+surface490100
+{
+	element0,base,battle\background\Syndicate.png,0,0
+}
+surface490200
+{
+	element0,base,battle\background\ParmaRuins.png,0,0
+}
+surface490300
+{
+	element0,base,battle\background\RustRiver.png,0,0
+}
+surface490400
+{
+	element0,base,battle\background\DisSea.png,0,0
+}

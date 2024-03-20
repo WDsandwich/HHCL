@@ -1,0 +1,258 @@
+descript
+{
+	version,1
+}
+//=======================================
+/////////////赫卡蒂面部surface///////////
+//=======================================
+surface602	//下垂
+{
+	element0,base,face/hecate/eyebrow_2.png,0,0
+}
+surface400	//預設
+{
+	element0,base,face/hecate/eye_0.png,0,0
+}
+surface401	//
+{
+	element0,base,face/hecate/eye_1.png,0,0
+}
+surface402	//
+{
+	element0,base,face/hecate/eye_2.png,0,0
+}
+surface403	//閉眼
+{
+	element0,base,face/hecate/eye_3.png,0,0
+}
+surface404	//
+{
+	element0,base,face/hecate/eye_4.png,0,0
+}
+surface405	//
+{
+	element0,base,face/hecate/eye_5.png,0,0
+}
+surface406	//
+{
+	element0,base,face/hecate/eye_6.png,0,0
+}
+surface407	//半垂看旁邊
+{
+	element0,base,face/hecate/eye_7.png,0,0
+}
+surface202	//ㄷ
+{
+	element0,base,face/hecate/mouth_2.png,0,0
+}
+surface203	//︵
+{
+	element0,base,face/hecate/mouth_3.png,0,0
+}
+surface101	// ////////
+{
+	element0,base,face/hecate/shy_1.png,0,0
+}
+
+
+
+
+
+//=======================================
+/////////////赫卡蒂衣裝surface///////////
+//=======================================
+
+//==============髮型(前)==============
+surface6300	//預設
+{
+	element0,base,dressing/hecate/hairF_00.png,0,0
+}
+//==============髮型(後)==============
+surface1200	//預設
+{
+	element0,base,dressing/hecate/hair_00.png,0,0
+}
+
+
+//==============帽子==============
+surface6401	//賽伯洛斯
+{
+	element0,base,dressing/hecate/hat_1.png,0,0
+}
+
+
+//==============眼罩==============
+surface3500	//預設
+{
+	element0,base,dressing/hecate/blindfold_00.png,0,0
+}
+
+
+//==============外套==============
+surface5501	//囚服外套
+{
+	element0,base,dressing/hecate/coat_1.png,0,0
+}
+surface1301
+{
+	element0,base,dressing/hecate/coat_1_b.png,0,0
+}
+surface4702	//賽伯洛斯
+{
+	element0,base,dressing/hecate/coat_2.png,0,0
+}
+
+//==============上衣/連身裝==============
+surface4200	//預設
+{
+	element0,base,dressing/hecate/top_00.png,0,0
+}
+surface2300
+{
+	element0,base,dressing/hecate/top_00_b.png,0,0
+}
+surface5100
+{
+	element0,base,dressing/hecate/top_00_s.png,0,0
+}
+surface4201	//set1
+{
+	element0,base,dressing/hecate/top_1.png,0,0
+}
+surface5101
+{
+	element0,base,dressing/hecate/top_1_s.png,0,0
+}
+surface4202	//內衣
+{
+	element0,base,dressing/hecate/top_2.png,0,0
+}
+surface4203	//中式(藍)
+{
+	element0,base,dressing/hecate/top_3.png,0,0
+}
+surface5103
+{
+	element0,base,dressing/hecate/top_3_s.png,0,0
+}
+surface4204	//中式(黑)
+{
+	element0,base,dressing/hecate/top_4.png,0,0
+}
+surface5104
+{
+	element0,base,dressing/hecate/top_4_s.png,0,0
+}
+surface4205	//賽伯洛斯
+{
+	element0,base,dressing/hecate/top_5.png,0,0
+}
+surface5105
+{
+	element0,base,dressing/hecate/top_5_s.png,0,0
+}
+surface4206	//黑無袖高領
+{
+	element0,base,dressing/hecate/top_6.png,0,0
+}
+surface4207	//JK
+{
+	element0,base,dressing/hecate/top_7.png,0,0
+}
+surface5107
+{
+	element0,base,dressing/hecate/top_7_s.png,0,0
+}
+
+
+//==============下裝==============
+surface4000	//內褲
+{
+	element0,base,dressing/hecate/bottom_00.png,0,0
+}
+surface4501	//馬面裙{藍}
+{
+	element0,base,dressing/hecate/bottomC_1.png,0,0
+}
+surface4502	//馬面裙{黑}
+{
+	element0,base,dressing/hecate/bottomC_2.png,0,0
+}
+surface4503	//賽伯洛斯
+{
+	element0,base,dressing/hecate/bottomC_3.png,0,0
+}
+surface4001	//JK
+{
+	element0,base,dressing/hecate/bottom_1.png,0,0
+}
+
+
+//==============襪==============
+surface3601	//set1
+{
+	element0,base,dressing/hecate/sock_1.png,0,0
+}
+surface3602	//賽伯洛斯
+{
+	element0,base,dressing/hecate/sock_2.png,0,0
+}
+surface3603	//JK
+{
+	element0,base,dressing/hecate/sock_3.png,0,0
+}
+
+//==============鞋==============
+surface3800	//預設
+{
+	element0,base,dressing/hecate/shoe_00.png,0,0
+}
+surface3801	//set1
+{
+	element0,base,dressing/hecate/shoe_1.png,0,0
+}
+surface3802	//珍珠鍊(白&黑)
+{
+	element0,base,dressing/hecate/shoe_2.png,0,0
+}
+surface3803
+{
+	element0,base,dressing/hecate/shoe_3.png,0,0
+}
+surface3804	//賽伯洛斯
+{
+	element0,base,dressing/hecate/shoe_4.png,0,0
+}
+surface3805	//JK
+{
+	element0,base,dressing/hecate/shoe_5.png,0,0
+}
+
+
+//==============手套==============
+surface5001	//預設
+{
+	element0,base,dressing/hecate/glove_1.png,0,0
+}
+
+//==============書本==============
+surface4901	//預設
+{
+	element0,base,dressing/hecate/book_00.png,0,0
+}
+surface4401	//X
+{
+	element0,base,hide0.png,0,0
+}
+
+
+//==============裝飾==============
+surface6601	//JK髮夾
+{
+	element0,base,dressing/hecate/other_1.png,0,0
+}
+surface1001	//賽伯洛斯.尾巴
+{
+	element0,base,dressing/hecate/back_1.png,0,0
+}
+
