@@ -1,4 +1,4 @@
 charset,UTF-8
 type,ghost
-name,豌豆三明治
-directory,WDsandwich
+name,赫卡蒂＆海拉＆局長的日常
+directory,Hecate_Hella
