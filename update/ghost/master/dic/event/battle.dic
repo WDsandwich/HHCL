@@ -1384,6 +1384,8 @@ EnemyHPCheck
 		--
 		if Edrop[7]>=1 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 %(Edrop[7])個 \f[color,#d8bfd8]感染凝膠\f[default]。%(bp)\_q\w9"
 		--
+		if GETTYPE(Edrop[8])==3 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 \f[color,#FFBB77]%(Edrop[8])\f[default]。%(bp)\_q\w9"
+		--
 		"\x"
 		--
 		AddWave
@@ -1411,8 +1413,8 @@ EnemyHPCheck
 //====================================================
 EnemyDropItemSetting	//----------敵方單位掉落道具，在此事件中獲得相應道具(除強化道具)
 {
-	//0exp,1狄斯幣,2狂亂精粹,3異能源液,4狂暴源液,5戰利品,6原礦,7感染凝膠
-	Edrop=(TOINT(level*53.1472+RAND(level)+level*30*batlle_level*0.1),0,RAND(level/10),0,0,"","",0)
+	//0exp,1狄斯幣,2狂亂精粹,3異能源液,4狂暴源液,5戰利品,6原礦,7感染凝膠,8月供物品
+	Edrop=(TOINT(level*53.1472+RAND(level)+level*30*batlle_level*0.1),0,RAND(level/10),0,0,"","",0,RAND(10))
 	//-----exp
 	if mapname=="ParmaRuins" ; Edrop[0]=TOINT(Edrop[0]*1.7)
 	if mapname=="RustRiver" ; Edrop[0]=Edrop[0]*3
@@ -1462,6 +1464,14 @@ EnemyDropItemSetting	//----------敵方單位掉落道具，在此事件中獲�
 	}
 	if Edrop[7]>0
 	{	dye_ingredient[5]+=Edrop[7] ; cum_ingredient[5]=TOINT(cum_ingredient[5]) ; cum_ingredient[5]+=Edrop[7] }
+	//-----月供物品
+	if mapname=="RustRiver" && Edrop[8]==1
+	{ case month
+	 {
+		when 3 { gift_sp[4]=TOINT(gift_sp[4]) ; gift_sp[4]++ ; Edrop[8]=gift_sp_name[4] }
+		when 4 { gift_sp[5]=TOINT(gift_sp[5]) ; gift_sp[5]++ ; Edrop[8]=gift_sp_name[5] }
+	 }
+	}
 	
 }
 

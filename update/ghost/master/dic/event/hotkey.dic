@@ -170,7 +170,7 @@ OnKeyPress
 		consumable_sp[2]=2
 		}
 		when "w" {
-		"\1\s[18]有了這個，\w7\s[33]以後感到寂寞時就不用抱%(usernameHL)了吧？\w9\s[34]用它代替就好了。\w9\w9\n[130]…\w3…\w3\s[16]我開玩笑的啦！\w9\s[37]%(you)也不用失望成那樣吧？"
+		holiday_celebrated_store[4]=""
 		}
 		when "e" {
 		"\![raise,OnTutorial.Battle,20]"

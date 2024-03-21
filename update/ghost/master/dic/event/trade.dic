@@ -391,7 +391,10 @@ Store
 				{ event_goods_max=(10,1,5) ; event_goods=event_goods_max ; event_goods_prise=(214,0,224) ; event_goods_name=(event_item_name[0],consumable_sp_name[2],gift_sp_name[3]) ; event_pic="items\event_item_0,items\consumable_sp_2,items\gift_sp_3"
 				}
 				when 3
-				{ event_goods_max=(1,5) ; event_goods=event_goods_max ; event_goods_prise=(301,301) ; event_goods_name=(event_item_name[1],gift_sp_name[4]+"（送禮用）") ; event_pic="items\event_item_1,items\event_item_1"
+				{ event_goods_max=(1,5) ; event_goods=event_goods_max ; event_goods_prise=(301,301) ; event_goods_name=(event_item_name[1],gift_sp_name[4]+"（送禮用）") ; event_pic="items\event_item_1,items\gift_sp_4"
+				}
+				when 4
+				{ event_goods_max=(4) ; event_goods=event_goods_max ; event_goods_prise=(100) ; event_goods_name=(gift_sp_name[5]) ; event_pic="items\gift_sp_5"
 				}
 			}
 		}
@@ -741,6 +744,8 @@ OnBuyingEventGoods
 	{	event_item[1]= TOINT (event_item[1]) ; event_item[1]++ }
 	elseif month==3 && _num==1
 	{	gift_sp[4]= TOINT (gift_sp[4]) ; gift_sp[4]++ }
+	elseif month==4 && _num==0
+	{	gift_sp[5]= TOINT (gift_sp[5]) ; gift_sp[5]++ }
 	--
 	//減少庫存
 	event_goods[_num]-=1
