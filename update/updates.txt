@@ -10,7 +10,7 @@ file,ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641
 file,ghost/master/dic/event/EnevtTool.dicf9db97669ac28772c380b1acd9245663size=7449date=2024-03-02T16:03:16
 file,ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
 file,ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
-file,ghost/master/dic/event/battle.dicc4f7761ed8bea37247450ae950e76bafsize=60548date=2024-03-21T07:49:20
+file,ghost/master/dic/event/battle.dic688f7ea1a3dd82260e7319553f5628d7size=60554date=2024-03-21T12:13:32
 file,ghost/master/dic/event/chat.dic6eedc70131e7ca63637e01087cc1bf47size=219date=2023-12-27T02:10:09
 file,ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
 file,ghost/master/dic/event/cumulative.dic7e2a91b2cb76a01f0f21c7c66d6cd715size=9531date=2024-02-19T08:43:40
@@ -581,6 +581,7 @@ file,ghost/master/order/立即重啟.bate7fdad60a880d47b2695f0950bada7a9size=16da
 file,ghost/master/order/裝置管理員.bat093b8b922c988bc15d2505e84c6888f2size=10date=2022-12-24T19:49:08
 file,ghost/master/order/計算機.bate115429c5ed49b3d192092ee34b581d6size=4date=2022-12-11T08:58:54
 file,ghost/master/order/關機.batd6749ee3a7cc8c2f711d5feb96877ee5size=17date=2022-12-11T10:23:32
+file,ghost/master/save/save_2024.03.21_12149893bf6532f7b10001017f8e57357447size=23379date=2024-03-21T11:36:04
 file,ghost/master/sound/battle/01 [HC]11-sould i keep attacking.MP32c25ee07dba601fe5619c6a67867516dsize=24709date=2023-05-27T06:52:20
 file,ghost/master/sound/battle/01 [HC]14-therere enemy in front of us.MP3b78164cb4687020b7dc665651340fbecsize=15932date=2023-05-27T07:05:50
 file,ghost/master/sound/battle/01 [HC]22-too dangerous.MP3cab16d93209d2e747a3f71eb0769504esize=17186date=2023-05-27T07:15:50
@@ -619,7 +620,7 @@ file,ghost/master/sound/effect/interface3.mp37f23bdaf94d3c43bbdb17d6db8171643s
 file,ghost/master/sound/enemy/swing.mp387bfb36120b6c896d1850e55ba8479bfsize=11858date=2011-03-03T06:23:57
 file,ghost/master/sound/enemy/swing2.mp31372401e429c0b597a14108059610afdsize=8723date=2011-03-03T06:25:26
 file,ghost/master/sound/enemy/swing3.mp31f6a1db294282b3a7564b61e33c03462size=8723date=2011-03-03T06:27:26
-file,ghost/master/sound/enemy/刀?素振?1.mp321f3a8304c864b26a6664b990377f8a5size=30092date=2024-02-19T19:59:36
+file,ghost/master/sound/enemy/sword practice swing 1.mp321f3a8304c864b26a6664b990377f8a5size=30092date=2024-02-19T19:59:36
 file,ghost/master/sound/enemy/鞭?攻?1.mp3725d756402bf40b663a31458f541cb22size=14418date=2023-07-31T18:22:49
 file,ghost/master/sound/enemy/鞭?攻?2.mp374e752f17cd8d93814a6d614ed00b967size=15672date=2024-02-19T20:01:32
 file,ghost/master/sound/exc/01 [HC]51-no.MP34f7e932202aa9867899873b190324801size=17604date=2023-05-27T17:06:32
