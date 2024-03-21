@@ -60,9 +60,27 @@ OnInstallComplete
 	{	cum_cost_discoin[3]=0	}
 	if TOINT(REPLACE(version_code,",",""))<9026
 	{	holiday_celebrated_store[3]==""	}
-	if TOINT(REPLACE(version_code,",",""))<9027
+	if TOINT(REPLACE(version_code,",",""))<9028
 	{	void FDEL('dic\normal\yaya_homeurl.dic')	
 		void FDEL('dic\emerg\yaya_homeurl.dic')
+		void FDEL('sound/enemy/刀の素振り1.mp3')
+		void FDEL('sound/enemy/鞭で攻撃1.mp3')
+		void FDEL('sound/enemy/鞭で攻撃2.mp3')
+		void FDEL('sound/sfx/お金を落とす2.mp3')
+		void FDEL('sound/sfx/キックの素振り1.mp3')
+		void FDEL('sound/sfx/キックの素振り2.mp3')
+		void FDEL('sound/sfx/キックの素振り3.mp3')
+		void FDEL('sound/sfx/パンチの素振り1.mp3')
+		void FDEL('sound/sfx/パンチの素振り2.mp3')
+		void FDEL('sound/sfx/パンチの素振り3.mp3')
+		void FDEL('sound/sfx/ゲージ回復2.mp3')
+		void FDEL('sound/sfx/スライムの攻撃.mp3')
+		void FDEL('sound/sfx/タイトル表示.mp3')
+		void FDEL('sound/sfx/ビープ音3.mp3')
+		void FDEL('sound/sfx/メニューを開く2.mp3')
+		void FDEL('sound/sfx/弓矢が刺さる.mp3')
+		void FDEL('sound/sfx/金額表示.mp3')
+		lottery_ticket=TOINT(lottery_ticket)
 	}
 	
 	if TOINT(REPLACE(version_code,",",""))<TOINT(REPLACE(version_now,",",""))
@@ -276,59 +294,38 @@ OnUpdateReady
 //ネットワーク更新終了
 OnUpdateComplete
 {
+	version_code = version_now
+	compensation=(0,0,0)
 	if reference0 == "none" ; "\p[3]現在已經是最新的版本了。"
-	else
-	{
-		"\p[3]\s[310000]已順利完成更新。"
-		if !filen
-		{
-			filename = ""
-			filen = 0
-			menupage = 0
-		}
-	}
+	else ; "\p[3]\s[310000]已順利完成%(version_name)版本更新。"
 }
 //ネットワーク更新失敗
 OnUpdateFailure
 {
-	
-	if reference0 == "timeout"
-	{
-		"\p[3]\s[310001]連線超時，更新失敗。"
-	}
-	elseif reference0 == "md5 miss"
-	{
-		"\p[3]\s[310001]MD5校驗碼錯誤，更新失敗。"
-	}
-	elseif reference0 == "fileio"
-	{
-		"\p[3]\s[310001]文件寫入錯誤，更新失敗。"
-	}
-	else
-	{
-		//---- 上述以外的狀況
-		"\p[3]\s[310001]更新失敗，錯誤代碼：%(reference0)。"
-	}
+	if reference0 == "timeout" ; "\p[3]\s[310001]連線超時，更新失敗。"
+	elseif reference0 == "md5 miss" ; "\p[3]\s[310001]MD5校驗碼錯誤，更新失敗。"
+	elseif reference0 == "fileio" ; "\p[3]\s[310001]文件寫入錯誤，更新失敗。"
+	else ; "\p[3]\s[310001]更新失敗，錯誤代碼：%(reference0)。"
 }
 //ネットワーク更新 ダウンロード開始
 OnUpdate.OnDownloadBegin
 {
-	"\p[3]\s[310001]正在下載檔案%(reference0)……"
+	"\p[3]\s[310000]\_q正在下載檔案【%(reference0)】……\_q"
 }
 //ネットワーク更新 MD5値照合開始
 OnUpdate.OnMD5CompareBegin
 {
-	"\p[3]\s[310001]比對%(reference0)的MD5校驗碼。"
+	"\p[3]\s[310000]\_q比對【%(reference0)】的MD5校驗碼。\_q"
 }
 //ネットワーク更新 MD5値一致
 OnUpdate.OnMD5CompareComplete
 {
-	"\p[3]\s[310001]%(reference1)\n%(reference2)\n認證成功。"
+	"\p[3]\s[310002]\_q%(reference1)\_q\w2||w2\_q%(reference2)\_q\n認證成功。"
 }
 //ネットワーク更新 MD5値不一致
 OnUpdate.OnMD5CompareFailure
 {
-	"\p[3]\s[310001]%(reference1)\n%(reference2)\n認證失敗。"
+	"\p[3]\s[310001]\_q%(reference1)\_q\w2||w2\_q%(reference2)\_q\n認證失敗。"
 }
 
 //******************************************************************************

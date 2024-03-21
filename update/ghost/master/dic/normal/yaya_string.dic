@@ -58,7 +58,7 @@ On_kero.recommendsites_EX : array
 //------------------------------------
 //人格更新
 On_updatebutton.caption
-{"（暫不支持線上更新）"}
+{"◇ 線上更新 ◇"}
 //打開readme文件
 On_readmebutton.caption
 {"◇ 詳情 ◇"}
