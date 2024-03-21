@@ -31,7 +31,7 @@ file,ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716
 file,ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 file,ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 file,ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
-file,ghost/master/dic/event/office.dicd22fb14b29a7eb998bb506170585d839size=12840date=2024-03-22T05:52:49
+file,ghost/master/dic/event/office.dic14325eb000f7a34bf0c628346d960959size=12844date=2024-03-22T06:00:56
 file,ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 file,ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 file,ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
