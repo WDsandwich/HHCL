@@ -1,5 +1,6 @@
 charset,Big5
 file,delete.txt27bbd581b590b2c0da6a870af84a6cbesize=17date=2024-03-21T05:41:20
+file,developer_options.txt4b1304ebf073ec620ffc36efd32b065csize=158date=2024-03-21T12:29:54
 file,etc/readme-aya.txtca7ca11cf43709352523e72259116a8asize=588date=2023-12-14T09:44:24
 file,etc/readme-tama.txtf3090c2cd5e4e396cf948be4a5756825size=4063date=2023-12-14T09:44:24
 file,etc/readme-yaya.txt92c88333a5b56e4bbc2aaff460afd676size=2154date=2023-12-14T09:44:24
@@ -581,7 +582,6 @@ file,ghost/master/order/立即重啟.bate7fdad60a880d47b2695f0950bada7a9size=16da
 file,ghost/master/order/裝置管理員.bat093b8b922c988bc15d2505e84c6888f2size=10date=2022-12-24T19:49:08
 file,ghost/master/order/計算機.bate115429c5ed49b3d192092ee34b581d6size=4date=2022-12-11T08:58:54
 file,ghost/master/order/關機.batd6749ee3a7cc8c2f711d5feb96877ee5size=17date=2022-12-11T10:23:32
-file,ghost/master/save/save_2024.03.21_12149893bf6532f7b10001017f8e57357447size=23379date=2024-03-21T11:36:04
 file,ghost/master/sound/battle/01 [HC]11-sould i keep attacking.MP32c25ee07dba601fe5619c6a67867516dsize=24709date=2023-05-27T06:52:20
 file,ghost/master/sound/battle/01 [HC]14-therere enemy in front of us.MP3b78164cb4687020b7dc665651340fbecsize=15932date=2023-05-27T07:05:50
 file,ghost/master/sound/battle/01 [HC]22-too dangerous.MP3cab16d93209d2e747a3f71eb0769504esize=17186date=2023-05-27T07:15:50
