@@ -1563,7 +1563,7 @@ Enemy.Act
 		{
 			SinnerBeenAttack
 			--
-			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\w9\w5\![sound,play,sound/enemy/刀の素振り1.mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 舉起鐮刀向 我方所有人 砍去…… %(bp)\w5\n/
+			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\w9\w5\![sound,play,sound/enemy/sword practice swing 1.mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 舉起鐮刀向 我方所有人 砍去…… %(bp)\w5\n/
 			%(batlle_msg)%(bp) 對 赫卡蒂 造成 %bh(Edmg[0]) 點傷害！%(bp)\w3\n/
 			%(batlle_msg)%(bp)  對 海拉 造成 %bh(Edmg[1]) 點傷害！%(bp)"
 			--
