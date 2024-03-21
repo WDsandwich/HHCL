@@ -627,12 +627,12 @@ OrderAttack
 			--
 			"\p[5]%BattleSurface('atk')"
 			--
-			"%SFX('sfx/パンチの素振り1')"
-			"%SFX('sfx/パンチの素振り2')"
-			"%SFX('sfx/パンチの素振り3')"
-			"%SFX('sfx/キックの素振り1')"
-			"%SFX('sfx/キックの素振り2')"
-			"%SFX('sfx/キックの素振り3')"
+			"%SFX('sfx/Panchi no suburi 1')"
+			"%SFX('sfx/Panchi no suburi 2')"
+			"%SFX('sfx/Panchi no suburi 3')"
+			"%SFX('sfx/ Kikku no suburi 1')"
+			"%SFX('sfx/ Kikku no suburi 2')"
+			"%SFX('sfx/ Kikku no suburi 3')"
 			--
 			"\p[6]\s[-1]\b[32]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(Sdmg) 點傷害！%(bp)"
 			--
@@ -678,7 +678,7 @@ OrderSkill
 	  {
 		if debuff_HL[3]>=1 && enemy_name=="婕克南瓜"
 		{
-			"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 海拉受到 %(enemy_name) 的 詭計 誘騙，拒絕使用技能 %(bp)"
+			"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\c\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp) 海拉受到 %(enemy_name) 的 詭計 誘騙，拒絕使用技能 %(bp)"
 			--
 			"\x"
 			--
@@ -688,7 +688,7 @@ OrderSkill
 		}
 		elseif Bmp[1]==0
 		{
-			"\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 海拉的能量不足，無法使用技能！%(bp)"
+			"\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[6]\c\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp) 海拉的能量不足，無法使用技能！%(bp)"
 			--
 			"\x"
 			--
@@ -706,7 +706,7 @@ OrderSkill
 	  {
 		if debuff_HC[3]>=1 && enemy_name=="婕克南瓜"
 		{
-			"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 赫卡蒂受到 %(enemy_name) 的 詭計 誘騙，拒絕使用技能 %(bp)"
+			"\0\s[-1]\1\s[-1]\p[2]%cp(2)\p[6]\c\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp) 赫卡蒂受到 %(enemy_name) 的 詭計 誘騙，拒絕使用技能 %(bp)"
 			--
 			"\x"
 			--
@@ -716,7 +716,7 @@ OrderSkill
 		}
 		elseif Bmp[0]==0
 		{
-			"\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[6]\c\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp) 赫卡蒂的能量不足，無法使用技能！%(bp)"
+			"\0\s[-1]\1\s[-1]\p[2]%cp(3)\p[6]\c\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp) 赫卡蒂的能量不足，無法使用技能！%(bp)"
 			--
 			"\x"
 			--
@@ -805,7 +805,7 @@ OnCastSkill
 			"%SFX('skill/02-HC-57-nightmare')"
 			"%SFX('skill/01-HC-55-defeat them')"
 			--
-			"%SFX('sfx/メニューを開く2')"
+			"%SFX('sfx/Menyu o hiraku 2')"
 			--
 			"%(bp) 赫卡蒂 施展 無光之鏡 對 %(enemy_name) 造成 %bh(TOINT(Sdmg)) 點傷害！%(bp)"
 			"%(bp) 赫卡蒂 解放夢魘的力量對 %(enemy_name) 攻擊，造成 %bh(TOINT(Sdmg)) 點傷害！%(bp)"
@@ -820,7 +820,7 @@ OnCastSkill
 			{	OrderDone[0]=0
 				HCskill[1]-=5
 				Bmp[0]+=2
-				"\p[2]%cp(3)\p[6]\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp)技能冷卻中，尚有%(HCskill[1])回合。%(bp)"
+				"\p[2]%cp(3)\p[6]\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp)技能冷卻中，尚有%(HCskill[1])回合。%(bp)"
 			}
 		}
 		elseif ordertarget==1 && _skill==0
@@ -907,7 +907,7 @@ CastSkillHC0
 	--
 	"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[5]\i[650031]\w5%BattleSurface('skill')\p[6]\s[-1]\b[32]\c\![set,choicetimeout,0]%(bp)"
 	--
-	"%SFX('sfx/メニューを開く2')"
+	"%SFX('sfx/Menyu o hiraku 2')"
 	--
 	"%SFX('skill/01-HC-54-dreamshadow')"
 	"%SFX('skill/02-HC-27-dreamshadow')"
@@ -956,7 +956,7 @@ CastSkillHC1
 			}
 			when 1-5
 			{
-				"\p[6]\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp)技能冷卻中，尚有%(HCskill[1])回合。%(bp)"
+				"\p[6]\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp)技能冷卻中，尚有%(HCskill[1])回合。%(bp)"
 				--
 				"\x"
 				--
@@ -966,7 +966,7 @@ CastSkillHC1
    }
    else
    {
-		"\p[6]\s[-1]\b[32]\c%SFX('sfx/ビープ音3')%(bp)赫卡蒂的能量不足2點。%(bp)"
+		"\p[6]\s[-1]\b[32]\c%SFX('sfx/Bipu-on 3')%(bp)赫卡蒂的能量不足2點。%(bp)"
 		--
 		"\x"
 		--
@@ -977,7 +977,7 @@ CastSkillHC1
 CastSkillHL0
 {
 	if Bmp[1]<2
-		"\c\p[6]\s[-1]\b[32]%SFX('sfx/ビープ音3')%(bp)海拉的能量不足2點。%(bp)\x"
+		"\c\p[6]\s[-1]\b[32]%SFX('sfx/Bipu-on 3')%(bp)海拉的能量不足2點。%(bp)\x"
 	else
 	{
 		HLskill[0]+=3
@@ -1150,7 +1150,7 @@ HealHC
 		--
 		Bmp[2]-=1
 		--
-		"\p[5]\i[676100]\p[6]\s[-1]\b[32]\c%SFX('sfx/タイトル表示')%(bp) 已為 赫卡蒂 回復%TOINT(HCinc[0]/2)點HP。%(bp)\x"
+		"\p[5]\i[676100]\p[6]\s[-1]\b[32]\c%SFX('sfx/Taitoru hyoji')%(bp) 已為 赫卡蒂 回復%TOINT(HCinc[0]/2)點HP。%(bp)\x"
 		--
 		DecideWhoAct
 	}
@@ -1172,7 +1172,7 @@ HealHL
 		--
 		Bmp[2]-=1
 		--
-		"\0\s[-1]\p[5]\i[676101]\p[6]\s[-1]\b[32]\c%SFX('sfx/タイトル表示')%(bp) 已為 海拉 回復%TOINT(HLinc[0]/2)點HP。%(bp)\x"
+		"\0\s[-1]\p[5]\i[676101]\p[6]\s[-1]\b[32]\c%SFX('sfx/Taitoru hyoji')%(bp) 已為 海拉 回復%TOINT(HLinc[0]/2)點HP。%(bp)\x"
 		--
 		DecideWhoAct
 	}
@@ -1208,7 +1208,7 @@ HealAll
 		else 
 			hp[1]+=TOINT(HLinc[0]*0.3)
 		--
-		"\0\s[-1]\p[6]%SFX('sfx/タイトル表示')\i[676100]\i[676101]\p[6]已回復禁閉者的HP。"
+		"\0\s[-1]\p[6]%SFX('sfx/Taitoru hyoji')\i[676100]\i[676101]\p[6]已回復禁閉者的HP。"
 	}
 	--
 	"%(bp)"
@@ -1245,7 +1245,7 @@ EmpowerHC
 	{	Bmp[0]++
 		Bmp[2]-=1
 		--
-		"\c\p[6]\s[-1]\b[32]%SFX('sfx/ゲージ回復2')%(bp) 為赫卡蒂回復1點能量。%(bp)"}
+		"\c\p[6]\s[-1]\b[32]%SFX('sfx/Geji kaifuku 2')%(bp) 為赫卡蒂回復1點能量。%(bp)"}
 	--
 	BattleInfoWindow
 	--
@@ -1261,7 +1261,7 @@ EmpowerHL
 	{	Bmp[1]++
 		Bmp[2]-=1
 		--
-		"\c\p[6]\s[-1]\b[32]%SFX('sfx/ゲージ回復2')%(bp) 為海拉回復1點能量。%(bp)"}
+		"\c\p[6]\s[-1]\b[32]%SFX('sfx/Geji kaifuku 2')%(bp) 為海拉回復1點能量。%(bp)"}
 	--
 	BattleInfoWindow
 	--
@@ -1547,7 +1547,7 @@ Enemy.Act
 			--
 			_rate=(RAND(3),RAND(3))
 			_a=ANY("",2,3) ; _b=ANY(1,2)
-			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\![sound,play,sound/enemy/swing%(_a).mp3]\![sound,play,sound/enemy/鞭で攻撃%(_b).mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 對 禁閉者們 使出了 %(Eskill[0])！%(bp)\w5\n/
+			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\![sound,play,sound/enemy/swing%(_a).mp3]\![sound,play,sound/enemy/Muchi de kogeki %(_b).mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 對 禁閉者們 使出了 %(Eskill[0])！%(bp)\w5\n/
 			%(batlle_msg)%(bp) 對 赫卡蒂 造成 %bh(Edmg[0]) 點傷害！%(bp)\w3\n/
 			%(batlle_msg)%(bp)  對 海拉 造成 %bh(Edmg[1]) 點傷害！%(bp)"
 			--
@@ -1563,7 +1563,7 @@ Enemy.Act
 		{
 			SinnerBeenAttack
 			--
-			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\w9\w5\![sound,play,sound/enemy/sword practice swing 1.mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 舉起鐮刀向 我方所有人 砍去…… %(bp)\w5\n/
+			"\p[2]%cp(2)\p[5]%BattleSurface('aoe')\w9\w5\![sound,play,sound/enemy/Katana no soburi 1.mp3]\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 舉起鐮刀向 我方所有人 砍去…… %(bp)\w5\n/
 			%(batlle_msg)%(bp) 對 赫卡蒂 造成 %bh(Edmg[0]) 點傷害！%(bp)\w3\n/
 			%(batlle_msg)%(bp)  對 海拉 造成 %bh(Edmg[1]) 點傷害！%(bp)"
 			--
@@ -1622,7 +1622,7 @@ Enemy.Act
 	{
 		SinnerBeenAttack
 		--
-		"\p[2]%cp(2)\p[5]%BattleSurface('hurt')\p[6]\s[-1]\b[32]\c%(bp)%SFX('sfx/弓矢が刺さる') %(enemy_name) 對 "
+		"\p[2]%cp(2)\p[5]%BattleSurface('hurt')\p[6]\s[-1]\b[32]\c%(bp)%SFX('sfx/Yumiya ga sasaru') %(enemy_name) 對 "
 		--
 		if enemy_action=="hecate" || enemy_action=="hella"
 			"%(AttackTarget) 造成了 %bh(Edmg[2]) 點傷害！"

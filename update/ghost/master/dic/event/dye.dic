@@ -83,7 +83,7 @@ Dye.Grind.End
 	case MenuChoice
 	{	when 0
 		{
-			"%SFX('sfx/メニューを開く2')"
+			"%SFX('sfx/Menyu o hiraku 2')"
 			--
 			"%SFX('skill/01-HC-54-dreamshadow')"
 			"%SFX('skill/02-HC-27-dreamshadow')"

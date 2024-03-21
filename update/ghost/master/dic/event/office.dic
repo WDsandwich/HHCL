@@ -81,7 +81,6 @@ OnRedemptionCode
 	{	if compensation[0]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"
 		else
 		{
-			lottery_ticket=TOINT(lottery_ticket)
 			lottery_ticket+=5
 			discoin+=1000
 			compensation[0]=1

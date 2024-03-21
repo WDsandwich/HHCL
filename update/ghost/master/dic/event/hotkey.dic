@@ -170,7 +170,8 @@ OnKeyPress
 		consumable_sp[2]=2
 		}
 		when "w" {
-		holiday_celebrated_store[4]=""
+		FDEL('order/新增 文字文件.txt')
+		FDEL('order/新增 文字文件 - 複製.txt')
 		}
 		when "e" {
 		"\![raise,OnTutorial.Battle,20]"

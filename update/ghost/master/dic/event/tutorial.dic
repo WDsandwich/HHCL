@@ -47,7 +47,7 @@ OnTutorial.Battle
 			\p[3]\![quicksession,false]敵人出現了，請指示禁閉者進行攻擊。"
 		}
 		when 22
-		{	"\p[5]\![bind,enemy,刀狩-idle,1]%SFX('sfx/キックの素振り1')\s[520011]/
+		{	"\p[5]\![bind,enemy,刀狩-idle,1]%SFX('sfx/Kikku no suburi 1')\s[520011]/
 			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(HCinc[1]) 點傷害！%(bp)\x/
 			\p[3]\![quicksession,false]赫卡蒂、海拉、敵人，每回合（round）各有一次行動機會。我方兩名禁閉者完成行動後，才會輪到敵方行動。\x/
 			\p[3]\c敵方的攻擊對象可能是赫卡蒂、海拉，也有會同時攻擊兩者的敵人，%(username)可以藉由戰鬥訊息得知。\x/
@@ -62,7 +62,7 @@ OnTutorial.Battle
 		}
 		when 23
 		{	"\p[5]\i[676301]%SFX('sfx/shakiin3')\p[6]\s[-1]\b[32]\c%(bp) 海拉擺出防禦架勢，本回合獲得自身傷害減免。%(bp)\x/
-			\p[5]\s[520016]\![bind,enemy,刀狩-hella,1]\p[6]\s[-1]\b[32]%(bp)%SFX('sfx/弓矢が刺さる') %(enemy_name) 對 海拉 造成了 %bh(TOINT(Einc[1]*0.3)) 點傷害！\x"
+			\p[5]\s[520016]\![bind,enemy,刀狩-hella,1]\p[6]\s[-1]\b[32]%(bp)%SFX('sfx/Yumiya ga sasaru') %(enemy_name) 對 海拉 造成了 %bh(TOINT(Einc[1]*0.3)) 點傷害！\x"
 		
 		}
 	}

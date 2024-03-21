@@ -944,7 +944,7 @@ Store.NotEnoughDiscoin
 }
 Store.Trade.End
 {
-	"\![sound,play,sound/sfx/金額表示.mp3]\p[3]\s[311000]\![quicksession,false]"
+	"\![sound,play,sound/sfx/kingaku hyouzi.mp3]\p[3]\s[311000]\![quicksession,false]"
 	--
 	"謝謝惠顧！"
 	"多謝惠顧！"
