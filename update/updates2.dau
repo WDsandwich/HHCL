@@ -1,52 +1,58 @@
-delete.txtbac17499f50ada0e01aee4980a9b2194size=1618date=2024-01-13T18:09:50charset=Big5
+delete.txt27bbd581b590b2c0da6a870af84a6cbesize=17date=2024-03-21T05:41:20charset=Big5
 etc/readme-aya.txtca7ca11cf43709352523e72259116a8asize=588date=2023-12-14T09:44:24
 etc/readme-tama.txtf3090c2cd5e4e396cf948be4a5756825size=4063date=2023-12-14T09:44:24
 etc/readme-yaya.txt92c88333a5b56e4bbc2aaff460afd676size=2154date=2023-12-14T09:44:24
 ghost/master/data_recover.batf99997c632215082d9d650476aeb11e8size=171date=2023-12-25T22:56:48
-ghost/master/descript.txta9d006668d846897731c666ab0380bfesize=676date=2024-01-13T17:03:04
-ghost/master/dic/emerg/yaya_emerg_dic.dicafd0b1b5b1651c40b167a9a766b354fdsize=641date=2023-12-14T09:44:24
-ghost/master/dic/emerg/yaya_homeurl.dic48cf04d22a757e2a4097d088d3c0dda2size=620date=2023-12-14T09:44:24
+ghost/master/descript.txtf3919b35324c201324f1049f73e0ed4asize=996date=2024-03-21T02:03:02
+ghost/master/dic/emerg/yaya_emerg_dic.diced7552207b74392cab45741e6f37958dsize=703date=2024-01-13T21:08:35
 ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641size=74date=2023-05-28T01:50:28
-ghost/master/dic/event/EnevtTool.dic8c0c235e9b5b95ce25adfa31926c3652size=6566date=2024-01-07T18:47:57
-ghost/master/dic/event/PapreShredder.dic6d591283fe7a89d20c7e7173eaa0c102size=3559date=2023-12-24T11:04:12
-ghost/master/dic/event/backup.dic35d93d188f58c25bad160827017aad85size=5205date=2024-01-13T16:58:02
-ghost/master/dic/event/battle.dicc2f0d1bbe89f0f4b88f28782ec5a9a98size=46448date=2024-01-13T17:51:46
+ghost/master/dic/event/EnevtTool.dicf9db97669ac28772c380b1acd9245663size=7449date=2024-03-02T16:03:16
+ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
+ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
+ghost/master/dic/event/battle.dicc4f7761ed8bea37247450ae950e76bafsize=60548date=2024-03-21T07:49:20
 ghost/master/dic/event/chat.dic6eedc70131e7ca63637e01087cc1bf47size=219date=2023-12-27T02:10:09
-ghost/master/dic/event/chief.dicd1c0f65eae1d29a2bf9d6cc5058b1db5size=129date=2024-01-11T17:09:53
-ghost/master/dic/event/cumulative.dic73f860a7150a166fa3abbf1af1de28b0size=9452date=2024-01-13T00:03:46
-ghost/master/dic/event/database.dic6e451ed8626697029af1909b5a0225d3size=9964date=2024-01-12T21:57:02
-ghost/master/dic/event/dispatch.dic85669e6eb399fd2db7156e7cd4da34ecsize=3726date=2024-01-09T18:41:16
-ghost/master/dic/event/dressingroom.dicf3e10391ea3fc95b21989c4cbd7f89f2size=26155date=2024-01-12T17:04:21
-ghost/master/dic/event/dye.dicb8befd31c5c93e2083911aab4590e17bsize=8256date=2024-01-09T18:25:42
+ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
+ghost/master/dic/event/cumulative.dic7e2a91b2cb76a01f0f21c7c66d6cd715size=9531date=2024-02-19T08:43:40
+ghost/master/dic/event/database.dice7fafdb82c099f69f54c50e9aa875bc1size=12697date=2024-03-02T16:03:16
+ghost/master/dic/event/date.dicb3255b239a199d1f6b24e05e7acbfff0size=187date=2024-02-01T23:23:13
+ghost/master/dic/event/dispatch.dicba6be8effe09310cab04a5bbe4343f04size=4902date=2024-02-08T20:53:53
+ghost/master/dic/event/dressingroom.dicdbbfa3b895d91e9863956baae43a6844size=26821date=2024-03-19T16:37:42
+ghost/master/dic/event/dye.dic96507185a16a36ef78e889ccd3034c7fsize=8295date=2024-03-02T16:03:16
 ghost/master/dic/event/file.dic511b49e6bb402f4572a709a14ad7b7f4size=2434date=2023-01-18T11:23:40
-ghost/master/dic/event/game.dic6fb83bf3cf0f174ef9c77334a715af43size=12689date=2024-01-12T21:47:11
-ghost/master/dic/event/hotkey.dic648981fbd8afd876291c5b9117c9d50fsize=1261date=2024-01-13T02:51:33
+ghost/master/dic/event/forge.dic6c1e48d198702ba0e69d5a3c4b4af3ebsize=8639date=2024-03-20T23:32:34
+ghost/master/dic/event/game.dic704de5a079321acf449b0be85db56116size=13242date=2024-03-15T05:37:23
+ghost/master/dic/event/history.dicf70fa21b873c849ba399b4da4ba10e60size=3022date=2024-02-15T11:11:58
+ghost/master/dic/event/hotkey.dic56c2f000a4b6f0969b2db2feb46b14e8size=6350date=2024-04-21T09:11:27
+ghost/master/dic/event/illustrated.dic6c3031c7ddd063b0ed4898c239a8f887size=11481date=2024-02-24T15:13:53
 ghost/master/dic/event/intimacy.dic55bb6d66058d4b84ff62a90e9ce2f2e3size=703date=2023-09-05T01:21:52
-ghost/master/dic/event/item.dic0f14a8bcaab22de43903c102fa8eabbfsize=19719date=2024-01-13T00:09:38
-ghost/master/dic/event/level.dic35a9eca8a5397f26e0267e963fc745a0size=605date=2024-01-10T14:46:14
-ghost/master/dic/event/mood.dic1e4b105f7c3fc1fba10899997b5516a9size=484date=2023-10-25T01:17:24
-ghost/master/dic/event/office.dic58bf4aea6fdf6ebbc302356347f566a0size=5193date=2024-01-13T01:05:22
+ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716date=2024-03-21T07:48:42
+ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
+ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
+ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
+ghost/master/dic/event/office.dicb3fe5b1f93be43a85192a3a980844960size=12871date=2024-03-21T11:35:32
+ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
-ghost/master/dic/event/spa.dicf4f21642f1207207a60b919e95c01a7bsize=4848date=2024-01-13T00:19:31
-ghost/master/dic/event/test.dic009fb132dd835b40d41497abe7ba43aesize=984date=2023-12-23T14:02:40
-ghost/master/dic/event/time.dic5e76884b94f8be935bd6afdcff7ce987size=6773date=2024-01-13T01:02:54
-ghost/master/dic/event/trade.diccc7a28461a57cd4f9e13a3e397c66860size=29318date=2024-01-12T19:25:25
+ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
+ghost/master/dic/event/test.dic4ea75aac0b701539c1f6113f42329b3esize=1067date=2024-02-08T21:22:22
+ghost/master/dic/event/time.dic69904bc77e8d6acfbe87d5126815f0a8size=7721date=2024-03-01T03:51:36
+ghost/master/dic/event/trade.dic8732cb79a3b535846eb54d6a769ce776size=37345date=2024-04-21T07:59:44
+ghost/master/dic/event/tutorial.dic16927429e43b47a526efc147a053e3e7size=5190date=2024-03-20T14:42:41
 ghost/master/dic/excel/cloth.dicfa08159690e591c50d312581b2208bcdsize=2201date=2024-01-01T14:48:06
 ghost/master/dic/list/battle.txt45daf4226afe9030e201f3a7f833a50fsize=1067date=2023-12-18T02:45:56
 ghost/master/dic/list/chat_choise.dicceeaae655bfa2a1347220798f6b4ba9fsize=269date=2023-12-27T00:45:44
-ghost/master/dic/list/enemy.txt11b9eebdce067604bb867c82a76e9a87size=2077date=2024-01-10T10:39:24
-ghost/master/dic/list/item.txtca09e7c46e2736cd78c632b1540c1862size=6578date=2024-01-10T15:04:57
-ghost/master/dic/normal/yaya_aitalk.dic60dfb54a9bf20ef6d0acd2803a5d6805size=17221date=2024-01-13T01:02:45
-ghost/master/dic/normal/yaya_bootend.dicf76f3c8cb461ed4f544b7c146b69ad8asize=11051date=2024-01-13T18:27:17
-ghost/master/dic/normal/yaya_change.dic0edd8c8f3eed48a8c44ed6be017834e2size=5705date=2023-05-28T01:50:28
+ghost/master/dic/list/enemy.txt6bd66fb77e7481acb121268be934f247size=4350date=2024-02-24T15:09:27
+ghost/master/dic/list/holiday.txt834498ba031bca08fa89fe80a3f611b8size=9301date=2024-03-21T07:21:04
+ghost/master/dic/list/item.txt711cd0b3f4480d08731048d5996fbea0size=8170date=2024-03-21T07:36:02
+ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562size=17366date=2024-02-14T23:55:09
+ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
+ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-ghost/master/dic/normal/yaya_etc.dicbfc80e44cc8a71a666386d5bc2ee361fsize=20342date=2023-05-28T01:50:28
-ghost/master/dic/normal/yaya_homeurl.dic0f00186a221216c575bfe9786654338fsize=579date=2024-01-13T16:43:35
-ghost/master/dic/normal/yaya_menu.dicd34461e52d5fa4eef317f0e36433caa3size=11208date=2024-01-13T01:02:43
-ghost/master/dic/normal/yaya_mouse.dic42623acb9ce4e991c8702e5b89f0baeasize=11950date=2024-01-12T22:50:31
+ghost/master/dic/normal/yaya_etc.dic9fa2fe5f96c08e8e88bc57512e99961asize=17691date=2024-03-21T06:50:41
+ghost/master/dic/normal/yaya_menu.dicb48de5ac75944ef4305455031f420ceesize=14873date=2024-03-13T23:01:22
+ghost/master/dic/normal/yaya_mouse.dicf481f56a7a0c17d513f49506f69027b6size=21205date=2024-03-13T23:08:24
 ghost/master/dic/normal/yaya_string.dic35e4c53288c4bff6d57239125ec8b3desize=3496date=2024-01-11T19:54:32
-ghost/master/dic/normal/yaya_tmpl_util.dic1e901ad29f8ccd09c50332ada6b0dbdbsize=8578date=2023-12-14T09:44:24
-ghost/master/dic/normal/yaya_word.dic540d62ea3a0f239a2db9497e2e1a98c2size=8741date=2023-12-16T01:16:34
+ghost/master/dic/normal/yaya_tmpl_util.dic76da54cee0370253c317b3e3a99a46f9size=8577date=2024-01-31T03:03:23
+ghost/master/dic/normal/yaya_word.dic50490502fad44c172aad70ef0129d7fbsize=8765date=2024-02-19T23:02:05
 ghost/master/dic/system/_loading_order.txtd2a7d2ad20413596ee9aba0ebdb5543csize=39date=2023-12-14T09:44:24
 ghost/master/dic/system/yaya_base/_loading_order.txt9c350c2c9c08f635bff5eaae149af8c8size=103date=2023-12-14T09:44:24
 ghost/master/dic/system/yaya_base/compatible.dic4f8b1e8c8c08dc44e70b1bd4f52a1affsize=4297date=2023-12-14T09:44:24
@@ -62,40 +68,46 @@ ghost/master/img/X.png85f713cd297de643f56bdbbd3c54708dsize=769date=2023-07-18
 ghost/master/img/battle/1P.jpg2e428dde5b1a01499d003516563ad1e5size=3253date=2023-05-19T16:48:48
 ghost/master/img/battle/1P.png3304e24cfe9075b9194455ae0f23b80esize=4848date=2023-02-06T09:16:20
 ghost/master/img/battle/2P.jpgd3043b6c5cdcd36fd1492985c013f61dsize=3457date=2023-05-19T16:48:48
-ghost/master/img/battle/2P.png769bfe7532f95e67fe4e34b540a79d41size=4366date=2023-02-06T09:19:58
-ghost/master/img/battle/2P_1.png47c9722570041bbc27bfef1c8f1c9099size=3140date=2023-02-06T14:10:56
-ghost/master/img/battle/2P_2.png9478a4c503428d57c146c7a8481474e6size=3983date=2023-02-06T14:09:02
 ghost/master/img/battle/DisCity.pngff41e7e1975a9188d825a741aae4031csize=65052date=2023-06-21T21:33:16
 ghost/master/img/battle/debuff/debuff_0.pnge28a1cf4fe07c2f63141d9128accbb88size=630date=2023-12-16T09:20:08
 ghost/master/img/battle/debuff/debuff_1.pngf4d47253828308deee5b547d1a2aa402size=479date=2023-12-16T09:20:46
 ghost/master/img/battle/debuff/debuff_2.png5e4678f6fcb4c70b5813efdec4306a42size=592date=2023-12-16T09:18:28
 ghost/master/img/battle/debuff/debuff_3.png10489b0f6ace858cee7f9ac820d59518size=788date=2023-12-17T05:32:18
 ghost/master/img/battle/dot.pngdf77351a9310d13aaf38cafce8d0e4dcsize=473date=2023-06-21T21:44:40
-ghost/master/img/battle/enemy/A01.png5215f2aa9ff44c92487a77f5556dbae8size=4999date=2023-06-22T00:09:36
-ghost/master/img/battle/enemy/A02.png79d759e6e96ed9d11b8879112f03aa99size=4972date=2023-06-22T00:10:38
-ghost/master/img/battle/enemy/A03.png86cf18f5e75698172bdc304c4466ecc5size=3353date=2023-11-07T11:20:08
-ghost/master/img/battle/enemy/A04.png7c0a6415e9ffed1f549775aa643af7d3size=2506date=2023-11-07T11:20:32
-ghost/master/img/battle/enemy/B01.png77daf03385294003204bae91cb435775size=3570date=2023-06-22T00:15:46
-ghost/master/img/battle/enemy/B02.pngb92d0c57ae0526e89eac50180350cd98size=4534date=2023-06-22T00:16:36
-ghost/master/img/battle/enemy/B03.pngb21889228c993d0d0a51ce0c0c410ea1size=4926date=2023-06-22T00:09:58
-ghost/master/img/battle/enemy/B04.png294c24cfe7117e492747a715b38f38a5size=5963date=2023-06-22T00:14:34
-ghost/master/img/battle/enemy/B05.png80f219fdff95132795177151c54d6e16size=1450date=2023-11-07T11:21:48
-ghost/master/img/battle/enemy/B06.png310004824c8fefe452e49043515dbcfdsize=3169date=2023-11-07T11:22:02
-ghost/master/img/battle/enemy/C01.pngd5ed568dab7a6c5ce923f600de75d2basize=5582date=2023-02-19T02:36:58
-ghost/master/img/battle/enemy/C02.png455bbbe27e51f70b295320b4c3e349afsize=4652date=2023-02-19T02:36:58
-ghost/master/img/battle/enemy/C03.png05f860b93a7132f1d78dd4ad96cd0b4dsize=4547date=2023-02-19T02:36:58
-ghost/master/img/battle/enemy/C04.pngc762cbcfb6b4e5154f69b58f7d81eca7size=2902date=2023-02-19T02:36:58
-ghost/master/img/battle/enemy/N01.png61ea8ed1c8b5419459997463efdc0ebfsize=4435date=2023-06-22T00:14:12
-ghost/master/img/battle/enemy/P01.pngb21889228c993d0d0a51ce0c0c410ea1size=4926date=2023-06-22T00:09:58
-ghost/master/img/battle/enemy/P02.png5215f2aa9ff44c92487a77f5556dbae8size=4999date=2023-06-22T00:09:36
-ghost/master/img/battle/enemy/P03.png79d759e6e96ed9d11b8879112f03aa99size=4972date=2023-06-22T00:10:38
-ghost/master/img/battle/enemy/P04.png294c24cfe7117e492747a715b38f38a5size=5963date=2023-06-22T00:14:34
-ghost/master/img/battle/enemy/P08.png61ea8ed1c8b5419459997463efdc0ebfsize=4435date=2023-06-22T00:14:12
-ghost/master/img/battle/enemy/R00.png77daf03385294003204bae91cb435775size=3570date=2023-06-22T00:15:46
-ghost/master/img/battle/enemy/R01.pngb92d0c57ae0526e89eac50180350cd98size=4534date=2023-06-22T00:16:36
+ghost/master/img/battle/enemy/none.png3ca173921bec12ef0e80c7f2feeb3b27size=650date=2024-02-24T11:44:49
+ghost/master/img/battle/enemy/三角頭.pngb92d0c57ae0526e89eac50180350cd98size=4534date=2023-06-22T00:16:36
+ghost/master/img/battle/enemy/兜帽客工匠.pngc762cbcfb6b4e5154f69b58f7d81eca7size=2902date=2023-02-19T02:36:58
+ghost/master/img/battle/enemy/刀狩.pngd5ed568dab7a6c5ce923f600de75d2basize=5582date=2023-02-19T02:36:58
+ghost/master/img/battle/enemy/厄種.png77daf03385294003204bae91cb435775size=3570date=2023-06-22T00:15:46
+ghost/master/img/battle/enemy/失心者.png05f860b93a7132f1d78dd4ad96cd0b4dsize=4547date=2023-02-19T02:36:58
+ghost/master/img/battle/enemy/婕克南瓜.pngb25ea05e1c229b5e428c42a78dd75332size=5747date=2024-02-24T11:21:15
+ghost/master/img/battle/enemy/實驗人員.png5215f2aa9ff44c92487a77f5556dbae8size=4999date=2023-06-22T00:09:36
+ghost/master/img/battle/enemy/幫派打手.png455bbbe27e51f70b295320b4c3e349afsize=4652date=2023-02-19T02:36:58
+ghost/master/img/battle/enemy/憂鬱的婦人.pnga233d6bfebfb279726759a6628e5ff85size=5979date=2024-02-24T11:22:20
+ghost/master/img/battle/enemy/淚人兒.pngca10a86ce979a53db7bb2d60548ce44asize=6778date=2024-02-24T11:19:02
+ghost/master/img/battle/enemy/紅水母.png294c24cfe7117e492747a715b38f38a5size=5963date=2023-06-22T00:14:34
+ghost/master/img/battle/enemy/聚合體.pngb21889228c993d0d0a51ce0c0c410ea1size=4926date=2023-06-22T00:09:58
+ghost/master/img/battle/enemy/藍蠕蟲.png79d759e6e96ed9d11b8879112f03aa99size=4972date=2023-06-22T00:10:38
+ghost/master/img/battle/enemy/魟魚.png8fc14a11ae34743d87c472ce51f23250size=3818date=2024-02-24T11:20:18
+ghost/master/img/battle/enemy/？？？.png61ea8ed1c8b5419459997463efdc0ebfsize=4435date=2023-06-22T00:14:12
 ghost/master/img/battle/energybar.png262223a10f1f2a2b9b2efa132765ff18size=251date=2023-02-06T13:05:26
 ghost/master/img/battle/energybar1.png229bd361e880ddd2b9ea862ccfb87f8bsize=841date=2023-02-06T12:34:26
 ghost/master/img/battle/energybar2.png20a0b453dece56f3afc68e2b42521620size=501date=2023-02-06T13:19:04
+ghost/master/img/battle/skill/HC0.png300a6a86cab63aae3f2f4f570a2e16d9size=889date=2024-01-17T23:31:43
+ghost/master/img/battle/skill/HC1.png0fae171bae47a1a9aa3be7ec4d0e6982size=941date=2024-01-17T23:31:43
+ghost/master/img/battle/skill/HL0.png90619542d59c1c648644b562647547absize=1390date=2024-01-17T23:31:44
+ghost/master/img/battle/skill/HL1.png262419b21718d39f30caf0c7fa907ca6size=953date=2024-01-17T23:31:44
+ghost/master/img/battle/skill/HL2.png6ffdf2aa0e02fccdb2dd5ea932733d7esize=1028date=2024-01-17T23:31:44
+ghost/master/img/battle/skill/skill_detail.png6ef8a71db48ee98c1a6eeac2d37d0ff8size=624date=2024-01-17T20:07:05
+ghost/master/img/botton/IEIP0.pngabe7dc71b33418db016ee4c7c6d1777asize=467date=2024-02-20T23:29:18
+ghost/master/img/botton/IEIP1.png02ff8d37b4c9466c34cc4dbaddfc836fsize=447date=2024-02-20T23:29:31
+ghost/master/img/botton/IEIPa.png79f1d44820749f77524ef6cc2dbcf085size=424date=2024-02-20T23:30:00
+ghost/master/img/botton/IEIPb.png629a1b4c684f075a5b660e038707bc1bsize=431date=2024-02-20T23:28:55
+ghost/master/img/botton/forge_0.png53d27579deda5dbb6753f02740c93f91size=599date=2024-03-19T18:18:39
+ghost/master/img/botton/forge_1.pngadd4a53ab020e7a49ba2f8f1a5cf5a53size=598date=2024-03-13T22:20:44
+ghost/master/img/botton/forge_2.pngae812a1b78dae7287153d07a7362f893size=595date=2024-03-15T01:40:14
+ghost/master/img/botton/lock_0.png9d73edc9d048f5febf045faee2d8dab7size=359date=2024-03-20T02:58:46
+ghost/master/img/botton/lock_1.png49529fa9b8cf923b04376dbbccff58ccsize=310date=2024-03-20T02:58:46
 ghost/master/img/cheif/bg_0.png68395554e2bea1812ab1dd792c116ff6size=596date=2023-12-21T03:36:44
 ghost/master/img/cheif/bg_1.png674497012a1092c7d6ceb64fe89f2a7fsize=644date=2023-12-21T03:36:44
 ghost/master/img/cheif/bg_10.png17151110f04e0e5171ad8ecad311dd39size=648date=2023-12-21T03:36:44
@@ -164,147 +176,6 @@ ghost/master/img/dressing/button/type10.pnge22fcad0f3ff53ed5691ed12a59007a0siz
 ghost/master/img/dressing/button/type11.png17575d601cf4764f31a12347fa9c89c8size=662date=2023-06-06T09:29:22
 ghost/master/img/dressing/button/type12.pngfec6e4165ab19d3c54bada7efab8a5a0size=576date=2023-06-06T09:33:48
 ghost/master/img/dressing/button/type13.png02b95f37b8f428a79a4c2520bba37dfbsize=659date=2023-06-06T10:03:40
-ghost/master/img/dressing/icon - 複製/0/00/HC-00_001.png2ecfec1b2e42531b1f38bbcc08862d5fsize=6283date=2023-06-07T08:52:14
-ghost/master/img/dressing/icon - 複製/0/00/HC-00_002.pngecb92858b902f1ee488449ee73472e1csize=9864date=2023-06-07T08:47:40
-ghost/master/img/dressing/icon - 複製/0/00/HC-00_003.png24258393f8f9157e1913c5f0191d1540size=8134date=2023-07-14T10:53:56
-ghost/master/img/dressing/icon - 複製/0/00/HC-00_004.pngaae07e2339c02cc005097e02463eba49size=8512date=2023-07-20T04:32:46
-ghost/master/img/dressing/icon - 複製/0/00_x/HC-00_002_x.png7e3e519f1a12a007b7987490c91d126dsize=7922date=2023-07-20T04:43:30
-ghost/master/img/dressing/icon - 複製/0/00_x/HC-00_003_x.png5f411d278995569b8b280d28e53417c7size=6606date=2023-07-21T00:34:36
-ghost/master/img/dressing/icon - 複製/0/00_x/HC-00_004_x.pngd05e88e1e41498dec9c137c3ab471dd3size=5942date=2023-07-20T04:43:30
-ghost/master/img/dressing/icon - 複製/0/01/HC-01_001.png73e9755111a7ce44004c676bfe58229fsize=7561date=2023-06-07T02:04:00
-ghost/master/img/dressing/icon - 複製/0/02/HC-02_001.pngb76cf9741601c377eb1164ab4b468824size=3112date=2023-07-14T08:30:56
-ghost/master/img/dressing/icon - 複製/0/02_x/HC-02_001_x.png1b23d05d76c94a263e510f693c60ae48size=3055date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/0/04/HC-04_001.png89be865e3f93c842759de9358f11da56size=1923date=2023-06-07T07:30:12
-ghost/master/img/dressing/icon - 複製/0/04_x/HC-04_001_x.png6efa62d7055fc538f37393b105d78959size=2243date=2023-07-17T11:58:02
-ghost/master/img/dressing/icon - 複製/0/05/HC-05_002.png80056573dbb6f1e8fc2324d9251da886size=3969date=2023-07-14T08:28:56
-ghost/master/img/dressing/icon - 複製/0/05_x/HC-05_002_x.png533863771ab111f96590cffa56d4fabfsize=3578date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/0/06/HC-06_001.png1e23eff04d6f2254257909dcf87e3295size=3452date=2023-06-07T02:21:26
-ghost/master/img/dressing/icon - 複製/0/06/HC-06_002.png01357a25618cab5251f2ce27bf8b9f84size=4142date=2023-06-07T06:56:50
-ghost/master/img/dressing/icon - 複製/0/06_x/HC-06_002_x.png8151d66b83dcd9c13f2b93587f93c7besize=3595date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/0/07/HC-07_001.pngd8b21bfc220eba452f92784847c9a150size=5470date=2023-06-14T15:47:02
-ghost/master/img/dressing/icon - 複製/0/07/HC-07_002.png77b6588a65d42477c60268361d6b496dsize=5370date=2023-12-13T05:17:58
-ghost/master/img/dressing/icon - 複製/0/07/HC-07_003.pnga9114e367fcc3a000b0e8f287266420csize=5023date=2023-07-14T10:37:22
-ghost/master/img/dressing/icon - 複製/0/07/HC-07_004.png37b913d5933faf0c2efb4e1e5b14e469size=4053date=2023-07-17T10:18:50
-ghost/master/img/dressing/icon - 複製/0/07/HC-07_005.png11f9369077e8e1b52ac3e3051ff193f7size=5074date=2023-07-20T03:56:22
-ghost/master/img/dressing/icon - 複製/0/07_x/HC-07_001_x.png4b716402c5d91a7002355b722ffdcff9size=4487date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/0/07_x/HC-07_002_x.png18d8601d12952e57d50d8723187c0ab0size=4536date=2023-12-13T05:23:00
-ghost/master/img/dressing/icon - 複製/0/07_x/HC-07_003_x.pngd9fb1a76c4f91b2c5c36414c10762f11size=4061date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/0/07_x/HC-07_004_x.png1931cb4bda649b055ec9ac6cf3b026ebsize=3265date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/0/07_x/HC-07_005_x.png140192b87a55e706d1fd957ea7559c85size=3993date=2023-07-20T04:42:06
-ghost/master/img/dressing/icon - 複製/0/08/HC-08_001.png25fbdff8ddb4f5d59e28fb2a8c36c480size=4558date=2023-06-14T15:51:16
-ghost/master/img/dressing/icon - 複製/0/08/HC-08_002.pngbe8622f5001e33327a82e9a61a2646b9size=5606date=2023-12-13T05:17:22
-ghost/master/img/dressing/icon - 複製/0/08/HC-08_003.png226590bf922455375d4125c5fdd63d54size=3145date=2023-07-14T10:42:12
-ghost/master/img/dressing/icon - 複製/0/08/HC-08_004.png0aedf0cbfe1c1663eb43d247eeb92419size=4791date=2023-07-20T03:39:22
-ghost/master/img/dressing/icon - 複製/1/00/HC-00_001.png2ecfec1b2e42531b1f38bbcc08862d5fsize=6283date=2023-06-07T08:52:14
-ghost/master/img/dressing/icon - 複製/1/00/HC-00_002.pngecb92858b902f1ee488449ee73472e1csize=9864date=2023-06-07T08:47:40
-ghost/master/img/dressing/icon - 複製/1/00/HC-00_003.png24258393f8f9157e1913c5f0191d1540size=8134date=2023-07-14T10:53:56
-ghost/master/img/dressing/icon - 複製/1/00/HC-00_004.pngaae07e2339c02cc005097e02463eba49size=8512date=2023-07-20T04:32:46
-ghost/master/img/dressing/icon - 複製/1/00_x/HC-00_002_x.png7e3e519f1a12a007b7987490c91d126dsize=7922date=2023-07-20T04:43:30
-ghost/master/img/dressing/icon - 複製/1/00_x/HC-00_003_x.png5f411d278995569b8b280d28e53417c7size=6606date=2023-07-21T00:34:36
-ghost/master/img/dressing/icon - 複製/1/00_x/HC-00_004_x.pngd05e88e1e41498dec9c137c3ab471dd3size=5942date=2023-07-20T04:43:30
-ghost/master/img/dressing/icon - 複製/1/01/HC-01_001.png73e9755111a7ce44004c676bfe58229fsize=7561date=2023-06-07T02:04:00
-ghost/master/img/dressing/icon - 複製/HC-08_001_x.png8c98f91fa584ba3c2bb2040309e3d779size=3963date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-08_002_x.pnga03a9d8f4706347beb8fabc86607b5c2size=4493date=2023-12-13T05:23:00
-ghost/master/img/dressing/icon - 複製/HC-08_003_x.png5ab77fae462910a657eea6d91b49ab5bsize=2590date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-08_004_x.png62df2f401297b950124990778364b8easize=3192date=2023-07-20T04:42:06
-ghost/master/img/dressing/icon - 複製/HC-09_001.png4f24f1c0a1a58a77a94e645a8cbd4164size=2904date=2023-06-07T07:27:50
-ghost/master/img/dressing/icon - 複製/HC-09_001_x.png24f80c434d08804bbd9017d9945e1c81size=2959date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-09_002.png5d15a02956b4ff3ef4625f1e8c1a08ecsize=2930date=2023-07-14T10:40:28
-ghost/master/img/dressing/icon - 複製/HC-09_002_x.png5685684ab6d6c930799595754a75072dsize=2837date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-09_003.pngc02eda2e6b26ad3ceded45dd2de3613fsize=3036date=2023-07-20T03:59:38
-ghost/master/img/dressing/icon - 複製/HC-09_003_x.pngf152600cf9f2f6c6bc74b246b711d9c8size=2801date=2023-07-20T04:42:06
-ghost/master/img/dressing/icon - 複製/HC-10_001.png23a3e920bbaa9540790fe8a90d32fecesize=4315date=2023-06-07T07:13:34
-ghost/master/img/dressing/icon - 複製/HC-10_002.png923fa35baf42b1b3e137886cc875bbbfsize=3692date=2023-06-07T07:20:36
-ghost/master/img/dressing/icon - 複製/HC-10_002_x.pnga42b984207651da3250fd8cbf08f7f73size=3664date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-10_003.pngb07960c17f73d111850e4ec19b5dfb28size=4273date=2023-06-22T08:15:32
-ghost/master/img/dressing/icon - 複製/HC-10_003_x.pngc3e8957f756a623b2965bbb8a5f41a19size=3712date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-10_004.png5a39479ab79c94db9d7f508e95e7cbe4size=4062date=2023-12-13T05:16:22
-ghost/master/img/dressing/icon - 複製/HC-10_004_x.png1cb73fa4d551a505bb28542e1bb6936asize=3939date=2023-12-13T05:23:00
-ghost/master/img/dressing/icon - 複製/HC-10_005.pngf5c512e87b22435e093b372898f752absize=3989date=2023-07-14T08:26:38
-ghost/master/img/dressing/icon - 複製/HC-10_005_x.pnge49d5bb2b77d3807be2ead9f0bf5b996size=3707date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-10_006.png6ab444db1d065bb3097a9cbc0ae50f5csize=3374date=2023-07-20T03:58:18
-ghost/master/img/dressing/icon - 複製/HC-10_006_x.png6a9d659a104fa28559f5ce99279c18b8size=3328date=2023-07-20T04:42:06
-ghost/master/img/dressing/icon - 複製/HC-11_001.pngbc9b4f149aada16b29fae5934dbc72bbsize=4652date=2023-07-14T10:44:36
-ghost/master/img/dressing/icon - 複製/HC-11_001_x.pngcd690f34c4e993b03a4306ff7863973csize=4064date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-12_001.png9a270c1de8f6b99e820e29af2a792d5csize=2611date=2023-07-14T10:46:54
-ghost/master/img/dressing/icon - 複製/HC-12_001_x.png9708e219ed923567cd8058d226559d06size=2760date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HC-12_002.pngc0571c2a1e030b4568e6a0da0f67bac0size=1129date=2023-07-20T03:52:40
-ghost/master/img/dressing/icon - 複製/HC-12_002_x.png0a9e38822420dee3c7bb819524019273size=1831date=2023-07-20T04:42:06
-ghost/master/img/dressing/icon - 複製/HC-13_001.png9ed344988733d49912fd9c7f20f8ee96size=1213date=2023-06-08T01:33:36
-ghost/master/img/dressing/icon - 複製/HC-13_002.png4b117eff3428ab142d01135857c74413size=4491date=2023-06-07T09:23:32
-ghost/master/img/dressing/icon - 複製/HL-00_001.png5eddf912c5d3fdcdc5074561a16990f5size=11982date=2023-06-07T08:58:34
-ghost/master/img/dressing/icon - 複製/HL-00_002.png3feb86ee3c53dec0fff81d484b9b60a2size=11717date=2023-06-07T08:42:02
-ghost/master/img/dressing/icon - 複製/HL-00_002_x.pngb5b6c73894011246a3ba3ec621822f04size=11345date=2023-07-20T04:43:30
-ghost/master/img/dressing/icon - 複製/HL-00_003.pngbbba5bce7e8474b64348ae5d3a3034b9size=10076date=2023-07-24T13:29:26
-ghost/master/img/dressing/icon - 複製/HL-00_003_x.png68f3ff96bb077be8831fed1aba6f0566size=9409date=2023-07-24T13:30:26
-ghost/master/img/dressing/icon - 複製/HL-01_001.png5b9cdbf1ea723165dedf2b4d555404e3size=4722date=2023-06-07T08:27:56
-ghost/master/img/dressing/icon - 複製/HL-02_001.png422e69f9373a78754805530cdef8ba7asize=3400date=2023-06-07T08:16:18
-ghost/master/img/dressing/icon - 複製/HL-02_002.png5595b544ecb2536a525844dc9d908d7dsize=3117date=2023-07-15T00:26:04
-ghost/master/img/dressing/icon - 複製/HL-02_002_x.png22d09ef2557dfa460c90e4e9db8d8936size=3321date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-02_003.pngb38560434c5ea8a8742eb410a5376bf8size=3094date=2023-07-24T12:47:56
-ghost/master/img/dressing/icon - 複製/HL-02_003_x.png3289e33f2819595a79ef5e207294537dsize=2988date=2023-07-24T13:23:26
-ghost/master/img/dressing/icon - 複製/HL-04_001.png994c2929a319f886a5eb0e56a0ebed2esize=1919date=2023-06-07T08:11:18
-ghost/master/img/dressing/icon - 複製/HL-05_001.pngc343cc7eb600d3f5dc4c4cadabf9aba0size=4346date=2023-06-07T09:11:40
-ghost/master/img/dressing/icon - 複製/HL-05_002.pnge5113e0c88444aae5e85a2a473d95d2esize=3656date=2023-06-07T09:04:40
-ghost/master/img/dressing/icon - 複製/HL-05_002_x.png78c8f24ccf6604b6761e43caaf0bd289size=3486date=2023-07-17T11:58:02
-ghost/master/img/dressing/icon - 複製/HL-05_003.pngc6f954b05cc8c145d892418a9a335d40size=6737date=2023-07-24T13:32:30
-ghost/master/img/dressing/icon - 複製/HL-05_003_x.pnga06dc98476416ccf4093d273007e887csize=5308date=2023-07-24T13:32:50
-ghost/master/img/dressing/icon - 複製/HL-06_001.pngfa381b44062190263460245b246bcdfbsize=4839date=2023-06-07T08:31:58
-ghost/master/img/dressing/icon - 複製/HL-06_002.png48058b8dfd647b1220aa8eb5215bc043size=4715date=2023-07-01T06:11:38
-ghost/master/img/dressing/icon - 複製/HL-06_002_x.pngfe968b70652ffda79e5755bb4821d4d4size=4223date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-07_001.png9dc6be728d6267fc495c5b0437316f46size=5270date=2023-06-07T08:06:08
-ghost/master/img/dressing/icon - 複製/HL-07_001_x.png362c857b236cdec7ad86c0cc08267933size=4745date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-07_002.png220b8fb4972f0d834c537d891ffaf842size=6546date=2023-07-24T12:42:42
-ghost/master/img/dressing/icon - 複製/HL-07_002_x.png964136d139d04242f56d3bf6069d76acsize=4974date=2023-07-24T13:23:26
-ghost/master/img/dressing/icon - 複製/HL-08_001.pngfd8f5dfef4088283ca35ceac5df4625asize=3500date=2023-06-07T08:35:08
-ghost/master/img/dressing/icon - 複製/HL-08_001_x.png07bfe1e0556e296116340ed51f6468d2size=3284date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-08_002.png0eeb904a521de2b6ab39d2ad0d7bb229size=3971date=2023-07-25T20:33:54
-ghost/master/img/dressing/icon - 複製/HL-08_002_x.pngae987dece2409677b85eeb6fff8874ddsize=3807date=2023-07-25T20:35:02
-ghost/master/img/dressing/icon - 複製/HL-09_001.pngf1ddac1ddf908f55f68f7ab28582c078size=3926date=2023-06-07T07:59:34
-ghost/master/img/dressing/icon - 複製/HL-09_002.pnge5300d3c96320dc6b04ba242b76a4535size=3933date=2023-06-07T08:00:48
-ghost/master/img/dressing/icon - 複製/HL-09_002_x.png9dcb79677c67804161250a74dd3c12ddsize=4033date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-09_003.pngcad3988fcd2f29a1ebd34ba1c35d6ca6size=5107date=2023-07-01T06:14:26
-ghost/master/img/dressing/icon - 複製/HL-09_003_x.pnga3f2fddb575794d63b1e96be6e58c816size=4126date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-09_004.png02b9bd4338fb6d7f001f68c47fc4b6ccsize=4068date=2023-12-13T05:12:48
-ghost/master/img/dressing/icon - 複製/HL-09_004_x.png940e865f99c30be8d1520b29ec7fddedsize=3926date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_005.pngda7aec4b493357ae2440ef41b5ecd1c1size=3871date=2023-12-13T03:52:46
-ghost/master/img/dressing/icon - 複製/HL-09_005_x.png5c4982985bac0294d677d674dbee9876size=3614date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_006.png6ea6fed8060529f07e562a1c0953ba16size=3929date=2023-12-13T03:53:10
-ghost/master/img/dressing/icon - 複製/HL-09_006_x.png930e0f737ce485806b8810d8d9fa4327size=3685date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_007.pngdbb4aad6bff714f59c71f9cb3a5911fcsize=3892date=2023-12-13T03:53:36
-ghost/master/img/dressing/icon - 複製/HL-09_007_x.pnga002c9527d6103806c70a8e708a411c1size=3625date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_008.png4f1ab6b1759b1f7e3c1e0651e641fdf1size=3682date=2023-12-13T03:54:10
-ghost/master/img/dressing/icon - 複製/HL-09_008_x.pnga9456506cb35a1c9cf401c8720ebd3e5size=3394date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_009.pngcd624154441144fefad1e3e71c7da5cesize=3713date=2023-12-13T03:54:32
-ghost/master/img/dressing/icon - 複製/HL-09_009_x.png6eb43d3d79b4d628e128152d620b9acesize=3638date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_010.pngb25006339c4e56518bae38e563c10f17size=3686date=2023-12-13T04:49:22
-ghost/master/img/dressing/icon - 複製/HL-09_010_x.png1a75050db36dea00c1e68c6ca0974d7bsize=3429date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_011.png8a88041d4fdc882ae1da6a60befef29csize=3817date=2023-12-13T04:49:52
-ghost/master/img/dressing/icon - 複製/HL-09_011_x.png48eed860cb95c4c0ca8fce7f85143f02size=3532date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_012.png66cddcc98945994a7d287ddf8d564480size=3708date=2023-12-13T04:50:20
-ghost/master/img/dressing/icon - 複製/HL-09_012_x.png558a26826f0934a989004b42f14be10bsize=3590date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_013.pngb7e543d13768fdd7b0a3930639412b77size=4164date=2023-12-13T04:50:38
-ghost/master/img/dressing/icon - 複製/HL-09_013_x.png7ab9cc2f9bfb3c6f99896a3662cce491size=3812date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_014.png6baba4234ca8b08f1400ce36c8837172size=4268date=2023-12-13T05:09:58
-ghost/master/img/dressing/icon - 複製/HL-09_014_x.png73ceaf8e07c8e4e741b72a0994637a37size=3944date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_015.png947280b8aaefab289bada74d9339bbe4size=3945date=2023-12-13T05:10:18
-ghost/master/img/dressing/icon - 複製/HL-09_015_x.pngb73deb8dcefc4decaaf70abb7747dd9csize=4204date=2023-12-13T05:13:54
-ghost/master/img/dressing/icon - 複製/HL-09_016.png317baac4f48c9f6c519572cf3e8e595asize=3769date=2023-07-24T12:50:36
-ghost/master/img/dressing/icon - 複製/HL-09_016_x.png337de5159953516eb294157095a81e37size=3992date=2023-07-24T13:23:26
-ghost/master/img/dressing/icon - 複製/HL-10_001.pngcb4358dfd10e2ac784743eed38632c86size=5585date=2023-06-07T07:44:44
-ghost/master/img/dressing/icon - 複製/HL-10_002.png303477ef120fbf6a7755c857497dbfbbsize=5088date=2023-06-07T07:40:48
-ghost/master/img/dressing/icon - 複製/HL-10_002_x.png6eea11c1f05b648cfc63b761a0661738size=4623date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-10_003.png21f6bfdae151ae9821727af4c8c04801size=4099date=2023-07-01T06:16:06
-ghost/master/img/dressing/icon - 複製/HL-10_003_x.png62a34265a72241b21a60d9c26226acb9size=3895date=2023-07-20T04:42:08
-ghost/master/img/dressing/icon - 複製/HL-10_004.pngb6502cb5874ff8ab9f7124341698a5b3size=6024date=2023-07-24T12:53:10
-ghost/master/img/dressing/icon - 複製/HL-10_004_x.pngebf3bd7497f180c99fcdddb1e1c1426dsize=4858date=2023-07-24T13:23:26
-ghost/master/img/dressing/icon - 複製/HL-11_001.pnge9ed39faab7b357163a52dad8be876cfsize=3091date=2023-06-07T09:00:08
-ghost/master/img/dressing/icon - 複製/HL-12_001.pnge90f068f37a3bb0ba671df2e0b5320dfsize=3369date=2023-07-24T12:58:22
-ghost/master/img/dressing/icon - 複製/HL-12_001_x.pngd51aab02dcd05792c4d0d07a0815748esize=3362date=2023-07-24T13:23:26
-ghost/master/img/dressing/icon - 複製/HL-12_002.pngbed61cc184fea37c22fd1b08a3857ef0size=2814date=2023-07-24T12:56:30
-ghost/master/img/dressing/icon - 複製/HL-12_002_x.pngf6db1b5de9cfb05134cbeeb44bd6bcc1size=3444date=2023-07-24T13:23:26
-ghost/master/img/dressing/icon - 複製/HL-13_001.png9ed344988733d49912fd9c7f20f8ee96size=1213date=2023-06-08T01:33:36
-ghost/master/img/dressing/icon - 複製/HL-13_002.png694e07ad3af99c3532318231e588a788size=1880date=2023-06-07T09:06:30
 ghost/master/img/dressing/icon/0/0/00_001_initial.png2ecfec1b2e42531b1f38bbcc08862d5fsize=6283date=2023-06-07T08:52:14
 ghost/master/img/dressing/icon/0/0/00_002_p.pngecb92858b902f1ee488449ee73472e1csize=9864date=2023-06-07T08:47:40
 ghost/master/img/dressing/icon/0/0/00_003_c.png24258393f8f9157e1913c5f0191d1540size=8134date=2023-07-14T10:53:56
@@ -357,6 +228,8 @@ ghost/master/img/dressing/icon/1/12/12_004_p.png58a647dac9e355d9161b1b209633734
 ghost/master/img/dressing/icon/1/12/12_005_p.pngb4bc65101ff7a563f82e7ca29111e750size=5768date=2024-01-01T13:46:33
 ghost/master/img/dressing/icon/1/13/13_001_initial.png9ed344988733d49912fd9c7f20f8ee96size=1213date=2023-06-08T01:33:36
 ghost/master/img/dressing/icon/1/13/13_002_initial.png694e07ad3af99c3532318231e588a788size=1880date=2023-06-07T09:06:30
+ghost/master/img/dressing/icon/1/13/13_003_forge.pngb1975bc9cd1613d1d0d1498ccb88a893size=3657date=2024-03-06T02:29:04
+ghost/master/img/dressing/icon/1/13/13_004_forge.png2e269a4185ff1417069fc2204a21c555size=5312date=2024-03-02T20:49:36
 ghost/master/img/dressing/icon/1/1/01_001_initial.png5b9cdbf1ea723165dedf2b4d555404e3size=4722date=2023-06-07T08:27:56
 ghost/master/img/dressing/icon/1/2/02_001_initial.png422e69f9373a78754805530cdef8ba7asize=3400date=2023-06-07T08:16:18
 ghost/master/img/dressing/icon/1/2/02_002.png5595b544ecb2536a525844dc9d908d7dsize=3117date=2023-07-15T00:26:04
@@ -397,7 +270,13 @@ ghost/master/img/dressing/icon/1/9/09_015_d.12_+09_003.png947280b8aaefab289bada
 ghost/master/img/dressing/icon/1/9/09_016_c.png317baac4f48c9f6c519572cf3e8e595asize=3769date=2023-07-24T12:50:36
 ghost/master/img/dressing/icon/garment_x.png67bf3c6ab9045eb529f406e6470b302bsize=1101date=2023-07-20T19:26:49
 ghost/master/img/dressing/icon/pack_x.png3abb63139a90f2cf2b11b52c566c62d0size=1341date=2023-07-20T19:42:42
-ghost/master/img/emojibar.png55308163bf9419582a9c118fa791346esize=4860date=2023-10-25T01:08:28
+ghost/master/img/emoji/A.pngb3ba1282f9ac31c3afcedd837a726069size=1585date=2024-01-31T05:44:15
+ghost/master/img/emoji/B.png6cf1e6d5f28c518623008cece870fc28size=1447date=2024-01-31T05:44:15
+ghost/master/img/emoji/C.pngab7071b3734de1285c030ee92369c72bsize=1366date=2024-01-31T05:44:15
+ghost/master/img/emoji/D.png7e68f8b55938a40e64703658f40a2659size=1342date=2024-01-31T05:44:14
+ghost/master/img/emoji/E.png4da6d85d29898c23cbaab2ef045fc1f1size=1394date=2024-01-31T05:44:15
+ghost/master/img/emoji/F.pnge9571b26dde22a236caea28e0d5c1edcsize=1407date=2024-01-31T05:44:15
+ghost/master/img/emoji/G.pngb3619495cf9cf09f4c09acb75deedc6fsize=1388date=2024-01-31T05:44:15
 ghost/master/img/game/poker/1_1.pngf97c33e21c324e39288259fdab07ec33size=1124date=2023-07-21T16:14:06
 ghost/master/img/game/poker/1_10.png6fc3741f8f243e988ad694a28649d748size=1334date=2023-07-21T16:14:06
 ghost/master/img/game/poker/1_11.png766271e59e531076e1cfb47a5e2e6707size=911date=2023-07-21T16:14:06
@@ -454,21 +333,60 @@ ghost/master/img/game/poker/5_14.png19ab11b5edd391f64316c0d67b405e62size=1001
 ghost/master/img/game/poker/5_15.png4ceb7135953c581d5741fd0d5bde6ccbsize=1005date=2023-07-21T19:19:14
 ghost/master/img/head_HC_chose.png86e700f67d89df8f67e26a6134db4a83size=2402date=2023-07-02T00:06:18
 ghost/master/img/head_HL_chose.png56606064bbf5ddce351ee662ec097d0fsize=2645date=2023-07-02T00:06:18
-ghost/master/img/items/A-CSM.png3b743428dd8dee79eaa59cc01c3c9990size=3689date=2023-02-04T07:15:32
-ghost/master/img/items/AC.png5341a82e69d8f1419323e9d09eff64b2size=3405date=2023-02-04T05:48:18
-ghost/master/img/items/BC.pnge34fd877798204aa7b545c9e33a64de7size=4980date=2023-06-16T09:39:54
+ghost/master/img/illustrated/0/0.idle.pngacb3e5a735c9a3eaa330eec67a8d92b6size=80271date=2024-02-20T10:07:51
+ghost/master/img/illustrated/0/1.atk.png546c199853b6c24bf883587641ce8463size=54098date=2024-02-20T23:19:17
+ghost/master/img/illustrated/10/0.idle.pngaceed4556353f9fedf5a77c84c72c94esize=64784date=2024-02-20T11:43:13
+ghost/master/img/illustrated/11/0.idle.pnge5ae35f22ddb6a7a98bbe96e6386cd80size=78336date=2024-02-20T11:50:49
+ghost/master/img/illustrated/11/3.Aoe.pngb4ae59cf6068789b0841eb31539f0b72size=78993date=2024-02-24T11:08:09
+ghost/master/img/illustrated/12/0.idle.pngcfacc4c86e761f05e5fa66ffc4452281size=144568date=2024-02-20T11:43:47
+ghost/master/img/illustrated/12/1.Atk.png87d6a5e9b033a85461ba47a87e3ccc2dsize=94729date=2024-02-24T11:08:09
+ghost/master/img/illustrated/12/4.skill.png7d9368ead2f9f39a03b487d4e1db2b10size=143311date=2024-02-20T23:04:23
+ghost/master/img/illustrated/13/0.idle.png2d1a557d81b57201f1daff2367aac7f7size=105700date=2024-02-20T11:44:10
+ghost/master/img/illustrated/13/3.Aoe.pngacfd9b07c60adb90858fcc8400bedd2dsize=55880date=2024-02-24T11:08:10
+ghost/master/img/illustrated/14/0.idle.png7b1c4582d7ff38b953ad629b5cd8254dsize=91681date=2024-02-20T11:50:49
+ghost/master/img/illustrated/14/1.Atk.png12a8084913e015a860380ee64439942dsize=65965date=2024-02-24T11:08:10
+ghost/master/img/illustrated/1/0.idle.pngfbb1eb18d177dcd95e0715fea24f140fsize=90350date=2024-02-20T11:40:22
+ghost/master/img/illustrated/1/1.atk.pngee985161b3efe1a90fb7b691448d247bsize=84369date=2024-02-20T23:09:52
+ghost/master/img/illustrated/2/0.idle.pnga943c8380f8a6320406a97194a5ab0casize=101869date=2024-02-20T11:40:49
+ghost/master/img/illustrated/2/1.atk.pngceb0d3b61aa2dfe068f886c846a12a79size=126193date=2024-02-20T23:09:21
+ghost/master/img/illustrated/3/0.idle.png2d501cb2db9000513ad689ced74a87acsize=106741date=2024-02-20T11:50:48
+ghost/master/img/illustrated/3/3.Aoe.png9579784a2782b7893c02a7060a7d742dsize=82654date=2024-02-24T11:08:09
+ghost/master/img/illustrated/4/0.idle.png08ec6d5798a4b436f21ee2fb9d208019size=39066date=2024-02-20T11:41:35
+ghost/master/img/illustrated/4/1.Atk.png382bd03b8d3db8c80410d0a6bfd3653fsize=77765date=2024-02-24T11:08:09
+ghost/master/img/illustrated/5/0.idle.png519688f648b07631873e7b706b1b7e69size=70065date=2024-02-20T11:50:48
+ghost/master/img/illustrated/5/3.Aoe.png7a555ac38cd655f591fa6e2c5fe16425size=73729date=2024-02-24T11:08:09
+ghost/master/img/illustrated/6/0.idle.png122b0cec797fd571accc3ce0713ca199size=85626date=2024-02-20T11:50:48
+ghost/master/img/illustrated/6/1.Atk.pngcbbe86dd84209512390770c1c9e5ff88size=85217date=2024-02-24T11:08:09
+ghost/master/img/illustrated/6/3.Aoe.png527292f23645d7168c6e9104acf45719size=51180date=2024-02-24T11:08:09
+ghost/master/img/illustrated/7/0.idle.png95da9e4e5cc959ffa56c62ddfcd9f79csize=101210date=2024-02-20T11:42:36
+ghost/master/img/illustrated/7/3.Aoe.png26f43b6afb68cd7c17bab6a620533bbcsize=72587date=2024-02-24T11:08:09
+ghost/master/img/illustrated/8/0.idle.pnge8d60f62b907b87e470a4cbcadd10a0esize=62740date=2024-02-20T01:04:33
+ghost/master/img/illustrated/8/3.Aoe.png46bda2a0fb934b5bc59e33b8c239c198size=54854date=2024-02-24T11:08:09
+ghost/master/img/illustrated/9/0.idle.png42c40241446763648a7432736a59106csize=77979date=2024-02-20T11:42:55
+ghost/master/img/illustrated/9/1.Atk.png30580ece7c4bfd7978c3201e74da23b5size=51886date=2024-02-24T11:08:09
+ghost/master/img/illustrated/9/2.Atk.png91dc2a29d1cb6ca57173fba0b81d6262size=81629date=2024-02-24T11:08:09
+ghost/master/img/illustrated/9/3.Aoe.pnga440e84f2a971f11b129d63a7948657asize=80911date=2024-02-24T11:08:09
 ghost/master/img/items/Discoin.png0fc26cb714c8c935dd30bc222bdb7c21size=582date=2023-02-21T10:56:30
-ghost/master/img/items/DreamDust.png4642d80b7057a82f844a5514f9c1e266size=3833date=2023-01-24T00:41:20
-ghost/master/img/items/DreamShadow.pngc5dc799b15660884b47deb6777dd9944size=6781date=2023-01-22T21:18:40
-ghost/master/img/items/OC.png1c466c3fdf1d227c5e36df852495158asize=4554date=2023-05-19T13:28:18
-ghost/master/img/items/OE.png676fb3132f0d5799d8e2c5dcbda56bf7size=2927date=2023-02-04T05:48:20
-ghost/master/img/items/OH.png6ac0609a9f5a08d90edb5e6165e1f29esize=2169date=2023-02-04T05:48:20
-ghost/master/img/items/OT.pngd24c2a7b32b993f2c79e068da91062edsize=2638date=2023-02-04T05:48:20
-ghost/master/img/items/Palette.png8390c2891ab2bcaea1b85880b4298718size=4595date=2023-01-24T01:12:52
-ghost/master/img/items/RSC.png9551cd5d0a33e79b5381372a4e869f17size=3633date=2023-05-19T13:28:18
-ghost/master/img/items/TSC.pngfc0a9969c00919619d54a140eccb125fsize=4129date=2023-10-25T21:07:32
-ghost/master/img/items/TSC2.png6d00005602cbf0e0f1bfd7fd10548aabsize=2811date=2023-02-04T05:49:16
 ghost/master/img/items/button_0.png3b20473c7f97e020508e6a60287e1baasize=213date=2023-10-25T21:40:12
+ghost/master/img/items/consumable_sp_0.1.pngff916ceb69d317e5bd4fb20023b21355size=5129date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_0.2.png275db2809dc4abbb549a65645380ba8bsize=5279date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_0.3.png04d70289f69fc57396c4d9fba067c4f3size=5405date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_0.4.png10768054110db6e7d7bab4b9f0765c18size=5633date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_0.5.png5da0e915352ae13b616a7e03b85b00cdsize=5804date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_0.6.png11e17b9301b27910b5bf1136a2a2d038size=5861date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_1.1.png32c7714693b41a6e3b518dcb6874e2absize=6611date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_1.2.png32f8d5e9c122b0a3f1fc2b32e29c40e4size=6751date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_1.3.png5c171212a46cf270c0737c2949d37931size=6904date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_1.4.png9d7eb59d4333760cac0edf7e13c28be8size=7125date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_1.5.png5d1a36c5ab5e30720721d9857994e25fsize=7303date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_1.6.png86b223ee310aac54f0f8dd3657542e26size=7456date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_2.1.png778e45dbf06d6e6cce8c91c1aedcaf8fsize=5357date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_2.2.png9e0cd91f813e8aca6eecea9ab5fbf4b7size=5438date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_2.3.png990780dd2a358110d01a1d1f30e664ecsize=5521date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_2.4.pngc9d36b4d7a4ceb004a45e1a28aa45026size=5525date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_2.5.pngc9d36b4d7a4ceb004a45e1a28aa45026size=5525date=2024-02-15T10:11:19
+ghost/master/img/items/consumable_sp_2.6.pngc9d36b4d7a4ceb004a45e1a28aa45026size=5525date=2024-02-15T10:11:18
+ghost/master/img/items/consumable_sp_2.pngc9d36b4d7a4ceb004a45e1a28aa45026size=5525date=2024-02-11T04:48:44
 ghost/master/img/items/dye_ingredient_0.png9551cd5d0a33e79b5381372a4e869f17size=3633date=2023-05-19T13:28:18
 ghost/master/img/items/dye_ingredient_0_20px.pngaa6b4de256c7fd595d317ec1ef62a931size=1011date=2023-10-25T21:15:14
 ghost/master/img/items/dye_ingredient_1.png13bfae2db464d4dfe4144fcc94096843size=2504date=2023-10-25T21:12:28
@@ -487,15 +405,16 @@ ghost/master/img/items/enhancement_1.pnga0a851454b590f70f7f2577ed909a411size=4
 ghost/master/img/items/enhancement_1_18px.png50ee3145b64baed9d35ca27ee1731189size=1030date=2024-01-02T12:56:30
 ghost/master/img/items/enhancement_2.png2356a74283971789b6515d5b32eb2809size=4779date=2023-05-19T13:28:18
 ghost/master/img/items/enhancement_2_18px.png03a5c022048b4ebbfa4774f7f5a72f96size=1044date=2024-01-02T12:56:30
+ghost/master/img/items/event_item_0.pngc55fd2ba4f7254aba6d86ce9e83acd4esize=6269date=2024-02-11T03:40:17
+ghost/master/img/items/event_item_1.png9b68531e138ec77bb4294594b0cc6890size=5278date=2024-03-02T15:54:23
 ghost/master/img/items/gift_sp_0.pngec989bbba588b164d657bacd218a420dsize=3745date=2023-05-19T13:28:18
 ghost/master/img/items/gift_sp_1.png3702adedb844f25f67a3d27447afe0d1size=2705date=2023-05-19T13:28:18
+ghost/master/img/items/gift_sp_2.png9702ad662814ac26a4a9a165af858ae9size=6659date=2024-02-15T06:54:48
+ghost/master/img/items/gift_sp_3.pngd5fd712ab8d8efc548292992d33ceeb9size=3480date=2024-02-14T12:03:05
+ghost/master/img/items/gift_sp_4.png9b68531e138ec77bb4294594b0cc6890size=5278date=2024-03-02T15:54:37
+ghost/master/img/items/gift_sp_5.png97b8c92a8fed5f2fa7c785c257fce78fsize=2971date=2024-04-21T09:03:31
 ghost/master/img/items/hypercube_15px.png7842e590033bcfb6114429ceaa308aaasize=680date=2024-01-02T12:08:00
 ghost/master/img/items/hypercube_35px.png31740ed36155cea0384b4bbbd8f0a802size=2253date=2024-01-02T12:06:41
-ghost/master/img/items/itemBC_35px.pnga728f4432a3c7fc92014742fab881bf4size=2756date=2023-07-17T12:39:38
-ghost/master/img/items/itemGel_35px.png03dd085fd0d82f9d89e7e47cba61b5besize=2225date=2023-07-17T12:39:38
-ghost/master/img/items/itemOC_35px.png60c2eb45bf73a451ca8dc23f5af13ecesize=2643date=2023-07-17T12:39:38
-ghost/master/img/items/itemRSC_35px.pnge78647fab7df42d3c285c240bf181d78size=2131date=2023-07-17T12:39:38
-ghost/master/img/items/itemTSC_35px.pngab7035e82ef1056f64a620e3ccda8b08size=2488date=2023-07-17T12:39:38
 ghost/master/img/items/powder dye_0.png724c5f40394f85ca1682d17a9ab2c73asize=2133date=2023-10-26T03:32:56
 ghost/master/img/items/powder dye_1.png7ce9e8eb2a8ce8b15ae77b5d6f7851ebsize=2288date=2023-10-26T03:32:56
 ghost/master/img/items/powder dye_10.png014b7f9a0af353e3d13cdc327c2e8e5fsize=2489date=2023-10-26T03:32:58
@@ -509,7 +428,6 @@ ghost/master/img/items/powder dye_6.pngcbc038a350390649e91d9483685d2e41size=21
 ghost/master/img/items/powder dye_7.png121ba2654882058039708c987f2fab79size=2354date=2023-10-26T03:32:58
 ghost/master/img/items/powder dye_8.pngb2839de046592bb11aa99d6bf089451asize=2375date=2023-10-26T03:32:58
 ghost/master/img/items/powder dye_9.png4893b852c0dd410578e5e093989cd497size=2138date=2023-10-26T03:32:58
-ghost/master/img/items/感染凝膠.pngc125399fc40c519732c9c4924f60dd8bsize=3891date=2023-05-19T13:28:18
 ghost/master/img/normal.cur66139198da2aa9b7aad43c0389951207size=10462date=2023-06-05T21:08:12
 ghost/master/img/normal2.cur2e02889e6fe921696514b24847a5caafsize=10462date=2023-06-05T21:06:48
 ghost/master/img/normal3.cur232870d69f52574baf2eaa8441ffbb55size=10462date=2023-06-05T21:05:52
@@ -591,49 +509,14 @@ ghost/master/img/qty/max.png56cf087197241c9fc07e6cb4f905bd04size=259date=2023
 ghost/master/img/qty/min.pngec3405a583a70e36879ff823350f7d80size=240date=2023-07-02T04:22:52
 ghost/master/img/qty/reset.png13f933237744d5bb4604d6bd478fa59dsize=399date=2023-11-07T03:56:00
 ghost/master/img/qty/x.png81f355a1b6bdfa69756055ec12d50775size=211date=2023-07-02T05:30:04
+ghost/master/img/relationship/rs0.png0c6eb63ecd83d62d8254d145b887d73bsize=531date=2024-01-31T01:48:08
+ghost/master/img/relationship/rs1.png0337ae21bfc58d606e1450d792f13a96size=314date=2024-01-31T01:48:08
+ghost/master/img/relationship/rs2.pngf4191de1c7da787afd87080771b09b19size=431date=2024-01-31T01:48:08
+ghost/master/img/relationship/rs3.pnga83d0139d67a77f902fef66130e2c413size=805date=2024-01-31T07:59:36
+ghost/master/img/relationship/rs4.png56358a9ad3c87cc87aabbf851dc64693size=567date=2024-01-31T01:48:08
+ghost/master/img/relationship/rs5.png9fa956b63de6ad4a502fb63a6086a0bbsize=538date=2024-01-31T01:48:08
+ghost/master/img/relationship/….pngf1cff661946ebc34c6e64b93f78f63afsize=735date=2024-01-31T01:48:08
 ghost/master/img/stamina.pngacbf252aa37b982052b5e9a4f0b9a7b1size=702date=2023-02-21T11:08:06
-ghost/master/img/store - 複製/HC_0.png02f7930b9d8348fc2a44034916713c36size=2229date=2023-07-15T15:32:26
-ghost/master/img/store - 複製/HC_40px.png6845ebc92d1025ec219cee9c75d3719bsize=3050date=2023-07-16T06:11:42
-ghost/master/img/store - 複製/HC_60px.png833a6065f78ef820443139b63ce17267size=4917date=2023-07-15T17:02:08
-ghost/master/img/store - 複製/HL_0.png650c1720d592ba081648a3a85e66fc18size=2275date=2023-07-15T15:32:26
-ghost/master/img/store - 複製/HL_40px.png7b816d9bc73399dc5f785ff344bd8de0size=3241date=2023-07-16T06:11:42
-ghost/master/img/store - 複製/HL_60px.png0fbc0479dc27bed2d8083403b0d73d7csize=5374date=2023-07-15T17:02:08
-ghost/master/img/store - 複製/cosplay.clipd488b80f6f5daa2843f89501782b51fdsize=224526date=2023-07-16T04:20:38
-ghost/master/img/store - 複製/cosplay_1.png49b82486f6ee5d3bc8c18fa675ae8280size=1097date=2023-07-16T04:19:46
-ghost/master/img/store - 複製/cosplay_2.png6585cfa0e44c356c38fb30e2d1b382fcsize=886date=2023-07-16T04:20:08
-ghost/master/img/store - 複製/cosplay_3.png388f758ce07cf6f4eeb818ae9a776019size=812date=2023-07-16T04:20:28
-ghost/master/img/store - 複製/costum_1.png6c690d398b02072cd49bae1caa1a44b0size=8675date=2023-07-24T17:34:10
-ghost/master/img/store - 複製/costum_2.pnge61f9b01e3c7dd3eb22546eed96357e4size=11918date=2023-07-24T17:29:18
-ghost/master/img/store - 複製/dressingroom.png8892d95c3a36ebabe9e01000e320aab3size=583date=2023-07-15T15:27:40
-ghost/master/img/store - 複製/field.png14d0b9a6de93b0c6974ff8e76f989541size=200date=2023-07-15T15:46:20
-ghost/master/img/store - 複製/head_25px_0.pngd95516b7e69bbeb74052b35018fc479esize=1815date=2023-07-16T03:43:18
-ghost/master/img/store - 複製/head_25px_1.png3a2a713ee457e27c35b7981bdfbb2abesize=1833date=2023-07-16T03:44:08
-ghost/master/img/store - 複製/head_25px_2.png3e4f800d5b28f15c03ce5fb8d4b8ef8csize=3261date=2023-07-16T03:42:28
-ghost/master/img/store - 複製/line.png78268fa15ad9ea8cef7a0c6e3785befcsize=138date=2023-07-15T15:48:32
-ghost/master/img/store - 複製/package_HC-1.png4b8fa9bb9031c162f934ccea315b009esize=4234date=2023-07-16T06:07:58
-ghost/master/img/store - 複製/package_HC-2.png7667a1869935e92afd545b49595822f2size=4076date=2023-07-21T04:46:42
-ghost/master/img/store - 複製/package_HC-2_1.png61806d7d43fedcc34085e14e5b74a2b4size=5987date=2023-07-21T14:29:22
-ghost/master/img/store - 複製/package_HL-1.png91faaa922dec4bf6c243f4163f374c31size=6796date=2023-07-16T06:06:58
-ghost/master/img/store - 複製/package_HL-2.png2823133ec284979a3363c8da9fb7915asize=6589date=2023-07-16T06:08:42
-ghost/master/img/store - 複製/square.png15b4e033083b79a2af3a47105e9d50e4size=385date=2023-07-16T03:32:00
-ghost/master/img/store - 複製/square2.png03b65bf27d9c75c85e657e90f1aceec3size=287date=2023-07-16T06:24:26
-ghost/master/img/store - 複製/square2_x.pngd261b7e7ee3f2bda0957d20e67f7fa29size=289date=2023-07-21T08:33:38
-ghost/master/img/store - 複製/square3.png7ef1e4695593491f7b8f6c748ccb9fcfsize=307date=2023-07-16T03:51:10
-ghost/master/img/store - 複製/square3_x.pnga8a85cbceee0e41cc55319e8ef53b59fsize=308date=2023-07-25T11:06:50
-ghost/master/img/store - 複製/square_x.png57d50d6be7604ce9e8e05720e47d0de7size=386date=2023-07-17T08:56:06
-ghost/master/img/store - 複製/title.pngdc1d142c5bab9697fddb0989a5fa6a63size=602date=2023-07-15T14:51:54
-ghost/master/img/store - 複製/type02.pngfb60801287d21a59b329a841463856dbsize=810date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type03.pngb256d73981fc10197be1c79ead8083f2size=995date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type04_0.png5f51772732b8d115106bffa0bf0b194esize=764date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type04_1.png17d979b0a72ccc58b0382205d499d657size=1366date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type05.pngaa3bd5031d13dcc6046e98bbbfe42b1bsize=1794date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type06.png5721e20c9c54096ccf3149d18479abc2size=844date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type07.pngefcf981692d24f2fb7a6ed03197174f1size=1132date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type08.png2fa832c26771efb15da9714ce6e2c8f6size=929date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type09.png2dee7e68d823aaa8cee2d1be4c6bb2d0size=1075date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type10.png0582f439120545fb659cd0a3006f7a8bsize=1322date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type11.png6be7a922a25ba7845659f2181f2a924csize=887date=2023-07-15T15:04:58
-ghost/master/img/store - 複製/type12.png7e4147690c1d4ce9489c0bf18b82effdsize=765date=2023-07-15T15:04:58
 ghost/master/img/store/HC_0.png02f7930b9d8348fc2a44034916713c36size=2229date=2023-07-15T15:32:26
 ghost/master/img/store/HC_3.pngd95516b7e69bbeb74052b35018fc479esize=1815date=2023-07-16T03:43:18
 ghost/master/img/store/HC_40px.png6845ebc92d1025ec219cee9c75d3719bsize=3050date=2023-07-16T06:11:42
@@ -646,7 +529,6 @@ ghost/master/img/store/O.png676c243603be313a0b2b7d1ff1bd77c4size=726date=2024
 ghost/master/img/store/X.pngc86401fbfcb85204f912cef848e98e5esize=650date=2024-01-02T08:12:52
 ghost/master/img/store/commodity/energydrink.png327b4e32337cbc429c68c965d4eb4cb8size=3085date=2024-01-02T15:36:06
 ghost/master/img/store/commodity/energydrink_18px.png2d364c09d3e3cc6efd0bba2fc0d5632asize=814date=2024-01-02T14:05:08
-ghost/master/img/store/cosplay.clipd488b80f6f5daa2843f89501782b51fdsize=224526date=2023-07-16T04:20:38
 ghost/master/img/store/cosplay/001.HC.00_003.地獄犬-賽伯洛斯.png6c690d398b02072cd49bae1caa1a44b0size=8675date=2023-07-24T17:34:10
 ghost/master/img/store/cosplay/002.HL.00_003.色慾惡魔-莫蒂斯.pnge61f9b01e3c7dd3eb22546eed96357e4size=11918date=2023-07-24T17:29:18
 ghost/master/img/store/cosplay_1.png49b82486f6ee5d3bc8c18fa675ae8280size=1097date=2023-07-16T04:19:46
@@ -672,6 +554,7 @@ ghost/master/img/store/square3_x.pnga8a85cbceee0e41cc55319e8ef53b59fsize=308d
 ghost/master/img/store/square4.png10a3d069db0c7c71d43af31cd61db20esize=204date=2024-01-02T13:14:27
 ghost/master/img/store/square5.pngdcccd974163d053f382ed5f500d2af17size=195date=2024-01-02T13:26:46
 ghost/master/img/store/square6.png096b4f68de8ac2e7782ca13b955c945dsize=196date=2024-01-02T13:27:36
+ghost/master/img/store/square7.png2fda281d57930f0e5f8246e0a15148ddsize=213date=2024-01-31T10:11:18
 ghost/master/img/store/square_x.png57d50d6be7604ce9e8e05720e47d0de7size=386date=2023-07-17T08:56:06
 ghost/master/img/store/title.pngdc1d142c5bab9697fddb0989a5fa6a63size=602date=2023-07-15T14:51:54
 ghost/master/img/store/type02.pngfb60801287d21a59b329a841463856dbsize=810date=2023-07-15T15:04:58
@@ -687,6 +570,10 @@ ghost/master/img/store/type10.png0582f439120545fb659cd0a3006f7a8bsize=1322dat
 ghost/master/img/store/type11.png6be7a922a25ba7845659f2181f2a924csize=887date=2023-07-15T15:04:58
 ghost/master/img/store/type12.png7e4147690c1d4ce9489c0bf18b82effdsize=765date=2023-07-15T15:04:58
 ghost/master/order/APP.bat1c1d7b4cb334b99562e68bdcfe85959esize=59date=2020-01-23T08:03:14
+ghost/master/order/the_deep_line1.txta5f89384800b6779b19d778054c7e06bsize=25date=2024-02-24T14:48:12
+ghost/master/order/the_deep_line2.txt1cdd5c8c32498c6f392e0e361f5fe9basize=36date=2024-02-24T14:48:25
+ghost/master/order/the_deep_line3.txtef4f6d6d2e4f6722c4e42dfcb7d0bcd5size=28date=2024-02-24T14:49:01
+ghost/master/order/the_deep_line4.txtd84fd36e2a5a007592aa7dbd385f7df8size=42date=2024-02-24T14:49:16
 ghost/master/order/休眠.batbe2c836becf428440d5aa56a8177e88asize=11date=2022-12-24T19:53:54
 ghost/master/order/控制台.batfc5364bf9dbfa34954526becad136d4bsize=7date=2022-12-24T19:48:06
 ghost/master/order/立即重啟.bate7fdad60a880d47b2695f0950bada7a9size=16date=2022-12-24T19:55:42
@@ -728,6 +615,12 @@ ghost/master/sound/effect/grind.MP35c320ad5ffe5b5206aa19406b4290611size=39338
 ghost/master/sound/effect/interface1.mp375d3175779e5c078025b5b05abd237d8size=10813date=2011-04-22T17:52:14
 ghost/master/sound/effect/interface2.mp367ad5e07480adb3a29d87c323e333065size=21262date=2011-03-03T06:08:12
 ghost/master/sound/effect/interface3.mp37f23bdaf94d3c43bbdb17d6db8171643size=21262date=2011-03-03T06:08:06
+ghost/master/sound/enemy/swing.mp387bfb36120b6c896d1850e55ba8479bfsize=11858date=2011-03-03T06:23:57
+ghost/master/sound/enemy/swing2.mp31372401e429c0b597a14108059610afdsize=8723date=2011-03-03T06:25:26
+ghost/master/sound/enemy/swing3.mp31f6a1db294282b3a7564b61e33c03462size=8723date=2011-03-03T06:27:26
+ghost/master/sound/enemy/刀?素振?1.mp321f3a8304c864b26a6664b990377f8a5size=30092date=2024-02-19T19:59:36
+ghost/master/sound/enemy/鞭?攻?1.mp3725d756402bf40b663a31458f541cb22size=14418date=2023-07-31T18:22:49
+ghost/master/sound/enemy/鞭?攻?2.mp374e752f17cd8d93814a6d614ed00b967size=15672date=2024-02-19T20:01:32
 ghost/master/sound/exc/01 [HC]51-no.MP34f7e932202aa9867899873b190324801size=17604date=2023-05-27T17:06:32
 ghost/master/sound/exc/01 [HL]06-(pen)yaa.MP3585ef1fc599ef6104dc38da0b3f67c4esize=22619date=2023-05-27T03:59:44
 ghost/master/sound/exc/01 [HL]07-zezeze.MP3468f11a55bc6d1d045e5760c8559d37asize=10499date=2023-05-27T04:02:24
@@ -792,7 +685,45 @@ ghost/master/sound/line/HL/Hl profile 問候.MP3244f4dc726b1338ddd02b368e47b8587
 ghost/master/sound/line/HL/Hl profile 煩躁.MP374e0b4b68b4a6c03b15474f6b78bb47bsize=27217date=2023-05-28T01:13:38
 ghost/master/sound/line/HL/Hl profile 特別關注.MP308d74f3bab310469b64346cbeea76aedsize=32232date=2023-05-28T01:15:00
 ghost/master/sound/line/HL/Hl profile2 煩躁.MP34e5aa1b25355843b00af40228f6dcd1dsize=71103date=2023-05-28T01:25:46
+ghost/master/sound/npc/mess/exc_01-ei.mp393ed9cfcb7eb5ddfdbd9b7089cf464fcsize=10654date=2024-03-15T03:52:25
+ghost/master/sound/npc/mess/exc_02-he ei.mp3bf9ce4810b8499f66c4fc0b7aa66054fsize=17760date=2024-03-15T03:59:53
+ghost/master/sound/npc/mess/exc_03-ze.mp3dc2994494093ac639b09245e6bc15d31size=8146date=2024-03-15T04:00:35
+ghost/master/sound/npc/mess/exc_04-en.mp3d3dd3315d01370ab1b60f655839700eesize=10236date=2024-03-15T04:02:09
+ghost/master/sound/npc/mess/exc_05-heng.mp34bff4555016b8fbb1832fa4e07c391f4size=8146date=2024-03-15T04:09:12
+ghost/master/sound/npc/mess/exc_06-laugh.mp3469b724ecc42035ea49599993c60658bsize=7728date=2024-03-15T05:21:05
+ghost/master/sound/npc/mess/forging_01.mp319574f766c23c99ecb2969e7518779c4size=39911date=2024-03-15T03:47:08
+ghost/master/sound/npc/mess/forging_02.mp3cea533638d938369b03e6dde670fa056size=54958date=2024-03-15T04:05:28
+ghost/master/sound/npc/mess/insufficient_04.mp39efd07d29f1c798d31caf48c3a10d4a1size=55794date=2024-03-15T03:43:12
+ghost/master/sound/npc/mess/open_01.mp3520debca22d837f7e0b4268a79a865f8size=142311date=2024-03-15T04:04:27
+ghost/master/sound/npc/mess/open_02.mp3056ca7270b9bd49fec2b66ab55e28975size=76692date=2024-03-15T04:08:35
+ghost/master/sound/npc/mess/talk_01.mp346fd15e3445858076c788a68977185e6size=161537date=2024-03-15T03:53:21
+ghost/master/sound/npc/mess/talk_02.mp3b04e32beb29710312c4d5bbd829ec478size=141057date=2024-03-15T03:55:39
+ghost/master/sound/npc/mess/talk_03.mp3bc88f0c92e965303f63152e9851111f2size=133952date=2024-03-15T03:56:29
+ghost/master/sound/npc/mess/talk_04.mp365d77c5d9aafae523b92d0c67dbf4435size=80871date=2024-03-15T04:01:20
+ghost/master/sound/npc/mess/talk_05.mp385fa6b72a7debcd33fb27aa6df38bdc5size=148998date=2024-03-15T04:02:28
+ghost/master/sound/npc/mess/talk_06.mp346ad87779874ded3d1efe0151d761248size=208349date=2024-03-15T04:03:49
+ghost/master/sound/npc/mess/talk_07.mp3cce03b8d0099c1bc433fabcf26a9ec07size=171986date=2024-03-15T04:06:59
+ghost/master/sound/sfx/46_Poison_01.mp3e721dff60a658ea226abfdddea45d5d0size=82709date=2022-02-17T21:11:02
+ghost/master/sound/sfx/LockedDoorHandleJiggle.mp3bb38768d82da7978f5a098b84460cb15size=39448date=2017-05-18T06:57:52
+ghost/master/sound/sfx/battle msg.mp36e701a1d7ea652abeb110e4dafde21fdsize=27072date=2023-08-01T08:29:17
+ghost/master/sound/sfx/battle msg2.mp3e404235f8cf1f2b67f54159212faac81size=24192date=2024-02-19T19:44:52
+ghost/master/sound/sfx/blacksmith_1.mp3a095f3ebc720c5f715e34cff36ffb31fsize=21987date=2024-03-15T05:25:25
+ghost/master/sound/sfx/blacksmith_2.mp3bf67c752d0f0fcc97cad49d4ad9da427size=21987date=2024-03-15T05:25:30
+ghost/master/sound/sfx/blacksmith_3.mp3b1681c02b9bfcf340c7a510b18da096esize=21987date=2024-03-15T05:25:35
+ghost/master/sound/sfx/blacksmith_4.mp3c2be2e4fd3b0fd8ee35c7323f6bbbe93size=21987date=2024-03-15T05:25:40
+ghost/master/sound/sfx/chipquest.mp3d5fc460e8b28cc7ecaa5b351b3e5d978size=82591date=2014-03-30T02:11:03
+ghost/master/sound/sfx/decision button2.mp377a01f17c072473b9e6ff05c1ef3a1fbsize=27072date=2023-07-31T15:02:52
+ghost/master/sound/sfx/decision button38.mp379e56d0077df3ebf7cb4ad46bb091c4dsize=6614date=2023-07-31T13:36:04
+ghost/master/sound/sfx/door chime1.mp3676515dc63773a69acd699ae839942f4size=20840date=2024-01-02T17:22:07
+ghost/master/sound/sfx/door chime2.mp331246238e2b9a0de734cbd1f27c32fcesize=18009date=2024-01-02T17:29:45
+ghost/master/sound/sfx/glassbell.mp3bdaf2fae568ca528c5d77dd1639a91f0size=98264date=2014-03-30T02:23:28
+ghost/master/sound/sfx/gravity magic1.mp3e6e1179a7bdfa939d2e77df4dde9c13csize=44511date=2023-07-31T14:43:18
+ghost/master/sound/sfx/metal punch1.mp3aaab0fe1bf7134ac2ae1ef2e99149a72size=26496date=2023-07-31T12:25:50
+ghost/master/sound/sfx/metal punch2.mp3acc480eaa6a013f98e9748c7393b20f5size=26496date=2023-07-31T12:25:52
+ghost/master/sound/sfx/metal punch3.mp3908010207dff6c48ab2182ee0301d481size=26496date=2023-07-31T12:25:56
 ghost/master/sound/sfx/power charge.mp3cd34e03aaf34424191b13b8a79d0902asize=25703date=2023-07-31T13:24:40
+ghost/master/sound/sfx/shakiin3.mp3037677422857d015264d5434b5f9fa29size=58931date=2023-07-31T04:29:08
+ghost/master/sound/sfx/snd_use_map.mp38f6b0128c7ca64fcbcec0e58fa77d059size=63433date=2023-12-23T08:31:29
 ghost/master/sound/sfx/?金?落??2.mp3c9875a25a23e8dbf85b3be712bf9348esize=34480date=2024-01-02T17:28:41
 ghost/master/sound/sfx/????素振?1.mp327c6ff28d806187c24984064435a133csize=25920date=2023-07-31T13:07:06
 ghost/master/sound/sfx/????素振?2.mp3320d2bccd686570796aefa980041499bsize=25920date=2023-07-31T13:07:30
@@ -877,39 +808,21 @@ ghost/master/voice/store/click_06.mp336d510da44e195e0e76e83cf4856b7c0size=1436
 ghost/master/voice/store/slide_01.mp395b844c5628745f8d6ad1f0c1697d1c4size=151713date=2023-01-19T00:23:28
 ghost/master/voice/store/slide_02.mp3f6e9d44ddfeb17644a1e63707ca2b41asize=112545date=2023-01-19T00:24:06
 ghost/master/voice/原始_交談1.mp372d746e1eb436a9c838cc34c800c05besize=44926date=2022-12-22T18:49:26
-ghost/master/voice/原始_交談2.mp38c26c3ce50f03c2efd0e0d02c65d74a3size=158194date=2022-12-22T18:50:24
-ghost/master/voice/原始_交談3.mp3760120259df2cf7f0e37ef450cd17cfdsize=103441date=2022-12-22T18:50:42
-ghost/master/voice/原始_升級.mp3ef8ca03b3271dd963eb994ef931aa22dsize=57465date=2022-12-22T18:54:08
 ghost/master/voice/原始_升至1階.mp3c5829a317c0738e7ab2b91abb7cd9adfsize=49524date=2022-12-22T18:46:58
 ghost/master/voice/原始_升至3階.mp3bb96f5958824a0c5fac032b04d85d7efsize=90902date=2022-12-22T18:47:22
 ghost/master/voice/原始_問候.mp3d0199be57faae2cd800bb33bd77c627csize=72930date=2022-12-22T18:49:02
-ghost/master/voice/原始_戰鬥中死亡.mp3789ba08ef0f8f51f88f7cfd516c8ccc0size=35314date=2022-12-22T18:48:12
-ghost/master/voice/原始_戰鬥勝利.mp392f5ba69e6d643e681644c356e4cf897size=53793date=2023-02-19T05:23:32
-ghost/master/voice/原始_服從度升滿.mp3e5ae5a5d995e6f944ba408216bcecc69size=163627date=2022-12-22T18:52:16
-ghost/master/voice/原始_派遣.mp3a61fbb73fa7c376cb2ab23fa064ff0fasize=59973date=2022-12-22T18:53:26
-ghost/master/voice/原始_派遣完成.mp3c2fa3dd8935818526276f3c0584867c2size=36150date=2022-12-22T18:53:52
 ghost/master/voice/原始_煩躁.mp3366b11ea8f5adeba1f20fddf2c0aa76fsize=80871date=2022-12-22T18:52:54
-ghost/master/voice/原始_特別關注.mp3282ec3186e6829edc4669b0d6c4be859size=52032date=2022-12-22T18:53:12
 ghost/master/voice/原始_特殊交談1.mp3643bd386e03e1d4d59096d470178943bsize=111800date=2022-12-22T18:51:06
-ghost/master/voice/原始_特殊交談2.mp36c08fcb04ff8c320ee70d8cb0593b74asize=184525date=2022-12-22T18:51:30
-ghost/master/voice/原始_特殊交談3.mp333c96d183edb91e5474946cbabf87d4fsize=120160date=2022-12-22T18:51:52
 ghost/master/voice/原始_獲得禁閉者.mp31adfcc084c528e771401eb88cf7ee9edsize=26536date=2022-12-22T18:46:32
 ghost/master/voice/原始_閒置.mp3123d9996edce338b5696ec46c18333b3size=16087date=2022-12-22T18:52:28
-ghost/master/voice/昨日重現_交談1.mp3cb0df97f7630081eb6ab92fb30131296size=133534date=2022-12-22T18:56:54
-ghost/master/voice/昨日重現_交談2.mp3fb6ad5946e97013936ef8931f93b16ecsize=71676date=2022-12-22T18:57:16
-ghost/master/voice/昨日重現_交談3.mp3c4f292fddb58665f0c1191c0dba2c01esize=171986date=2022-12-22T18:57:40
-ghost/master/voice/昨日重現_交談4.mp3b82f950c815c48bc4a3fa8198070fd3fsize=114308date=2022-12-22T18:58:02
 ghost/master/voice/昨日重現_升級.mp352a4e77a9e394485adbbc3879f9aab99size=31552date=2022-12-22T18:59:00
 ghost/master/voice/昨日重現_問候.mp3f6a2dae20dd3497157f1fe30334d4827size=35732date=2022-12-22T18:56:34
-ghost/master/voice/昨日重現_摸頭.mp3a0546e2adcc7fb71bd5e78cd21d8412asize=135206date=2022-12-22T18:59:22
-ghost/master/voice/昨日重現_特別關注.mp3d21a02363115a8f0f3249775fe857a45size=86722date=2022-12-22T18:58:46
-ghost/master/voice/昨日重現_獲得皮膚.mp3353fcdc470d757a30bce20e5ad9beb93size=84633date=2022-12-22T18:56:08
 ghost/master/voice/昨日重現_閒置.mp32f4735c5e1b885080ecb5612744f3c83size=95082date=2022-12-22T18:58:22
 ghost/master/yaya.dll49b388973209005e5586f9e54b008bb1size=880640date=2023-12-14T09:44:24
 ghost/master/yaya.txtffdfc6b123b0522116b4a757f8c1b4fasize=2071date=2024-01-13T16:56:11
 ghost/master/yaya_emerg.txtd9ee78e2068ff80d809325bd4fa8228bsize=1055date=2023-12-14T09:44:24
-install.txt47d8833e637f2fe676bfbd1f67177475size=128date=2024-01-13T18:11:04
-readme.txta69967527a1f5a70414dbbb21036767bsize=712date=2024-01-13T16:35:31
+install.txtcafe02f0c13a842618516fa4d1b1b05bsize=89date=2024-01-15T00:13:28
+readme.txteeff0e7022c0e1ab05325ede048b1690size=713date=2024-03-20T03:41:26
 shell/master/battle/background/DisSea.png5002cc56884f051af389211abbbff62bsize=199298date=2023-05-18T19:37:54
 shell/master/battle/background/ParmaRuins.png726633e2c6beeccdea5aeb4c84619189size=167879date=2023-05-18T19:37:54
 shell/master/battle/background/RustRiver.pnga84a90752218a6b6875f63da173eef1csize=153670date=2023-05-18T19:37:54
@@ -1286,10 +1199,17 @@ shell/master/battle/hella/top_8_atk.pngb221632ad7e7eccdda4270a6581c3fd1size=10
 shell/master/battle/hella/weapon_00.pnge3f9a13eada0dfba2a5b30ba810fa024size=6303date=2023-05-18T19:37:58
 shell/master/battle/hella/weapon_00_atk.pngee863ee5fca6b0b815913604b49f3ce2size=9539date=2023-05-18T19:38:00
 shell/master/battle/hella/weapon_00_c.png8072de3c0ea8b8b872fd688819fbf566size=5871date=2023-07-27T07:56:16
+shell/master/battle/hella/weapon_3.png7f85528aa6c9bd17b263e155b12bfe01size=10389date=2024-03-03T22:13:40
+shell/master/battle/hella/weapon_3_atk.png1bae4ad2e88b8c7a4affda96b7577c6bsize=11694date=2024-03-03T22:13:40
+shell/master/battle/hella/weapon_3_b.pngcbe3a5ec8b9048d758e3bab29ca3f83fsize=10866date=2024-03-03T22:13:40
+shell/master/battle/hella/weapon_4.png3497021597648965101fbd7889290a6esize=15078date=2024-03-03T22:13:40
+shell/master/battle/hella/weapon_4_atk.png7ce2fb0f413d3d0800469d3b874ac447size=11040date=2024-03-03T22:13:40
+shell/master/battle/hella/weapon_4_atk_b.pngca44691b13180fa964fd9adc3869c9d3size=2249date=2024-03-03T22:13:40
+shell/master/battle/hella/weapon_4_b.png7d9939be9ff31299a5927e066af8e1a4size=15425date=2024-03-03T22:13:40
 shell/master/battle/hella_atk.pngd61b823ae982b4e9a9c421b2e7f63110size=20062date=2023-05-18T19:37:58
 shell/master/battle/hella_idle.png1d296dece66584749a1a9700dc09b63asize=22107date=2023-06-09T08:11:10
-shell/master/battle/hit/surface5920.png5b9985a45b06710ab334c1d733f020b1size=3215date=2023-05-19T12:50:50
-shell/master/battle/hit/surface5921.png22caa198d52edda4e8cdc70e888fc3e8size=2486date=2023-05-19T12:51:14
+shell/master/battle/hit/hit0.png5b9985a45b06710ab334c1d733f020b1size=3215date=2023-05-19T12:50:50
+shell/master/battle/hit/hit1.png22caa198d52edda4e8cdc70e888fc3e8size=2486date=2023-05-19T12:51:14
 shell/master/battle/skill/HC_atk_01.png904bea3066b1945108e8d1802e30503bsize=6068date=2023-07-15T01:55:28
 shell/master/battle/skill/HC_atk_02.png17e8cd7ea6c26ef9fc7a9e094f717c20size=12189date=2023-07-15T01:55:28
 shell/master/battle/skill/HC_atk_03.png2f737823611cd2ad78d67a2d683c7a24size=13379date=2023-07-15T01:55:28
@@ -1373,7 +1293,7 @@ shell/master/cursor/pinch6.curef9c0b1a2019024c00b5858aa2024074size=10462date=
 shell/master/cursor/pinch7.cur880655b1b3612ae7f95d5db8114ceda1size=10462date=2023-06-05T21:18:16
 shell/master/cursor/point1.curddec0967eb9589e7f1e3a1a8ed992447size=10462date=2023-06-05T21:14:58
 shell/master/cursor/point2.curfb1b29de2e132a1480f6cba59c12b016size=10462date=2023-06-05T21:15:08
-shell/master/descript.txtaf6c69bef84917943235b6cdd07fbd13size=16730date=2024-01-13T01:11:53
+shell/master/descript.txt833c3b7720a84fd05cc5bd704b16a006size=18680date=2024-03-20T10:26:57
 shell/master/dressing/hecate/back_1.png16d4e83ca4975959a797655f3a373598size=7944date=2023-07-24T18:13:25
 shell/master/dressing/hecate/blindfold_00.png1df7da982e12391102586c2384579d5dsize=3159date=2023-05-03T07:51:34
 shell/master/dressing/hecate/book_00.pngaad8e06c8a1253c1642418aabd7a0bb5size=22683date=2023-05-03T22:51:36
@@ -1482,6 +1402,11 @@ shell/master/dressing/hella/top_7.pngd3fa695990025b6b589e53d903dbe6b6size=3023
 shell/master/dressing/hella/top_8.png04eb057e2ace11b96892c42dd6c6b228size=31242date=2023-12-27T06:22:04
 shell/master/dressing/hella/weapon_00.pngdae098aeeb1ce56522f35059e40f2a40size=14365date=2023-10-29T03:57:32
 shell/master/dressing/hella/weapon_00_c.png19e550dd6b3ee6777d2bc624921bb340size=8912date=2023-05-03T07:51:36
+shell/master/dressing/hella/weapon_3.png1d8bec12ef21e64805ec17a13eb1a50dsize=9141date=2024-03-03T22:11:49
+shell/master/dressing/hella/weapon_3_b.pnge0930fb00b765cd31dbff97e722c96b9size=32720date=2024-03-03T22:11:48
+shell/master/dressing/hella/weapon_4.pngc13ea4041bc4cbef2429c8cfbd4fee39size=19327date=2024-03-03T22:11:48
+shell/master/dressing/hella/weapon_4_b.png9894124dd1af580e3fed81788d08880esize=28669date=2024-03-03T22:11:48
+shell/master/dressing/hella/weapon_4_f.pngd2da931c75173337b91d13bb017c42b4size=6289date=2024-03-03T22:11:48
 shell/master/face/hecate/eye_0.png5fe948c759a777fa6cf2c35165ee68d0size=1619date=2023-01-28T22:15:56
 shell/master/face/hecate/eye_1.png79392e4f2169f31369b18fe8fd13bdcdsize=1457date=2023-01-28T22:15:54
 shell/master/face/hecate/eye_2.png6c291f1be109aaa42293c4b0916540aasize=1323date=2023-01-28T22:15:56
@@ -1494,6 +1419,9 @@ shell/master/face/hecate/eye_8.pngc456477ff0591ddcfda6155a9a8acde9size=1542da
 shell/master/face/hecate/eyebrow_0.pngf66cba18ad993120a24d39f41443aa7asize=1036date=2023-01-28T23:52:56
 shell/master/face/hecate/eyebrow_2.png9b32fda9f32b8eff175dcedfd51f413esize=1061date=2023-07-28T10:34:54
 shell/master/face/hecate/eyebrow_3.png7894d360b22a0f7bea7e1443cf0fda72size=1105date=2023-12-26T02:23:01
+shell/master/face/hecate/face_20.pngba6371fbf63315013f5f7d0fe12c40d1size=3528date=2024-03-01T04:46:34
+shell/master/face/hecate/face_21.pngfe4ddc985d97f44fa74b7733f0fa8119size=2013date=2024-03-01T04:46:34
+shell/master/face/hecate/face_22.pngb415531408876906ccc00d9d1ffb25a1size=1621date=2024-03-01T04:46:34
 shell/master/face/hecate/mouth_0.png7812f56ea72fb6212fab43d4c7664323size=881date=2023-01-28T22:15:56
 shell/master/face/hecate/mouth_1.pnga3771e00752d3c5db36e5e07573c8d5asize=917date=2023-01-29T01:08:36
 shell/master/face/hecate/mouth_2.pngbbdb72d8efa684996ce9f636323e074csize=963date=2023-07-28T10:34:54
@@ -1527,6 +1455,11 @@ shell/master/face/hella/eyes_6.pngde094d9ee5edcd9ea374539148ca4375size=2818da
 shell/master/face/hella/eyes_7.png5a8e32d24d0c5562914dadeea51dccb6size=2446date=2023-05-10T12:03:02
 shell/master/face/hella/eyes_8.pngf61c430a04babd5aae8aea042b6b82e6size=2006date=2023-05-10T12:03:02
 shell/master/face/hella/eyes_9.png3c434d9e096c85c8f427d5363a59e7basize=2656date=2023-12-22T10:14:48
+shell/master/face/hella/face_36.pngce51db2d67fd7b12ae965b1d610e70d8size=2854date=2024-01-22T01:30:20
+shell/master/face/hella/face_37.png5cefbe28998024b6a6960a9cab3889e2size=3716date=2024-01-22T01:30:19
+shell/master/face/hella/face_38.pnge6a797615d5256588fa1fbffd790fa6fsize=5538date=2024-01-22T01:39:24
+shell/master/face/hella/face_39.pngf988faae786156c2a12ba9f87654aa60size=4938date=2024-01-22T01:30:19
+shell/master/face/hella/face_50.png0145301d0ab3d5542177c4676820da1fsize=4045date=2024-01-22T01:48:31
 shell/master/face/hella/mouth_0.png28d3efe57414401d5e23ef33f25f02a4size=1274date=2023-05-03T08:45:50
 shell/master/face/hella/mouth_1.png9e0ab7ec16a74c6063d386d163a8f5ffsize=1421date=2023-05-10T10:22:18
 shell/master/face/hella/mouth_10.pngbe786e7d55322480c137886f7ba68aadsize=1117date=2023-12-22T13:19:00
@@ -1544,7 +1477,25 @@ shell/master/hide0.pngf2efc8a7c2f740a4f37c9b60f0a5f5f3size=157date=2023-01-19
 shell/master/menu_background.png21a9ebd8d6a1320e21a89c76d7e48d51size=122093date=2024-01-11T19:05:31
 shell/master/menu_foreground.png9719360118739afbce9d2119e3f503dasize=104188date=2024-01-11T19:06:33
 shell/master/menu_sidebar.png033901d16564fe8a2b0b273900e4940csize=3710date=2022-12-22T19:24:18
-shell/master/npc/20231201.png527efb781f2c2f6cbcc7e6f7517b225esize=46902date=2023-11-30T22:24:52
+shell/master/npc/fei/fei_00.pngae6b78b8af7b7e7fdf4db060e35a69desize=64190date=2023-01-20T01:09:26
+shell/master/npc/fei/glass.png8027177713eda83cb9bc41c83f582246size=2859date=2023-01-20T01:09:26
+shell/master/npc/mess/face_1.png909f93d5d3d771e452b3769781ea5ec1size=12151date=2024-03-19T14:33:38
+shell/master/npc/mess/face_10.png98d8ab8669c23f1e825f40c49637cd06size=12211date=2024-03-19T14:59:08
+shell/master/npc/mess/face_11.png6568fc2693984141b6af324948c4103csize=11941date=2024-03-19T15:15:37
+shell/master/npc/mess/face_12.png80b2c4bc25b878707203f9861c0dad2bsize=11946date=2024-03-19T15:23:39
+shell/master/npc/mess/face_2.png07333c717afdc9b86bfc70060824dc86size=12045date=2024-03-19T14:33:09
+shell/master/npc/mess/face_3.png1d2fac67b328c0b52c28030ff6e06e02size=11935date=2024-03-19T14:32:44
+shell/master/npc/mess/face_4.pngda5269ee4b2148c3b0dbf8c5759758afsize=11941date=2024-03-19T14:32:17
+shell/master/npc/mess/face_5.png373645039a326490bd9f41077565dbc0size=11735date=2024-03-19T14:31:51
+shell/master/npc/mess/face_6.pngfcf9344f474fad29e4d79712324b057bsize=11847date=2024-03-19T14:42:21
+shell/master/npc/mess/face_7.png064e45be6c4fd7c0b578df9d838816e3size=11871date=2024-03-19T14:36:03
+shell/master/npc/mess/face_8.png39dd35fafe15d59814d6df51b01dc4fcsize=11951date=2024-03-19T14:36:28
+shell/master/npc/mess/face_9.png33125d6157ee17dabe7af467a2db4037size=11765date=2024-03-19T14:36:51
+shell/master/npc/mess/mess_0.pngdb5e7ed696af1c1feb4543e6a8723bb4size=56961date=2024-03-19T18:26:30
+shell/master/npc/mess/wink_0.png22956aa55b701785abeaf8e5aae9a207size=4316date=2024-03-19T14:34:12
+shell/master/npc/mess/wink_1.pngbfe83620ad096c8b93612234aed381e7size=4329date=2024-03-19T14:34:52
+shell/master/npc/mess/wink_2.png98853dcece3cd697bca8f2f9330ad05esize=4316date=2024-03-19T14:34:31
+shell/master/npc/mess/wink_3.pnge7bd7ca796e948188159c28a8c0e6741size=4222date=2024-03-19T14:35:20
 shell/master/npc/yeying/body.pngaba206037c7f0396da20343dd23c7a53size=26587date=2024-01-11T18:25:24
 shell/master/npc/yeying/eye_0.png11d95694e3c8c4cff2e03bf67781a348size=2333date=2024-01-11T18:25:24
 shell/master/npc/yeying/eye_1.png5f5970ad076f8677996a1dceb79ba30dsize=2013date=2024-01-11T18:25:24
@@ -1556,37 +1507,33 @@ shell/master/npc/yeying/face_1.png032d845c95260f847b41aac536118e94size=1001da
 shell/master/npc/yeying/face_2.png44c8fe658e7a3f672843aaabf9acad09size=858date=2024-01-11T18:25:25
 shell/master/npc/yeying/hair.png85330e305a4436208dcef8ac34537353size=24350date=2024-01-11T18:25:25
 shell/master/npc/yeying/pad.pnge774de4b41129c615dc089374698881dsize=6714date=2024-01-11T18:25:25
-shell/master/origin000.pngffd6435f40d6c02fc199848a8dba01d1size=759872date=2023-06-05T09:22:06
 shell/master/outside/dispatch.pngbf05d226fc67013ef0db5ebf2ef8a429size=9629date=2024-01-08T15:23:28
 shell/master/outside/spa1.png4a9af2ffad3de27d821273b197168bb7size=60807date=2024-01-10T22:47:31
+shell/master/outside/spa1_0.pngb057abe3a99b150df585105ed3af968dsize=33679date=2024-01-22T17:16:33
 shell/master/outside/spa1_2.png18507285f4b4d3b8ef8bd36f8ca39055size=62310date=2024-01-10T22:47:31
 shell/master/outside/spa1_3.png1122f3d82170a40607f968884de036f0size=63532date=2024-01-10T22:47:32
 shell/master/outside/spa2.png62467f8238195583ddb2adca5e713a1fsize=57211date=2024-01-10T22:47:32
 shell/master/outside/spa3.png91b1de3857e8df2026ced4d1647800absize=62725date=2024-01-10T22:47:32
+shell/master/outside/spa3_0.png4a4776562d6ce87cacd646a7231511a7size=34482date=2024-01-22T17:16:33
 shell/master/outside/surface2200.png959c8e898ae1bbd00f3a9f1cb8bdfe0esize=55221date=2023-03-25T06:59:26
 shell/master/outside/surface2201.png8e48d28a956ac26c5298da6f0165a7cesize=48052date=2023-03-25T06:59:26
 shell/master/outside/surface2202.png63148398c00bd12ec9a10ef5189a0469size=52220date=2023-03-25T06:59:26
 shell/master/readme.txtf5d14fdfcc2f39ccc543f312bf55ff24size=45date=2023-02-04T02:07:36
 shell/master/surface0000.png63f32bfdc46245707713e26c95e28fe2size=58462date=2023-05-03T08:03:46
 shell/master/surface0010.pnge6a500683d6db62b0f51b74af83fe170size=72171date=2023-10-29T02:36:14
-shell/master/surface2200.png959c8e898ae1bbd00f3a9f1cb8bdfe0esize=55221date=2023-03-25T06:59:26
-shell/master/surface2201.png8e48d28a956ac26c5298da6f0165a7cesize=48052date=2023-03-25T06:59:26
-shell/master/surface2202.png63148398c00bd12ec9a10ef5189a0469size=52220date=2023-03-25T06:59:26
-shell/master/surface3100.pngae6b78b8af7b7e7fdf4db060e35a69desize=64190date=2023-01-20T01:09:26
-shell/master/surface3110.png8027177713eda83cb9bc41c83f582246size=2859date=2023-01-20T01:09:26
-shell/master/surfaces.txt61e6d61a5415463ecab3bc53e28404e2size=19078date=2024-01-12T18:44:38
+shell/master/surfaces.txt8a231a6107b687e9aab050beca64ccddsize=19383date=2024-03-20T14:17:25
 shell/master/surfaces_10.txt9ada727c35a9a7baa8f93374dcab2484size=4710date=2024-01-12T14:07:07
-shell/master/surfaces_11.txt9a42fec5f637e9dfdbafcbe00973ee26size=8341date=2024-01-12T18:32:58
+shell/master/surfaces_11.txt5caf75eb59143875d31c84a0b5ab8357size=8731date=2024-03-06T03:35:18
 shell/master/surfaces_2.txtd157cff4955160f89f3ff5eec02ce3e8size=10800date=2024-01-11T16:38:13
-shell/master/surfaces_3.txt79a0eac827f73df1bcdec5b9645c8f70size=1568date=2024-01-11T18:48:26
-shell/master/surfaces_5.txt0804390432655e8af6f927186c7d7df4size=57272date=2024-01-12T15:46:31
+shell/master/surfaces_3.txtd7b88935bdb51d0e754e2cb5ec817b94size=3474date=2024-03-20T10:26:10
+shell/master/surfaces_5.txtccec894a04670ff6a4c4b166870f4c06size=67676date=2024-03-06T03:31:34
 shell/master/surfaces_50.txt088e6c61f78a6c2c6021cdd01b6aa60asize=6222date=2024-01-12T15:46:16
-shell/master/surfaces_51.txtfc8507dcd58da10e79168b92fe224140size=12378date=2024-01-12T15:19:48
+shell/master/surfaces_51.txt33318d9342cb9066c719aab8ab350782size=12887date=2024-03-06T04:02:46
 shell/master/surfaces_55.txtee183878a30a6d9a93bb7bdee86f9e2bsize=527date=2023-12-06T15:47:54
-shell/master/surfaces_56.txt16aef9824b87a1057ff90cb3351cf8b3size=7990date=2023-12-18T14:23:58
-shell/master/surfaces_75.txtbff1a580039d9aee4bed078fabe68f9esize=9361date=2023-12-06T15:47:46
-shell/master/surfaces_8.txt16a5ee0a721bb3e3c19b52c9e3e468d9size=240date=2024-01-10T22:49:53
-shell/master/surfacetable.txt2b0848c7f19640b1430719a7f459d199size=691date=2023-12-26T02:27:17
+shell/master/surfaces_56.txt6167dd2f71df87e4f0e200870b93aac5size=8244date=2024-01-16T18:19:40
+shell/master/surfaces_75.txt03ecc81f4ee4d00d6246f1dfa8ca8c1asize=9484date=2024-01-16T18:17:28
+shell/master/surfaces_8.txteb419c7ba6fc6be6ccf455bc33c679b7size=476date=2024-01-22T17:17:01
+shell/master/surfacetable.txt1ff2eba0898171786a37e0e9212d53bdsize=795date=2024-03-01T04:49:08
 shell/master/thumbnail.png29e01d08887969ccbacfaa4bfe3a0459size=117923date=2024-01-11T20:53:49
 shell/master/thumbnail.pnr2a06e39b45497301dcd56adea5a10aa3size=8537date=2022-10-09T16:09:54
 thumbnail.pnr64ce4f53dfbdadaa7bf5841461a70d70size=121265date=2024-01-13T18:18:46
