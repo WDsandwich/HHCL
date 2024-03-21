@@ -1,5 +1,5 @@
 charset,Big5
-file,delete.txt27bbd581b590b2c0da6a870af84a6cbesize=17date=2024-03-21T05:41:20
+file,delete.txt27bbd581b590b2c0da6a870af84a6cbesize=17date=2024-03-21T13:58:05
 file,developer_options.txt4b1304ebf073ec620ffc36efd32b065csize=158date=2024-03-21T12:29:54
 file,etc/readme-aya.txtca7ca11cf43709352523e72259116a8asize=588date=2023-12-14T09:44:24
 file,etc/readme-tama.txtf3090c2cd5e4e396cf948be4a5756825size=4063date=2023-12-14T09:44:24
@@ -11,7 +11,7 @@ file,ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641
 file,ghost/master/dic/event/EnevtTool.dicf9db97669ac28772c380b1acd9245663size=7449date=2024-03-02T16:03:16
 file,ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
 file,ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
-file,ghost/master/dic/event/battle.dic688f7ea1a3dd82260e7319553f5628d7size=60554date=2024-03-21T12:13:32
+file,ghost/master/dic/event/battle.dica788ff1ad892cbc5afd2f673ae67b777size=60465date=2024-03-21T13:55:36
 file,ghost/master/dic/event/chat.dic6eedc70131e7ca63637e01087cc1bf47size=219date=2023-12-27T02:10:09
 file,ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
 file,ghost/master/dic/event/cumulative.dic7e2a91b2cb76a01f0f21c7c66d6cd715size=9531date=2024-02-19T08:43:40
@@ -19,26 +19,26 @@ file,ghost/master/dic/event/database.dice7fafdb82c099f69f54c50e9aa875bc1size=1
 file,ghost/master/dic/event/date.dicb3255b239a199d1f6b24e05e7acbfff0size=187date=2024-02-01T23:23:13
 file,ghost/master/dic/event/dispatch.dicba6be8effe09310cab04a5bbe4343f04size=4902date=2024-02-08T20:53:53
 file,ghost/master/dic/event/dressingroom.dicdbbfa3b895d91e9863956baae43a6844size=26821date=2024-03-19T16:37:42
-file,ghost/master/dic/event/dye.dic96507185a16a36ef78e889ccd3034c7fsize=8295date=2024-03-02T16:03:16
+file,ghost/master/dic/event/dye.dic1ef2e66d3bd3a853db3dd2f245a1fb9bsize=8289date=2024-03-21T13:53:01
 file,ghost/master/dic/event/file.dic511b49e6bb402f4572a709a14ad7b7f4size=2434date=2023-01-18T11:23:40
 file,ghost/master/dic/event/forge.dic6c1e48d198702ba0e69d5a3c4b4af3ebsize=8639date=2024-03-20T23:32:34
 file,ghost/master/dic/event/game.dic704de5a079321acf449b0be85db56116size=13242date=2024-03-15T05:37:23
 file,ghost/master/dic/event/history.dicf70fa21b873c849ba399b4da4ba10e60size=3022date=2024-02-15T11:11:58
-file,ghost/master/dic/event/hotkey.dic56c2f000a4b6f0969b2db2feb46b14e8size=6350date=2024-04-21T09:11:27
+file,ghost/master/dic/event/hotkey.dic449c1e84441285e62b8e08e561e27845size=6407date=2024-03-21T13:09:07
 file,ghost/master/dic/event/illustrated.dic6c3031c7ddd063b0ed4898c239a8f887size=11481date=2024-02-24T15:13:53
 file,ghost/master/dic/event/intimacy.dic55bb6d66058d4b84ff62a90e9ce2f2e3size=703date=2023-09-05T01:21:52
 file,ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716date=2024-03-21T07:48:42
 file,ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 file,ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 file,ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
-file,ghost/master/dic/event/office.dicb3fe5b1f93be43a85192a3a980844960size=12871date=2024-03-21T11:35:32
+file,ghost/master/dic/event/office.dic847e5d0924118a51bca3bf0ab217d1d3size=12830date=2024-03-21T16:35:51
 file,ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 file,ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 file,ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
 file,ghost/master/dic/event/test.dic4ea75aac0b701539c1f6113f42329b3esize=1067date=2024-02-08T21:22:22
 file,ghost/master/dic/event/time.dic69904bc77e8d6acfbe87d5126815f0a8size=7721date=2024-03-01T03:51:36
-file,ghost/master/dic/event/trade.dic8732cb79a3b535846eb54d6a769ce776size=37345date=2024-04-21T07:59:44
-file,ghost/master/dic/event/tutorial.dic16927429e43b47a526efc147a053e3e7size=5190date=2024-03-20T14:42:41
+file,ghost/master/dic/event/trade.dica93d5645f91301a801c12f8576168398size=37347date=2024-03-21T14:00:43
+file,ghost/master/dic/event/tutorial.dic7299fede805007b064da164a7f559d38size=5183date=2024-03-21T13:56:03
 file,ghost/master/dic/excel/cloth.dicfa08159690e591c50d312581b2208bcdsize=2201date=2024-01-01T14:48:06
 file,ghost/master/dic/list/battle.txt45daf4226afe9030e201f3a7f833a50fsize=1067date=2023-12-18T02:45:56
 file,ghost/master/dic/list/chat_choise.dicceeaae655bfa2a1347220798f6b4ba9fsize=269date=2023-12-27T00:45:44
@@ -49,10 +49,10 @@ file,ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562si
 file,ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
 file,ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 file,ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-file,ghost/master/dic/normal/yaya_etc.dic9fa2fe5f96c08e8e88bc57512e99961asize=17691date=2024-03-21T06:50:41
+file,ghost/master/dic/normal/yaya_etc.dica1f6c6dc4dee0edbec2541c39ee9a6dasize=18559date=2024-03-21T14:20:03
 file,ghost/master/dic/normal/yaya_menu.dicb48de5ac75944ef4305455031f420ceesize=14873date=2024-03-13T23:01:22
 file,ghost/master/dic/normal/yaya_mouse.dicf481f56a7a0c17d513f49506f69027b6size=21205date=2024-03-13T23:08:24
-file,ghost/master/dic/normal/yaya_string.dic35e4c53288c4bff6d57239125ec8b3desize=3496date=2024-01-11T19:54:32
+file,ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
 file,ghost/master/dic/normal/yaya_tmpl_util.dic76da54cee0370253c317b3e3a99a46f9size=8577date=2024-01-31T03:03:23
 file,ghost/master/dic/normal/yaya_word.dic50490502fad44c172aad70ef0129d7fbsize=8765date=2024-02-19T23:02:05
 file,ghost/master/dic/system/_loading_order.txtd2a7d2ad20413596ee9aba0ebdb5543csize=39date=2023-12-14T09:44:24
@@ -61,7 +61,7 @@ file,ghost/master/dic/system/yaya_base/compatible.dic4f8b1e8c8c08dc44e70b1bd4f5
 file,ghost/master/dic/system/yaya_base/config.dicd07874f4b1ba03ba111df8f2fa3cd6dbsize=2592date=2023-12-14T09:44:24
 file,ghost/master/dic/system/yaya_base/optional.dicff4da728a656a8aa6a38939e654c51f2size=9953date=2023-12-14T09:44:24
 file,ghost/master/dic/system/yaya_base/shiori3.dic03d892b84cb33d77167ccb74308ebb37size=55026date=2023-12-14T09:44:24
-file,ghost/master/icon.ico218f3c6ba99e94b020dc54256f3814d3size=1150date=2022-12-18T18:05:22
+file,ghost/master/icon.ico1488821d7c5c8db61aae4ae8ec78fb54size=4286date=2024-03-21T15:17:47
 file,ghost/master/img/B_C.pnga2aadc2dd7f35f0f9cec662d635cfe86size=460date=2017-08-15T07:48:36
 file,ghost/master/img/BackIcon.pnge690497e257cb58ea319ae6d8a6c5906size=281date=2022-12-25T01:53:40
 file,ghost/master/img/CancelIcon.png9fdb8af42258285de7bb7af681d9f270size=321date=2022-12-25T01:50:52
@@ -533,9 +533,6 @@ file,ghost/master/img/store/commodity/energydrink.png327b4e32337cbc429c68c965d4
 file,ghost/master/img/store/commodity/energydrink_18px.png2d364c09d3e3cc6efd0bba2fc0d5632asize=814date=2024-01-02T14:05:08
 file,ghost/master/img/store/cosplay/001.HC.00_003.¦aº»¤ü-ÁÉ§B¬¥´µ.png6c690d398b02072cd49bae1caa1a44b0size=8675date=2023-07-24T17:34:10
 file,ghost/master/img/store/cosplay/002.HL.00_003.¦â¼¤´cÅ]-²ö¸¦´µ.pnge61f9b01e3c7dd3eb22546eed96357e4size=11918date=2023-07-24T17:29:18
-file,ghost/master/img/store/cosplay_1.png49b82486f6ee5d3bc8c18fa675ae8280size=1097date=2023-07-16T04:19:46
-file,ghost/master/img/store/cosplay_2.png6585cfa0e44c356c38fb30e2d1b382fcsize=886date=2023-07-16T04:20:08
-file,ghost/master/img/store/cosplay_3.png388f758ce07cf6f4eeb818ae9a776019size=812date=2023-07-16T04:20:28
 file,ghost/master/img/store/cosplay_icon/001.HC.00_003.¦aº»¤ü-ÁÉ§B¬¥´µ.png49b82486f6ee5d3bc8c18fa675ae8280size=1097date=2023-07-16T04:19:46
 file,ghost/master/img/store/cosplay_icon/002.HL.00_003.¦â¼¤´cÅ]-²ö¸¦´µ.png6585cfa0e44c356c38fb30e2d1b382fcsize=886date=2023-07-16T04:20:08
 file,ghost/master/img/store/dressingroom.png8892d95c3a36ebabe9e01000e320aab3size=583date=2023-07-15T15:27:40
@@ -617,12 +614,12 @@ file,ghost/master/sound/effect/grind.MP35c320ad5ffe5b5206aa19406b4290611size=3
 file,ghost/master/sound/effect/interface1.mp375d3175779e5c078025b5b05abd237d8size=10813date=2011-04-22T17:52:14
 file,ghost/master/sound/effect/interface2.mp367ad5e07480adb3a29d87c323e333065size=21262date=2011-03-03T06:08:12
 file,ghost/master/sound/effect/interface3.mp37f23bdaf94d3c43bbdb17d6db8171643size=21262date=2011-03-03T06:08:06
+file,ghost/master/sound/enemy/Katana no soburi 1.mp321f3a8304c864b26a6664b990377f8a5size=30092date=2024-02-19T19:59:36
+file,ghost/master/sound/enemy/Muchi de kogeki 1.mp3725d756402bf40b663a31458f541cb22size=14418date=2023-07-31T18:22:49
+file,ghost/master/sound/enemy/Muchi de kogeki 2.mp374e752f17cd8d93814a6d614ed00b967size=15672date=2024-02-19T20:01:32
 file,ghost/master/sound/enemy/swing.mp387bfb36120b6c896d1850e55ba8479bfsize=11858date=2011-03-03T06:23:57
 file,ghost/master/sound/enemy/swing2.mp31372401e429c0b597a14108059610afdsize=8723date=2011-03-03T06:25:26
 file,ghost/master/sound/enemy/swing3.mp31f6a1db294282b3a7564b61e33c03462size=8723date=2011-03-03T06:27:26
-file,ghost/master/sound/enemy/sword practice swing 1.mp321f3a8304c864b26a6664b990377f8a5size=30092date=2024-02-19T19:59:36
-file,ghost/master/sound/enemy/Ã@?§ð?1.mp3725d756402bf40b663a31458f541cb22size=14418date=2023-07-31T18:22:49
-file,ghost/master/sound/enemy/Ã@?§ð?2.mp374e752f17cd8d93814a6d614ed00b967size=15672date=2024-02-19T20:01:32
 file,ghost/master/sound/exc/01 [HC]51-no.MP34f7e932202aa9867899873b190324801size=17604date=2023-05-27T17:06:32
 file,ghost/master/sound/exc/01 [HL]06-(pen)yaa.MP3585ef1fc599ef6104dc38da0b3f67c4esize=22619date=2023-05-27T03:59:44
 file,ghost/master/sound/exc/01 [HL]07-zezeze.MP3468f11a55bc6d1d045e5760c8559d37asize=10499date=2023-05-27T04:02:24
@@ -706,7 +703,18 @@ file,ghost/master/sound/npc/mess/talk_05.mp385fa6b72a7debcd33fb27aa6df38bdc5si
 file,ghost/master/sound/npc/mess/talk_06.mp346ad87779874ded3d1efe0151d761248size=208349date=2024-03-15T04:03:49
 file,ghost/master/sound/npc/mess/talk_07.mp3cce03b8d0099c1bc433fabcf26a9ec07size=171986date=2024-03-15T04:06:59
 file,ghost/master/sound/sfx/46_Poison_01.mp3e721dff60a658ea226abfdddea45d5d0size=82709date=2022-02-17T21:11:02
+file,ghost/master/sound/sfx/Bipu-on 3.mp3b3ec72a800d95a75ed89529bd8668b9dsize=26957date=2023-07-31T13:20:08
+file,ghost/master/sound/sfx/Geji kaifuku 2.mp3c6dda30821495808ca0505d0c407f943size=34480date=2023-07-31T03:29:32
+file,ghost/master/sound/sfx/Kikku no suburi 1.mp327c6ff28d806187c24984064435a133csize=25920date=2023-07-31T13:07:06
+file,ghost/master/sound/sfx/Kikku no suburi 2.mp3320d2bccd686570796aefa980041499bsize=25920date=2023-07-31T13:07:30
+file,ghost/master/sound/sfx/Kikku no suburi 3.mp35ed1adce2b3fa3d9c0f9fdd77f07d8e2size=25920date=2023-07-31T13:07:32
 file,ghost/master/sound/sfx/LockedDoorHandleJiggle.mp3bb38768d82da7978f5a098b84460cb15size=39448date=2017-05-18T06:57:52
+file,ghost/master/sound/sfx/Menyu o hiraku 2.mp3c76c35db34c98b29b925df3cef84f2c8size=23195date=2023-07-31T03:29:14
+file,ghost/master/sound/sfx/Panchi no suburi 1.mp3662470ee7f87dc93a3530889cd6dade6size=25920date=2023-07-31T13:07:00
+file,ghost/master/sound/sfx/Panchi no suburi 2.mp3d1dabd461cfca9748ef409b3f2a306e0size=25920date=2023-07-31T13:07:04
+file,ghost/master/sound/sfx/Panchi no suburi 3.mp3ce2188c1795899f051aeb60317ff4b15size=25920date=2023-07-31T13:08:32
+file,ghost/master/sound/sfx/Taitoru hyoji.mp39af4f8fce46a0935516aa6fa6259ce38size=43257date=2023-07-31T04:27:12
+file,ghost/master/sound/sfx/Yumiya ga sasaru.mp38cabd6bc1d56aff5c46f3a7b79d96410size=23195date=2023-07-31T03:22:18
 file,ghost/master/sound/sfx/battle msg.mp36e701a1d7ea652abeb110e4dafde21fdsize=27072date=2023-08-01T08:29:17
 file,ghost/master/sound/sfx/battle msg2.mp3e404235f8cf1f2b67f54159212faac81size=24192date=2024-02-19T19:44:52
 file,ghost/master/sound/sfx/blacksmith_1.mp3a095f3ebc720c5f715e34cff36ffb31fsize=21987date=2024-03-15T05:25:25
@@ -720,26 +728,13 @@ file,ghost/master/sound/sfx/door chime1.mp3676515dc63773a69acd699ae839942f4siz
 file,ghost/master/sound/sfx/door chime2.mp331246238e2b9a0de734cbd1f27c32fcesize=18009date=2024-01-02T17:29:45
 file,ghost/master/sound/sfx/glassbell.mp3bdaf2fae568ca528c5d77dd1639a91f0size=98264date=2014-03-30T02:23:28
 file,ghost/master/sound/sfx/gravity magic1.mp3e6e1179a7bdfa939d2e77df4dde9c13csize=44511date=2023-07-31T14:43:18
+file,ghost/master/sound/sfx/kingaku hyouzi.mp31d18cc736d33961bb5522d7211f8742csize=46392date=2023-06-09T04:51:32
 file,ghost/master/sound/sfx/metal punch1.mp3aaab0fe1bf7134ac2ae1ef2e99149a72size=26496date=2023-07-31T12:25:50
 file,ghost/master/sound/sfx/metal punch2.mp3acc480eaa6a013f98e9748c7393b20f5size=26496date=2023-07-31T12:25:52
 file,ghost/master/sound/sfx/metal punch3.mp3908010207dff6c48ab2182ee0301d481size=26496date=2023-07-31T12:25:56
 file,ghost/master/sound/sfx/power charge.mp3cd34e03aaf34424191b13b8a79d0902asize=25703date=2023-07-31T13:24:40
 file,ghost/master/sound/sfx/shakiin3.mp3037677422857d015264d5434b5f9fa29size=58931date=2023-07-31T04:29:08
 file,ghost/master/sound/sfx/snd_use_map.mp38f6b0128c7ca64fcbcec0e58fa77d059size=63433date=2023-12-23T08:31:29
-file,ghost/master/sound/sfx/?ª÷?¸¨??2.mp3c9875a25a23e8dbf85b3be712bf9348esize=34480date=2024-01-02T17:28:41
-file,ghost/master/sound/sfx/????¯À®¶?1.mp327c6ff28d806187c24984064435a133csize=25920date=2023-07-31T13:07:06
-file,ghost/master/sound/sfx/????¯À®¶?2.mp3320d2bccd686570796aefa980041499bsize=25920date=2023-07-31T13:07:30
-file,ghost/master/sound/sfx/????¯À®¶?3.mp35ed1adce2b3fa3d9c0f9fdd77f07d8e2size=25920date=2023-07-31T13:07:32
-file,ghost/master/sound/sfx/???¦^´_2.mp3c6dda30821495808ca0505d0c407f943size=34480date=2023-07-31T03:29:32
-file,ghost/master/sound/sfx/?????§ð?.mp3e60c0001a0ea839a8d05db8ddc7e5e9esize=15672date=2023-07-31T03:21:58
-file,ghost/master/sound/sfx/????ªí¥Ü.mp39af4f8fce46a0935516aa6fa6259ce38size=43257date=2023-07-31T04:27:12
-file,ghost/master/sound/sfx/????¯À®¶?1.mp3662470ee7f87dc93a3530889cd6dade6size=25920date=2023-07-31T13:07:00
-file,ghost/master/sound/sfx/????¯À®¶?2.mp3d1dabd461cfca9748ef409b3f2a306e0size=25920date=2023-07-31T13:07:04
-file,ghost/master/sound/sfx/????¯À®¶?3.mp3ce2188c1795899f051aeb60317ff4b15size=25920date=2023-07-31T13:08:32
-file,ghost/master/sound/sfx/???­µ3.mp3b3ec72a800d95a75ed89529bd8668b9dsize=26957date=2023-07-31T13:20:08
-file,ghost/master/sound/sfx/?????¶}?2.mp3c76c35db34c98b29b925df3cef84f2c8size=23195date=2023-07-31T03:29:14
-file,ghost/master/sound/sfx/¤}¥Ú?¨ë??.mp38cabd6bc1d56aff5c46f3a7b79d96410size=23195date=2023-07-31T03:22:18
-file,ghost/master/sound/sfx/ª÷ÃBªí¥Ü.mp31d18cc736d33961bb5522d7211f8742csize=46392date=2023-06-09T04:51:32
 file,ghost/master/sound/short/[HL]02-you jerk.MP3c10b2a911caafd8852c6269c0c1ff344size=62743date=2023-05-27T03:44:28
 file,ghost/master/sound/short/[HL]03-dis.MP37016b1f6436c7fa2c4d8c3963bf67dc3size=14678date=2023-05-27T03:48:56
 file,ghost/master/sound/short/[HL]08-qu dis.MP3e8a688da41f59c29ec38b2e1d9c13075size=9245date=2023-05-27T04:06:58
@@ -824,7 +819,7 @@ file,ghost/master/yaya.dll49b388973209005e5586f9e54b008bb1size=880640date=202
 file,ghost/master/yaya.txtffdfc6b123b0522116b4a757f8c1b4fasize=2071date=2024-01-13T16:56:11
 file,ghost/master/yaya_emerg.txtd9ee78e2068ff80d809325bd4fa8228bsize=1055date=2023-12-14T09:44:24
 file,install.txtcafe02f0c13a842618516fa4d1b1b05bsize=89date=2024-01-15T00:13:28
-file,readme.txteeff0e7022c0e1ab05325ede048b1690size=713date=2024-03-20T03:41:26
+file,readme.txtd5e6e31de234a6d734e76e8f204a58dcsize=523date=2024-03-21T14:15:05
 file,shell/master/battle/background/DisSea.png5002cc56884f051af389211abbbff62bsize=199298date=2023-05-18T19:37:54
 file,shell/master/battle/background/ParmaRuins.png726633e2c6beeccdea5aeb4c84619189size=167879date=2023-05-18T19:37:54
 file,shell/master/battle/background/RustRiver.pnga84a90752218a6b6875f63da173eef1csize=153670date=2023-05-18T19:37:54
