@@ -104,7 +104,7 @@ OnRedemptionCode
 		}
 		*/
 	}
-	elseif reference0=="lingwei"
+	/*elseif reference0=="lingwei"
 	{	
 		if compensation[2]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"
 		else
@@ -117,7 +117,7 @@ OnRedemptionCode
 		
 		}
 		
-	}
+	}*/
 	/*elseif reference0=="grass"
 	{	
 		if compensation[3]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"
