@@ -349,7 +349,7 @@ SecretChamber
 		hypercube+=1800
 		cum_gain_hypercube[1]+=1800
 		--
-		"\p[7]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[CANCEL_Button]%QTYimg('x')\__q\n[380]/
+		"\p[7]\s[-1]\![quicksession,true]\![set,balloontimeout,0] \_l[236,-25]\__q[CANCEL_Button]%QTYimg('x')\__q\n[380]/
 		\f[align,center]領取了月薪【\f[color,#97CBFF]1,800異方晶\f[default]】"
 	}
 }

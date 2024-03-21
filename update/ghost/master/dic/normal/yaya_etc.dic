@@ -59,7 +59,7 @@ OnInstallComplete
 	if TOINT(REPLACE(version_code,",",""))<9023
 	{	cum_cost_discoin[3]=0	}
 	if TOINT(REPLACE(version_code,",",""))<9026
-	{	holiday_celebrated_store[3]==""	}
+	{	holiday_celebrated_store[3]=""	}
 	if TOINT(REPLACE(version_code,",",""))<9028
 	{	void FDEL('dic\normal\yaya_homeurl.dic')	
 		void FDEL('dic\emerg\yaya_homeurl.dic')

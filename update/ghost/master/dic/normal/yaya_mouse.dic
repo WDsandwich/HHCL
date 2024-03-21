@@ -697,7 +697,25 @@ MouseDoubleClick3
 	else
 		"\p[3]\s[-1]"
 }
-
+//視窗
+MouseDoubleClick4
+{	"\p[4]\s[-1]"
+	--
+	if first_boot_event<6 ; ChiefRegister
+	elseif EventArgv>0 ; MouseInEvent
+}
+MouseDoubleClick6
+{	"\p[6]\s[-1]"
+	--
+	if first_boot_event<6 ; ChiefRegister
+	elseif EventArgv>0 ; MouseInEvent
+}
+MouseDoubleClick7
+{	"\p[7]\s[-1]"
+	--
+	if first_boot_event<6 ; ChiefRegister
+	elseif EventArgv>0 ; MouseInEvent
+}
 //**********************************************************
 //----------------------------派遣----------------------------
 //**********************************************************

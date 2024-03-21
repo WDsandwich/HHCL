@@ -1,13 +1,18 @@
 //戰鬥模式
 StillInBattle
-{	case BattleMode
+{	
+	if BattleMode>=20 ; "\![raise,OnTutorial.Battle,%(BattleMode)]"
+	else
 	{
-		when 1 ; BattleMapChoose_Line
-		when 2 ; BattleWarning
-		when 3 ; EnemyHPCheck
-		when 4 ; NextWave
-		when 5 ; MissionComplete_MSG
-		when 10 ; BattleMapChoose_Line
+		case BattleMode
+		{
+			when 1 ; BattleMapChoose_Line
+			when 2 ; BattleWarning
+			when 3 ; EnemyHPCheck
+			when 4 ; NextWave
+			when 5 ; MissionComplete_MSG
+			when 10 ; BattleMapChoose_Line
+		}
 	}
 }
 
@@ -415,7 +420,7 @@ BattleWarning
 //戰鬥資訊視窗
 BattleInfoWindow
 {
-	"\n\![quicksession,true]\_l[-,50]"
+	"\n\![quicksession,true]\![set,choicetimeout,0]\_l[-,50]"
 	--
 	DividingLine2
 	--
