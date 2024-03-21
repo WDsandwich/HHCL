@@ -1,6 +1,6 @@
 charset,Big5
 file,delete.txt27bbd581b590b2c0da6a870af84a6cbesize=17date=2024-03-21T13:58:05
-file,developer_options.txt4b1304ebf073ec620ffc36efd32b065csize=158date=2024-03-21T12:29:54
+file,developer_options.txta50f012700ea4feb5cf0b858e838744asize=215date=2024-03-22T05:47:49
 file,etc/readme-aya.txtca7ca11cf43709352523e72259116a8asize=588date=2023-12-14T09:44:24
 file,etc/readme-tama.txtf3090c2cd5e4e396cf948be4a5756825size=4063date=2023-12-14T09:44:24
 file,etc/readme-yaya.txt92c88333a5b56e4bbc2aaff460afd676size=2154date=2023-12-14T09:44:24
@@ -11,7 +11,7 @@ file,ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641
 file,ghost/master/dic/event/EnevtTool.dicf9db97669ac28772c380b1acd9245663size=7449date=2024-03-02T16:03:16
 file,ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
 file,ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
-file,ghost/master/dic/event/battle.dica788ff1ad892cbc5afd2f673ae67b777size=60465date=2024-03-21T13:55:36
+file,ghost/master/dic/event/battle.dicb137d3af2e9b9411e60ba338f33e076bsize=60576date=2024-03-21T19:24:13
 file,ghost/master/dic/event/chat.dic6eedc70131e7ca63637e01087cc1bf47size=219date=2023-12-27T02:10:09
 file,ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
 file,ghost/master/dic/event/cumulative.dic7e2a91b2cb76a01f0f21c7c66d6cd715size=9531date=2024-02-19T08:43:40
@@ -31,14 +31,14 @@ file,ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716
 file,ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 file,ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 file,ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
-file,ghost/master/dic/event/office.dic847e5d0924118a51bca3bf0ab217d1d3size=12830date=2024-03-21T16:35:51
+file,ghost/master/dic/event/office.dicd22fb14b29a7eb998bb506170585d839size=12840date=2024-03-22T05:52:49
 file,ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 file,ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 file,ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
 file,ghost/master/dic/event/test.dic4ea75aac0b701539c1f6113f42329b3esize=1067date=2024-02-08T21:22:22
 file,ghost/master/dic/event/time.dic69904bc77e8d6acfbe87d5126815f0a8size=7721date=2024-03-01T03:51:36
 file,ghost/master/dic/event/trade.dica93d5645f91301a801c12f8576168398size=37347date=2024-03-21T14:00:43
-file,ghost/master/dic/event/tutorial.dic7299fede805007b064da164a7f559d38size=5183date=2024-03-21T13:56:03
+file,ghost/master/dic/event/tutorial.dic4cbe3788fadf4cb92e095227436fc7aesize=10459date=2024-03-22T05:44:43
 file,ghost/master/dic/excel/cloth.dicfa08159690e591c50d312581b2208bcdsize=2201date=2024-01-01T14:48:06
 file,ghost/master/dic/list/battle.txt45daf4226afe9030e201f3a7f833a50fsize=1067date=2023-12-18T02:45:56
 file,ghost/master/dic/list/chat_choise.dicceeaae655bfa2a1347220798f6b4ba9fsize=269date=2023-12-27T00:45:44
@@ -49,9 +49,9 @@ file,ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562si
 file,ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
 file,ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 file,ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-file,ghost/master/dic/normal/yaya_etc.dica1f6c6dc4dee0edbec2541c39ee9a6dasize=18559date=2024-03-21T14:20:03
-file,ghost/master/dic/normal/yaya_menu.dicb48de5ac75944ef4305455031f420ceesize=14873date=2024-03-13T23:01:22
-file,ghost/master/dic/normal/yaya_mouse.dicf481f56a7a0c17d513f49506f69027b6size=21205date=2024-03-13T23:08:24
+file,ghost/master/dic/normal/yaya_etc.dic758298d1d5929b503b273acd9a5f3ae7size=18558date=2024-03-22T05:41:29
+file,ghost/master/dic/normal/yaya_menu.dice1059184fcc3b00516b0123a7514a263size=14879date=2024-03-22T05:32:57
+file,ghost/master/dic/normal/yaya_mouse.dicf5a33cbd305a394111e3a7df95ea2040size=21555date=2024-03-22T05:36:57
 file,ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
 file,ghost/master/dic/normal/yaya_tmpl_util.dic76da54cee0370253c317b3e3a99a46f9size=8577date=2024-01-31T03:03:23
 file,ghost/master/dic/normal/yaya_word.dic50490502fad44c172aad70ef0129d7fbsize=8765date=2024-02-19T23:02:05
@@ -819,7 +819,7 @@ file,ghost/master/yaya.dll49b388973209005e5586f9e54b008bb1size=880640date=202
 file,ghost/master/yaya.txtffdfc6b123b0522116b4a757f8c1b4fasize=2071date=2024-01-13T16:56:11
 file,ghost/master/yaya_emerg.txtd9ee78e2068ff80d809325bd4fa8228bsize=1055date=2023-12-14T09:44:24
 file,install.txtcafe02f0c13a842618516fa4d1b1b05bsize=89date=2024-01-15T00:13:28
-file,readme.txtd5e6e31de234a6d734e76e8f204a58dcsize=523date=2024-03-21T14:15:05
+file,readme.txt43918be951166d5a5e7fef919ed49186size=627date=2024-03-22T05:52:39
 file,shell/master/battle/background/DisSea.png5002cc56884f051af389211abbbff62bsize=199298date=2023-05-18T19:37:54
 file,shell/master/battle/background/ParmaRuins.png726633e2c6beeccdea5aeb4c84619189size=167879date=2023-05-18T19:37:54
 file,shell/master/battle/background/RustRiver.pnga84a90752218a6b6875f63da173eef1csize=153670date=2023-05-18T19:37:54
