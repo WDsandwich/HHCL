@@ -1,0 +1,4 @@
+ghost/master/yaya_variable.cfg,nonar,noupdate
+ghost/master/profile/,nonar,noupdate
+ghost/master/dic/save_remark/,noupdate
+ghost/master/save/,nonar,noupdate
