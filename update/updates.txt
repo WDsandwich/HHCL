@@ -11,7 +11,7 @@ file,ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641
 file,ghost/master/dic/event/EnevtTool.dicf9db97669ac28772c380b1acd9245663size=7449date=2024-03-02T16:03:16
 file,ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
 file,ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
-file,ghost/master/dic/event/battle.dicb137d3af2e9b9411e60ba338f33e076bsize=60576date=2024-03-21T19:24:13
+file,ghost/master/dic/event/battle.dic0acc721670e1b9427fb3cc109ed4b388size=60636date=2024-03-22T13:52:03
 file,ghost/master/dic/event/chat.dic6eedc70131e7ca63637e01087cc1bf47size=219date=2023-12-27T02:10:09
 file,ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
 file,ghost/master/dic/event/cumulative.dic7e2a91b2cb76a01f0f21c7c66d6cd715size=9531date=2024-02-19T08:43:40
@@ -24,21 +24,21 @@ file,ghost/master/dic/event/file.dic511b49e6bb402f4572a709a14ad7b7f4size=2434
 file,ghost/master/dic/event/forge.dic6c1e48d198702ba0e69d5a3c4b4af3ebsize=8639date=2024-03-20T23:32:34
 file,ghost/master/dic/event/game.dic704de5a079321acf449b0be85db56116size=13242date=2024-03-15T05:37:23
 file,ghost/master/dic/event/history.dicf70fa21b873c849ba399b4da4ba10e60size=3022date=2024-02-15T11:11:58
-file,ghost/master/dic/event/hotkey.dic449c1e84441285e62b8e08e561e27845size=6407date=2024-03-21T13:09:07
+file,ghost/master/dic/event/hotkey.dic44bf215b27f7be583cc0254ca982ad8esize=5647date=2024-03-22T15:48:36
 file,ghost/master/dic/event/illustrated.dic6c3031c7ddd063b0ed4898c239a8f887size=11481date=2024-02-24T15:13:53
 file,ghost/master/dic/event/intimacy.dic55bb6d66058d4b84ff62a90e9ce2f2e3size=703date=2023-09-05T01:21:52
 file,ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716date=2024-03-21T07:48:42
 file,ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 file,ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 file,ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
-file,ghost/master/dic/event/office.dic14325eb000f7a34bf0c628346d960959size=12844date=2024-03-22T06:00:56
+file,ghost/master/dic/event/office.dic40bf1120bb748baffad143fe31e87e68size=12840date=2024-03-22T19:03:15
 file,ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 file,ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 file,ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
 file,ghost/master/dic/event/test.dic4ea75aac0b701539c1f6113f42329b3esize=1067date=2024-02-08T21:22:22
 file,ghost/master/dic/event/time.dic69904bc77e8d6acfbe87d5126815f0a8size=7721date=2024-03-01T03:51:36
 file,ghost/master/dic/event/trade.dica93d5645f91301a801c12f8576168398size=37347date=2024-03-21T14:00:43
-file,ghost/master/dic/event/tutorial.dic4cbe3788fadf4cb92e095227436fc7aesize=10459date=2024-03-22T05:44:43
+file,ghost/master/dic/event/tutorial.dic1c8d9f8924f5437e05014016fed23f5esize=18660date=2024-03-22T16:02:15
 file,ghost/master/dic/excel/cloth.dicfa08159690e591c50d312581b2208bcdsize=2201date=2024-01-01T14:48:06
 file,ghost/master/dic/list/battle.txt45daf4226afe9030e201f3a7f833a50fsize=1067date=2023-12-18T02:45:56
 file,ghost/master/dic/list/chat_choise.dicceeaae655bfa2a1347220798f6b4ba9fsize=269date=2023-12-27T00:45:44
@@ -49,7 +49,7 @@ file,ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562si
 file,ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
 file,ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 file,ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-file,ghost/master/dic/normal/yaya_etc.dic758298d1d5929b503b273acd9a5f3ae7size=18558date=2024-03-22T05:41:29
+file,ghost/master/dic/normal/yaya_etc.dica3ecb766707ce2d56845b177cea14557size=18643date=2024-03-22T19:02:28
 file,ghost/master/dic/normal/yaya_menu.dice1059184fcc3b00516b0123a7514a263size=14879date=2024-03-22T05:32:57
 file,ghost/master/dic/normal/yaya_mouse.dicf5a33cbd305a394111e3a7df95ea2040size=21555date=2024-03-22T05:36:57
 file,ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
@@ -101,6 +101,7 @@ file,ghost/master/img/battle/skill/HL0.png90619542d59c1c648644b562647547absize
 file,ghost/master/img/battle/skill/HL1.png262419b21718d39f30caf0c7fa907ca6size=953date=2024-01-17T23:31:44
 file,ghost/master/img/battle/skill/HL2.png6ffdf2aa0e02fccdb2dd5ea932733d7esize=1028date=2024-01-17T23:31:44
 file,ghost/master/img/battle/skill/skill_detail.png6ef8a71db48ee98c1a6eeac2d37d0ff8size=624date=2024-01-17T20:07:05
+file,ghost/master/img/battle/tutorial/32.jpg465d612277952e69e2d7b68352445560size=1858date=2024-03-22T06:56:17
 file,ghost/master/img/botton/IEIP0.pngabe7dc71b33418db016ee4c7c6d1777asize=467date=2024-02-20T23:29:18
 file,ghost/master/img/botton/IEIP1.png02ff8d37b4c9466c34cc4dbaddfc836fsize=447date=2024-02-20T23:29:31
 file,ghost/master/img/botton/IEIPa.png79f1d44820749f77524ef6cc2dbcf085size=424date=2024-02-20T23:30:00
@@ -713,6 +714,7 @@ file,ghost/master/sound/sfx/Menyu o hiraku 2.mp3c76c35db34c98b29b925df3cef84f2c
 file,ghost/master/sound/sfx/Panchi no suburi 1.mp3662470ee7f87dc93a3530889cd6dade6size=25920date=2023-07-31T13:07:00
 file,ghost/master/sound/sfx/Panchi no suburi 2.mp3d1dabd461cfca9748ef409b3f2a306e0size=25920date=2023-07-31T13:07:04
 file,ghost/master/sound/sfx/Panchi no suburi 3.mp3ce2188c1795899f051aeb60317ff4b15size=25920date=2023-07-31T13:08:32
+file,ghost/master/sound/sfx/Rinwonarasu.mp3697ecf0012fca1e942c9abbe2e60bd0csize=38592date=2024-03-22T11:10:31
 file,ghost/master/sound/sfx/Taitoru hyoji.mp39af4f8fce46a0935516aa6fa6259ce38size=43257date=2023-07-31T04:27:12
 file,ghost/master/sound/sfx/Yumiya ga sasaru.mp38cabd6bc1d56aff5c46f3a7b79d96410size=23195date=2023-07-31T03:22:18
 file,ghost/master/sound/sfx/battle msg.mp36e701a1d7ea652abeb110e4dafde21fdsize=27072date=2023-08-01T08:29:17
@@ -721,6 +723,7 @@ file,ghost/master/sound/sfx/blacksmith_1.mp3a095f3ebc720c5f715e34cff36ffb31fsi
 file,ghost/master/sound/sfx/blacksmith_2.mp3bf67c752d0f0fcc97cad49d4ad9da427size=21987date=2024-03-15T05:25:30
 file,ghost/master/sound/sfx/blacksmith_3.mp3b1681c02b9bfcf340c7a510b18da096esize=21987date=2024-03-15T05:25:35
 file,ghost/master/sound/sfx/blacksmith_4.mp3c2be2e4fd3b0fd8ee35c7323f6bbbe93size=21987date=2024-03-15T05:25:40
+file,ghost/master/sound/sfx/chin 2.mp3917a9c6c04821edf5cc895fb449547c6size=95920date=2024-03-22T11:07:12
 file,ghost/master/sound/sfx/chipquest.mp3d5fc460e8b28cc7ecaa5b351b3e5d978size=82591date=2014-03-30T02:11:03
 file,ghost/master/sound/sfx/decision button2.mp377a01f17c072473b9e6ff05c1ef3a1fbsize=27072date=2023-07-31T15:02:52
 file,ghost/master/sound/sfx/decision button38.mp379e56d0077df3ebf7cb4ad46bb091c4dsize=6614date=2023-07-31T13:36:04
@@ -732,6 +735,7 @@ file,ghost/master/sound/sfx/kingaku hyouzi.mp31d18cc736d33961bb5522d7211f8742c
 file,ghost/master/sound/sfx/metal punch1.mp3aaab0fe1bf7134ac2ae1ef2e99149a72size=26496date=2023-07-31T12:25:50
 file,ghost/master/sound/sfx/metal punch2.mp3acc480eaa6a013f98e9748c7393b20f5size=26496date=2023-07-31T12:25:52
 file,ghost/master/sound/sfx/metal punch3.mp3908010207dff6c48ab2182ee0301d481size=26496date=2023-07-31T12:25:56
+file,ghost/master/sound/sfx/paralyze.mp3eb3e23b1891e9e4c2db06a215de7f466size=29301date=2024-03-22T11:22:29
 file,ghost/master/sound/sfx/power charge.mp3cd34e03aaf34424191b13b8a79d0902asize=25703date=2023-07-31T13:24:40
 file,ghost/master/sound/sfx/shakiin3.mp3037677422857d015264d5434b5f9fa29size=58931date=2023-07-31T04:29:08
 file,ghost/master/sound/sfx/snd_use_map.mp38f6b0128c7ca64fcbcec0e58fa77d059size=63433date=2023-12-23T08:31:29
@@ -819,7 +823,7 @@ file,ghost/master/yaya.dll49b388973209005e5586f9e54b008bb1size=880640date=202
 file,ghost/master/yaya.txtffdfc6b123b0522116b4a757f8c1b4fasize=2071date=2024-01-13T16:56:11
 file,ghost/master/yaya_emerg.txtd9ee78e2068ff80d809325bd4fa8228bsize=1055date=2023-12-14T09:44:24
 file,install.txtcafe02f0c13a842618516fa4d1b1b05bsize=89date=2024-01-15T00:13:28
-file,readme.txt43918be951166d5a5e7fef919ed49186size=627date=2024-03-22T05:52:39
+file,readme.txt627822945d246ebdaedd926fc4a46babsize=627date=2024-03-22T18:14:15
 file,shell/master/battle/background/DisSea.png5002cc56884f051af389211abbbff62bsize=199298date=2023-05-18T19:37:54
 file,shell/master/battle/background/ParmaRuins.png726633e2c6beeccdea5aeb4c84619189size=167879date=2023-05-18T19:37:54
 file,shell/master/battle/background/RustRiver.pnga84a90752218a6b6875f63da173eef1csize=153670date=2023-05-18T19:37:54
@@ -848,6 +852,29 @@ file,shell/master/battle/cheif/BM_f3.png0e1a2fd339a4634c93627f10f5f8ff04size=6
 file,shell/master/battle/cheif/BM_m1.pngb749a4d7e64765596e37c87e5b053c12size=414date=2024-01-11T14:47:59
 file,shell/master/battle/dreamshadow.pngea8ada27f9d5e31bccbb0923e820e02bsize=90828date=2023-05-18T19:37:54
 file,shell/master/battle/dreamshadow_hurt.png8ffa62bcb054f35127e20b22ff1c8242size=86445date=2023-05-18T19:37:56
+file,shell/master/battle/effect/MC_01.png33ecb88fa25273e3d312495b45e64461size=42280date=2024-03-22T15:09:21
+file,shell/master/battle/effect/MC_02.pngdf75c75f44e105907ebdb72a5715b092size=39749date=2024-03-22T15:09:21
+file,shell/master/battle/effect/MC_03.png4cef2bc17602f282b4f8c7795cfd8a8fsize=38604date=2024-03-22T15:09:21
+file,shell/master/battle/effect/MC_04.pngda6985ecf4918b199b7bbc674a7c6197size=39670date=2024-03-22T15:09:21
+file,shell/master/battle/effect/MC_05.png11f00d62dd8d46143e97b9b11d6969fbsize=41156date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_06.png99662af0960c6033c1f46df561b87bf3size=45268date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_07.png0dc5aa07fc3ac3658e57bf7bd6427a0esize=45100date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_08.png505dd7182e54d392323cbd8dd5e8aa51size=45169date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_09.png0de804d5ad588ad4dc9c1fc808024c50size=45233date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_10.png29afa9110b4f60ec9613cd5185a67e24size=45153date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_11.pngf6e95378b01c8804ff08961f680ca5c6size=45189date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_12.png72855ab976e06eca7760d5ed002fb5ddsize=45014date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_13.pngdcf49dc4763f9522648c9287d88cd879size=45243date=2024-03-22T15:09:22
+file,shell/master/battle/effect/MC_14.png6a6633533ff53d2e42a3a2afd1a23730size=45271date=2024-03-22T15:09:23
+file,shell/master/battle/effect/MC_15.png13546ae14503ef7be16ce448b2af90d3size=45095date=2024-03-22T15:09:23
+file,shell/master/battle/effect/MC_16.png34ab4960bd91f7b9781b151d3290e683size=45158date=2024-03-22T15:09:23
+file,shell/master/battle/effect/MC_17.png50bcd5e5dcbd604661b4fc8c9a6d2546size=45160date=2024-03-22T15:09:23
+file,shell/master/battle/effect/MC_18.pnge0bca353453ea2070466cf6ce5451a01size=45095date=2024-03-22T15:09:23
+file,shell/master/battle/effect/MC_19.pnge0bca353453ea2070466cf6ce5451a01size=45095date=2024-03-22T15:09:23
+file,shell/master/battle/effect/MC_20.png1286085322c50d358946dde5eb67455asize=45238date=2024-03-22T15:09:24
+file,shell/master/battle/effect/MC_21.png1493412391cd721ff36003d1292081cfsize=45147date=2024-03-22T15:09:24
+file,shell/master/battle/effect/MC_22.pngcd95319f3bdaf75a336296e1b72d769bsize=45308date=2024-03-22T15:09:24
+file,shell/master/battle/effect/MC_23.png99662af0960c6033c1f46df561b87bf3size=45268date=2024-03-22T15:09:24
 file,shell/master/battle/effect/atkUP.png43f3ab2d1bf163a0ef2ae6cc99b407b5size=19050date=2023-07-24T08:37:22
 file,shell/master/battle/effect/atkUP0.pngb2210004ec8b6fff5ecef4cc0970f2d2size=399date=2023-07-24T09:34:08
 file,shell/master/battle/effect/defUP.png1b5f19c5a030426fb641e3146800f113size=50487date=2023-07-24T08:38:18
@@ -1207,6 +1234,16 @@ file,shell/master/battle/hella_atk.pngd61b823ae982b4e9a9c421b2e7f63110size=200
 file,shell/master/battle/hella_idle.png1d296dece66584749a1a9700dc09b63asize=22107date=2023-06-09T08:11:10
 file,shell/master/battle/hit/hit0.png5b9985a45b06710ab334c1d733f020b1size=3215date=2023-05-19T12:50:50
 file,shell/master/battle/hit/hit1.png22caa198d52edda4e8cdc70e888fc3e8size=2486date=2023-05-19T12:51:14
+file,shell/master/battle/skill/C_Paralyze_01.pngce26679f64237b2891e5e0bc69dcbaffsize=2314date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_02.png799b88965570fcc09cff3e969cd9bfdesize=3682date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_03.png9fe3e665de95f0d939a2ccc6159352bcsize=4201date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_04.pngf6e2478655598a8ae7b32dc60cb84466size=3662date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_05.png4e74fb231bbbea221e123f8b61d434d9size=2293date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_08.png121214353b9ce56f4bb0fcc9cdd27d03size=11577date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_09.png1b5c69c902870ac422bb095dc1c93e6esize=19613date=2024-03-22T13:13:20
+file,shell/master/battle/skill/C_Paralyze_10.png31f03e67fa75a5edead82e68bb50aeafsize=20424date=2024-03-22T13:13:21
+file,shell/master/battle/skill/C_Paralyze_11.pngf3cbac558c530f55a37c5840f5632b5asize=21563date=2024-03-22T13:13:21
+file,shell/master/battle/skill/C_Paralyze_12.pngb5354e713e3f17e95a28429c8ab26900size=21938date=2024-03-22T13:13:21
 file,shell/master/battle/skill/HC_atk_01.png904bea3066b1945108e8d1802e30503bsize=6068date=2023-07-15T01:55:28
 file,shell/master/battle/skill/HC_atk_02.png17e8cd7ea6c26ef9fc7a9e094f717c20size=12189date=2023-07-15T01:55:28
 file,shell/master/battle/skill/HC_atk_03.png2f737823611cd2ad78d67a2d683c7a24size=13379date=2023-07-15T01:55:28
@@ -1337,6 +1374,8 @@ file,shell/master/dressing/hella/bottomC_1_b.png9a2c258d502c731920750a28944b46f
 file,shell/master/dressing/hella/bottom_00.pngbc161dcefd5484bf4eee18e97fd891b5size=6531date=2023-10-29T03:41:38
 file,shell/master/dressing/hella/bottom_1.png839a4d805480522d941e732e5a93ad2dsize=13291date=2023-10-29T03:41:38
 file,shell/master/dressing/hella/bottom_3.png9f570c8ffbf21a9eaa2f51fc58c5f962size=28970date=2023-12-27T06:22:04
+file,shell/master/dressing/hella/bottom_6.png6126cf462a63e8bbd1ad02a2c1006d5dsize=28314date=2024-03-22T18:42:38
+file,shell/master/dressing/hella/bottom_7.png5957adec73783ae980dbb414a2846f27size=29677date=2024-03-22T18:42:39
 file,shell/master/dressing/hella/coat_00.pnga54b658748f329ac0310e9f84f5e4034size=26311date=2023-10-29T03:41:40
 file,shell/master/dressing/hella/coat_00_b.pngc63f1bf4f1401c821f9ab276d5bbbcc8size=4872date=2023-10-29T03:41:40
 file,shell/master/dressing/hella/coat_1.png0352abcbc8901bc5aa507d3840a4a45asize=21495date=2024-01-12T11:47:12
@@ -1360,6 +1399,9 @@ file,shell/master/dressing/hella/mask_1.pngb576aeb3e11573688085c2057625da96siz
 file,shell/master/dressing/hella/other_1.png4fec7dd14ef6667af34217130a7b83cesize=4860date=2023-08-31T20:19:32
 file,shell/master/dressing/hella/other_2.png4d853e8a507f96b6dfda4a4f522aac01size=1844date=2023-12-27T06:22:04
 file,shell/master/dressing/hella/other_3.pngdc36f7de2c5bcf7ae463688870ca1f1csize=19969date=2023-12-27T06:22:04
+file,shell/master/dressing/hella/other_5.pngc0f37ee47bc07b9284805c39fe9d4ba0size=18202date=2024-03-22T18:42:38
+file,shell/master/dressing/hella/other_6.pngafbdf01beae314098bf559e060a010a4size=16205date=2024-03-22T18:42:38
+file,shell/master/dressing/hella/other_7.pngccac90b83cbb54c0d32a51490f7f4f84size=2461date=2024-03-22T18:42:38
 file,shell/master/dressing/hella/scarf_199.png9996bd730456a73b93347fcb9ff58debsize=4147date=2023-12-27T06:22:04
 file,shell/master/dressing/hella/shoe_00.png37ef5add66c901309ae964548c60520fsize=11576date=2023-10-29T03:41:40
 file,shell/master/dressing/hella/shoe_00_b.pnga8ab3e503140cbec78bd37c5bc4466d9size=1482date=2023-10-29T03:41:38
@@ -1387,6 +1429,7 @@ file,shell/master/dressing/hella/sock_3.png584a34c9e4d0f6cbae964f5903dbbccasiz
 file,shell/master/dressing/hella/top_00.pnge1ca2e957a114fb26f1b0ff65b518f9dsize=50806date=2023-10-29T03:41:38
 file,shell/master/dressing/hella/top_00_b.pngdd49d27733a57916a076a8ca3531b362size=3111date=2023-10-29T03:41:42
 file,shell/master/dressing/hella/top_1.png18847f1e8f628a25ba27697c9c42c5c6size=25273date=2023-10-29T03:41:38
+file,shell/master/dressing/hella/top_10.pngeea04853f09090dedaf21f057db61676size=17950date=2024-03-22T18:42:39
 file,shell/master/dressing/hella/top_1_b.png4cec185e0aa3f8bdca0b922f7059b5absize=3165date=2023-10-29T03:41:42
 file,shell/master/dressing/hella/top_1_s.pngea088b5c2abbf49a612ff6a168d8ccfesize=3596date=2023-10-29T03:41:42
 file,shell/master/dressing/hella/top_2.png7ce852c6e54fe24d6691f7695f7b834esize=8816date=2023-10-29T03:41:38
@@ -1397,6 +1440,7 @@ file,shell/master/dressing/hella/top_5.png1827bd39705fef130fe2872d0ec09024size
 file,shell/master/dressing/hella/top_6.pngb12f94f09089ea8f62ccf0c7501e38a0size=43121date=2023-12-27T06:22:04
 file,shell/master/dressing/hella/top_7.pngd3fa695990025b6b589e53d903dbe6b6size=30232date=2023-12-27T06:22:04
 file,shell/master/dressing/hella/top_8.png04eb057e2ace11b96892c42dd6c6b228size=31242date=2023-12-27T06:22:04
+file,shell/master/dressing/hella/top_9.pngb290262cade013942a4896a751412486size=21662date=2024-03-22T18:42:39
 file,shell/master/dressing/hella/weapon_00.pngdae098aeeb1ce56522f35059e40f2a40size=14365date=2023-10-29T03:57:32
 file,shell/master/dressing/hella/weapon_00_c.png19e550dd6b3ee6777d2bc624921bb340size=8912date=2023-05-03T07:51:36
 file,shell/master/dressing/hella/weapon_3.png1d8bec12ef21e64805ec17a13eb1a50dsize=9141date=2024-03-03T22:11:49
@@ -1518,7 +1562,7 @@ file,shell/master/outside/surface2202.png63148398c00bd12ec9a10ef5189a0469size=
 file,shell/master/readme.txtf5d14fdfcc2f39ccc543f312bf55ff24size=45date=2023-02-04T02:07:36
 file,shell/master/surface0000.png63f32bfdc46245707713e26c95e28fe2size=58462date=2023-05-03T08:03:46
 file,shell/master/surface0010.pnge6a500683d6db62b0f51b74af83fe170size=72171date=2023-10-29T02:36:14
-file,shell/master/surfaces.txt8a231a6107b687e9aab050beca64ccddsize=19383date=2024-03-20T14:17:25
+file,shell/master/surfaces.txt8a231a6107b687e9aab050beca64ccddsize=19383date=2024-03-22T18:55:37
 file,shell/master/surfaces_10.txt9ada727c35a9a7baa8f93374dcab2484size=4710date=2024-01-12T14:07:07
 file,shell/master/surfaces_11.txt5caf75eb59143875d31c84a0b5ab8357size=8731date=2024-03-06T03:35:18
 file,shell/master/surfaces_2.txtd157cff4955160f89f3ff5eec02ce3e8size=10800date=2024-01-11T16:38:13
@@ -1528,7 +1572,7 @@ file,shell/master/surfaces_50.txt088e6c61f78a6c2c6021cdd01b6aa60asize=6222dat
 file,shell/master/surfaces_51.txt33318d9342cb9066c719aab8ab350782size=12887date=2024-03-06T04:02:46
 file,shell/master/surfaces_55.txtee183878a30a6d9a93bb7bdee86f9e2bsize=527date=2023-12-06T15:47:54
 file,shell/master/surfaces_56.txt6167dd2f71df87e4f0e200870b93aac5size=8244date=2024-01-16T18:19:40
-file,shell/master/surfaces_75.txt03ecc81f4ee4d00d6246f1dfa8ca8c1asize=9484date=2024-01-16T18:17:28
+file,shell/master/surfaces_75.txt1b2d6c9cfdae79ff4937a73aa0f8d7e8size=13860date=2024-03-22T15:45:22
 file,shell/master/surfaces_8.txteb419c7ba6fc6be6ccf455bc33c679b7size=476date=2024-01-22T17:17:01
 file,shell/master/surfacetable.txt1ff2eba0898171786a37e0e9212d53bdsize=795date=2024-03-01T04:49:08
 file,shell/master/thumbnail.png29e01d08887969ccbacfaa4bfe3a0459size=117923date=2024-01-11T20:53:49
