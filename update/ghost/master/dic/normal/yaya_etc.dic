@@ -282,14 +282,16 @@ OnBIFFFailure
 //------------------------------------------------------------------------------
 //								線上更新										
 //------------------------------------------------------------------------------
+UpdateProgress
+{"\p[3]\b[32]\_q%ProgressBar(10,10,150,update_file[0],update_file[1])\n\f[align,right]%(update_file[0])/%(update_file[1])\n[130]%(DividingLine2)\n[130]\_q"}
 OnUpdateBegin
-{
+{	update_file=(0,0)
 	"\p[3]\s[310000]\c這就為%(username)檢查系統更新……"
 }
 //ネットワーク更新準備完了
 OnUpdateReady
-{
-	"\p[3]\s[310000]發現%(reference0)處更新，請稍等。"
+{	update_file[1]=reference0
+	"\p[3]\s[310000]發現%(reference0)項更新，請稍等。"
 }
 //ネットワーク更新終了
 OnUpdateComplete
@@ -299,38 +301,43 @@ OnUpdateComplete
 	{	version_code = version_now
 		compensation=(0,0,0)
 	}
-	if reference0 == "none" ; "\p[3]現在已經是最新的版本了。"
-	else ; "\p[3]\s[310000]已順利完成%(version_name)版本更新。"
+	if reference0 == "none" ; "\p[3]\s[310001]現在已經是最新的版本了。"
+	else ; "\p[3]\s[310002]已順利完成\f[color,#FFDC35]\f[bold,1]%(version_name)\f[default]版本更新。\x\p[3]"
 }
 //ネットワーク更新失敗
 OnUpdateFailure
-{
-	if reference0 == "timeout" ; "\p[3]\s[310001]連線超時，更新失敗。"
-	elseif reference0 == "md5 miss" ; "\p[3]\s[310001]MD5校驗碼錯誤，更新失敗。"
-	elseif reference0 == "fileio" ; "\p[3]\s[310001]文件寫入錯誤，更新失敗。"
+{	UpdateProgress
+	--
+	"\s[310001]\f[color,#FF2D2D]"
+	--
+	if reference0 == "timeout" ; "連線超時，更新失敗。\x"
+	elseif reference0 == "md5 miss" ; "MD5校驗碼錯誤，更新失敗。\x"
+	elseif reference0 == "fileio" ; "文件寫入錯誤，更新失敗。\x"
 	else
-	{	"\p[3]\s[310001]更新失敗，錯誤代碼：%(reference0)。/
+	{	"更新失敗，錯誤代碼：%(reference0)。/
 		%SureWindow【%(oufail_mas)】\n[150]下載失敗。" }
 }
 //ネットワーク更新 ダウンロード開始
 OnUpdate.OnDownloadBegin
 {	oufail_mas=reference0
-	"\p[3]\s[310000]\_q正在下載檔案【%(reference0)】……\_q"
+
+	"%(UpdateProgress)\_q\f[bold,1]正在下載檔案……\f[bold,0]\n[130]%(reference0)\_q"
 }
 //ネットワーク更新 MD5値照合開始
 OnUpdate.OnMD5CompareBegin
 {
-	"\p[3]\s[310000]\_q比對【%(reference0)】的MD5校驗碼。\_q"
+	"%(UpdateProgress)\_q\f[bold,1]比對MD5校驗碼……\f[bold,0]\n[130]%(reference0)\_q"
 }
 //ネットワーク更新 MD5値一致
 OnUpdate.OnMD5CompareComplete
-{
-	"\p[3]\s[310002]\_q%(reference1)/%(reference2)\n\f[color,#4DFFFF]認證成功\f[default]。\_q"
+{	
+	"%(UpdateProgress)\_q%(reference1)/%(reference2)\n[130]\f[color,#4DFFFF]認證成功\f[default]\_q"
+	update_file[0]++
 }
 //ネットワーク更新 MD5値不一致
 OnUpdate.OnMD5CompareFailure
 {
-	"\p[3]\s[310001]\_q%(reference1)/%(reference2)\n\f[color,#FF2D2D]認證失敗\f[default]。\_q"
+	"%(UpdateProgress)\s[310001]\_q%(reference1)/%(reference2)\n[130]\f[color,#FF2D2D]認證失敗\f[default]\_q"
 }
 
 //******************************************************************************

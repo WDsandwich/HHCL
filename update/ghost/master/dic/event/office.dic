@@ -27,8 +27,8 @@ Office
 	--
 	"\n\_l[-,200]\f[align,right]\f[height,12]\f[color,#6C6C6C]版本 %(version_name)"
 }
-version_name{"0.9.30"}
-version_now{"0,9,030"}
+version_name{"0.9.31"}
+version_now{"0,9,031"}
 
 //======================================
 //				輸入指令碼				
@@ -103,7 +103,7 @@ OnRedemptionCode
 		
 		}
 		*/
-	}
+	}/*
 	elseif reference0=="lingwei"
 	{	
 		if compensation[2]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"
@@ -117,7 +117,7 @@ OnRedemptionCode
 		
 		}
 		
-	}
+	}*/
 	/*elseif reference0=="grass"
 	{	
 		if compensation[3]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"

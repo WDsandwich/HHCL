@@ -146,10 +146,12 @@ OnKeyPress
 		birthdaycake[_a]=1
 		}
 		when "." {
-		enhancement+=100
+		"\p[3]\b[32]\_q%ProgressBar(10,10,150,23,50)\n\f[align,right]23/50\n[130]%(DividingLine2)\n[130]/
+		\f[bold,1]正在下載檔案\f[bold,0]\n[120]shell/master/battle/effect/MC_04.png\_q"
 		}
 		when "," {
-		loot+=20
+		"\p[3]\b[32]\_q%ProgressBar(4,10,150,23,50)\n\f[align,right]23/50\n[130]%(DividingLine2)\n[130]/
+		0f4rSqHpYYccCVNnfQVlnL0keEPCJl / 0f4rSqHpYYccCVNnfQVlnL0keEPCJl\n[120]\f[color,#4DFFFF]認證成功\f[default]\_q"
 		}
 		when "j" {
 		
