@@ -308,11 +308,13 @@ OnUpdateFailure
 	if reference0 == "timeout" ; "\p[3]\s[310001]連線超時，更新失敗。"
 	elseif reference0 == "md5 miss" ; "\p[3]\s[310001]MD5校驗碼錯誤，更新失敗。"
 	elseif reference0 == "fileio" ; "\p[3]\s[310001]文件寫入錯誤，更新失敗。"
-	else ; "\p[3]\s[310001]更新失敗，錯誤代碼：%(reference0)。"
+	else
+	{	"\p[3]\s[310001]更新失敗，錯誤代碼：%(reference0)。/
+		%SureWindow【%(oufail_mas)】\n[150]下載失敗。" }
 }
 //ネットワーク更新 ダウンロード開始
 OnUpdate.OnDownloadBegin
-{
+{	oufail_mas=reference0
 	"\p[3]\s[310000]\_q正在下載檔案【%(reference0)】……\_q"
 }
 //ネットワーク更新 MD5値照合開始
@@ -323,12 +325,12 @@ OnUpdate.OnMD5CompareBegin
 //ネットワーク更新 MD5値一致
 OnUpdate.OnMD5CompareComplete
 {
-	"\p[3]\s[310002]\_q%(reference1)\_q\w2||w2\_q%(reference2)\_q\n認證成功。"
+	"\p[3]\s[310002]\_q%(reference1)/%(reference2)\n\f[color,#4DFFFF]認證成功\f[default]。\_q"
 }
 //ネットワーク更新 MD5値不一致
 OnUpdate.OnMD5CompareFailure
 {
-	"\p[3]\s[310001]\_q%(reference1)\_q\w2||w2\_q%(reference2)\_q\n認證失敗。"
+	"\p[3]\s[310001]\_q%(reference1)/%(reference2)\n\f[color,#FF2D2D]認證失敗\f[default]。\_q"
 }
 
 //******************************************************************************
