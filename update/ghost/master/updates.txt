@@ -49,7 +49,7 @@ file,ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562si
 file,ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
 file,ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 file,ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-file,ghost/master/dic/normal/yaya_etc.dica3ecb766707ce2d56845b177cea14557size=18643date=2024-03-22T19:02:28
+file,ghost/master/dic/normal/yaya_etc.dicce025f667b6c17d177b1a8a14857398asize=18756date=2024-03-22T19:35:32
 file,ghost/master/dic/normal/yaya_menu.dice1059184fcc3b00516b0123a7514a263size=14879date=2024-03-22T05:32:57
 file,ghost/master/dic/normal/yaya_mouse.dicf5a33cbd305a394111e3a7df95ea2040size=21555date=2024-03-22T05:36:57
 file,ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
