@@ -12,134 +12,158 @@ OnTutorial
 	--
 	MuenBottomOption(0)
 	--
-	"\p[3]\s[310000]有什麼我能幫上忙的地方嗎，%(username)？"
+	"\p[3]\s[310000]\b[26]有什麼我能幫上忙的地方嗎，%(username)？"
 }
 TTRH
 {"\f[color,#FF0000]\f[shadowcolor,#F5FFE8]☞\f[default]\f[color,#FFDC35]"}
+TTRB
+{"\f[color,#FFF8D7]\f[bold,1]%(_argv[0])\f[default]"}
+TTRBC
+{"\f[color,#00FFFF]\f[bold,1]%(_argv[0])\f[default]"}
 OnTutorial.Battle
 {
 	BattleMode=reference0
-	_bm=BattleMode
-	case _bm
+	_bm=0
+	case BattleMode
 	{	when 20
 		{	missionpay=1000
-			wave=(1,5,1)
-			round=1
-			enemy_name="刀狩"
+			wave=(1,2)
+			roundNum=1
 			OrderDone=(1,1,0)
 			Bmp=(0,0,2,3,7)
 			HCinc=(500,317)
 			HLinc=(1000,222)
 			hp=(HCinc[0],HLinc[0])
-			Einc=(HCinc[1]+HCinc[1]+HLinc[1]-30,1000)
-			Ehp=Einc[0]
+			_bm=BattleMode
 			--
-			"\0\s[-1]\1\s[-1]\p[5]\s[520010]\![bind,background,Syndicate,1]\p[3]\s[310000]%(username)，請您保持警惕。\x\![raise,OnTutorial.Battle,21]"
+			"\0\s[-1]\1\s[-1]\p[5]\![bind,enemy,none,1]\![bind,background,Syndicate,1]\s[520010]%(BattleInfoWindow.Tutorial)\p[3]\s[310000]\b[26]\![quicksession,false]%(username)，請您保持警惕。\x%(click)\![raise,OnTutorial.Battle,21]"
 		}
 		when 21
-		{	"\0\s[-1]\1\s[-1]\p[5]\![bind,enemy,刀狩-entrance,1]\w1/
+		{	enemy_name="刀狩"
+			Einc=(HCinc[1]+HLinc[1]+357,1500)
+			Ehp=Einc[0]
+			_bm=BattleMode
+			--
+			"\0\s[-1]\1\s[-1]\p[5]\s[520010]\![bind,enemy,刀狩-entrance,1]\w1/
 			\p[6]\s[-1]\b[32]%(bp) 遇見了 %(enemy_name) ！%(bp)%(BattleInfoWindow.Tutorial)\w3/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			%(TTRH)\f[color,#FFDC35]\__q[OnTutorial.Battle,22]⚔️攻擊\__q\n[130]/
 			\f[color,#7B7B7B]🗲技能\n[130]/
 			🛡️防禦\n[130]/
 			◊局長權能\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]\f[default]\w3/
-			\p[3]\s[310000]\![quicksession,false]敵人出現了，請指示禁閉者進行攻擊。"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q\f[default]\w3/
+			\p[5]\![bind,enemy,%(enemy_name)-idle,1]\p[3]\s[310000]\b[26]\![quicksession,false]敵人出現了，請指示禁閉者進行%TTRBC('攻擊')。"
 		}
 		when 22
-		{	Ehp-=HCinc[1]
-			"\p[5]\![bind,enemy,刀狩-idle,1]%SFX('sfx/Kikku no suburi 1')\s[520011]/
+		{	if _bm<22 { Ehp-=HCinc[1] ; _bm=BattleMode }
+			"\p[5]\![bind,enemy,%(enemy_name)-idle,1]\s[520011]%SFX('sfx/Kikku no suburi 1')/
 			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(HCinc[1]) 點傷害！%(bp)\x/
-			\p[3]\s[310000]\![quicksession,false]赫卡蒂、海拉、敵人，每回合（round）各有一次行動機會。我方兩名禁閉者完成行動後，才會輪到敵方行動。\x/
-			\p[3]\s[310000]\c敵方的攻擊對象可能是赫卡蒂、海拉，也有會同時攻擊兩者的敵人，%(username)可以藉由戰鬥訊息得知。\x/
-			\p[6]\s[-1]\b[32]\c%(bp) %(enemy_name) 虎視眈眈地看著海拉…… %(bp)\w2%(BattleInfoWindow.Tutorial)/
+			\p[5]\s[520010]/
+			%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\![quicksession,false]赫卡蒂、\w3海拉、\w3敵人，\w5每回合（round）各有一次%TTRB('行動機會')。\w9\n[130]我方兩名禁閉者完成行動後，\w7才會輪到敵方行動。\x%(click)/
+			%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]敵方的攻擊對象可能是\w2%TTRB('赫卡蒂')或%TTRB('海拉')，\w7也有會%TTRB('同時攻擊兩者')的敵人。\w9\n[130]%(username)有時可以藉由%TTRB('戰鬥訊息')得知。\x/
+			\p[6]\s[-1]\b[32]\c%(click)%(bp) %(enemy_name) 虎視眈眈地看著海拉…… %(bp)\w2%(BattleInfoWindow.Tutorial)/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			\f[color,#7B7B7B]⚔️攻擊\n[130]/
 			🗲技能\n[130]/
 			%(TTRH)\__q[OnTutorial.Battle,23]🛡️防禦\__q\n[130]/
 			\f[color,#7B7B7B]◊局長權能\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]\f[default]\w2/
-			\p[3]\s[310000]\c\![quicksession,false]本回合的攻擊對象是海拉，請指示她防禦吧。"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q\f[default]\w2/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]本回合的攻擊對象是%TTRB('海拉')，請指示她%TTRBC('防禦')吧。"
 		}
 		when 23
-		{	hp[1]-=TOINT(Einc[1]*0.3)
-			round++
+		{	if _bm<23 { hp[1]-=TOINT(Einc[1]*0.3) ; roundNum++ ; _bm=BattleMode }
+			--
 			"\p[5]\i[676301]%SFX('sfx/shakiin3')\p[6]\s[-1]\b[32]\c%(bp) 海拉擺出防禦架勢，本回合獲得自身傷害減免。%(bp)\x/
-			\p[5]\s[520016]\![bind,enemy,刀狩-hella,1]\p[6]\s[-1]\b[32]%(bp)%SFX('sfx/Yumiya ga sasaru') %(enemy_name) 對 海拉 造成了 %bh(TOINT(Einc[1]*0.3)) 點傷害！\x/
-			\p[5]\s[520010]\![bind,enemy,刀狩-idle,1]%(BattleInfoWindow.Tutorial)/
-			\p[3]\s[310000]\c\![quicksession,false]海拉剛才受到了傷害，\w8%(username)可以使用權能替她回復HP。\w9\n[130]請放心，\w5局長權能並不會占用行動次數。\w2/
+			\p[5]\s[520016]\![bind,enemy,刀狩-hella,1]\p[6]\s[-1]\b[32]%(bp)%SFX('sfx/Yumiya ga sasaru') %(enemy_name) 對 海拉 造成了 %bh(TOINT(Einc[1]*0.3)) 點傷害！%(bp)\x%(click)/
+			\p[5]\![bind,enemy,刀狩-idle,1]\s[520010]%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]海拉剛才受到了傷害，\w8%(username)可以使用%TTRBC('權能')替她回復HP。\w9\n[130]請放心，\w5局長權能並%TTRB('不會占用行動機會')。\w2/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			\f[color,#7B7B7B]⚔️攻擊\n[130]/
 			🗲技能\n[130]/
 			🛡️防禦\n[130]/
 			%(TTRH)\__q[OnTutorial.Battle,24]◊局長權能\__q\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]\f[default]\w2/"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q\f[default]"
 		
 		}
 		when 24
-		{	"%(BattleInfoWindow.Tutorial)\p[2]%cp(0)\b[24]\c\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+		{	_bm=BattleMode
+			--
+			"%(click)%(BattleInfoWindow.Tutorial)\p[2]%cp(0)\b[24]\c\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			%(TTRH)\__q[OnTutorial.Battle,25]✚回復HP\__q\n[170]/
 			\f[color,#7B7B7B]⚡充能\n[170]/
 			✖麻痺敵人"
 		}
 		when 25
-		{	"%(BattleInfoWindow.Tutorial)\p[2]%cp(0)\b[24]\c\f[align,center]\![set,choicetimeout,0]/
-			%(TTRH)\__q[OnTutorial.Battle,26]✚單人50%\n[200]/
-			%(TTRH)\__q[OnTutorial.Battle,26]✚全體30%"
+		{	_bm=BattleMode
+			--
+			"%(click)%(BattleInfoWindow.Tutorial)\p[2]%cp(0)\b[24]\c\f[align,center]\![set,choicetimeout,0]/
+			%(TTRH)\__q[OnTutorial.Battle,26]✚單人50%\__q\n[200]/
+			\f[color,#7B7B7B]✚全體30%"
 		}
 		when 26
-		{	hp[1]=HLinc[0] ; Bmp[2]--
+		{	if _bm<26 { hp[1]=HLinc[0] ; Bmp[2]-- ; _bm=BattleMode }
 			"\p[5]\s[520010]\i[676101]%SFX('sfx/Taitoru hyoji')/
 			\p[6]\s[-1]\b[32]\c%(bp) 已為 海拉 回復%TOINT(HLinc[0]/2)點HP。%(bp)/
-			\p[3]\s[310000]\![quicksession,false]使用權能都會消耗1點[局長能量]，這將在您每次前往下個wave時回復1點。\x/
-			%(BattleInfoWindow.Tutorial)\p[3]\s[310000]\![quicksession,false]\c請%(username)繼續攻擊吧。\w3/
+			\p[3]\s[310000]\b[26]\![quicksession,false]使用權能都會消耗1點[%TTRB('局長能量')]，\w7這將在您每次%TTRB('前往下個wave時')回復1點。\x%(click)/
+			%(BattleInfoWindow.Tutorial)\p[3]\s[310000]\b[26]\![quicksession,false]\c請%(username)繼續%TTRBC('攻擊')吧。\w3/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			%(TTRH)\__q[OnTutorial.Battle,27]⚔️攻擊\__q\n[130]/
 			\f[color,#7B7B7B]🗲技能\n[130]/
 			🛡️防禦\n[130]/
 			◊局長權能\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
 		}
 		when 27
-		{	Ehp-=HCinc[1] ; ordertarget=1
-			"\p[5]\![bind,enemy,刀狩-idle,1]%SFX('sfx/Kikku no suburi 1')\s[520014]/
-			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 海拉 毆打了 %(enemy_name) ，造成 %bh(HCinc[1]) 點傷害！%(bp)\x/
+		{	if _bm<27 { Ehp-=HCinc[1] ; ordertarget=1 ; _bm=BattleMode }
+			"\p[5]\![bind,enemy,刀狩-idle,1]\s[520014]%SFX('sfx/metal punch1')/
+			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 海拉 毆打了 %(enemy_name) ，造成 %bh(HLinc[1]) 點傷害！%(bp)\x%(click)/
 			%(BattleInfoWindow.Tutorial)/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			%(TTRH)\__q[OnTutorial.Battle,28]⚔️攻擊\__q\n[130]/
 			\f[color,#7B7B7B]🗲技能\n[130]/
 			🛡️防禦\n[130]/
 			◊局長權能\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
 		}
 		when 28
-		{	Ehp=0 ; ordertarget=0
+		{	if _bm<28 { Ehp=0 ; exp+=100 ; ordertarget=0 ; _bm=BattleMode }
 			"\p[5]%SFX('sfx/Kikku no suburi 1')\s[520011]/
-			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(HLinc[1]) 點傷害！%(bp)\x/
-			\![bind,enemy,%(enemy_name)-defeated,1]\p[6]\s[-1]\b[32]\c\![quicksession,false]%(bp)%SFX('sfx/decision button2') 擊敗了 %(enemy_name) ！%(bp)\w9\w5\n[200]/
-			\_q%(bp)%SFX('sfx/decision button2') 獲得 100 經驗值 %(bp)\_q\w9%(WhenExpGet)\x/
-			\p[2]%cp(0)\b[20]\f[align,center]%(TTRH)\__q[OnTutorial.Battle,29]繼續探索\__q\n[166]\f[color,#7B7B7B]%(opp)返回管理局"
+			\p[6]\s[-1]\b[32]\![quicksession,false]%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(HCinc[1]) 點傷害！%(bp)\x/
+			%(click)\p[5]\s[520010]\![bind,enemy,%(enemy_name)-defeated,1]\p[6]\s[-1]\b[32]\c\![quicksession,false]%(bp)%SFX('sfx/decision button2') 擊敗了 %(enemy_name) ！%(bp)\w9\w5\n[200]/
+			\_q%(bp)%SFX('sfx/decision button2') 獲得 100 經驗值 %(bp)\_q\w9%(WhenExpGet)\x%(click)/
+			\p[5]\![bind,enemy,none,1]/
+			\p[2]%cp(0)\b[20]\f[align,center]\![quicksession,true]%(TTRH)\__q[OnTutorial.Battle,29]繼續探索\__q\n[166]\f[color,#7B7B7B]%(opp)返回管理局"
 		}
 		when 29
-		{
-			wave[0]++ ; round=1 ; Bmp[2]++
-			ordertarget=0
-			enemy_name=="兜帽客工匠"
-			Einc=(HCinc[1]+HCinc[1]+HLinc[1]*3,300)
-			Ehp=Einc[0]
-			"\p[5]\s[520010]\![bind,enemy,%(enemy_name)-entrance,1]%(BattleInfoWindow.Tutorial)/
-			\p[3]\s[310000]\c\![quicksession,false]剛才赫卡蒂學會了新技能，\w7馬上來使用看看吧。\w9\n[130]首先為她補充能量。\w2/
+		{	if _bm<29
+			{ 
+				wave[0]++ ; roundNum=1 ; Bmp[2]++
+				ordertarget=1
+				enemy_name="兜帽客工匠"
+				HCinc=(600,350)
+				HLinc=(1200,240)
+				hp=(HCinc[0],HLinc[0])
+				Einc=(HCinc[1]*4+HLinc[1]*3+600,300)
+				Ehp=Einc[0]
+				_bm=BattleMode
+			}
+			--
+			"%(click)\p[5]\s[520010]\![bind,enemy,%(enemy_name)-entrance,1]\p[6]\s[-1]\b[32]%(bp) 遇見了 %(enemy_name) ！%(bp)/
+			%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]剛才赫卡蒂學會了新%TTRB('技能')，\w7馬上來使用看看吧。\w9\n[130]首先為她%TTRBC('補充能量')。\w2/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			\f[color,#7B7B7B]⚔️攻擊\n[130]/
 			🗲技能\n[130]/
 			🛡️防禦\n[130]/
 			%(TTRH)\__q[OnTutorial.Battle,30]◊局長權能\__q\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
 		}
 		when 30
-		{
-			"%(BattleInfoWindow.Tutorial)/
+		{	_bm=BattleMode
+			--
+			"%(click)\p[5]\![bind,enemy,%(enemy_name)-idle,1]\s[520010]%(BattleInfoWindow.Tutorial)/
 			\p[2]%cp(0)\b[24]\c\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			\f[color,#7B7B7B]✚回復HP\n[170]/
 			%(TTRH)\__q[OnTutorial.Battle,31]⚡充能\__q\n[170]/
@@ -147,35 +171,148 @@ OnTutorial.Battle
 		}
 		when 31
 		{
-			"\p[6]\s[-1]\b[32]\c%(bp)要回復誰的能量？%(bp)%(BattleInfoWindow.Tutorial)/
+			"%(click)\p[6]\s[-1]\b[32]\c%(bp)要回復誰的能量？%(bp)%(BattleInfoWindow.Tutorial)/
 			\p[2]%cp(0)\b[24]\c\f[align,center]\n[111]%(TTRH)%(opp)\__q[OnTutorial.Battle,32] 赫卡蒂 \__q\n[150]/
 			\f[color,#7B7B7B]%(opp)\f[color,#7B7B7B] 海拉 "
 		}
 		when 32
-		{	Bmp[0]++ ; Bmp[2]-- ; OrderDone=(0,1,0)
+		{	if _bm<32 { Bmp[0]++ ; Bmp[2]-- ; OrderDone=(0,1,0) ; _bm=BattleMode }
 			"\p[6]\s[-1]\b[32]\c%SFX('sfx/Geji kaifuku 2')%(bp) 為赫卡蒂回復1點能量。%(bp)\x/
-			\p[3]\s[310000]\c\![quicksession,false]現在點選戰鬥資訊窗中的\_b[img\battle\1P.jpg,inline,--option=use_self_alpha]，\w5指示赫卡蒂發動技能。\w2/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]\f[valign,bottom]/
+			現在點選%TTRB('戰鬥資訊窗')中的\_b[img/battle/tutorial/32.jpg,inline]，\w9將%TTRB('指令對象')切換至赫卡蒂，\w8指示她發動%TTRBC('技能')。\w2/
 			\p[6]\s[-1]\b[32]\c%(BattleInfoWindow.Tutorial)"
 		}
 		when 33
-		{	OrderDone=(1,1,0)
-			"%(BattleInfoWindow.Tutorial)/
+		{	if _bm<33 { OrderDone=(1,1,0) ; ordertarget=0 ; _bm=BattleMode }
+			"%(click)%(BattleInfoWindow.Tutorial)/
 			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
 			\f[color,#7B7B7B]⚔️攻擊\n[130]/
 			%(TTRH)\__q[OnTutorial.Battle,34]🗲技能\__q\n[130]/
 			\f[color,#7B7B7B]🛡️防禦\n[130]/
 			◊局長權能\n[170]/
-			\f[height,12]\f[color,#BEBEBE]  \q[ 逃跑 ➤,BattleRunaway]"
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
 		}
 		when 34
-		{	
+		{	if _bm<34 { Ehp-=TOINT(HCinc[1]*2.5) ; Bmp[0]-- ; ordertarget=1 ; _bm=BattleMode }
+			"\p[5]\s[520012]\p[6]\s[-1]\b[32]\c%SFX('skill/01-HC-54-dreamshadow')%SFX('sfx/Menyu o hiraku 2')%(bp) 赫卡蒂 施展 無光之鏡 對 %(enemy_name) 造成 %bh(TOINT(HCinc[1]*2.5)) 點傷害！%(bp)\x%(click)/
+			\p[5]\s[520010]%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			%(TTRH)\__q[OnTutorial.Battle,35]⚔️攻擊\__q\n[130]/
+			\f[color,#7B7B7B]🗲技能\n[130]/
+			🛡️防禦\n[130]/
+			◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
+		}
+		when 35
+		{	if _bm<35 { Ehp-=HLinc[1] ; hp-=Einc[1] ; roundNum++ ; _bm=BattleMode }
+			"\p[5]\s[520014]/
+			\p[6]\s[-1]\b[32]\c\![quicksession,false]%SFX('sfx/metal punch1')%(bp) 海拉 毆打了 %(enemy_name) ，造成 %bh(HLinc[1]) 點傷害！%(bp)\x/
+			\p[5]\![bind,enemy,%(enemy_name)-aoe,1]\s[520018]/
+			\p[6]\s[-1]\b[32]\c%(bp)%SFX('sfx/Yumiya ga sasaru') %(enemy_name) 對 赫卡蒂 造成了 %bh(Einc[1]) 點傷害！%(bp)\w3\n%(bp) %(enemy_name) 對 海拉 造成了 %bh(Einc[1]) 點傷害！%(bp)\x/
+			%(click)%(BattleInfoWindow.Tutorial)/
+			\p[5]\![bind,enemy,%(enemy_name)-idle,1]\s[520010]/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]這次的敵人十分強悍，\w8請%(username)使用%TTRBC('權能')%TTRB('限制敵方本回合的行動')。/
+			%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			\f[color,#7B7B7B]⚔️攻擊\n[130]/
+			🗲技能\n[130]/
+			🛡️防禦\n[130]/
+			%(TTRH)\__q[OnTutorial.Battle,36]◊局長權能\__q\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
+		}
+		when 36
+		{	_bm=BattleMode
+			--
+			"%(click)%(BattleInfoWindow.Tutorial)\p[2]%cp(0)\b[24]\c\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			\f[color,#7B7B7B]✚回復HP\n[170]/
+			⚡充能\n[170]/
+			%(TTRH)\__q[OnTutorial.Battle,37]✖麻痺敵人\__q"
+		}
+		when 37
+		{	if _bm<37 { ordertarget=0 ; Bmp[2]-- ; _bm=BattleMode }
+			"\p[5]\i[676401]\p[6]\s[-1]\b[32]\c\w5%SFX('sfx/paralyze')%(bp) 受權能影響，敵人將無法行動一回合。%(bp)\x/
+			%(click)%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			%(TTRH)\__q[OnTutorial.Battle,38]⚔️攻擊\__q\n[130]/
+			\f[color,#7B7B7B]🗲技能\n[130]/
+			🛡️防禦\n[130]/
+			◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
+		}
+		when 38
+		{	if _bm<38 { Ehp-=HCinc[1] ; ordertarget=1 ; _bm=BattleMode }
+			"\p[5]\s[520011]/
+			\p[6]\s[-1]\b[32]\![quicksession,false]%SFX('sfx/Kikku no suburi 1')%(bp) 赫卡蒂 攻擊了 %(enemy_name) ，造成 %bh(HCinc[1]) 點傷害！%(bp)\x%(click)/
+			\p[5]\s[520010]/
+			%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			%(TTRH)\__q[OnTutorial.Battle,39]⚔️攻擊\__q\n[130]/
+			\f[color,#7B7B7B]🗲技能\n[130]/
+			🛡️防禦\n[130]/
+			◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
+		}
+		when 39
+		{	if _bm<39 { Ehp-=HLinc[1] ; roundNum++ ; Bmp[0]++ ; Bmp[1]++ ; _bm=BattleMode }
+			"\p[5]\s[520014]/
+			\p[6]\s[-1]\b[32]\![quicksession,false]%SFX('sfx/metal punch1')%(bp) 海拉 毆打了 %(enemy_name) ，造成 %bh(HLinc[1]) 點傷害！%(bp)\x%(click)/
+			\p[5]\s[520010]/
+			\p[6]\s[-1]\b[32]\c%SFX('sfx/chin 2')%(bp) 由於麻痺效果，敵方無法行動。 %(bp)\x/
+			%(click)%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]round1開始以後，\w6每過%TTRB('兩個回合')都會回復1點[%TTRB('禁閉者能量')]。\w9\n[130]（第一次回復能量是在round 3）\w9\n[130]如果此時禁閉者能量已滿，\w8則會%TTRB('回復[局長能量]')。\x/
+			%(click)%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\![quicksession,false]那麼，\w4利用剛剛回復的能量，\w指示赫卡蒂施展%TTRBC('技能')吧。/
+			%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			\f[color,#7B7B7B]⚔️攻擊\n[130]/
+			%(TTRH)\__q[OnTutorial.Battle,40]🗲技能\__q\n[130]/
+			\f[color,#7B7B7B]🛡️防禦\n[130]/
+			◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
+			
 		}
 		when 40
-		{	
+		{	if _bm<40 { Ehp-=TOINT(HCinc[1]*2.5) ; Bmp[0]-- ; ordertarget=1 ; _bm=BattleMode }
+			"\p[5]\![bind,enemy,%(enemy_name)-idle,1]\s[520012]\p[6]\s[-1]\b[32]\c%SFX('skill/01-HC-54-dreamshadow')%SFX('sfx/Menyu o hiraku 2')%(bp) 赫卡蒂 施展 無光之鏡 對 %(enemy_name) 造成 %bh(TOINT(HCinc[1]*2.5)) 點傷害！%(bp)\x/
+			%(click)\p[5]\s[520010]%(BattleInfoWindow.Tutorial)/
+			\p[2]%cp(0)\b[24]\f[align,center]\![quicksession,true]\![set,choicetimeout,0]/
+			%(TTRH)\__q[OnTutorial.Battle,41]⚔️攻擊\__q\n[130]/
+			\f[color,#7B7B7B]🗲技能\n[130]/
+			🛡️防禦\n[130]/
+			◊局長權能\n[170]/
+			\f[height,12]\f[color,#BEBEBE]  \__q[OnTutorial.Battle,45]逃跑 ➤\__q"
+		}
+		when 41
+		{	if _bm<41 { Ehp=0 ; exp+=123 ; ordertarget=2 ; _bm=BattleMode }
+			"\p[5]\s[520014]/
+			\p[6]\s[-1]\b[32]\![quicksession,false]%SFX('sfx/metal punch1')%(bp) 海拉 毆打了 %(enemy_name) ，造成 %bh(HLinc[1]) 點傷害！%(bp)\x/
+			%(click)\p[5]\s[520010]\![bind,enemy,%(enemy_name)-defeated,1]\p[6]\s[-1]\b[32]\c\![quicksession,false]%(bp)%SFX('sfx/decision button2') 擊敗了 %(enemy_name) ！%(bp)\w9\w5\n[200]/
+			\_q%(bp)%SFX('sfx/decision button2') 獲得 123 經驗值 %(bp)\_q\w9%(WhenExpGet)\x"
 			--
-			OrderDone=(0,1,0)
-			"%(BattleInfoWindow.Tutorial)點選戰鬥資訊窗的"
-		
+			enemy_name=""
+			--
+			"%(click)\p[5]\![bind,enemy,none,1]\s[520010]%SFX('sfx/鈴を鳴らす')\i[680001]/
+			%(BattleInfoWindow.Tutorial)/
+			\p[3]\s[310000]\b[26]\c\![quicksession,false]戰鬥教學完成。\w7辛苦您了，\w5%(username)。\x/
+			%(click)\![raise,OnTutorial.Battle,42]"
+		}
+		when 42
+		{	_bm=BattleMode
+			DeleteAllBattleVar
+			--
+			"\0\s[0]\1\s[10]\p[3]\s[-1]\p[5]\s[-1]"
+			--
+			if cum_battle_complete[0]<1 ; {discoin+=1000}
+			
+			"%SureWindow('CANCEL_Button')%SFX('sfx/decision button2')\n[-50]\f[height,12]獲得初次教學獎勵：\f[default]\n[130]1000狄斯幣\n狂亂精粹、異能原液、狂暴原液×5\n[200]/
+			\__q[CANCEL_Button]%Bimg('qty/OK')\__q"
+		}
+		when 45
+		{	_bm=BattleMode
+			DeleteAllBattleVar
+			--
+			"\p[3]\s[310000]\b[26]您要休息了嗎？\w6以後還有需要，\w6%(username)隨時都可以在[辦公室]呼喚我。\x%(click)/
+			\0\s[0]\1\s[10]\p[3]\s[-1]\p[5]\s[-1]"
 		}
 	}
 	
@@ -184,7 +321,7 @@ OnTutorial.Battle
 
 BattleInfoWindow.Tutorial
 {
-	"p[6]\s[-1]\b[32]\n\![quicksession,true]\![set,choicetimeout,0]\_l[-,50]"
+	"\p[6]\s[-1]\b[32]\n\![quicksession,true]\![set,choicetimeout,0]\_l[-,50]"
 	--
 	DividingLine2
 	--

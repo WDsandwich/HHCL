@@ -121,21 +121,6 @@ OnKeyPress
 		_txt+="\n"
 		_txt
 		*/}
-		when "j" {
-		"\p[3]\s[312005]\![quicksession,false]\![set,balloontimeout,0]"
-	--
-	"%SFX('npc\mess\forging_01')\s[312003]幫我看著工坊，不准別人進去。 "
-	"%SFX('npc\mess\forging_02')\s[312002]好好看著－－弒神的武器就要出爐啦。"
-	/*"馬上來，等著啊！"
-	"喂，幫我看著門，別讓其他人進來打擾我！"*/
-	--
-	"\_w[3000]\_w[100]"
-	--
-		"\p[3]\s[312005]\n[130]%SFX('sfx\blacksmith_1')…\w4%SFX('sfx\blacksmith_2')…\w5%SFX('sfx\blacksmith_3')…\w6%SFX('sfx\blacksmith_4')…\_w[1111]\n[130]"
-	--
-	"%SFX('npc\mess\exc_06-laugh')\s[312001]將獎，\w3攻擊力最強的武器－－\w5Get！"
-	"%SFX('npc\mess\exc_05-heng')\s[312000]拿去，\w4下次告訴我使用心得吧？"
-		}
 		when "n" {
 		holiday_celebrated_store[3]=""
 		}
@@ -167,11 +152,11 @@ OnKeyPress
 		loot+=20
 		}
 		when "j" {
-		consumable_sp[2]=2
+		
+		"\![raise,OnTutorial.Battle,41]"
 		}
 		when "w" {
-		FDEL('order/新增 文字文件.txt')
-		FDEL('order/新增 文字文件 - 複製.txt')
+		"\p[5]\s[520010]%SFX('sfx/鈴を鳴らす')\i[680001]"
 		}
 		when "e" {
 		"\![raise,OnTutorial.Battle,20]"

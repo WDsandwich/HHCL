@@ -27,8 +27,8 @@ Office
 	--
 	"\n\_l[-,200]\f[align,right]\f[height,12]\f[color,#6C6C6C]版本 %(version_name)"
 }
-version_name{"0.9.29"}
-version_now{"0,9,029"}
+version_name{"0.9.30"}
+version_now{"0,9,030"}
 
 //======================================
 //				輸入指令碼				
@@ -104,20 +104,20 @@ OnRedemptionCode
 		}
 		*/
 	}
-	/*elseif reference0=="lingwei"
+	elseif reference0=="lingwei"
 	{	
 		if compensation[2]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"
 		else
 		{
-			lottery_ticket+=10
+			lottery_ticket+=15
 			holiday_celebrated_store[3]=""
 			
 			"\p[4]\b[2]\f[height,12]%(click)感謝鮪魚測試，這是補償獎勵。\n[150]/
-			\_q抽獎券×10\_q\n\刷新3月商店\w3\_l[,150]\_q\f[default]\f[color,#FFDC35]\__q[OpenBagItem][ →前往倉庫查看 ]\__q\_q"
+			\_q抽獎券×15\_q\n\刷新3月商店\w3\_l[,150]\_q\f[default]\f[color,#FFDC35]\__q[OpenBagItem][ →前往倉庫查看 ]\__q\_q"
 		
 		}
 		
-	}*/
+	}
 	/*elseif reference0=="grass"
 	{	
 		if compensation[3]>=1 ; "\p[4]\b[2]已經使用過這項指令了。"

@@ -1284,7 +1284,7 @@ PotestaStill
 		Bmp[2]--
 		BattleWarning
 		--
-		"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[6]\c\s[-1]\b[32]%(bp) 受權能影響，敵人將無法動彈一回合。%(bp)\x"
+		"\0\s[-1]\1\s[-1]\p[2]%cp(1)\p[5]\i[676401]\p[6]\c\s[-1]\b[32]\w5%SFX('sfx/paralyze')%(bp) 受權能影響，敵人將無法行動一回合。%(bp)\x"
 	}
 }
 
@@ -1528,7 +1528,7 @@ Enemy.Act
 	--
 	if OrderEffectMode==4			//-----權能麻痺
 	{
-		"\p[6]\s[-1]\b[32]\c%(bp) 由於麻痺效果，敵方無法行動。%(bp)\x"
+		"\p[6]\s[-1]\b[32]\c%SFX('sfx/chin 2')%(bp) 由於麻痺效果，敵方無法行動。%(bp)\x"
 		--
 		NextRound
 	}
@@ -2094,7 +2094,7 @@ DeleteAllBattleVar
 	DeleteBattleVar_Map
 	BattleMode=0
 	--
-	"\![sound,stop]\p[5]\![bind,enemy,none]\![bind,background,none]\s[-1]\0\s[1]\1\s[10]\p[2]%cp(0)"
+	"\![sound,stop]\p[5]\![bind,enemy,none,1]\![bind,background,none,1]\s[-1]\0\s[1]\1\s[10]\p[2]%cp(0)"
 }
 
 //====================================================
