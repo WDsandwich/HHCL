@@ -67,6 +67,52 @@ surface520010-520012,520024-520025,520027,520030-520033,520039
 	animation676301.pattern10,overlay,676310,30,155,190
 	animation676301.pattern11,overlay,676311,30,155,190
 	animation676301.pattern12,overlay,676000,150,0,0
+	//麻痺
+	animation676401.interval,never
+	animation676401.pattern0,overlay,676401,6,0,0
+	animation676401.pattern1,overlay,676401,6,0,0
+	animation676401.pattern2,overlay,676402,12,0,0
+	animation676401.pattern3,overlay,676403,12,0,0
+	animation676401.pattern4,overlay,676404,12,0,0
+	animation676401.pattern5,overlay,676405,12,0,0
+	animation676401.pattern6,overlay,676000,12,0,0
+	animation676401.pattern7,overlay,676408,70,0,0
+	animation676401.pattern8,overlay,676409,30,0,0
+	animation676401.pattern9,overlay,676410,30,0,0
+	animation676401.pattern10,overlay,676411,30,0,0
+	animation676401.pattern11,overlay,676412,30,0,0
+	animation676401.pattern12,overlay,676403,30,0,0
+	animation676401.pattern13,overlay,676402,20,0,0
+	animation676401.pattern14,overlay,676401,20,0,0
+	animation676401.pattern15,overlay,676405,20,0,0
+	animation676401.pattern16,overlay,676000,20,0,0
+	
+	//完成任務
+	animation680001.interval,never
+	animation680001.pattern0,overlay,680001,5,0,0
+	animation680001.pattern1,overlay,680002,15,0,0
+	animation680001.pattern2,overlay,680003,20,0,0
+	animation680001.pattern3,overlay,680004,20,0,0
+	animation680001.pattern4,overlay,680005,20,0,0
+	animation680001.pattern5,overlay,680006,20,0,0
+	animation680001.pattern6,overlay,680007,80,0,0
+	animation680001.pattern7,overlay,680008,5,0,0
+	animation680001.pattern8,overlay,680009,5,0,0
+	animation680001.pattern9,overlay,680010,5,0,0
+	animation680001.pattern10,overlay,680011,5,0,0
+	animation680001.pattern11,overlay,680012,5,0,0
+	animation680001.pattern12,overlay,680013,5,0,0
+	animation680001.pattern13,overlay,680014,5,0,0
+	animation680001.pattern14,overlay,680015,5,0,0
+	animation680001.pattern15,overlay,680016,5,0,0
+	animation680001.pattern16,overlay,680017,5,0,0
+	animation680001.pattern17,overlay,680018,5,0,0
+	animation680001.pattern18,overlay,680019,5,0,0
+	animation680001.pattern19,overlay,680020,5,0,0
+	animation680001.pattern20,overlay,680021,5,0,0
+	animation680001.pattern21,overlay,680022,5,0,0
+	animation680001.pattern22,overlay,680023,5,0,0
+	animation680001.pattern23,overlay,680023,5,0,0
 	
 //赫卡蒂無光之鏡
 	animation650031.interval,never
@@ -215,6 +261,52 @@ surface676311
 	element0,base,battle/effect/defUP.png,-131,-304
 	element1,reduce,battle/effect/defUP0.png,0,0
 }
+
+//========麻痺========
+surface676401
+{
+	element0,base,battle/skill/C_Paralyze_01.png,0,0
+}
+surface676402
+{
+	element0,base,battle/skill/C_Paralyze_02.png,0,0
+}
+surface676403
+{
+	element0,base,battle/skill/C_Paralyze_03.png,0,0
+}
+surface676404
+{
+	element0,base,battle/skill/C_Paralyze_04.png,0,0
+}
+surface676405
+{
+	element0,base,battle/skill/C_Paralyze_05.png,0,0
+}
+surface676408
+{
+	element0,base,battle/skill/C_Paralyze_08.png,0,0
+}
+surface676409
+{
+	element0,base,battle/skill/C_Paralyze_09.png,0,0
+}
+surface676410
+{
+	element0,base,battle/skill/C_Paralyze_10.png,0,0
+}
+surface676411
+{
+	element0,base,battle/skill/C_Paralyze_11.png,0,0
+}
+surface676412
+{
+	element0,base,battle/skill/C_Paralyze_12.png,0,0
+}
+
+
+
+
 //====嘲諷====
 surface651010
 {
@@ -241,6 +333,9 @@ surface651014
 	element0,base,battle/skill/taunt.png,-444,0
 	element1,reduce,battle/skill/taunt0.png,0,0
 }
+
+
+
 //====赫卡蒂普攻====
 surface650011
 {
@@ -286,6 +381,8 @@ surface650021
 {
 	element0,base,battle/skill/HC_atk_11.png,0,0
 }
+
+
 //====赫卡蒂普攻====
 //匯能
 surface650031
@@ -343,5 +440,97 @@ surface650043
 }
 
 //==============================================
-//					受擊						
+//					完成任務						
 //==============================================
+surface680001
+{
+	element0,base,battle/effect/MC_01.png,0,0
+}
+surface680002
+{
+	element0,base,battle/effect/MC_02.png,0,0
+}
+surface680003
+{
+	element0,base,battle/effect/MC_03.png,0,0
+}
+surface680004
+{
+	element0,base,battle/effect/MC_04.png,0,0
+}
+surface680005
+{
+	element0,base,battle/effect/MC_05.png,0,0
+}
+surface680006
+{
+	element0,base,battle/effect/MC_06.png,0,0
+}
+surface680007
+{
+	element0,base,battle/effect/MC_07.png,0,0
+}
+surface680008
+{
+	element0,base,battle/effect/MC_08.png,0,0
+}
+surface680009
+{
+	element0,base,battle/effect/MC_09.png,0,0
+}
+surface680010
+{
+	element0,base,battle/effect/MC_10.png,0,0
+}
+surface680011
+{
+	element0,base,battle/effect/MC_11.png,0,0
+}
+surface680012
+{
+	element0,base,battle/effect/MC_12.png,0,0
+}
+surface680013
+{
+	element0,base,battle/effect/MC_13.png,0,0
+}
+surface680014
+{
+	element0,base,battle/effect/MC_14.png,0,0
+}
+surface680015
+{
+	element0,base,battle/effect/MC_15.png,0,0
+}
+surface680016
+{
+	element0,base,battle/effect/MC_16.png,0,0
+}
+surface680017
+{
+	element0,base,battle/effect/MC_17.png,0,0
+}
+surface680018
+{
+	element0,base,battle/effect/MC_18.png,0,0
+}
+surface680019
+{
+	element0,base,battle/effect/MC_19.png,0,0
+}
+surface680020
+{
+	element0,base,battle/effect/MC_20.png,0,0
+}
+surface680021
+{
+	element0,base,battle/effect/MC_21.png,0,0
+}
+surface680022
+{
+	element0,base,battle/effect/MC_22.png,0,0
+}
+surface680023
+{
+	element0,base,battle/effect/MC_23.png,0,0
+}
