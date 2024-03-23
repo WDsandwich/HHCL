@@ -1,0 +1,10 @@
+origin.x,40
+origin.y,10
+
+validrect.top,40
+validrect.bottom,-40
+
+validrect.right,-45
+
+
+cursor.font.color,246,239,223

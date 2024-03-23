@@ -1,0 +1,13 @@
+font.height,12
+
+origin.x,20
+origin.y,20
+
+validrect.left,20
+validrect.top,20
+validrect.right,-20
+validrect.bottom,-20
+
+wordwrappoint.x,-30
+
+font.name,Terminal

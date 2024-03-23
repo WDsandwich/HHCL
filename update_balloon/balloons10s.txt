@@ -1,0 +1,9 @@
+origin.y,20
+origin.x,25
+validrect.right,-18
+validrect.bottom,-35
+
+font.height,12
+
+windowposition.x,-300
+windowposition.y,-340

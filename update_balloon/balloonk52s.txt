@@ -1,0 +1,14 @@
+origin.y,38
+origin.x,40
+validrect.right,-40
+validrect.bottom,-40
+wordwrappoint.x,-40
+
+font.height,15
+
+font.color,#000000
+font.shadowcolor,#E0E0E0
+
+clickwaitmarker.filename,next52.png
+clickwaitmarker.x,-50
+clickwaitmarker.y,-30

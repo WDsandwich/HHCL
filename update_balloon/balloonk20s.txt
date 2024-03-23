@@ -1,0 +1,16 @@
+rigin.x,35
+origin.y,25
+validrect.right,-20
+validrect.bottom,-30
+clickwaitmarker.x,-45
+clickwaitmarker.y,-40
+
+font.shadowstyle,outline
+
+cursor.blendmethod,none
+cursor.brush.color,#E6C3C3
+cursor.font.color,#98E9F0
+cursor.pen.color,#000000
+
+cursor.font.shadowstyle,outline
+cursor.font.shadowcolor,#F0FFF0

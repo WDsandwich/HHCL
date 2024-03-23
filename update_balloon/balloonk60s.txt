@@ -1,0 +1,7 @@
+origin.y,8
+origin.x,8
+
+validrect.top,5
+validrect.bottom,8
+
+font.height,12

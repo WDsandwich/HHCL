@@ -1,0 +1,5 @@
+origin.x,40
+origin.y,20
+validrect.bottom,-20
+validrect.right,-25
+wordwrappoint.x,-30

@@ -1,0 +1,4 @@
+origin.y,40
+origin.x,15
+validrect.top,30
+validrect.right,-20

@@ -1,0 +1,15 @@
+origin.x,30
+origin.y,50
+validrect.top,38
+validrect.bottom,-20
+validrect.right,-30
+
+cursor.blendmethod,none
+
+font.shadowcolor,0,0,0
+
+cursor.pen.color,219,179,0
+
+cursor.font.color,219,179,0
+
+cursor.brush.color,0,0,0

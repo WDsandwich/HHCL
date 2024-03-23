@@ -1,0 +1,9 @@
+origin.x,2
+origin.y,4
+
+validrect.right,72
+validrect.bottom,272
+
+wordwrappoint.x,272
+
+font.height,12

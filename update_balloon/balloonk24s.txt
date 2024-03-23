@@ -1,0 +1,16 @@
+
+origin.x,10
+origin.y,20
+validrect.right,-11
+validrect.bottom,-30
+wordwrappoint.x,700
+
+font.shadowstyle,outline
+
+cursor.style,square
+cursor.blendmethod,none
+cursor.brush.color,#1A0000
+cursor.font.color,#98E9F0
+
+cursor.font.shadowstyle,outline
+cursor.font.shadowcolor,#F0FFF0

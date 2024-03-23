@@ -1,0 +1,4 @@
+﻿type,balloon
+name,赫卡蒂＆海拉＆局長的日常
+directory,Hecate_Hella
+refresh,1
