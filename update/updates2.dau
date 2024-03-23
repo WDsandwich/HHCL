@@ -7,13 +7,13 @@ ghost/master/data_recover.batf99997c632215082d9d650476aeb11e8size=171date=202
 ghost/master/descript.txtf3919b35324c201324f1049f73e0ed4asize=996date=2024-03-21T02:03:02
 ghost/master/dic/emerg/yaya_emerg_dic.diced7552207b74392cab45741e6f37958dsize=703date=2024-01-13T21:08:35
 ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641size=74date=2023-05-28T01:50:28
-ghost/master/dic/event/EnevtTool.dicf9db97669ac28772c380b1acd9245663size=7449date=2024-03-02T16:03:16
+ghost/master/dic/event/EnevtTool.dic04c9131236dfbbf15c6f264dddbb7ea2size=7466date=2024-03-23T12:22:26
 ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
 ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
-ghost/master/dic/event/battle.dic0acc721670e1b9427fb3cc109ed4b388size=60636date=2024-03-22T13:52:03
+ghost/master/dic/event/battle.dic869dc312ebcd53213514e02f7e87636fsize=61203date=2024-03-23T14:30:20
 ghost/master/dic/event/chat.dic6eedc70131e7ca63637e01087cc1bf47size=219date=2023-12-27T02:10:09
 ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
-ghost/master/dic/event/cumulative.dic7e2a91b2cb76a01f0f21c7c66d6cd715size=9531date=2024-02-19T08:43:40
+ghost/master/dic/event/cumulative.dic6509ef8ffb7b0d3ed7401a57b5efa29fsize=9592date=2024-03-22T23:45:37
 ghost/master/dic/event/database.dice7fafdb82c099f69f54c50e9aa875bc1size=12697date=2024-03-02T16:03:16
 ghost/master/dic/event/date.dicb3255b239a199d1f6b24e05e7acbfff0size=187date=2024-02-01T23:23:13
 ghost/master/dic/event/dispatch.dicba6be8effe09310cab04a5bbe4343f04size=4902date=2024-02-08T20:53:53
@@ -23,21 +23,21 @@ ghost/master/dic/event/file.dic511b49e6bb402f4572a709a14ad7b7f4size=2434date=
 ghost/master/dic/event/forge.dic6c1e48d198702ba0e69d5a3c4b4af3ebsize=8639date=2024-03-20T23:32:34
 ghost/master/dic/event/game.dic704de5a079321acf449b0be85db56116size=13242date=2024-03-15T05:37:23
 ghost/master/dic/event/history.dicf70fa21b873c849ba399b4da4ba10e60size=3022date=2024-02-15T11:11:58
-ghost/master/dic/event/hotkey.dic86281ce61a569404298325000a79fdd6size=6023date=2024-03-22T21:37:40
+ghost/master/dic/event/hotkey.dic27b243dc4281bd612701ba8dc14224cesize=6132date=2024-03-23T14:24:39
 ghost/master/dic/event/illustrated.dic6c3031c7ddd063b0ed4898c239a8f887size=11481date=2024-02-24T15:13:53
 ghost/master/dic/event/intimacy.dic55bb6d66058d4b84ff62a90e9ce2f2e3size=703date=2023-09-05T01:21:52
 ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716date=2024-03-21T07:48:42
 ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
-ghost/master/dic/event/office.dic1f60d49519a68f0bb4f2e85ef0b49f71size=12844date=2024-03-22T22:17:13
+ghost/master/dic/event/office.dic5c9a328b2dc5f7fb8c7fc6603849efa0size=12885date=2024-03-23T12:16:55
 ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
 ghost/master/dic/event/test.dic4ea75aac0b701539c1f6113f42329b3esize=1067date=2024-02-08T21:22:22
 ghost/master/dic/event/time.dic69904bc77e8d6acfbe87d5126815f0a8size=7721date=2024-03-01T03:51:36
 ghost/master/dic/event/trade.dica93d5645f91301a801c12f8576168398size=37347date=2024-03-21T14:00:43
-ghost/master/dic/event/tutorial.dic1c8d9f8924f5437e05014016fed23f5esize=18660date=2024-03-22T16:02:15
+ghost/master/dic/event/tutorial.dicfa494b7e8b2d9e5ff5c348204f7fa893size=19149date=2024-03-23T14:25:16
 ghost/master/dic/excel/cloth.dicfa08159690e591c50d312581b2208bcdsize=2201date=2024-01-01T14:48:06
 ghost/master/dic/list/battle.txt45daf4226afe9030e201f3a7f833a50fsize=1067date=2023-12-18T02:45:56
 ghost/master/dic/list/chat_choise.dicceeaae655bfa2a1347220798f6b4ba9fsize=269date=2023-12-27T00:45:44
@@ -48,8 +48,8 @@ ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562size=17
 ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
 ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-ghost/master/dic/normal/yaya_etc.dic93a5e57a7c8adc618ac2c7e3b941f71bsize=19111date=2024-03-22T22:15:55
-ghost/master/dic/normal/yaya_menu.dice1059184fcc3b00516b0123a7514a263size=14879date=2024-03-22T05:32:57
+ghost/master/dic/normal/yaya_etc.dic207cfccb15eaff0ae42d39d42a3c3b8fsize=19446date=2024-03-22T23:44:10
+ghost/master/dic/normal/yaya_menu.dic078109cdb3e564821dcc4c21bce85a83size=16437date=2024-03-23T16:13:58
 ghost/master/dic/normal/yaya_mouse.dicf5a33cbd305a394111e3a7df95ea2040size=21555date=2024-03-22T05:36:57
 ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
 ghost/master/dic/normal/yaya_tmpl_util.dic76da54cee0370253c317b3e3a99a46f9size=8577date=2024-01-31T03:03:23
@@ -569,16 +569,16 @@ ghost/master/img/store/type10.png0582f439120545fb659cd0a3006f7a8bsize=1322dat
 ghost/master/img/store/type11.png6be7a922a25ba7845659f2181f2a924csize=887date=2023-07-15T15:04:58
 ghost/master/img/store/type12.png7e4147690c1d4ce9489c0bf18b82effdsize=765date=2023-07-15T15:04:58
 ghost/master/order/APP.bat1c1d7b4cb334b99562e68bdcfe85959esize=59date=2020-01-23T08:03:14
+ghost/master/order/calculator.bate115429c5ed49b3d192092ee34b581d6size=4date=2022-12-11T08:58:54
+ghost/master/order/hibernate.batbe2c836becf428440d5aa56a8177e88asize=11date=2022-12-24T19:53:54
+ghost/master/order/reboot.bate7fdad60a880d47b2695f0950bada7a9size=16date=2022-12-24T19:55:42
+ghost/master/order/shutdown.batd6749ee3a7cc8c2f711d5feb96877ee5size=17date=2022-12-11T10:23:32
 ghost/master/order/the_deep_line1.txta5f89384800b6779b19d778054c7e06bsize=25date=2024-02-24T14:48:12
 ghost/master/order/the_deep_line2.txt1cdd5c8c32498c6f392e0e361f5fe9basize=36date=2024-02-24T14:48:25
 ghost/master/order/the_deep_line3.txtef4f6d6d2e4f6722c4e42dfcb7d0bcd5size=28date=2024-02-24T14:49:01
 ghost/master/order/the_deep_line4.txtd84fd36e2a5a007592aa7dbd385f7df8size=42date=2024-02-24T14:49:16
-ghost/master/order/休眠.batbe2c836becf428440d5aa56a8177e88asize=11date=2022-12-24T19:53:54
 ghost/master/order/控制台.batfc5364bf9dbfa34954526becad136d4bsize=7date=2022-12-24T19:48:06
-ghost/master/order/立即重啟.bate7fdad60a880d47b2695f0950bada7a9size=16date=2022-12-24T19:55:42
 ghost/master/order/裝置管理員.bat093b8b922c988bc15d2505e84c6888f2size=10date=2022-12-24T19:49:08
-ghost/master/order/計算機.bate115429c5ed49b3d192092ee34b581d6size=4date=2022-12-11T08:58:54
-ghost/master/order/關機.batd6749ee3a7cc8c2f711d5feb96877ee5size=17date=2022-12-11T10:23:32
 ghost/master/sound/battle/01 [HC]11-sould i keep attacking.MP32c25ee07dba601fe5619c6a67867516dsize=24709date=2023-05-27T06:52:20
 ghost/master/sound/battle/01 [HC]14-therere enemy in front of us.MP3b78164cb4687020b7dc665651340fbecsize=15932date=2023-05-27T07:05:50
 ghost/master/sound/battle/01 [HC]22-too dangerous.MP3cab16d93209d2e747a3f71eb0769504esize=17186date=2023-05-27T07:15:50
