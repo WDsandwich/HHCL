@@ -31,7 +31,7 @@ file,ghost/master/dic/event/item.dic7d8d0a8328e463d0db370c36fbee9025size=29716
 file,ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 file,ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 file,ghost/master/dic/event/mood.dic3025139968d484fbf036e517960aca24size=828date=2024-01-30T03:15:55
-file,ghost/master/dic/event/office.dic5c9a328b2dc5f7fb8c7fc6603849efa0size=12885date=2024-03-23T12:16:55
+file,ghost/master/dic/event/office.dic409e487cdbf6af12064995994d277361size=12885date=2024-03-23T16:20:25
 file,ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 file,ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 file,ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
@@ -49,7 +49,7 @@ file,ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562si
 file,ghost/master/dic/normal/yaya_bootend.dic4b345197bc700218044b296516b1c702size=10548date=2024-04-21T09:06:33
 file,ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 file,ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-file,ghost/master/dic/normal/yaya_etc.dic207cfccb15eaff0ae42d39d42a3c3b8fsize=19446date=2024-03-22T23:44:10
+file,ghost/master/dic/normal/yaya_etc.dic8c18836054f7aa67b4d30057596866f1size=19446date=2024-03-23T16:21:08
 file,ghost/master/dic/normal/yaya_menu.dic078109cdb3e564821dcc4c21bce85a83size=16437date=2024-03-23T16:13:58
 file,ghost/master/dic/normal/yaya_mouse.dicf5a33cbd305a394111e3a7df95ea2040size=21555date=2024-03-22T05:36:57
 file,ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
