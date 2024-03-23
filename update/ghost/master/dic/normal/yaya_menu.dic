@@ -381,19 +381,17 @@ GoToBattle
 {
 	click
 	--
-	/*if mood[0]<100 && mood[1]<100 ; "%cp(0)\b[20]（兩個人都無精打采的，或許現在不適合戰鬥。）"
-	elseif MenuChoice==0 && MoodStage(mood[0])=="G"
-		"\0我現在的狀態，\w8沒辦法戰鬥……\w9\n[130]對不起，\w5%(usernameHC)。\e"
-	elseif MenuChoice==0 && MoodStage(mood[1])=="G"
-		"\0\s[1]海拉的情緒好像很低落的樣子，\w8還是等會兒再去吧。\e"
-	elseif MenuChoice==1 && MoodStage(mood[1])=="G" ; "\1\s[31]不要……\w4我不想去……\e"
-	elseif MenuChoice==1 && MoodStage(mood[0])=="G"
-		"\1\s[36]赫卡蒂看起來很難受，\w8或許暫時不要去戰鬥比較好吧？\e"
-	elseif mood[0]<100 ; "\0\s[1]抱歉，\w4%(usernameHC)……\w5 我現在不在狀態……\w9 %cp(0)\b[20]（赫卡蒂的心情很糟糕的樣子……）"
-	elseif mood[1]<100 ; "\1\s[19]我不想去……\w9 %cp(0)\b[20]（海拉的心情很糟糕的樣子……）"
-	else ; */
+	if TOINT(cum_battle_complete[0])+TOINT(cum_battle_complete[1])+TOINT(cum_battle_complete[2])+TOINT(cum_battle_complete[3])+TOINT(cum_battle_complete[4]) ==0
+	"\p[3]\s[310000]\b[26]%(username)尚未有通關紀錄，\w5要進行戰鬥教學嗎？\w5\n[130]（初次完成教學可獲得獎勵，\w5就算現在取消，\w5未來也可以隨時在[管理局]>[辦公室]>[呼叫夜鶯]，\w5開啟教學模式以及獲得初次獎勵。）\w5/
+	%cp(0)\b[20]\__q[OnTutorial.Battle,20]%(opp)執行教學\__q\n[130]\__q[GoDirectlyToBattle]%(opp)直接開始戰鬥\__q"
+	else ; BattleMapChoose_Line
+}
+GoDirectlyToBattle
+{	"\p[3]\s[-1]"
+	--
 	BattleMapChoose_Line
 }
+
 
 GoOutsideCANCEL
 {
@@ -416,28 +414,66 @@ GoOutsideCANCEL
 }
 
 
-
+//=======================================================================
+//								局長命令								
+//=======================================================================
 Menu_Function
 {
-	case MenuChoice
-	{
-		when 0 ; "\0"
-		when 1 ; "\1"
+	_txt="%(click)\%(MenuChoice)\b[2]\_q\![*]"
+	--
+	if function_page==1 ; _txt+="\__q[OnMenu_Function.ChangPage,0]要求幫忙\__q"
+	else ; _txt+="\f[color,#A6FFFF]\f[bold,1]要求幫忙"
+	--
+	_txt+="\f[default]\_l[80]   \![*]"
+	--
+	if function_page==1 ; _txt+="\f[color,#A6FFFF]\f[bold,1]電源"
+	else ; _txt+="\__q[OnMenu_Function.ChangPage,1]電源\__q"
+	_txt+="\f[default]\n[150]\_q"
+	--
+	_point=("├","├","└")
+	_name=("線上更新","開啟APP一覽","計算機")
+	_func=("OnUpdateFor","OnBat,APP","OnBat,calculator")
+	if function_page==1
+	{	_point=("├","├","└")
+		_name=("休眠","關機","重新啟動")
+		_func=("OnBat,hibernate","OnBat,shutdown","OnBat,reboot")
 	}
 	--
-	"\b[2]/
-	\_q%(click)\f[color,127,179,230]\![*]要求幫忙/
-	\f[default] \_l[80]   \![*]\q[電源,SystemOder]\n\n[half]\_q"
+	for _i=0 ; _i<ARRAYSIZE(_name) ; _i++
+	{	_txt+="\_q\f[height,20]\f[color,200,0,0]%(_point[_i])\f[default]\__q[%(_func[_i])] %(_name[_i]) \__q\n\_q\w1"	}
+	--
+	_txt
 	--
 	MuenBottomOption(0)
-	--
-	Menu_Function_list
 }
 OnMenu_Function.ChangPage
 {
-	functionpage=reference0
+	function_page=reference0
 	Menu_Function
 }
+
+//-------------線上更新
+OnUpdateFor
+{	intimacy[MenuChoice]+=5
+	"\![update,ghost+shell+balloon]"
+}
+//-------------開啟bat檔
+OnBat
+{	_bat=reference0
+	intimacy[MenuChoice]+=5
+	--
+	click
+	--
+	if _bat=="hibernate" && MenuChoice==1 ; "\1\s[30]%(you)要記得回來喔！\w9"
+	elseif _bat=="hibernate" ; "\0\s[1]請您好好休息。\w9"
+	elseif _bat=="reboot" && MenuChoice==1 ; "\1\s[16]要去上廁所嗎？\w9"
+	elseif _bat=="reboot" ; "\0\s[0]待會見。\w9"
+	elseif _bat=="shutdown" ; GoodbyeMSG
+	--
+	"\![open,file,order\%(_bat).bat]"
+}
+
+
 
 SystemOder
 {
@@ -461,8 +497,16 @@ SystemOder
 //-----次級選單
 Menu_Function_list: nonoverlap
 {
+	_name=("更新本體","更新對話框","開啟APP一覽","計算機")
+	_func=("OnUpdateFor,0","OnUpdateFor,1","APPLIST","CALCULATOR")
 	"\_l[0,30]\f[height,20]\f[color,200,0,0]├ \f[default]\f[height,15]\q[ 開啟APP一覽,APPLIST]\f[height,20]\n/
 	\f[color,200,0,0]└ \f[default]\f[height,15]\q[ 計算機 ,CALCULATOR]\f[height,20]"
+	_option="\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(menu_title)\![*]\f[default]\n\n[half]\f[default]\_l[0,30]\f[height,20]\_q\w1"
+	for _i=0 ; _i<ARRAYSIZE(menu_o_list) ; _i++
+	{
+		_option+="\_q\f[color,200,0,0]%(menu_p_list[_i])\f[default]\__q[%(menu_func_list[_i])] %(menu_o_list[_i]) \__q\f[height,20]\n\_q\w1"
+	}
+	_option
 }
 SystemOder_list
 {
