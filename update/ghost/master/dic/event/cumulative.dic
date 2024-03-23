@@ -60,19 +60,19 @@ CumulativeData
 		"\_l[-,10]%Subtitle('戰鬥')"
 		--
 		cumList_title = "完成任務"
-		cumList_list = ("辛迪加","實驗室廢墟","銹河河道")
+		cumList_list = ("教程","辛迪加","實驗室廢墟","銹河河道")
 		cumList_array = cum_battle_complete
 		cumList_suffix = "次"
 		CumList
 		--
 		cumList_title = "戰鬥中被擊敗"
 		cumList_list = ("辛迪加","實驗室廢墟","銹河河道")
-		cumList_array = cum_battle_fall
+		cumList_array = (cum_battle_fall[1],cum_battle_fall[2],cum_battle_fall[3])
 		cumList_suffix = "次"
 		CumList
 		--
 		cumList_title = "從戰鬥中逃走"
-		cumList_list = ("辛迪加","實驗室廢墟","銹河河道")
+		cumList_list = ("教程","辛迪加","實驗室廢墟","銹河河道")
 		cumList_array = cum_battle_runaway
 		cumList_suffix = "次"
 		CumList

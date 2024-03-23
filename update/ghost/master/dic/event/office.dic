@@ -1,14 +1,14 @@
 Office
-{
+{	
 	if MenuCheif==2 ; "\0\s[0]\1\s[10]\p[2]"
 	else ; "\%(MenuChoice)"
 	--
 	"\b[2]\_q%(click)"
 	--
 	menu_title="辦公室"
-	menu_p_list=("├","├","├","├","└")
-	menu_o_list=("輸入指令碼","快捷鍵","碎紙機","存檔管理","初始化")
-	menu_func_list=("OnRedemptionCode,0","OnHotkeySetting","PapreShredder","DataBase.SaveBackup","Initialize.Ask")
+	menu_p_list=("├","├","├","├","├","└")
+	menu_o_list=("呼叫夜鶯","輸入指令碼","快捷鍵","碎紙機","存檔管理","初始化")
+	menu_func_list=("OnTutorial","OnRedemptionCode,0","OnHotkeySetting","PapreShredder","DataBase.SaveBackup","Initialize.Ask")
 	--
 	if developermode==1
 	{	menu_p_list=("├",menu_p_list)
@@ -19,7 +19,7 @@ Office
 	--
 	Menu.Option
 	--
-	"\_q\_l[7,170]\f[color,150,150,150]\f[height,12]（回報用）version.code %(version_code)\_q"
+	//"\_q\_l[7,170]\f[color,150,150,150]\f[height,12]（回報用）version.code %(version_code)\_q"
 	--
 	if MenuCheif==2
 		"\_q\f[color,150,150,150]\_l[7,220]\f[height,12]\q[<<局長檔案,CheifInfo]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
@@ -133,7 +133,6 @@ OnRedemptionCode
 	}*/
 	
 }
-
 //=======================================================================
 //						開發人員選項				   					
 //=======================================================================
@@ -355,7 +354,7 @@ Initialize.Data
 	cum_gain_discoin = (0,0,0,0)
 	cum_cost_hypercube = (0,0)
 	cum_gain_hypercube = (0,0)
-	cum_battle_complete = (0,0)
+	cum_battle_complete = (0,0,0,0,0)
 	cum_battle_fall = (0,0)
 	cum_battle_runaway = (0,0)
 	cum_enemy = (0,0)

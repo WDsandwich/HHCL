@@ -2,7 +2,7 @@ OnHotkeySetting
 {
 	"\p[4]\s[-1]\b[6]%(click)\![quicksession,true]\n[50]\f[height,15]%Subtitle('自訂快捷鍵')\n[150]"
 	--
-	_name="關閉程式,重整位置,顯示局長,禁閉者檔案,倉庫,互動,採購部,更衣室,研磨坊,戰鬥,溫泉,派遣,圖鑑,鍛造室"
+	_name="關閉程式,重整位置,顯示局長,禁閉者檔案,倉庫,互動,採購部,更衣室,研磨坊,戰鬥,溫泉,派遣,圖鑑,鍛造室,檔案室"
 	_txt=""
 	for _i=0 ; _i<ARRAYSIZE(_name) ; _i++
 	{
@@ -74,6 +74,7 @@ OnKeyPress
 	elseif _key==self_hotkey[11] {Dispatch}	//派遣
 	elseif _key==self_hotkey[12] {HotKey_Illustrated}	//圖鑑
 	elseif _key==self_hotkey[13] {Hotkey_ForgeRoom}	//鍛造室
+	elseif _key==self_hotkey[14] {Database}	//檔案室
 	if ill_mode==2			//圖鑑切換
 	{	case _key
 		{	when "left"  ; "\![raise,OnIllustrated_Enemy_Info.Changepage,A]"
@@ -128,37 +129,26 @@ OnKeyPress
 		"\![open,dialog,color,--id=Onjrioj]"
 		}
 		when "d" {
-		    _str = "1,3,5,7,9"
-			_t   = 0
-			foreach _str; _i {
-				_t += TOINT(_i)
-			}
-			_t
+		"%SureWindow('CANCEL_Button')%SFX('sfx/decision button2')\n[-50]\f[height,12]獲得初次教學獎勵：\f[default]\n[130]\f[bold,1]\f[color,#EAC100]%(missionpay[map_num])狄斯幣\n\f[color,#DE7D7D]狂亂精粹、異能原液、狂暴原液×5\f[default]\n[200]/
+				\f[color,#4DFFFF]\f[height,12]\__q[GoToBattle]→[前往戰鬥地圖]\__q"
 		}
 		when "t" {
-		_a=("A","B","B","C")
-		_b=ASEARCHEX("B",_a)
-		_a[_b]
 		}
 		when "k" {
-		stamina=30
-		_a=RAND(4)
-		birthdaycake[_a]=1
+		OnTutorial
 		}
 		when "." {
-		"\p[3]\b[32]\_q%ProgressBar(10,10,150,23,50)\n\f[align,right]23/50\n[130]%(DividingLine2)\n[130]/
-		\f[bold,1]正在下載檔案\f[bold,0]\n[120]shell/master/battle/effect/MC_04.png\_q"
+		"\p[3]\b[32]\_q%ProgressBar(4,10,150,update_file[0],update_file[1])\n\f[align,right]%(update_file[0])/%(update_file[1])\n[130]%(DividingLine2)\n[130]\_q\s[310002]已順利完成\f[color,#FFDC35]\f[bold,1]%(version_name)\f[default]版本更新。\x\p[3]\s[-1]"
 		}
 		when "," {
-		"\p[3]\b[32]\_q%ProgressBar(4,10,150,23,50)\n\f[align,right]23/50\n[130]%(DividingLine2)\n[130]/
-		0f4rSqHpYYccCVNnfQVlnL0keEPCJl / 0f4rSqHpYYccCVNnfQVlnL0keEPCJl\n[120]\f[color,#4DFFFF]認證成功\f[default]\_q"
+		cum_battle_complete = (0,0,0,0,0)
 		}
 		when "j" {
 		
 		"\![raise,OnTutorial.Battle,41]"
 		}
 		when "w" {
-		"\p[5]\s[520010]%SFX('sfx/鈴を鳴らす')\i[680001]"
+		"\p[5]\s[520010]%SFX('sfx/Rinwonarasu')\i[680001]"
 		}
 		when "e" {
 		"\![raise,OnTutorial.Battle,20]"

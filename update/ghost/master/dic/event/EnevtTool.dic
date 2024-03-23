@@ -156,10 +156,10 @@ Subtitle
 //=======================選項工具=======================
 Menu.Option
 {
-	_option="\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(menu_title)\![*]\f[default]\n\n[half]\f[default]\_q\_l[0,30]\f[height,20]"
+	_option="\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(menu_title)\![*]\f[default]\n\n[half]\f[default]\_l[0,30]\f[height,20]\_q\w1"
 	for _i=0 ; _i<ARRAYSIZE(menu_o_list) ; _i++
 	{
-		_option+="\f[color,200,0,0]%(menu_p_list[_i])\f[default]\q[ %(menu_o_list[_i]) ,%(menu_func_list[_i])]\f[height,20]\n"
+		_option+="\_q\f[color,200,0,0]%(menu_p_list[_i])\f[default]\__q[%(menu_func_list[_i])] %(menu_o_list[_i]) \__q\f[height,20]\n\_q\w1"
 	}
 	_option
 }

@@ -16,16 +16,18 @@ StillInBattle
 	}
 }
 
-map_name_zh { ("辛迪加","實驗室廢墟","銹河-乾枯河道","內海","無背景") }
-map_name_en { ("Syndicate","ParmaRuins","RustRiver","DisSea","none") }
+map_name_zh { ("教學","辛迪加","實驗室廢墟","銹河-乾枯河道","內海","無背景") }
+map_name_en { ("Tutorial","Syndicate","ParmaRuins","RustRiver","DisSea","none") }
 enemy_action_list { ("hecate","hella","aoe","skill","idle") }
 enemy_attacktarget_list { ("赫卡蒂","海拉","禁閉者們","技能","待機") }
 
 //=====選擇戰鬥地圖=====
-BattleModeChoose
+BattleModeCheck
 {
-	"\0\b[2]選擇戰鬥模式（開發用）：\n[150]/
-	\q[%(bp) 初次戰鬥流程 ,GoFristBattle]\n[130]\q[%(bp) 一般戰鬥(地圖選擇) ,BattleMapChoose]"
+	if TOINT(cum_battle_complete[0])+TOINT(cum_battle_complete[1])+TOINT(cum_battle_complete[2])+TOINT(cum_battle_complete[3])+TOINT(cum_battle_complete[4]) ==0
+	"\p[3]\s[310000]%(username)尚未有通關紀錄，\w5要進行戰鬥教學嗎？\w5\n[130]（初次完成教學可獲得獎勵，\w5就算現在取消，\w5未來也可以隨時在[%TTRBC('管理局')]>[%TTRBC('辦公室')]>[%TTRBC('呼叫夜鶯')]，\w5開啟教學模式以及獲得初次獎勵。）\w5/
+	%cp(0)\b[22]\__q[OnTutorial.Battle,20]%(opp)執行教學\__q\n[130]\__q[BattleMapChoose]%(opp)直接開始戰鬥\__q"
+	else ; BattleMapChoose
 }
 BattleMapChoose_Line
 {
@@ -84,25 +86,25 @@ BattleMapChoose
 	"\p[4]\s[-1]\b[2]%(click)\_b[img\battle\DisCity.png,2,28,--option=background,--option=use_self_alpha]/
 	\![quicksession,true]\f[shadowcolor,none]\f[height,12]\f[color,#73ABAB]體　力：\f[color,default] \f[shadowcolor,none]        %(stamina) / %(staminamax)%ProgressBar(6,50,135,stamina,staminamax)\f[shadowcolor,default]\f[height,15]"
 	--
-	if level>=10 ; "\_b[img\battle\dot.png,133,109,--option=use_self_alpha]\__q[OnChooseMap,2]"
+	if level>=10 ; "\_b[img\battle\dot.png,133,109,--option=use_self_alpha]\__q[OnChooseMap,3]"
 	else ; "\f[color,#8E8E8E]\__q[UnlockRustRiver]"
 	--
 	"\_l[10,70]銹河-乾枯河道\__q/
-	\_b[img\battle\dot.png,155,159,--option=use_self_alpha]\_l[125,85]\__q[OnMapDetail,2]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q\_l[75,119]\f[default]\__q[OnChooseMap,0] 辛迪加 \__q\_l[145,134]\__q[OnMapDetail,0]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
+	\_b[img\battle\dot.png,155,159,--option=use_self_alpha]\_l[125,85]\__q[OnMapDetail,3]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q\_l[75,119]\f[default]\__q[OnChooseMap,1] 辛迪加 \__q\_l[145,134]\__q[OnMapDetail,1]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
 	--
 	//"\_b[img\battle\dot.png,195,273,--option=use_self_alpha]\f[color,#8E8E8E]\f[shadowcolor,none]\__q"
 	--
-	if verson_code>=999999 ; "\__q[OnChooseMap,3]"
+	if verson_code>=999999 ; "\__q[OnChooseMap,4]"
 	else ; "\f[color,#8E8E8E]\__q[UnlockDisSea]"
 	--
 	"\_l[134,190]內海\__q"
 	--
 	if level>=5
-		"\_b[img\battle\dot.png,140,66,--option=use_self_alpha]\f[default]\__q[OnChooseMap,1]"
+		"\_b[img\battle\dot.png,140,66,--option=use_self_alpha]\f[default]\__q[OnChooseMap,2]"
 	else
 		"\f[color,#8E8E8E]\__q[UnlockParmaRuins]"
 	--
-	"\_l[40,30]實驗室廢墟\__q\_l[130,45]\__q[OnMapDetail,1]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
+	"\_l[40,30]實驗室廢墟\__q\_l[130,45]\__q[OnMapDetail,2]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
 	--
 	batlle_level = TOINT(batlle_level)
 	if batlle_level<0 ; batlle_level=0
@@ -150,20 +152,31 @@ Battle.Cancel
 }
 OnMapDetail
 {
-	_name="辛迪加,實驗室廢墟,銹河-乾枯河道"
-	_detail="暴力的溫床，黑幫的舞台。偶爾也有死役在此出沒。,遺留在此的實驗體和器材，受狂厄影響後，誕生出獨特的原生種。,原本流淌著河水的地方只剩下高度污染的泥濘，源源不絕的死役大量出沒。"
-	_level=(1,5,10)
-	_info="- 擊敗敵人時可獲得狄斯幣，數目隨等級增加\n[130]- 無法在此獲得染劑原礦,- 敵人擁有更高的血量\n[130]- 掉落的染劑原礦和強化道具為2倍,- 敵人擁有較高的血量與更高的攻擊力，以及更多樣的攻擊方式\n[130]- 擊敗敵人時將獲得更多經驗值"
-	_pay=("隨等級&汙染層級增加",3000,5000)
-	_wave=(7,5,10,3)
-	_sta=(2,4,3,5)
 	_n=reference0
-	"\p[6]\s[-1]\b[2]\![quicksession,true]%(click)\![*]\f[color,#E0FFFF]\f[bold,1]%(_name[_n])\![*]\n[10]\f[align,right]\f[height,12]\f[color,default]Lv.\f[color,#80FFFF]%(_level[_n])\f[color,default]解鎖\f[default]\n[130]\f[align,left]/
+	_detail=",暴力的溫床，黑幫的舞台。偶爾也有死役在此出沒。,遺留在此的實驗體和器材，受狂厄影響後，誕生出獨特的原生種。,原本流淌著河水的地方只剩下高度污染的泥濘，源源不絕的死役大量出沒。"
+	_level=(1,1,5,10)
+	_info=",- 擊敗敵人時可獲得狄斯幣，數目隨等級增加\n[130]- 無法在此獲得染劑原礦,- 敵人擁有更高的血量\n[130]- 掉落的染劑原礦和強化道具為2倍,- 敵人擁有較高的血量與更高的攻擊力，以及更多樣的攻擊方式\n[130]- 擊敗敵人時將獲得更多經驗值"
+	_pay=(1000,"隨等級&汙染層級增加",3000,5000)
+	_wave=(1,7,5,10,3)
+	_sta=(0,2,4,3,5)
+	"\p[6]\s[-1]\b[2]\![quicksession,true]\![set,autoscroll,disable]%(click)\![*]\f[color,#E0FFFF]\f[bold,1]%(map_name_zh[_n])\![*]\n[10]\f[align,right]\f[height,12]\f[color,default]Lv.\f[color,#80FFFF]%(_level[_n])\f[color,default]解鎖\f[default]\n[130]\f[align,left]/
 	\f[height,12]\f[color,#9D9D9D]%(_detail[_n])\f[default]\n[150]%(_info[_n])\n[200]/
 	\f[color,#E87DB3]總wave數：%(_wave[_n])\n[130]/
 	\f[color,#80FFFF]單wave消耗體力：%(_sta[_n])\n[130]/
-	\f[color,#FFDC35]通關報酬：%(_pay[_n])/
-	\f[color,150,150,150]\f[height,12]\_l[150,220]\_b[img/CancelIcon,inline]\q[關閉,BattleMapChoose]"
+	\f[color,#FFDC35]通關報酬：%(_pay[_n])"
+	--
+	if _n==3
+	{	"\n[150]\f[align,center]\f[color,#C8D0D0]\f[bold,1]▼ 本月特殊掉落物 ▼\f[default]\n[111]"
+		--
+		if month == 3 ; Bimg("items/gift_sp_4")
+		elseif month == 4 ; Bimg("items/gift_sp_5")
+		else ; "\n[50]\f[color,#8E8E8E]無"
+		--
+		"\n[150]\f[align,right]"
+	}
+	else ; "\_l[150,220]"
+	--
+	"\f[color,150,150,150]\f[height,12]\_b[img/CancelIcon,inline]\q[關閉,BattleMapChoose]"
 	--
 	BattleMapChoose
 }
@@ -183,6 +196,11 @@ BalloonTooltip_UnlockParmaRuins { "等級5以上 解鎖" }
 BalloonTooltip_UnlockRustRiver { "等級10以上 解鎖" }
 BalloonTooltip_UnlockDisSea { "尚未開放" }
 
+
+missionpay
+{(1000,50+level*27+TOINT(level*batlle_level*1.14514),3000,5000,10000)}
+
+
 OnChooseMap
 {
 	BattleMode=1
@@ -192,33 +210,29 @@ OnChooseMap
 	{
 		when "Syndicate"
 		{
-			missionpay=50+level*27+TOINT(level*batlle_level*1.14514)
 			wave=(1,7,2)
 		}
 		when "ParmaRuins"
 		{
-			missionpay=3000
 			wave=(1,5,4)
 		}
 		when "RustRiver"
 		{
-			missionpay=5000
 			wave=(1,10,3)
 			if developermode==1
 			"\![sound,loop,sound/bgm/awesomeness.mp3]\![sound,option,sound/bgm/awesomeness.mp3,--volume=70]"
 		}
 		when "DisSea"
 		{
-			missionpay=10000
 			wave=(1,3,5)
 		}
 	}
 	--
-	"\p[6]\s[-1]\![set,balloonalign,right]\![move,--X=550,--Y=440,--time=10,--base-offset=left.top]\p[5]\s[-1]\![bind,background,%(mapname),1]\![set,balloonalign,top]\![move,--X=500,--Y=400,--time=10,--base-offset=left.top]"
+	"\p[6]\s[-1]\p[5]\s[-1]\![bind,background,%(mapname),1]"
 	--
 	AllMapSetting
 }
-
+/*
 //辛迪加 地圖設定
 ChooseMap_Syndicate
 {
@@ -264,7 +278,7 @@ ChooseMap_DisSea
 	wave=(1,3)
 	"\p[5]\s[-1]\![bind,background,DisSea,1]"
 	AllMapSetting
-}
+}*/
 
 //通用開場設定
 AllMapSetting
@@ -1716,8 +1730,7 @@ SinnerBeenAttack
 Sinner.HPCheck
 {
 	if hp[0]*hp[1]<=0
-	{	_a= ASEARCH (mapname,map_name_en)
-		cum_battle_fall[_a]++
+	{	cum_battle_fall[map_num]++
 		intimacy[1]-=20
 		cum_int_down_HL[1]+=20
 	}
@@ -1877,10 +1890,8 @@ BattleRunaway
 		"\w9\w9\w9"
 		--
 		BattleMode=0
+		cum_battle_runaway[map_num]=TOINT(cum_battle_runaway[map_num]) ; cum_battle_runaway[map_num]++
 		DeleteAllBattleVar
-		_mp=("Syndicate","ParmaRuins","RustRiver")
-		_mn=(mapname,_mp)
-		cum_battle_runaway[_mn]=TOINT(cum_battle_runaway[_mn]) ; cum_battle_runaway[_mn]++
 		--
 		"\p[5]\s[-1]\b[-1]\p[6]\s[-1]\b[32]\c%(bp) "
 		--
@@ -1998,10 +2009,9 @@ BossBattle
 //地圖通關
 MissionComplete
 {
-    _a=ASEARCH(mapname,map_name_en)
-	cum_battle_complete[_a]=TOINT(cum_battle_complete[_a]) ; cum_battle_complete[_a]++
-	discoin+=missionpay
-	cum_gain_discoin[0]+=missionpay
+    cum_battle_complete[map_num]=TOINT(cum_battle_complete[map_num]) ; cum_battle_complete[map_num]++
+	discoin+=missionpay[map_num]
+	cum_gain_discoin[0]+=missionpay[map_num]
 	intimacy+=10
 	cum_int_HC[2]=TOINT(cum_int_HC[2]) ; cum_int_HC[2]+=10
 	cum_int_HL[2]=TOINT(cum_int_HL[2]) ; cum_int_HL[2]+=10
@@ -2012,7 +2022,8 @@ MissionComplete
 }
 MissionComplete_MSG
 {	
-	"\0\s[-1]\p[6]\s[-1]\p[3]\s[310000]\b[0]辛苦了，\w5%(username)。\w7\n本次任務的完成報酬%(missionpay)狄斯幣，\w7已經匯進您的帳戶了。\w6/
+	"\p[5]\![bind,enemy,none,1]\s[520010]%SFX('sfx/Rinwonarasu')\i[680001]\w5/
+	\p[6]\s[-1]\p[3]\s[310000]\b[0]辛苦了，\w5%(username)。\w7\n本次任務的完成報酬%(missionpay[map_num])狄斯幣，\w7已經匯進您的帳戶了。\w6/
 	\p[2]%cp(0)\b[20]\f[align,center]\q[ 再次戰鬥 ,BattleAgain]\n[166]\q[ 回到管理局 ,GobackBureau]"
 }
 BattleAgain
@@ -2082,10 +2093,10 @@ DeleteBattleVar_Wave
 DeleteBattleVar_Map
 {
 	ERASEVAR('mapname')
+	ERASEVAR('map_num')
 	ERASEVAR('hp')
 	ERASEVAR('Bmp')
 	ERASEVAR('Edmg')
-	ERASEVAR('missionpay')
 }
 DeleteAllBattleVar
 {
@@ -2094,7 +2105,7 @@ DeleteAllBattleVar
 	DeleteBattleVar_Map
 	BattleMode=0
 	--
-	"\![sound,stop]\p[5]\![bind,enemy,none,1]\![bind,background,none,1]\s[-1]\0\s[1]\1\s[10]\p[2]%cp(0)"
+	"\![sound,stop]\p[5]\![anim,stop]\s[-1]\![bind,enemy,none,1]\![bind,background,none,1]\0\s[1]\1\s[10]\p[2]%cp(0)"
 }
 
 //====================================================

@@ -1,32 +1,41 @@
 OnTutorial
 {
-	"\%(MenuChoice)\b[2]\_q%(click)"
+	"%(click)\%(MenuChoice)\b[2]\_q"
 	--
 	menu_title="向夜鶯請教"
 	menu_p_list=("└")
 	
 	menu_o_list=("戰鬥教學")
-	menu_func_list=("OnTutorial.Battle,20")
+	menu_func_list=("OnTutorial.Battle,20","")
 	--
 	Menu.Option
 	--
-	MuenBottomOption(0)
+	"\_q\f[color,150,150,150]\_l[7,220]\_b[img/BackIcon,inline]\f[height,12]\q[返回,OnTutorial.Office]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,OnTutorial.Close]\_q"
 	--
-	"\p[3]\s[310000]\b[26]有什麼我能幫上忙的地方嗎，%(username)？"
+	"\p[3]\s[310000]有什麼我能幫上忙的地方嗎，%(username)？"
 }
+OnTutorial.Office
+{"\p[3]\s[-1]%(Office)"}
+OnTutorial.Close
+{"\p[3]\s[-1]%(CANCEL_Button)"}
+
+
+
+
 TTRH
 {"\f[color,#FF0000]\f[shadowcolor,#F5FFE8]☞\f[default]\f[color,#FFDC35]"}
 TTRB
 {"\f[color,#FFF8D7]\f[bold,1]%(_argv[0])\f[default]"}
 TTRBC
 {"\f[color,#00FFFF]\f[bold,1]%(_argv[0])\f[default]"}
+
 OnTutorial.Battle
 {
 	BattleMode=reference0
 	_bm=0
 	case BattleMode
 	{	when 20
-		{	missionpay=1000
+		{	map_num=0
 			wave=(1,2)
 			roundNum=1
 			OrderDone=(1,1,0)
@@ -291,7 +300,7 @@ OnTutorial.Battle
 			--
 			enemy_name=""
 			--
-			"%(click)\p[5]\![bind,enemy,none,1]\s[520010]%SFX('sfx/鈴を鳴らす')\i[680001]/
+			"%(click)\p[5]\![bind,enemy,none,1]\s[520010]%SFX('sfx/Rinwonarasu')\i[680001]/
 			%(BattleInfoWindow.Tutorial)/
 			\p[3]\s[310000]\b[26]\c\![quicksession,false]戰鬥教學完成。\w7辛苦您了，\w5%(username)。\x/
 			%(click)\![raise,OnTutorial.Battle,42]"
@@ -302,10 +311,14 @@ OnTutorial.Battle
 			--
 			"\0\s[0]\1\s[10]\p[3]\s[-1]\p[5]\s[-1]"
 			--
-			if cum_battle_complete[0]<1 ; {discoin+=1000}
-			
-			"%SureWindow('CANCEL_Button')%SFX('sfx/decision button2')\n[-50]\f[height,12]獲得初次教學獎勵：\f[default]\n[130]1000狄斯幣\n狂亂精粹、異能原液、狂暴原液×5\n[200]/
-			\__q[CANCEL_Button]%Bimg('qty/OK')\__q"
+			if cum_battle_complete[0]<1
+			{	discoin+=missionpay[map_num]
+				enhancement+=5
+				cum_battle_complete[0]++
+				"%SureWindow('CANCEL_Button')%SFX('sfx/decision button2')\n[-50]\f[height,12]獲得初次教學獎勵：\f[default]\n[130]\f[bold,1]\f[color,#EAC100]%(missionpay[map_num])狄斯幣\n\f[color,#DE7D7D]狂亂精粹、異能原液、狂暴原液×5\f[default]\n[200]/
+				\f[color,#4DFFFF]\f[height,12]\__q[GoToBattle]→[前往戰鬥地圖]\__q"
+			}
+			else ; "%SureWindow('CANCEL_Button')已獲得過初次教學獎勵"
 		}
 		when 45
 		{	_bm=BattleMode
