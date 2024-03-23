@@ -159,7 +159,7 @@ OnSettingAnniversary.End
 //===================================================================
 CheifInfo	//資料頁
 {
-	"\p[4]\s[-1]\b[2]\c\![quicksession,true]\![set,choicetimeout,0]%(click)"
+	"%cp(0)\p[4]\s[-1]\b[2]\c\![quicksession,true]\![set,choicetimeout,0]%(click)"
 	--
 	"\f[height,12]\![*]\f[bold,1]SHEPERD-13\f[bold,0]\![*]/
 	\__q[CheifInfo.Photo]＜\f[color,#A6FFFF]編輯證件照\f[color,default]＞\__q\n[150]✧ 第一人稱：\f[color,#A6FFFF]\q[  %(you)  ,CheifInfo.You.Input]\f[color,default]\n[150]✧ "

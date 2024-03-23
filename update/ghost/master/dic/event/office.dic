@@ -27,8 +27,8 @@ Office
 	--
 	"\n\_l[-,200]\f[align,right]\f[height,12]\f[color,#6C6C6C]版本 %(version_name)"
 }
-version_name{"0.9.32"}
-version_now{"0,9,032"}
+version_name{"0.9.33"}
+version_now{"0,9,033"}
 
 //======================================
 //				輸入指令碼				
