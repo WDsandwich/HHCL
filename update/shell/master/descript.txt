@@ -172,6 +172,8 @@ kero.bindgroup14207.name,上衣,T4
 kero.bindgroup14207.addid,12906
 kero.bindgroup14208.name,上衣,T5
 kero.bindgroup14208.addid,12906
+kero.bindgroup14209.name,上衣,T6
+kero.bindgroup14210.name,上衣,T7
 
 
 kero.bindoption14000.group,下裝,mustselect
@@ -182,6 +184,10 @@ kero.bindgroup14501.addid,12101
 kero.bindgroup14001.name,下裝,2
 kero.bindgroup14002.name,下裝,3
 kero.bindgroup14502.name,下裝,4
+kero.bindgroup14003.name,下裝,5
+kero.bindgroup14503.name,下裝,6
+kero.bindgroup14004.name,下裝,7
+kero.bindgroup14504.name,下裝,8
 
 
 kero.bindgroup13600.name,襪,1
@@ -234,6 +240,8 @@ kero.bindgroup16601.name,裝飾,2
 kero.bindgroup16602.name,裝飾,3
 kero.bindgroup16199.name,裝飾,4
 kero.bindgroup16603.name,裝飾,5
+kero.bindgroup16605.name,裝飾,6
+kero.bindgroup16606.name,裝飾,7
 
 
 
@@ -394,6 +402,10 @@ char5.bindgroup513808.name,HL上衣,T4
 char5.bindgroup513808.addid,511903,515003
 char5.bindgroup513807.name,HL上衣,T5
 char5.bindgroup513807.addid,515004
+char5.bindgroup513809.name,HL上衣,T6
+char5.bindgroup513809.addid,512209
+char5.bindgroup513810.name,HL上衣,T7
+char5.bindgroup513810.addid,512210
 
 
 char5.bindoption513600.group,HL下裝,mustselect
@@ -406,6 +418,14 @@ char5.bindgroup513602.name,HL下裝,3
 char5.bindgroup513602.addid,512502
 char5.bindgroup514102.name,HL下裝,4
 char5.bindgroup514102.addid,512102
+char5.bindgroup513603.name,HL下裝,5
+char5.bindgroup513603.addid,512502
+char5.bindgroup514103.name,HL下裝,6
+char5.bindgroup514103.addid,512102
+char5.bindgroup513604.name,HL下裝,7
+char5.bindgroup513604.addid,512502
+char5.bindgroup514104.name,HL下裝,8
+char5.bindgroup514104.addid,512102
 
 
 char5.bindgroup513200.name,HL襪,1
@@ -439,14 +459,14 @@ char5.bindgroup514500.name,HL手套,1
 char5.bindgroup514500.default,1
 
 
-char5.bindoption514400.group,HL手持,mustselect
-char5.bindgroup514400.name,HL手持,1
-char5.bindgroup514400.addid,511400
-char5.bindgroup514400.default,1
-char5.bindgroup514401.name,HL手持,3
-char5.bindgroup514401.addid,511401
-char5.bindgroup514402.name,HL手持,4
-char5.bindgroup514402.addid,511402
+char5.bindoption516800.group,HL手持,mustselect
+char5.bindgroup516800.name,HL手持,2
+char5.bindgroup516800.addid,511400
+char5.bindgroup516800.default,2
+char5.bindgroup516801.name,HL手持,3
+char5.bindgroup516801.addid,511401
+char5.bindgroup516802.name,HL手持,4
+char5.bindgroup516802.addid,511402
 
 
 char5.bindoption511201.group,HL裝飾,multiple
@@ -454,6 +474,8 @@ char5.bindgroup511201.name,HL裝飾,1
 char5.bindgroup515801.name,HL裝飾,2
 char5.bindgroup515399.name,HL裝飾,4
 char5.bindgroup515802.name,HL裝飾,5
+char5.bindgroup515803.name,HL裝飾,6
+char5.bindgroup515804.name,HL裝飾,7
 
 
 //====================================================

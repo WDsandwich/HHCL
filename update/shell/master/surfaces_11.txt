@@ -279,6 +279,14 @@ surface14208
 {
 	element0,base,dressing/hella/top_8.png,0,0
 }
+surface14209	//JK襯衫-染色
+{
+	element0,base,dressing/hella/top_9.png,0,0
+}
+surface14210
+{
+	element0,base,dressing/hella/top_10.png,0,0
+}
 
 
 //==============下裝==============
@@ -298,13 +306,29 @@ surface14001	//色慾惡魔-莫蒂斯
 {
 	element0,base,dressing/hella/bottom_1.png,0,0
 }
-surface14002	//JK
+surface14002	//JK裙
 {
 	element0,base,dressing/hella/bottom_3.png,0,0
 }
 surface14502
 {
 	element0,base,dressing/hella/bottom_3.png,0,0
+}
+surface14003	//JK裙-藍
+{
+	element0,base,dressing/hella/bottom_6.png,0,0
+}
+surface14503
+{
+	element0,base,dressing/hella/bottom_6.png,0,0
+}
+surface14004	//JK裙-綠
+{
+	element0,base,dressing/hella/bottom_7.png,0,0
+}
+surface14504
+{
+	element0,base,dressing/hella/bottom_7.png,0,0
 }
 
 
@@ -468,3 +492,11 @@ surface16199
 	element0,base,dressing/hella/scarf_199.png,0,0
 }
 //surface16604已使用
+surface16605	//JK-染色
+{
+	element0,base,dressing/hella/other_5.png,0,0
+}
+surface16606
+{
+	element0,base,dressing/hella/other_6.png,0,0
+}

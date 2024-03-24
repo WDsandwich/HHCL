@@ -633,6 +633,18 @@ surface520010-520013,520016-520019,520020,520026,520030-520033,520039,520050-520
 	//===JK-開外套
 	animation513808.interval,bind
 	animation513808.pattern0,overlay,513808,0,0,0
+	//===JK-襯衫(綠)
+	animation513809.interval,bind
+	animation513809.pattern0,overlay,513809,0,0,0
+	animation512209.interval,bind
+	animation512209.option,background
+	animation512209.pattern0,overlay,512209,0,0,0
+	//===JK-襯衫(黑)
+	animation513810.interval,bind
+	animation513810.pattern0,overlay,513810,0,0,0
+	animation512210.interval,bind
+	animation512210.option,background
+	animation512210.pattern0,overlay,512210,0,0,0
 
   //下裝-idle
 	//===內褲
@@ -644,12 +656,24 @@ surface520010-520013,520016-520019,520020,520026,520030-520033,520039,520050-520
 	//===色慾惡魔-莫蒂斯
 	animation513601.interval,bind
 	animation513601.pattern0,overlay,513601,0,0,0
-	//===JK
+	//===JK裙
 	animation513602.interval,bind
 	animation513602.pattern0,overlay,513602,0,0,0
-	//===JK（上層）
+	//===JK裙（上層）
 	animation514102.interval,bind
 	animation514102.pattern0,overlay,514102,0,0,0
+	//===JK裙-藍
+	animation513603.interval,bind
+	animation513603.pattern0,overlay,513603,0,0,0
+	//===JK裙-藍（上層）
+	animation514103.interval,bind
+	animation514103.pattern0,overlay,514103,0,0,0
+	//===JK裙-綠
+	animation513604.interval,bind
+	animation513604.pattern0,overlay,513604,0,0,0
+	//===JK裙-綠（上層）
+	animation514104.interval,bind
+	animation514104.pattern0,overlay,514104,0,0,0
 
   //襪子-idle
 	//===街頭
@@ -725,23 +749,30 @@ surface520010-520013,520016-520019,520020,520026,520030-520033,520039,520050-520
 	//===JK-襪套
 	animation515802.interval,bind
 	animation515802.pattern0,overlay,515802,0,0,0
+	//===JK-襪套(白)
+	animation515803.interval,bind
+	animation515803.pattern0,overlay,515803,0,0,0
+	//===JK-襪套(黑)
+	animation515804.interval,bind
+	animation515804.pattern0,overlay,515804,0,0,0
 
   //武器-idle
 	//===水管
 	animation511400.interval,bind
 	animation511400.pattern0,overlay,511400,0,0,0
-	animation514400.interval,bind
-	animation514400.pattern0,overlay,514400,0,0,0
+	animation516800.interval,bind
+	animation516800.pattern0,overlay,514400,0,0,0
 	//===狼牙棒
 	animation511401.interval,bind
 	animation511401.pattern0,overlay,511401,0,0,0
-	animation514401.interval,bind
-	animation514401.pattern0,overlay,514401,0,0,0
+	animation516801.interval,bind
+	animation516801.pattern0,overlay,514401,0,0,0
 	//===海豹
 	animation511402.interval,bind
+	animation511402.option,background
 	animation511402.pattern0,overlay,511402,0,0,0
-	animation514402.interval,bind
-	animation514402.pattern0,overlay,514402,0,0,0
+	animation516802.interval,bind
+	animation516802.pattern0,overlay,514402,0,0,0
 }
 surface520014-520015,520024-520025
 {
@@ -976,6 +1007,34 @@ surface520014-520015,520024-520025
 	animation513808.pattern2,overlay,1513808,20,25,0
 	animation513808.pattern3,overlay,1513808,25,28,0
 	animation513808.pattern4,overlay,1513808,30,30,0
+	//===JK-襯衫(綠)
+	animation513809.interval,bind+runonce
+	animation513809.pattern0,overlay,1513809,0,0,0
+	animation513809.pattern1,overlay,1513809,20,20,0
+	animation513809.pattern2,overlay,1513809,20,25,0
+	animation513809.pattern3,overlay,1513809,25,28,0
+	animation513809.pattern4,overlay,1513809,30,30,0
+	animation512209.interval,bind+runonce
+	animation512209.option,background
+	animation512209.pattern0,overlay,1512209,0,0,0
+	animation512209.pattern1,overlay,1512209,20,20,0
+	animation512209.pattern2,overlay,1512209,20,25,0
+	animation512209.pattern3,overlay,1512209,25,28,0
+	animation512209.pattern4,overlay,1512209,30,30,0
+	//===JK-襯衫(黑)
+	animation513810.interval,bind+runonce
+	animation513810.pattern0,overlay,1513810,0,0,0
+	animation513810.pattern1,overlay,1513810,20,20,0
+	animation513810.pattern2,overlay,1513810,20,25,0
+	animation513810.pattern3,overlay,1513810,25,28,0
+	animation513810.pattern4,overlay,1513810,30,30,0
+	animation512210.interval,bind+runonce
+	animation512210.option,background
+	animation512210.pattern0,overlay,1512210,0,0,0
+	animation512210.pattern1,overlay,1512210,20,20,0
+	animation512210.pattern2,overlay,1512210,20,25,0
+	animation512210.pattern3,overlay,1512210,25,28,0
+	animation512210.pattern4,overlay,1512210,30,30,0
 
   //下裝-atk
 	//===內褲
@@ -1005,7 +1064,7 @@ surface520014-520015,520024-520025
 	animation513601.pattern2,overlay,1513601,20,25,0
 	animation513601.pattern3,overlay,1513601,25,28,0
 	animation513601.pattern4,overlay,1513601,30,30,0
-	//===JK
+	//===JK裙
 	animation513602.interval,bind+runonce
 	animation513602.pattern0,overlay,1513602,0,0,0
 	animation513602.pattern1,overlay,1513602,20,20,0
@@ -1019,7 +1078,7 @@ surface520014-520015,520024-520025
 	animation512502.pattern2,overlay,1512502,20,25,0
 	animation512502.pattern3,overlay,1512502,25,28,0
 	animation512502.pattern4,overlay,1512502,30,30,0
-	//===JK（上層）
+	//===JK裙（上層）
 	animation514102.interval,bind+runonce
 	animation514102.pattern0,overlay,1514102,0,0,0
 	animation514102.pattern1,overlay,1514102,20,20,0
@@ -1033,6 +1092,34 @@ surface520014-520015,520024-520025
 	animation512102.pattern2,overlay,1512102,20,25,0
 	animation512102.pattern3,overlay,1512102,25,28,0
 	animation512102.pattern4,overlay,1512102,30,30,0
+	//===JK裙-藍
+	animation513603.interval,bind+runonce
+	animation513603.pattern0,overlay,1513603,0,0,0
+	animation513603.pattern1,overlay,1513603,20,20,0
+	animation513603.pattern2,overlay,1513603,20,25,0
+	animation513603.pattern3,overlay,1513603,25,28,0
+	animation513603.pattern4,overlay,1513603,30,30,0
+	//===JK裙-藍（上層）
+	animation514103.interval,bind+runonce
+	animation514103.pattern0,overlay,1514103,0,0,0
+	animation514103.pattern1,overlay,1514103,20,20,0
+	animation514103.pattern2,overlay,1514103,20,25,0
+	animation514103.pattern3,overlay,1514103,25,28,0
+	animation514103.pattern4,overlay,1514103,30,30,0
+	//===JK裙-綠
+	animation513604.interval,bind+runonce
+	animation513604.pattern0,overlay,1513604,0,0,0
+	animation513604.pattern1,overlay,1513604,20,20,0
+	animation513604.pattern2,overlay,1513604,20,25,0
+	animation513604.pattern3,overlay,1513604,25,28,0
+	animation513604.pattern4,overlay,1513604,30,30,0
+	//===JK裙-綠（上層）
+	animation514104.interval,bind+runonce
+	animation514104.pattern0,overlay,1514104,0,0,0
+	animation514104.pattern1,overlay,1514104,20,20,0
+	animation514104.pattern2,overlay,1514104,20,25,0
+	animation514104.pattern3,overlay,1514104,25,28,0
+	animation514104.pattern4,overlay,1514104,30,30,0
 
   //襪子-atk
 	//===街頭
@@ -1211,29 +1298,43 @@ surface520014-520015,520024-520025
 	animation515802.pattern2,overlay,1515802,20,25,0
 	animation515802.pattern3,overlay,1515802,25,28,0
 	animation515802.pattern4,overlay,1515802,30,30,0
+	//===JK-襪套(白)
+	animation515803.interval,bind+runonce
+	animation515803.pattern0,overlay,1515803,0,0,0
+	animation515803.pattern1,overlay,1515803,20,20,0
+	animation515803.pattern2,overlay,1515803,20,25,0
+	animation515803.pattern3,overlay,1515803,25,28,0
+	animation515803.pattern4,overlay,1515803,30,30,0
+	//===JK-襪套(黑)
+	animation515804.interval,bind+runonce
+	animation515804.pattern0,overlay,1515804,0,0,0
+	animation515804.pattern1,overlay,1515804,20,20,0
+	animation515804.pattern2,overlay,1515804,20,25,0
+	animation515804.pattern3,overlay,1515804,25,28,0
+	animation515804.pattern4,overlay,1515804,30,30,0
 
   //武器-atk
 	//===水管
-	animation514400.interval,bind+runonce
-	animation514400.pattern0,overlay,1514400,0,0,0
-	animation514400.pattern1,overlay,1514400,20,20,0
-	animation514400.pattern2,overlay,1514400,20,25,0
-	animation514400.pattern3,overlay,1514400,25,28,0
-	animation514400.pattern4,overlay,1514400,30,30,0
+	animation516800.interval,bind+runonce
+	animation516800.pattern0,overlay,1514400,0,0,0
+	animation516800.pattern1,overlay,1514400,20,20,0
+	animation516800.pattern2,overlay,1514400,20,25,0
+	animation516800.pattern3,overlay,1514400,25,28,0
+	animation516800.pattern4,overlay,1514400,30,30,0
 	//===狼牙棒
-	animation514401.interval,bind+runonce
-	animation514401.pattern0,overlay,1514401,0,0,0
-	animation514401.pattern1,overlay,1514401,20,20,0
-	animation514401.pattern2,overlay,1514401,20,25,0
-	animation514401.pattern3,overlay,1514401,25,28,0
-	animation514401.pattern4,overlay,1514401,30,30,0
+	animation516801.interval,bind+runonce
+	animation516801.pattern0,overlay,1514401,0,0,0
+	animation516801.pattern1,overlay,1514401,20,20,0
+	animation516801.pattern2,overlay,1514401,20,25,0
+	animation516801.pattern3,overlay,1514401,25,28,0
+	animation516801.pattern4,overlay,1514401,30,30,0
 	//===海豹
-	animation514402.interval,bind+runonce
-	animation514402.pattern0,overlay,1514402,0,0,0
-	animation514402.pattern1,overlay,1514402,20,20,0
-	animation514402.pattern2,overlay,1514402,20,25,0
-	animation514402.pattern3,overlay,1514402,25,28,0
-	animation514402.pattern4,overlay,1514402,30,30,0
+	animation516802.interval,bind+runonce
+	animation516802.pattern0,overlay,1514402,0,0,0
+	animation516802.pattern1,overlay,1514402,20,20,0
+	animation516802.pattern2,overlay,1514402,20,25,0
+	animation516802.pattern3,overlay,1514402,25,28,0
+	animation516802.pattern4,overlay,1514402,30,30,0
 	animation511402.interval,bind+runonce+background
 	animation511402.pattern0,overlay,1511402,0,0,0
 	animation511402.pattern1,overlay,1511402,20,20,0

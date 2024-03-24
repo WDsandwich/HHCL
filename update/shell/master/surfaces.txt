@@ -558,6 +558,13 @@ surface10-19,30-39,50
 	animation14207.pattern0,add,14207,0,0,0
 	animation14208.interval,bind
 	animation14208.pattern0,add,14208,0,0,0
+	//JK襯衫(綠)
+	animation14209.interval,bind
+	animation14209.pattern0,add,14209,0,0,0
+	//JK襯衫(黑)
+	animation14210.interval,bind
+	animation14210.pattern0,add,14210,0,0,0
+
 //=====下裝=====
 	//set01
 	animation14501.interval,bind
@@ -570,11 +577,21 @@ surface10-19,30-39,50
 	//色慾惡魔
 	animation14001.interval,bind
 	animation14001.pattern0,add,14001,0,0,0
-	//JK
+	//JK裙
 	animation14002.interval,bind
 	animation14002.pattern0,add,14002,0,0,0
 	animation14502.interval,bind
 	animation14502.pattern0,add,14502,0,0,0
+	//JK裙-藍
+	animation14003.interval,bind
+	animation14003.pattern0,add,14003,0,0,0
+	animation14503.interval,bind
+	animation14503.pattern0,add,14503,0,0,0
+	//JK裙-綠
+	animation14004.interval,bind
+	animation14004.pattern0,add,14004,0,0,0
+	animation14504.interval,bind
+	animation14504.pattern0,add,14504,0,0,0
 //=====襪子=====
 	//原始
 	animation13600.interval,bind
@@ -627,7 +644,7 @@ surface10-19,30-39,50
 	animation13803.pattern0,add,13803,0,0,0
 	animation12603.interval,bind
 	animation12603.pattern0,add,12603,0,0,0
-	//JK
+	//JK鞋
 	animation13804.interval,bind
 	animation13804.pattern0,add,13804,0,0,0
 //=====手套=====
@@ -674,6 +691,12 @@ surface10-19,30-39,50
 	//JK.蝴蝶結
 	animation16603.interval,bind
 	animation16603.pattern0,add,16603,0,0,0
+	//JK.襪子-白
+	animation16605.interval,bind
+	animation16605.pattern0,add,16605,0,0,0
+	//JK.襪子-黑
+	animation16606.interval,bind
+	animation16606.pattern0,add,16606,0,0,0
 }
 
 

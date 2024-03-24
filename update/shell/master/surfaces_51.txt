@@ -358,6 +358,38 @@ surface1513808
 {
 	element0,base,battle/hella/top_8_atk.png,0,0
 }
+surface513809	//JK-襯衫(綠)
+{
+	element0,base,battle/hella/top_9.png,0,0
+}
+surface512209
+{
+	element0,base,battle/hella/top_9_b.png,0,0
+}
+surface1513809
+{
+	element0,base,battle/hella/top_9_atk.png,0,0
+}
+surface1512209
+{
+	element0,base,battle/hella/top_9_atk_b.png,0,0
+}
+surface513810	//JK-襯衫(黑)
+{
+	element0,base,battle/hella/top_10.png,0,0
+}
+surface512210
+{
+	element0,base,battle/hella/top_10_b.png,0,0
+}
+surface1513810
+{
+	element0,base,battle/hella/top_10_atk.png,0,0
+}
+surface1512210
+{
+	element0,base,battle/hella/top_10_atk_b.png,0,0
+}
 
 
 //==============下裝==============
@@ -385,7 +417,7 @@ surface1513601
 {
 	element0,base,battle/hella/bottom_1_atk.png,0,0
 }
-surface513602	//JK
+surface513602	//JK裙
 {
 	element0,base,battle/hella/bottom_3.png,0,0
 }
@@ -408,6 +440,38 @@ surface1514102
 surface1512102
 {
 	element0,base,battle/hella/bottom_3_atk_b.png,0,0
+}
+surface513603	//JK裙(藍)
+{
+	element0,base,battle/hella/bottom_4.png,0,0
+}
+surface1513603
+{
+	element0,base,battle/hella/bottom_4_atk.png,0,0
+}
+surface514103
+{
+	element0,base,battle/hella/bottom_4.png,0,0
+}
+surface1514103
+{
+	element0,base,battle/hella/bottom_4_atk.png,0,0
+}
+surface513604	//JK裙(綠)
+{
+	element0,base,battle/hella/bottom_5.png,0,0
+}
+surface1513604
+{
+	element0,base,battle/hella/bottom_5_atk.png,0,0
+}
+surface514104
+{
+	element0,base,battle/hella/bottom_5.png,0,0
+}
+surface1514104
+{
+	element0,base,battle/hella/bottom_5_atk.png,0,0
 }
 
 
@@ -671,5 +735,21 @@ surface515802	//JK-襪套
 surface1515802
 {
 	element0,base,battle/hella/other_5_atk.png,0,0
+}
+surface515803	//JK-襪套-白
+{
+	element0,base,battle/hella/other_6.png,0,0
+}
+surface1515803
+{
+	element0,base,battle/hella/other_6_atk.png,0,0
+}
+surface515804	//JK-襪套-黑
+{
+	element0,base,battle/hella/other_7.png,0,0
+}
+surface1515804
+{
+	element0,base,battle/hella/other_7_atk.png,0,0
 }
 
