@@ -128,11 +128,8 @@ OnKeyPress
 		when "p" {
 		"\![open,dialog,color,--id=Onjrioj]"
 		}
-		when "d" {
-		"%SureWindow('CANCEL_Button')%SFX('sfx/decision button2')\n[-50]\f[height,12]獲得初次教學獎勵：\f[default]\n[130]\f[bold,1]\f[color,#EAC100]%(missionpay[map_num])狄斯幣\n\f[color,#DE7D7D]狂亂精粹、異能原液、狂暴原液×5\f[default]\n[200]/
-				\f[color,#4DFFFF]\f[height,12]\__q[GoToBattle]→[前往戰鬥地圖]\__q"
-		}
 		when "t" {
+		dye_ingredient+=100
 		}
 		when "k" {
 		OnTutorial
