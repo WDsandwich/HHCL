@@ -495,5 +495,51 @@ compare_score_txt
 }
 
 
+//==================================================================
+//								踩地雷								
+//==================================================================
+OnMinesweeper.Begin
+{	_n=reference0
+	mine_distribution=(0,0) //地雷存在與否
+	mine_qty=(0,0)			//周圍地雷數
+	mine_check=(0,0)		//檢查(顯示地雷數)
+	mine_revealed=(0,0)		//已揭示(左鍵)
+	mine_point=(0,0)		//標記(右鍵)
+	mine_pic=(0,0)			//顯示圖片
+	mine_skill=(3,1)		//剩餘技能
+	mine_step=0				//步數
+	//埋下地雷
+	for _i=1 ; _i<=_n*_n ; _i++
+	{	mine_distribution[_i]=RAND(1)	}
+	//計算9格內地雷數
+	for _i=1 ; _i<=_n*_n ; _i++
+	{	mine_qty[_i]=0
+		_grid=(_i-_n-1,_i-_n,_i-_n+1,_i-1,_i,_i+1,_i+_n-1,_i+_n,_i+_n+1)
+		for _j=0 ; _j<9 ; _j++
+		{	_k=_grid[_j]
+			if _grid[_j]>0 && mine_distribution[_k]==1 ; mine_qty[_i]++
+		}
+	}
+	--
+	OnMinesweeper.Window
+}
 
+OnMinesweeper.Window
+{	_txt="\p[5]\f[align,center]"
+	//整理圖片(檔名)
+	for _i=1 ; _i<=_n*_n ; _i++
+	{	mine_pic[_i]="origin"
+		if mine_revealed[_i]==1 ; mine_pic[_i]="%(mine_qty[_i])"
+		if mine_point[_i]==1 ; mine_pic[_i]="point"
+	}
+	//顯示圖片
+	for _i=1 ; _i<=_n*_n ; _i++
+	{	if _i%_n==1 ; _txt+="\n"
+		_pic="game\mine\%(mine_pic[_i])"
+		_txt+= Bimg(_pic)
+	}
+	_txt+="步數：%(mine_step)"
+	_txt
+
+}
 

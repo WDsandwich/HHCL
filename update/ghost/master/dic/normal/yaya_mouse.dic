@@ -268,7 +268,7 @@ MouseDoubleClick1
 }
 
 EventArgv
-{ TOINT(BattleMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+TOINT(ill_mode)) }
+{ TOINT(BattleMode+DressingMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+TOINT(ill_mode)) }
 //if BattleMode+SpaMode+DispatchMode+StoreMode
 MouseInEvent
 {
@@ -759,4 +759,8 @@ OnMouseDoubleClick
 {
 	AYATEMPLATE.MouseEventExec('MouseDoubleClick');
 }
+/*
+OnMouseClick
+{	if reference5==1
 
+}*/

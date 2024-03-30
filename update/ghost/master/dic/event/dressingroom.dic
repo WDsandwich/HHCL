@@ -203,11 +203,38 @@ TipOption_ClothesShopping
 	}
 }
 
+//==============================穿衣檢查==============================
+DressingCheck
+{
+	if (wearing_cloth_HC[6]>0 || wearing_cloth_HC[7]*wearing_cloth_HC[8]!=0) && (wearing_cloth_HL[6]>0 || wearing_cloth_HL[7]*wearing_cloth_HL[8]!=0) ; 0
+	elseif DressingPage[0]==1 && (wearing_cloth_HL[6]==0 && wearing_cloth_HL[7]*wearing_cloth_HL[8]==0)
+		DressingCheck.Line0
+	elseif DressingPage[0]==0 && (wearing_cloth_HC[6]==0 && wearing_cloth_HC[7]*wearing_cloth_HC[8]==0)
+		DressingCheck.Line1
+	elseif wearing_cloth_HL[6]==0 && wearing_cloth_HL[7]*wearing_cloth_HL[8]==0 && wearing_cloth_HC[6]==0 && wearing_cloth_HC[7]*wearing_cloth_HC[8]==0
+	{
+		DressingCheck.Line0
+		DressingCheck.Line1
+	}
+	elseif wearing_cloth_HC[6]==0 && wearing_cloth_HC[7]*wearing_cloth_HC[8]==0 ; DressingCheck.Line0
+	elseif wearing_cloth_HL[6]==0 && wearing_cloth_HL[7]*wearing_cloth_HL[8]==0 ; DressingCheck.Line1
+	else
+	{
+		"其他"
+	}
+}
+DressingCheck.Line0
+{	"\0%(usernameHC)，\s[1]那個……\w5我現在穿著不得體，\w2不適合離開更衣室……"	}
+DressingCheck.Line1
+{	"\1%SFX('exc/01-HL-34-ei (fluster)')我……\s[14]我還沒穿衣好服啊！\w5%(you)打算帶我去哪裡啦！"	}
+
 //==============================離開更衣室反應==============================
 OnLeaveDressingRoom
 {
 	click
 	--
+	//if 
+	
 	//有穿好衣服
 	if (wearing_cloth_HC[6]>0 || wearing_cloth_HC[7]*wearing_cloth_HC[8]!=0) && (wearing_cloth_HL[6]>0 || wearing_cloth_HL[7]*wearing_cloth_HL[8]!=0)
 	{
@@ -223,7 +250,7 @@ OnLeaveDressingRoom
 			"\0\s[1]……新的裝扮，好看嗎？"
 			"\0\s[1]%(usernameHC)更喜歡這樣的打扮嗎？"
 		}
-		if wearing_cloth_HL!=wearing_cloth_HL_last
+		if wearing_cloth_HL_last != wearing_cloth_HL
 		{
 			"\1\s[12]哇－－\w3新衣服！！"
 			"\1\s[12]%(usernameHC)，我新的穿搭好看嗎？"
@@ -278,7 +305,10 @@ DressingRoomTouch
 	--
 	case _argv[0]
 	{
-		when 0 ; "\0\s[1]只要%(usernameHC)喜歡，就好了。"
+		when 0
+		{	if developermode==1 ; "\0\![quicksession,true]"+wearing_cloth_HL_last+"\n"+wearing_cloth_HL
+			"\0\s[1]只要%(usernameHC)喜歡，就好了。"
+		}
 		when 1 ; {"\1\s[12]怎麼樣怎麼樣？\w5\s[18]好看嗎？";"\1\s[10]這套裝扮如何呢？"}
 	}
 }

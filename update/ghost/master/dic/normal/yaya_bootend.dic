@@ -13,7 +13,11 @@ OnFirstBoot
 	--
 	"\w9\![change,balloon,赫卡蒂＆海拉＆局長的日常]"
 	--
-	ChiefRegister
+	"\0\s[-1]\1\s[-1]\p[3]\s[310000]\![bind,pad,1,1]\![set,choicetimeout,0]您好，局長。\w7今天又見面了。\x/
+			\p[3]\s[310001]不好意思，在您進入辦公室前，有件事要麻煩您—\w2—\w9/
+			MBCC的安全系統剛進行過更新，需要您重新輸入個人資訊以認證身份。\w9\n[150]/
+			我當然信任您…\w2…\w7 但這是規定程序，我無能為力…\w2…\w9\w5/
+			\p[2]%cp(0)\b[20]\![set,choicetimeout,0]%(opp)\__q[OnChiefRegister.Event,1]「給我輸入身份的工具吧。」\__q"
 }
 
 

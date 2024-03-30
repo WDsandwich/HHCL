@@ -59,23 +59,9 @@ BalloonTooltip_OnHotkeySetting.Delelt{"清空"}
 OnKeyPress
 {
 	_key=reference0
-	if HotkeyMode==1 ; { "\![raise,OnHotkeySetting.End,%(reference0)]" }
-	elseif _key==self_hotkey[0] {HotKey_CloseSSP}	//關閉程式
-	elseif _key==self_hotkey[1] {ResetSpot}	//重整位置
-	elseif _key==self_hotkey[2] {cp(0)}	//顯示局長
-	elseif _key==self_hotkey[3] {SinnerInfo}	//禁閉者檔案
-	elseif _key==self_hotkey[4] {OpenBagItem}	//倉庫
-	elseif _key==self_hotkey[5] {Menu_Interact}	//互動
-	elseif _key==self_hotkey[6] {Menu_STORE}	//採購部
-	elseif _key==self_hotkey[7] {GoIntoDressingRoom}	//更衣室
-	elseif _key==self_hotkey[8] {Dye.Grind.GoTo}	//研磨坊
-	elseif _key==self_hotkey[9] {GoToBattle}	//戰鬥
-	elseif _key==self_hotkey[10] {GoToSpa}	//溫泉
-	elseif _key==self_hotkey[11] {Dispatch}	//派遣
-	elseif _key==self_hotkey[12] {HotKey_Illustrated}	//圖鑑
-	elseif _key==self_hotkey[13] {Hotkey_ForgeRoom}	//鍛造室
-	elseif _key==self_hotkey[14] {Database}	//檔案室
-	if ill_mode==2			//圖鑑切換
+	if EventArgv>0 ; MouseInEvent
+	elseif HotkeyMode==1 ; { "\![raise,OnHotkeySetting.End,%(reference0)]" }
+	elseif ill_mode==2			//圖鑑切換
 	{	case _key
 		{	when "left"  ; "\![raise,OnIllustrated_Enemy_Info.Changepage,A]"
 			when "right" ; "\![raise,OnIllustrated_Enemy_Info.Changepage,B]"
@@ -83,7 +69,28 @@ OnKeyPress
 			when "down"  ; "\![raise,OnIllustrated_Enemy_Info.ChangePic,1]"
 		}
 	}
-	if _key=="f2" ; {BattleMode=0}
+	elseif _key==self_hotkey[0] {HotKey_CloseSSP}	//關閉程式
+	elseif _key==self_hotkey[1] {ResetSpot}	//重整位置
+	elseif _key==self_hotkey[2] {cp(0)}	//顯示局長
+	elseif _key==self_hotkey[3] {SinnerInfo}	//禁閉者檔案
+	elseif _key==self_hotkey[4] {OpenBagItem}	//倉庫
+	elseif _key==self_hotkey[5] {Menu_Interact}	//互動
+	elseif _key==self_hotkey[6]			//採購部
+	{	if StoreMode==0 ; Menu_STORE
+		else ; OnLeaveStore	}
+	elseif _key==self_hotkey[7]	//更衣室
+	{	if DressingMode==0 ; GoIntoDressingRoom
+		elseif DressingCheck!=0 {DressingCheck}
+		else ; OnLeaveDressingRoom
+	}
+	elseif _key==self_hotkey[8] {Dye.Grind.GoTo}	//研磨坊
+	elseif _key==self_hotkey[9] {GoToBattle}	//戰鬥
+	elseif _key==self_hotkey[10] {GoToSpa}	//溫泉
+	elseif _key==self_hotkey[11] {Dispatch}	//派遣
+	elseif _key==self_hotkey[12] {HotKey_Illustrated}	//圖鑑
+	elseif _key==self_hotkey[13] {Hotkey_ForgeRoom}	//鍛造室
+	elseif _key==self_hotkey[14] {Database}	//檔案室
+	//if _key=="f2" ; {BattleMode=0}
 	if developermode==1
 	{  case reference0 {
 		when "g" { if developermode==1 ; "\![reload,ghost]" }
@@ -135,10 +142,17 @@ OnKeyPress
 		OnTutorial
 		}
 		when "." {
-		"\p[3]\b[32]\_q%ProgressBar(4,10,150,update_file[0],update_file[1])\n\f[align,right]%(update_file[0])/%(update_file[1])\n[130]%(DividingLine2)\n[130]\_q\s[310002]已順利完成\f[color,#FFDC35]\f[bold,1]%(version_name)\f[default]版本更新。\x\p[3]\s[-1]"
+		wearing_cloth_HL
+		--
+		"\n"
+		--
+		wearing_cloth_HL_last
 		}
 		when "," {
-		cum_battle_complete = (0,0,0,0,0)
+		wearing_cloth_HC		=	(,,0,0,1,0,1,0,0,0,1,0)
+	wearing_cloth_HC_last	=	(,,0,0,1,0,1,0,0,0,1,0)
+	wearing_cloth_HL		=	(,,1,0,1,1,1,0,0,1,1,1)
+	wearing_cloth_HL_last	=	(,,1,0,1,1,1,0,0,1,1,1)
 		}
 		when "j" {
 		
