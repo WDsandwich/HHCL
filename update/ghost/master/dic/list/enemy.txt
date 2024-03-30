@@ -28,9 +28,9 @@ loot_price
 enemy_ingredient_0
 {	("紅水母","淚人兒")	}
 enemy_ingredient_1
-{	("藍蠕蟲","魟魚")	}
-enemy_ingredient_2
 {	("婕克南瓜")	}
+enemy_ingredient_2
+{	("藍蠕蟲","魟魚")	}
 enemy_ingredient_3
 {	("厄種","憂鬱的婦人")	}
 enemy_ingredient_4

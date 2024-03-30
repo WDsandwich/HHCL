@@ -149,10 +149,9 @@ OnKeyPress
 		wearing_cloth_HL_last
 		}
 		when "," {
-		wearing_cloth_HC		=	(,,0,0,1,0,1,0,0,0,1,0)
-	wearing_cloth_HC_last	=	(,,0,0,1,0,1,0,0,0,1,0)
-	wearing_cloth_HL		=	(,,1,0,1,1,1,0,0,1,1,1)
-	wearing_cloth_HL_last	=	(,,1,0,1,1,1,0,0,1,1,1)
+		illustrated_list=enemy_ingredient_1
+			illustrated_title=dye_ingredient_name[1]
+			Illustrated_Type_Enemy
 		}
 		when "j" {
 		
