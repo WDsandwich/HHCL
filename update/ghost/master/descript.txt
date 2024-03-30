@@ -2,6 +2,7 @@ charset,UTF-8
 
 name,赫卡蒂＆海拉＆局長的日常
 type,ghost
+balloon,HHCL
 
 sakura.name,赫卡蒂
 kero.name,海拉
@@ -16,7 +17,7 @@ shiori,yaya.dll
 
 craftman,WDsandwich
 craftmanw,豌豆三明治
-craftmanurl,https://discord.gg/xkqRvTNKuk
+craftmanurl,https://ch092182155jp.wixsite.com/wdsandwich-ukagaka/hhcl
 homeurl,https://raw.githubusercontent.com/WDsandwich/HHCL/main/update/
 
 sakura.seriko.defaultsurface,0
