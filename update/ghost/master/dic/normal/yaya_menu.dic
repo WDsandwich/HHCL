@@ -430,9 +430,9 @@ Menu_Function
 	else ; _txt+="\__q[OnMenu_Function.ChangPage,1]電源\__q"
 	_txt+="\f[default]\n[150]\_q"
 	--
-	_point=("├","├","└")
-	_name=("線上更新","開啟APP一覽","計算機")
-	_func=("OnUpdateFor","OnBat,APP","OnBat,calculator")
+	_point=("├","├","├","└")
+	_name=("線上更新","開啟APP一覽","計算機","建立捷徑到桌面")
+	_func=("OnUpdateFor","OnBat,APP","OnBat,calculator","CreateShortcut")
 	if function_page==1
 	{	_point=("├","├","└")
 		_name=("休眠","關機","重新啟動")
@@ -456,6 +456,11 @@ OnMenu_Function.ChangPage
 OnUpdateFor
 {	intimacy[MenuChoice]+=5
 	"\![update,ghost+shell+balloon]"
+}
+//-------------建立捷徑到桌面
+CreateShortcut
+{	intimacy[MenuChoice]+=5
+	"\![create,shortcut]"
 }
 //-------------開啟bat檔
 OnBat
