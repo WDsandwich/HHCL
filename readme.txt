@@ -5,6 +5,8 @@
 
 ------------------------------------------
 
+下載：https://drive.google.com/drive/folders/1G91yYzUuTvMgs76-rB1l4_ueLEt3iKk5?usp=drive_link
+
 ※問題反饋&接收更新通知可加入Discord群組
 https://discord.gg/RjAkPFQRmw
 
