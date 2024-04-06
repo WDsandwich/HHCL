@@ -188,7 +188,7 @@ Store
 					_file=store_merchandise[_i]
 					_code=SUBSTR(store_merchandise[_i],0,6)
 					_pic="dressing\icon\%(DressingPage[0])\%(DressingPage[1])\%(_file)"
-					_price=SCprice[i]
+					_price=SCprice(_i)
 					_file_a=_file
 					SETDELIM(_file_a,"_")
 					//	是否擁有SCR版本
@@ -206,7 +206,7 @@ Store
 					else
 						_dye_pic=Bimg("dressing\button\color_none.png")
 					--
-					if _code _in_ ST.ClothPack.Package || _code _in_ ST.ClothPack.Cosplay || _code _in_ TOSTR(clothes_box) || "_d" _in_ _file || "_initial" _in_ _file || "_int" _in_ _file
+					if "_p" _in_ _file || "_c" _in_ _file || "_int" _in_ _file || "_d" _in_ _file || "_initial" _in_ _file || "_int" _in_ _file || _code _in_ TOSTR(clothes_box)
 						_item+=""
 					else
 					{
@@ -216,7 +216,7 @@ Store
 					}
 					--
 					//顯示已購買單品
-					if _code _in_ ST.ClothPack.Package || _code _in_ ST.ClothPack.Cosplay || "_d" _in_ _file || "_initial" _in_ _file || "_int" _in_ _file
+					if "_p" _in_ _file || "_c" _in_ _file || "_int" _in_ _file || "_d" _in_ _file || "_initial" _in_ _file || "_int" _in_ _file
 						_item2+=""
 					elseif _code _in_ TOSTR(clothes_box)
 					{

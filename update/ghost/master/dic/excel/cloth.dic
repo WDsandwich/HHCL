@@ -79,7 +79,10 @@ SCprice
 			_pirce=3000
 			case DressingPage[1]
 			{
-				when 6       ; _pirce=6600
+				when 6       {
+				if _i==3 ; _pirce=6000
+				else ; _pirce=6600
+				}
 				when 7	     ; _pirce=5000
 				when 8		 ; _pirce=4000
 				when 5		 ; _pirce=4400

@@ -116,7 +116,11 @@ OnBoot
 		"\_V"
 	}
 	--
-	if holiday_today!="" &&_he==0 ; "\__w[2000]\0\s[1]\c今天是\f[bold,1]\f[color,#89B8B8]%(holiday_today[1])\f[default]喔。"
+	if holiday_today!="" && _he==0
+	{	if holiday_today=="%(chief_birthday[1]).%(chief_birthday[2])" && year !_in_ birthday_celebrated_chief ; ""
+		else
+		"\__w[2000]\0\s[1]\c今天是\f[bold,1]\f[color,#89B8B8]%(holiday_today[1])\f[default]喔。"
+	}
 	
 	
 	/*_timeslot = GetTimeSlot

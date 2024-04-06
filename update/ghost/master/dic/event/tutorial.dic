@@ -3,10 +3,10 @@ OnTutorial
 	"%(click)\%(MenuChoice)\b[2]\_q"
 	--
 	menu_title="向夜鶯請教"
-	menu_p_list=("└")
+	menu_p_list=("├","└")
 	
-	menu_o_list=("戰鬥教學")
-	menu_func_list=("OnTutorial.Battle,20","")
+	menu_o_list=("執行戰鬥教學","資源獲得方式")
+	menu_func_list=("OnTutorial.Battle,20","OnTutorial.Resource,0")
 	--
 	Menu.Option
 	--
@@ -28,6 +28,8 @@ TTRB
 {"\f[color,#FFF8D7]\f[bold,1]%(_argv[0])\f[default]"}
 TTRBC
 {"\f[color,#00FFFF]\f[bold,1]%(_argv[0])\f[default]"}
+TTRBY
+{"\f[color,#FFD306]\f[bold,1]%(_argv[0])\f[default]"}
 
 OnTutorial.Battle
 {
@@ -405,4 +407,97 @@ BattleInfoWindow.Tutorial
 	\_l[4]\f[color,#EAC100]Lv.%(level)\f[default]%ProgressBar(3,40,120,exp,levelupexp)\n[150]"
 	--
 	"\f[default]\_l[5]wave %(wave[0])/%(wave[1])\n[1]\f[align,right]round %(roundNum) "
+}
+//=============================================================
+//						資源獲得方式							
+//=============================================================
+OnTutorial.Resource
+{
+	_txt="\p[3]\s[310000]%(username)對哪種資源的獲得方式有疑問呢？\w1/
+	%cp(0)\b[26]\n[66]"
+	--
+	_option="狄斯幣,異方晶,染料原礦,強化素材,查看清單······"
+	for _i=0 ; _i<ARRAYSIZE(_option) ; _i++
+	{
+		_txt+="\_q\_l[90]%(opp) \__q[OnTutorial.Resource.Ask,%(_i)]%(_option[_i])\__q\_q\w1\n[150]"
+	}
+	_txt+="\_l[-,150]\f[align,center]\_q\f[color,#ADADAD]\__q[OnTutorial]✖取消\__q\_q"
+	_txt
+}
+OnTutorial.Resource.Ask
+{	_q=reference0
+	if _q==4 ; OnTutorial.Resource.List
+	else
+	{
+		"\p[3]\s[310000]\b[26]"
+		--
+		case _q
+		{	when 0
+			{	"狄斯幣的主要來源是%TTRBC('戰鬥')。\w9\n[130]/
+			除了%TTRBY('通關後的報酬')，\w5敵人掉落的%TTRBY('戰利品')、\w3%TTRBY('染料原礦')，\w5若您沒有將其加工成%TTRBY('武器')或%TTRBY('漂染服裝')的需求，\w7可以在%TTRBY('採購部')賣出。\w9\n[130]/
+				此外，\w3您可以在[%TTRBY('倉庫')]對欲保留的物品進行%TTRBY('鎖定')。\x/
+				\p[3]\s[310000]\b[26]若您不想前往戰鬥，\w5可以到[%TTRBY('辦公室')]開啟[%TTRBY('碎紙機')]。\w6\n[130]/
+				該機器產生的[%TTRBY('廢料')]，\w6能夠在採購部換取%TTRBY('狄斯幣')或%TTRBY('異方晶')。"
+			}
+			when 1
+			{	"異方晶的主要來源是%TTRBC('密室')，\w7您%TTRBY('每個月')都可以領取一次。\w9\n[130]/
+				如果您需要更多的異方晶，\w7在[%TTRBY('辦公室')]設有的[%TTRBY('碎紙機')]，\w6該機器產生的[%TTRBY('廢料')]，\w6能夠在採購部換取少量的異方晶。"
+			}
+			when 2
+			{	"染料原礦的主要來源是%TTRBC('戰鬥')，\w7				但該物品只會掉落於%TTRBY('實驗室')、%TTRBY('銹河')的敵人。\w9\n[130]/
+				執行%TTRBY('超過或等於1小時')的%TTRBC('派遣')時，\w7亦可獲得和派遣時間成正比的隨機原礦。\w9\n[130]/
+				此外，\w4您也可以在[%TTRBC('採購部')]購買已加工的%TTRBY('染料')。"
+			}
+			when 3
+			{	"強化素材的主要來源是%TTRBC('戰鬥')。\w9\n[130]/
+				包含用來提升%TTRBY('禁閉者HP')的狂亂精粹、\w5強化%TTRBY('赫卡蒂攻擊力')的異能源液、\w5強化%TTRBY('海拉攻擊力')的狂暴源液。\w9\n[130]/
+				所有敵人都會掉落，且會因敵人種類掉落不同的素材。\w9\n[130]/
+				執行%TTRBY('任何時間')的%TTRBC('派遣')時，亦可獲得和派遣時間成正比的隨機強化素材。\w9\n[130]/
+				而在[%TTRBC('採購部')]也有販賣各式強化素材。"
+			}
+		}
+		--
+		"\x"
+		--
+		OnTutorial.Resource
+	}
+}
+OnTutorial.Resource.List
+{	"%(click)\%(MenuChoice)\b[6]\![quicksession,true]\_l[-,10]"
+	--
+	resource_list=("1,狄斯幣,戰鬥 - 敵人掉落（辛迪加）,戰鬥 - 完成報酬,採購部 - 變賣戰利品,採購部 - 變賣原礦,採購部 - 變賣廢料")
+	OnTutorial.Resource.List2
+	--
+	resource_list=("2,異方晶,密室 - 每月領取,採購部 - 變賣廢料")
+	OnTutorial.Resource.List2
+	--
+	resource_list=("3,染料原礦,戰鬥 - 敵人掉落（實驗室、銹河）,派遣,採購部 - 雜貨區（異方晶購買）")
+	OnTutorial.Resource.List2
+	--
+	resource_list=("4,廢料,（開啟碎紙機時）處理單一檔案")
+	OnTutorial.Resource.List2
+	--
+	resource_list=("5,強化素材,戰鬥 - 敵人掉落,採購部 - 雜貨區（異方晶購買）,採購部 - 抽獎（較低概率獲得）")
+	OnTutorial.Resource.List2
+	--
+	"\n\_l[-,480]"
+	--
+	MuenBottomOption2("OnTutorial")
+}
+OnTutorial.Resource.List2
+{	_rl=resource_list
+	_op=TOINT(resource_list[0])
+	_txt="\f[color,#FFDC35]\f[bold,1]\![*]%(_rl[1])\![*]\n[130]"
+	--
+	for _i=2 ; _i<ARRAYSIZE(resource_list) ; _i++
+		{	_txt+="\f[default]\f[color,200,0,0]\f[bold,1] └ \f[default]\f[height,12]%(_rl[_i])\n\f[default]"	}
+	_txt+="\n[66]"
+	_txt
+}
+OnTutorial.Resource.List2Open
+{	_op=TOINT(reference0)
+	if open_resource_list[_op]==1 ; open_resource_list[_op]=0
+	else ; open_resource_list[_op]=1
+	--
+	OnTutorial.Resource.List
 }

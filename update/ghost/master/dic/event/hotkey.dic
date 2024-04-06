@@ -136,22 +136,17 @@ OnKeyPress
 		"\![open,dialog,color,--id=Onjrioj]"
 		}
 		when "t" {
-		dye_ingredient+=100
+		open_resource_list=(0,0)
 		}
 		when "k" {
+		ERASEVAR('open_resource_list')
 		OnTutorial
 		}
 		when "." {
-		wearing_cloth_HL
-		--
-		"\n"
-		--
-		wearing_cloth_HL_last
+		OnMinesweeper.Begin
 		}
 		when "," {
-		illustrated_list=enemy_ingredient_1
-			illustrated_title=dye_ingredient_name[1]
-			Illustrated_Type_Enemy
+		open_resource_list
 		}
 		when "j" {
 		
