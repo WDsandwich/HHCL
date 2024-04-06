@@ -73,6 +73,9 @@ sakura.bindgroup3500.default,1
 sakura.bindgroup5501.name,外套,1
 sakura.bindgroup5501.addid,1301
 sakura.bindgroup4702.name,外套,2
+sakura.bindgroup5503.name,外套,3
+sakura.bindgroup5504.name,外套,4
+sakura.bindgroup5505.name,外套,5
 
 
 sakura.bindoption4200.group,上衣,mustselect
@@ -91,6 +94,8 @@ sakura.bindgroup4205.addid,5105
 sakura.bindgroup4206.name,上衣,T4
 sakura.bindgroup4207.name,上衣,T5
 sakura.bindgroup4207.addid,5107
+sakura.bindgroup4208.name,上衣,D3
+sakura.bindgroup4209.name,上衣,D4
 
 
 sakura.bindoption4000.group,下裝,mustselect
@@ -296,6 +301,9 @@ char5.bindgroup505501.name,HC外套,1
 char5.bindgroup505501.addid,501901
 char5.bindgroup504202.name,HC外套,2
 char5.bindgroup504202.addid,501902
+char5.bindgroup505003.name,HC外套,3
+char5.bindgroup505004.name,HC外套,4
+char5.bindgroup505005.name,HC外套,5
 
 
 char5.bindoption503800.group,HC上衣,mustselect
@@ -314,6 +322,8 @@ char5.bindgroup503805.addid,504605
 char5.bindgroup503806.name,HC上衣,T4
 char5.bindgroup503807.name,HC上衣,T5
 char5.bindgroup503807.addid,504607
+char5.bindgroup503808.name,HC上衣,D3
+char5.bindgroup503809.name,HC上衣,D4
 
 
 char5.bindoption503600.group,HC下裝,mustselect

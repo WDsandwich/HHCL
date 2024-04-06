@@ -101,6 +101,18 @@ surface4702	//賽伯洛斯
 {
 	element0,base,dressing/hecate/coat_2.png,0,0
 }
+surface5503	//毛衣
+{
+	element0,base,dressing/hecate/coat_3_s.png,0,0
+}
+surface5504	//毛衣-染色(灰)
+{
+	element0,base,dressing/hecate/coat_4_s.png,0,0
+}
+surface5505	//毛衣-染色(米)
+{
+	element0,base,dressing/hecate/coat_5_s.png,0,0
+}
 
 //==============上衣/連身裝==============
 surface4200	//預設
@@ -162,6 +174,14 @@ surface4207	//JK
 surface5107
 {
 	element0,base,dressing/hecate/top_7_s.png,0,0
+}
+surface4208	//小洋裝
+{
+	element0,base,dressing/hecate/top_8.png,0,0
+}
+surface4209	//小洋裝-染色(黑)
+{
+	element0,base,dressing/hecate/top_9.png,0,0
 }
 
 

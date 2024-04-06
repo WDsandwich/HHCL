@@ -287,6 +287,15 @@ surface520010,520013-520019,520020,520024-520026,520030,520033,520039,520050-520
 	//賽伯洛斯
 	animation504202.interval,bind
 	animation504202.pattern0,overlay,504202,0,0,0
+	//===毛衣
+	animation505003.interval,bind
+	animation505003.pattern0,overlay,505003,0,0
+	//===毛衣-染色(灰)
+	animation505004.interval,bind
+	animation505004.pattern0,overlay,505004,0,0
+	//===毛衣-染色(米)
+	animation505005.interval,bind
+	animation505005.pattern0,overlay,505005,0,0
   //上衣-idle
 	//===實驗服-idle
 	animation503800.interval,bind
@@ -367,6 +376,15 @@ surface520011,520031	//=======================普攻
 	animation501902.interval,bind
 	animation501902.option,background
 	animation501902.pattern0,overlay,1501902,0,0,0
+	//===毛衣
+	animation505003.interval,bind
+	animation505003.pattern0,overlay,1505003,0,0
+	//===毛衣-染色(灰)
+	animation505004.interval,bind
+	animation505004.pattern0,overlay,1505004,0,0
+	//===毛衣-染色(米)
+	animation505005.interval,bind
+	animation505005.pattern0,overlay,1505005,0,0
   //上衣-atk
 	//===實驗服
 	animation503800.interval,bind
@@ -436,6 +454,15 @@ surface520012,520032	//======================技能
 	//賽伯洛斯
 	animation504202.interval,bind
 	animation504202.pattern0,overlay,2504202,0,0,0
+	//===毛衣
+	animation505003.interval,bind
+	animation505003.pattern0,overlay,2505003,0,0
+	//===毛衣-染色(灰)
+	animation505004.interval,bind
+	animation505004.pattern0,overlay,2505004,0,0
+	//===毛衣-染色(米)
+	animation505005.interval,bind
+	animation505005.pattern0,overlay,2505005,0,0
   //上衣-skill
 	//===實驗服
 	animation503800.interval,bind
@@ -482,6 +509,13 @@ surface520010-520019,520020,520024-520026,520030-520033,520039,520050-520053,520
 	animation501901.interval,bind
 	animation501901.option,background
 	animation501901.pattern0,overlay,501901,0,0
+  //上衣
+	//===小洋裝
+	animation503808.interval,bind
+	animation503808.pattern0,overlay,503808,0,0
+	//===小洋裝-染色(黑)
+	animation503809.interval,bind
+	animation503809.pattern0,overlay,503809,0,0
   //上衣(背)
 	//===實驗服
 	animation502200.interval,bind

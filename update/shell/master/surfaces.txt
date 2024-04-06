@@ -358,6 +358,15 @@ surface0-9,20-29
 	//賽伯洛斯
 	animation4702.interval,bind
 	animation4702.pattern0,add,4702,0,0,0
+	//毛衣
+	animation5503.interval,bind
+	animation5503.pattern0,add,5503,0,0,0
+	//毛衣-染色(灰)
+	animation5504.interval,bind
+	animation5504.pattern0,add,5504,0,0,0
+	//毛衣-染色(米)
+	animation5505.interval,bind
+	animation5505.pattern0,add,5505,0,0,0
 //=====上衣=====
 	//實驗服
 	animation4200.interval,bind
@@ -397,6 +406,12 @@ surface0-9,20-29
 	animation4207.pattern0,add,4207,0,0,0
 	animation5107.interval,bind
 	animation5107.pattern0,add,5107,0,0,0
+	//小洋裝
+	animation4208.interval,bind
+	animation4208.pattern0,add,4208,0,0,0
+	//小洋裝-染色(黑)
+	animation4209.interval,bind
+	animation4209.pattern0,add,4209,0,0,0
 //=====下裝=====
 	//繃帶內褲
 	animation4000.interval,bind
