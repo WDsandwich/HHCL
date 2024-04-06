@@ -212,7 +212,7 @@ file,ghost/master/img/dressing/icon/0/7/07_003_c.pnga9114e367fcc3a000b0e8f28726
 file,ghost/master/img/dressing/icon/0/7/07_004.png37b913d5933faf0c2efb4e1e5b14e469size=4053date=2023-07-17T10:18:50
 file,ghost/master/img/dressing/icon/0/7/07_005_p.png11f9369077e8e1b52ac3e3051ff193f7size=5074date=2023-07-20T03:56:22
 file,ghost/master/img/dressing/icon/0/8/08_001_scr.11.png25fbdff8ddb4f5d59e28fb2a8c36c480size=4558date=2023-06-14T15:51:16
-file,ghost/master/img/dressing/icon/0/8/08_002_d.11.pngbe8622f5001e33327a82e9a61a2646b9size=5606date=2023-12-13T05:17:22
+file,ghost/master/img/dressing/icon/0/8/08_002_d.11+08_001.pngbe8622f5001e33327a82e9a61a2646b9size=5606date=2023-12-13T05:17:22
 file,ghost/master/img/dressing/icon/0/8/08_003_c.png226590bf922455375d4125c5fdd63d54size=3145date=2023-07-14T10:42:12
 file,ghost/master/img/dressing/icon/0/8/08_004_p.png0aedf0cbfe1c1663eb43d247eeb92419size=4791date=2023-07-20T03:39:22
 file,ghost/master/img/dressing/icon/0/9/09_001_p.png4f24f1c0a1a58a77a94e645a8cbd4164size=2904date=2023-06-07T07:27:50
