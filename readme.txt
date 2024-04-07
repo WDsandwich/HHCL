@@ -3,6 +3,7 @@
 ╚════════════════════════════════════╝
 			   by豌豆三明治
 
+在Notion上查看更新日誌：https://wandering-tern-3d5.notion.site/2441cd9ba9e4482abf39c353091e3a2a
 ------------------------------------------
 
 下載：https://drive.google.com/drive/folders/1G91yYzUuTvMgs76-rB1l4_ueLEt3iKk5?usp=drive_link
