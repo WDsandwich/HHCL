@@ -317,7 +317,7 @@ OnUpdateComplete
 OnUpdateFailure
 {	UpdateProgress
 	--
-	"\s[310001]\f[color,#FF2D2D]"
+	"\s[310001]\f[color,#FF2D2D]\w9"
 	--
 	if reference0 == "timeout" ; "連線超時，更新失敗。\x"
 	elseif reference0 == "md5 miss" ; "MD5校驗碼錯誤，更新失敗。\x"
