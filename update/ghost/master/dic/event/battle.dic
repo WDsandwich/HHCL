@@ -170,6 +170,7 @@ OnMapDetail
 		--
 		if month == 3 ; Bimg("items/gift_sp_4")
 		elseif month == 4 ; Bimg("items/gift_sp_5")
+		elseif month == 5 ; Bimg("items/gift_sp_6")
 		else ; "\n[50]\f[color,#8E8E8E]無"
 		--
 		"\n[150]\f[align,right]"
@@ -1489,6 +1490,7 @@ EnemyDropItemSetting	//----------敵方單位掉落道具，在此事件中獲�
 	 {
 		when 3 { gift_sp[4]=TOINT(gift_sp[4]) ; gift_sp[4]++ ; Edrop[8]=gift_sp_name[4] }
 		when 4 { gift_sp[5]=TOINT(gift_sp[5]) ; gift_sp[5]++ ; Edrop[8]=gift_sp_name[5] }
+		when 5 { gift_sp[6]=TOINT(gift_sp[6]) ; gift_sp[6]++ ; Edrop[8]=gift_sp_name[6] }
 	 }
 	}
 	

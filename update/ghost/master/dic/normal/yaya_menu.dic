@@ -44,6 +44,7 @@ OpenMenu: nonoverlap
 	"\w5\_q\f[height,12]\f[color,#8B0000]\n\n[half]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\_q\f[default]"
 	--
 	"\n[130]\![*]\q[ 互動 ,Menu_Interact]\n[150]/
+	\![*]\_q\__q[OnOffice,1] 辦公室 \__q\_q\n[150]/
 	\![*]\q[ 管理局 ,OnMenu_Bureau]\n[150]/
 	\![*]\q[ 外出 ,Menu_GoOutside]\n[150]/
 	\![*]\q[ 採購部 ,Menu_STORE]\n[150]/
@@ -323,7 +324,7 @@ OnMenu_Bureau
 	--
 	_p_list=("├","├","├","├","├","├","├","└")
 	_o_list=("辦公室","檔案室","更衣室","娛樂區（施工中）","研磨坊","密室","鍛造室","倉庫")
-	_func_list=("Office","Database","GoIntoDressingRoom","OnGameRoom","Dye.Grind.GoTo","SecretChamber","OnForgeRoom.Open","OnBagItem")
+	_func_list=("OnOffice","Database","GoIntoDressingRoom","OnGameRoom","Dye.Grind.GoTo","SecretChamber","OnForgeRoom.Open","OnBagItem")
 	if _page==1
 	{	_p_list=("└") ; _o_list=("焚化爐") ; _func_list=("PapreShredder2")	}
 	_option="\n[150]\f[default]\_q\_l[0,30]\f[height,20]"

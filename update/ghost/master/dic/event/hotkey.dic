@@ -136,21 +136,18 @@ OnKeyPress
 		"\![open,dialog,color,--id=Onjrioj]"
 		}
 		when "t" {
-		open_resource_list=(0,0)
 		}
 		when "k" {
-		ERASEVAR('open_resource_list')
-		OnTutorial
+		
 		}
 		when "." {
 		OnMinesweeper.Begin
 		}
 		when "," {
-		open_resource_list
+		"\![set,balloonnum,檔案名,3,10]123"
 		}
 		when "j" {
-		
-		"\![raise,OnTutorial.Battle,41]"
+		"\t\q[選項1,efgr]\q[選項2,efgr]\q[選項3,efgr]文字文字文字文字文字文字文字文字文字"
 		}
 		when "w" {
 		"\p[5]\s[520010]%SFX('sfx/Rinwonarasu')\i[680001]"

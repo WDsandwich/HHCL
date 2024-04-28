@@ -245,7 +245,7 @@ OnLeaveDressingRoom
 			if DressingPage[0]==0 ; "\0\s[0]維持原樣就行了嗎？"
 			else ; "\1\s[10]還是原來的衣服更好對吧？"
 		}
-		if wearing_cloth_HC!=wearing_cloth_HC_last
+		if wearing_cloth_HC != wearing_cloth_HC_last
 		{
 			"\0\s[1]……新的裝扮，好看嗎？"
 			"\0\s[1]%(usernameHC)更喜歡這樣的打扮嗎？"

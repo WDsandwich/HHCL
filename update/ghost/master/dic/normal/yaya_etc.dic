@@ -296,13 +296,17 @@ OnUpdateReady
 //ネットワーク更新終了
 OnUpdateComplete
 {
-	if TOINT(REPLACE(version_code,",",""))<9032
+	_tvc=TOINT(REPLACE(version_code,",",""))
+	if _tvc<9032
 	{	cum_battle_complete = (0,cum_battle_complete)
 		cum_battle_fall = (0,cum_battle_fall)
 		cum_battle_runaway = (0,cum_battle_runaway)
 	}
+	if _tvc<10101
+	{	holiday_celebrated_store[5]=""
+	}
 	
-	if TOINT(REPLACE(version_code,",",""))<TOINT(REPLACE(version_now,",",""))
+	if _tvc<TOINT(REPLACE(version_now,",",""))
 	{	version_code = version_now
 		compensation=(0,0,0)
 	}

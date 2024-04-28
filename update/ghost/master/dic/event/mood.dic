@@ -1,12 +1,12 @@
-MoodStage	//階段性
+MoodStage	//階段名稱
 {
 	_mood=_argv[0]
-	if _mood>2333 ; "A"
-	elseif _mood>1997 ; "B"
-	elseif _mood>1250 ; "C"
-	elseif _mood>700 ; "D"
-	elseif _mood>333 ; "E"
-	elseif _mood>100 ; "F"
+	if _mood>=2333 ; "A"
+	elseif _mood>=1997 ; "B"
+	elseif _mood>=1250 ; "C"
+	elseif _mood>=700 ; "D"
+	elseif _mood>=333 ; "E"
+	elseif _mood>=100 ; "F"
 	else ; "G"
 }
 MoodPic		//輸出圖片
@@ -15,7 +15,15 @@ MoodPic		//輸出圖片
 	_pic=MoodStage(_mood)
 	"\_b[img\emoji\%(_pic).png,inline,--option=use_self_alpha]"
 }
-
+MoodAdd		//心情值增減&檢查數值
+{	_ob=_argv[0] ; _val=_argv[1]
+	if _ob<2 ; mood[_ob]+=_val
+	elseif _ob==2 ; mood+=_val
+	if mood[0]>2500 ; mood[0]=2500
+	if mood[1]>2500 ; mood[1]=2500
+	if mood[0]<0 ; mood[0]=0
+	if mood[1]<0 ; mood[1]=0
+}
 
 //將數值處理成心情tag
 MoodToEmoji

@@ -1,4 +1,4 @@
-Office
+OnOffice
 {	
 	if MenuCheif==2 ; "\0\s[0]\1\s[10]\p[2]"
 	else ; "\%(MenuChoice)"
@@ -23,12 +23,13 @@ Office
 	--
 	if MenuCheif==2
 		"\_q\f[color,150,150,150]\_l[7,220]\f[height,12]\q[<<局長檔案,CheifInfo]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	elseif reference0==1 ; MuenBottomOption(0)
 	else ; MuenBottomOption('OnMenu_Bureau')
 	--
 	"\n\_l[-,200]\f[align,right]\f[height,12]\f[color,#6C6C6C]版本 %(version_name)"
 }
-version_name{"1.1.0"}
-version_now{"1,1,0"}
+version_name{"1.1.1"}
+version_now{"1,01,01"}
 
 //======================================
 //				輸入指令碼				
@@ -85,8 +86,8 @@ OnRedemptionCode
 			discoin+=1000
 			compensation[0]=1
 			
-			"\p[4]\b[2]\f[height,12]%(click)感謝測試使用，這是版本升級獎勵。\n[150]/
-			\_q抽獎券×5\_q\n\_q狄斯幣×1000\_q\_l[,150]\_q\f[default]\f[color,#FFDC35]\__q[OpenBagItem][ →前往倉庫查看 ]\__q\_q"
+			"\p[4]\s[-1]\b[2]%(click)已獲得%(version_name)版本升級獎勵\n[150]/
+			\_q%SFX('sfx/decision button2')抽獎券×5\_q\w2\n\_q%SFX('sfx/decision button2')狄斯幣×1000\_q\w2\n\_l[,150]\_q\f[default]\f[color,#FFDC35]\__q[OpenBagItem][ →前往倉庫查看 ]\__q\_q"
 		
 		}
 	}

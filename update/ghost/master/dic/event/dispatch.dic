@@ -10,7 +10,9 @@ Dispatch
 	--
 	Menu.Option
 	--
-	"\![quicksession,true]\n\_l[-,180]\f[align,right]\f[height,12]\__q[Dispatch.ChangeOption]"
+	"\![quicksession,true]/
+	\n\_l[100,0]\f[height,12]\f[color,#4DFFFF]\f[bold,1]\__q[Dispatch.Detail][?]\__q\f[default]/
+	\n\_l[-,180]\f[align,right]\f[height,12]\__q[Dispatch.ChangeOption]"
 	--
 	if dispatch_option==1 ; Bimg('dressing\button\mark1')
 	else ; Bimg('dressing\button\mark0')
@@ -20,11 +22,23 @@ Dispatch
 	MuenBottomOption('Menu_GoOutside')
 	
 }
+Dispatch.Detail
+{	Dispatch
+	--
+	"\p[4]\s[-1]\b[34]\![quicksession,true]\n[166]/
+	\![*]即使關閉程式，派遣也不會終止。\n[166]/
+	\![*]執行%TTRBY('一小時及以上')派遣，可獲得和時間成正比的%TTRBC('染料原礦')。\n[166]/
+	\![*]所有派遣都可獲得隨機數量%TTRBC('強化素材')，上限與時間成正比。/
+	\n\_l[-,200]\f[align,center]\__q[Dispatch]%QTYimg('x')\__q"
+
+}
+BalloonTooltip_Dispatch.Detail{"查看說明"}
+
 
 OnDispatch.Sure
 {
 	dispatch_second=reference0*60
-	DispatchMode=1
+	DispatchMode=2
 	dispatch_start="%(year).%(month).%(day).%(hour).%(minute).%(second)"
 	_ratio=reference1
 	//	強化材料
@@ -79,7 +93,8 @@ OnDispatch.Window
 	if developermode==1
 	{
 		"\p[4]\s[-1]\b[2]\![quicksession,true]\f[height,12]/
-		現在時間\n%(year).%(month).%(day).%(hour).%(minute).%(second)\n[130]/
+		現在時間\n%(year).%(month).%(day)  %(hour):%(minute):%(second)\n[130]/
+		DispatchMode %(DispatchMode)\n[150]/
 		dispatch_start 出發時間(日期)\n%(dispatch_start)\n[130]/
 		dispatch_second 所需用時(相對數值)\n%(dispatch_second)\n[130]/
 		dispatch_pass 已過去時間(相對數值)\n%(dispatch_pass)\n[130]/
@@ -99,7 +114,14 @@ OnDispatch.Window
 		"\_w[1000]\![raise,OnDispatch.Window]"
 	}
 	else
+	{	if DispatchMode>=2
+		{	"\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"
+			--
+			DispatchMode=1
+		}
+		--
 		"派遣完成！     \f[color,#FFE153]\__q[OnDispatch.End][ 領取獎勵 ]\__q"
+	}
 }
 OnDispatch.Back
 {
@@ -124,12 +146,13 @@ OnDispatch.End
 	DispatchMode=0
 	cum_dispatch[0]++
 	cum_dispatch_time[0]+=dispatch_second
+	intimacy+=25 ; mood+=30
 	"\p[8]\s[-1]"
 	--
 	case MenuChoice
 	{
-		when 0 ; "\1\s[10]\0\s[1]久等了，\w5%(usernameHC)。"
-		when 1 ; "\0\s[0]\1\s[33]我帶了東西回來喔！"
+		when 0 ; "\1\s[10]\0\s[1]久等了，\w5%SFX('chief/01-HC-17-chief')%(usernameHC)。"
+		when 1 ; "\0\s[0]\1\s[33]%SFX('short/02-HL-15-hao le')我帶了東西回來喔！"
 	}
 	--
 	_txt="\w9\p[4]\s[-1]\b[32]\![set,balloontimeout,0]"

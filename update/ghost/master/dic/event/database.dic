@@ -176,14 +176,13 @@ CheifInfo	//資料頁
 	DividingLine
 	--
 	"\f[height,12]\n\f[color,#BEBEBE]/
-	✧ 打卡：%ARRAYSIZE(open_date)天   /
-	\f[color,#84C1FF]\q[<修復>,DailyCheckOut.Fix]\f[color,#BEBEBE]\n/
+	✧ 打卡：%ARRAYSIZE(open_date)天   \n/
 	✧ 資料登記：%(firstboottime[0])年%(firstboottime[1])月%(firstboottime[2])日\n/
 	✧ 當前工作時間：%(ghostupmin/60)時%(ghostupmin - ghostupmin/60*60)分\n/
 	✧ 累計工作時長：%(ghostupmin_total/60/24)天%(ghostupmin_total/60-ghostupmin_total/60/24*24)時%(ghostupmin_total - ghostupmin_total/60*60)分"
 	--
 	if MenuCheif==2
-		"\_q\f[color,150,150,150]\_l[7,220]\f[height,12]\q[前往辦公室>>,Office]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+		"\_q\f[color,150,150,150]\_l[7,220]\f[height,12]\q[前往辦公室>>,OnOffice]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
 	else ; MuenBottomOption("Database")
 }
 CheifInfo.You.Input				//更改第一人稱
@@ -241,15 +240,17 @@ OnCheifInfo.Name.Sure			//確定名稱
 		elseif _ob == 0
 		{
 			usernameHC=_name
+			mood[0]-=10
 			--
 			"\0\s[1]…\w2…\w3…\w4…\w5如果%(you)希望如此的話……"
 			"\0\s[1]這樣…\w3…\w5不會不妥嗎？"
 			--
 			"\w9\p[2]%(cp)\b[20]（好像讓她為難了\n……）\w9"
 		}
-		elseif _ob == 1  && relationship[1]%2==1
+		elseif _ob == 1 && relationship[1]%2==1 && intimacy[1]>=15000
 		{
 			usernameHL=_name
+			mood[0]+=6
 			--
 			"\1\s[13]也不是…\w2…\w5不行啦……"
 			"\1\s[37]就知道占便宜，\w8哼……"
@@ -258,21 +259,23 @@ OnCheifInfo.Name.Sure			//確定名稱
 		}
 		elseif _ob == 1
 		{
-			"\1\s[14]……想都別想！"
-			"\1\s[14]%(you)、%(you)想得美啊！"
-			"\1\s[14]%(you)做白日夢呢！"
-			--
-			"\w9\w5\p[2]%(cp)\b[20]（和海拉的關係還沒那麼親密……）\w9"
-		}
-		elseif _ob == 1
-		{
-			usernameHL=_name
-			mood[1]+=6
+			usernameHL=_name && relationship[1]%2==1
+			mood[1]+=3
 			--
 			"\1\s[13]…\w2…\w2也不是\w2…\w2…\w5不行\w2…\w2…"
 			"\1\s[13]…\w2…\w2唔\w2…\w2…\w5嗯\w2…\w2…"
 			--
 			"\w9\p[2]%(cp)\b[20]（……沒想到被她接受了）\w9"
+		}
+		elseif _ob == 1
+		{	
+			mood[1]-=15
+			--
+			"\1\s[14]……想都別想！"
+			"\1\s[14]%(you)、%(you)想得美啊！"
+			"\1\s[14]%(you)做白日夢呢！"
+			--
+			"\w9\w5\p[2]%(cp)\b[20]（和海拉的關係還沒那麼親密……）\w9"
 		}
 		elseif _ob == 3
 		{

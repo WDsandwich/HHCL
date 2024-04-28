@@ -396,6 +396,9 @@ Store
 				when 4
 				{ event_goods_max=(4) ; event_goods=event_goods_max ; event_goods_prise=(100) ; event_goods_name=(gift_sp_name[5]) ; event_pic="items\gift_sp_5"
 				}
+				when 5
+				{ event_goods_max=(10) ; event_goods=event_goods_max ; event_goods_prise=(520) ; event_goods_name=(gift_sp_name[6]) ; event_pic="items\gift_sp_6"
+				}
 			}
 		}
 		--
@@ -746,6 +749,8 @@ OnBuyingEventGoods
 	{	gift_sp[4]= TOINT (gift_sp[4]) ; gift_sp[4]++ }
 	elseif month==4 && _num==0
 	{	gift_sp[5]= TOINT (gift_sp[5]) ; gift_sp[5]++ }
+	elseif month==5 && _num==0
+	{	gift_sp[6]= TOINT (gift_sp[6]) ; gift_sp[6]++ }
 	--
 	//減少庫存
 	event_goods[_num]-=1
@@ -769,6 +774,11 @@ OnBuyingEventGoods
 		--
 		OnBuyingEventGoods.Talk.202
 	}
+	elseif month==5 && _num==0
+	{	"\p[3]\s[311000]\![quicksession,false]"
+		--
+		OnBuyingEventGoods.Talk.500
+	}
 	else ; Store.Trade.End
 }
 OnBuyingEventGoods.Talk.200 : nonoverlap
@@ -787,7 +797,13 @@ OnBuyingEventGoods.Talk.202 : nonoverlap
 	"%(you)並非誤以為它是補給品才買的吧？\w8\n[130]牌子上寫得清清楚楚……\w8 我可沒有搞詐欺唷。"
 	"看起來美味卻不能吃－－\w7就是所謂的「中看不中用」！\w7\n[130]…………這個不好笑啊？"
 }
-
+OnBuyingEventGoods.Talk.500 : nonoverlap
+{
+	"哦！\w3%(username)，\w5這是打算向誰表白呢？"
+	"這是我親手包裝的唷，\w7好看嗎？"
+	"這種花在狄斯城可不好取得，\w8賣得貴一點……\w5也是很合理的吧。"
+	"我使用了特殊的防腐技術，\w7放得再久都不會枯萎喔。\w9\n[130]至於具體的方法\w2－\w3－\w6那自然是商業機密啦！"
+}
 
 
 //========================================================================

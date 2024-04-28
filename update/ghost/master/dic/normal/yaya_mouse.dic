@@ -517,8 +517,10 @@ Line_DoubleClick1Face : nonoverlap
 	{
 		if intimacy[1]>=10000
 		{
-			"\1\s[36]輕、\w3輕一點啦！"
-			"\1\s[32]臉會被捏歪掉的！"
+			_a=ANY("exc/01-HL-20-e","exc/01-HL-34-ei (fluster)","exc/01-HL-37-ei (hurt)")
+			_b=ANY("exc/02-HL-21-eaaaa","exc/01-HL-34-ei (fluster)")
+			"\1\s[36]%SFX(_a)輕、\w3輕一點啦！"
+			"\1\s[32]%SFX(_b)臉會被捏歪掉的！"
 		}
 		else
 		{
@@ -530,19 +532,19 @@ Line_DoubleClick1Face : nonoverlap
 }
 Line_DoubleClick1Shoulder : nonoverlap
 {
-	if MoodStage(mood[0])=="G" ; "\1\s[3]果然被%(you)按摩……\w5心理就會舒暢一些……"
+	if MoodStage(mood[0])=="G" ; "\1\s[3]%SFX('ineterjection/HL 12-haha')果然被%(you)按摩……\w5心理就會舒暢一些……"
 	else
 	{
 		if relationship[1]==1
 		{
-			"\1\s[38]討厭，\w3%(you)這個手法是有什麼下流的心思嗎？"
-			"\1\s[33]能給可愛的女朋友按摩，\w8是%(you)的福氣喔！"
+			"\1\s[38]%SFX('exc/02-HL-21-eaaaa')討厭，\w3%(you)這個手法，\w5難道是有什麼下流的心思嗎？"
+			"\1\s[33]%SFX('exc/01-HL-16-hihi')能給可愛的女朋友按摩，\w8是%(you)的福氣喔！"
 		}
 		if intimacy[1]>=10000
 		{
-			"\1\s[15]果然還是%(you)的按摩舒服——"
-			"\1\s[33]嗯、\w3嗯\w1嗯\w2…\w2…"
-			"\1\s[12]再給我揉揉！"
+			"\1\s[15]%SFX('ineterjection/HL 90-hu ha')果然還是%(you)的按摩舒服——"
+			"\1\s[33]%SFX('ineterjection/HL 25-en hen')嗯、\w3嗯\w1嗯\w2…\w2…"
+			"\1\s[12]%SFX('exc/01-HL-16-hihi')再給我揉揉！"
 		}
 		else
 		{
@@ -555,19 +557,22 @@ Line_DoubleClick1Shoulder : nonoverlap
 //==========共通台詞（海拉）
 SameLine_1Hair : nonoverlap
 {
-	if MoodStage(mood[0])=="G" ; "\1\s[13]……"
+	if MoodStage(mood[0])=="G"
+	{	_a=ANY("ineterjection/HL 92-hen","ineterjection/HL 94-hen","ineterjection/HL 96-hen")
+		"\1\s[13]%SFX(_a)…………"
+	}
 	else
 	{
 		if relationship[1]==1
 		{
 			"\1\s[12]\![sound,play,sound/ineterjection/HL 16-hihi.mp3]嘿嘿……"
-			"\1\s[12]%(you)在開心什麼？\w6\s[33]是在想「能有像海拉這樣可愛的女朋友真幸運」嗎？"
+			"\1\s[12]%SFX('ineterjection/HL 27-en o')%(you)在開心什麼？\w9\s[33]是在想\w5「\s[18]能有像海拉這樣可愛的女朋友真幸運」\w7\s[33]嗎？"
 		}
-		if intimacy[1]>7000
+		if intimacy[1]<7000
 		{
 			"\1\s[11]\![sound,play,sound/ineterjection/HL 96-hen.mp3]別以為這樣……就可以討好我。\e"
 		}
-		"\1\s[18]\![sound,play,sound/ineterjection/HL 16-hihi.mp3]沒想到吧，我在辛迪加也能把髮質維持這麼好。\e"
+		"\1\s[18]%SFX('ineterjection/HL 05-he')沒想到吧，我在辛迪加也能把髮質維持這麼好。\e"
 	}
 }
 SameLine_1Bust : nonoverlap
@@ -578,8 +583,8 @@ SameLine_1Bust : nonoverlap
 	--
 	if MoodStage(mood[1])=="G"
 	{
-		"\s[19]別碰我！"
-		"\s[31]走、\w3走開……"
+		"\s[19]%SFX('ineterjection/HL 22-inhale')別碰我！"
+		"\s[31]%SFX('ineterjection/HL 24-shock')走、\w3走開……"
 	}
 	elseif intimacy[1]<5555
 	{
@@ -601,19 +606,19 @@ SameLine_1Bust : nonoverlap
 	}
 	elseif intimacy[1]<10000
 	{
-		"\s[37]不、\w33不要……！"
-		"\s[39]住手……"
-		"\s[38]討厭！"
+		"\s[37]\![sound,play,sound/exc/01-HL-34-ei (fluster).mp3]不、\w33不要……！"
+		"\s[39]%SFX('exc/02-HL-28-hen')住手……"
+		"\s[38]%SFX('ineterjection/HL 54-wu a')討厭！"
 	}
 	elseif intimacy[1]>=10000
 	{
-		"\s[37]變態！！！"
-		"\s[38]這是做什麼！"
-		"\s[37]怎麼毛手毛腳的！！"
+		"\s[37]\![sound,play,sound/exc/01-HL-34-ei (fluster).mp3]變態！！！"
+		"\s[38]%SFX('ineterjection/HL 54-wu a')這是做什麼！"
+		"\s[37]\![sound,play,sound/exc/01-HL-34-ei (fluster).mp3]怎麼毛手毛腳的！！"
 	}
 	elseif relationship[1]%2==1 && intimacy[1]<13000
 	{
-		"\s[38]在亂摸什麼……！"
+		"\s[38]%SFX('ineterjection/HL 54-wu a')在亂摸什麼……！"
 		"\s[37]討、\w3討厭……\w5 這麼猴急幹嘛呀……"
 	}
 	elseif relationship[1]%2==1
@@ -621,12 +626,12 @@ SameLine_1Bust : nonoverlap
 		"\s[37]我一點都……\w5不喜歡喔……"
 		"\s[39]色情狂……"
 		"\s[39]笨蛋……"
-		"\s[50]震驚！\w4MBCC局長在辦公室偷摸女下屬胸部！"
+		"\s[50]\![sound,play,sound/ineterjection/HL 32-(shock) he a.mp3]震驚！\w4MBCC局長在辦公室偷摸女下屬胸部！"
 	}
 	
 	if relationship[1]%2==1 && intimacy[1]>=16000
 	{
-		"\s[39]再多摸幾下……\w6也不是不行……"
+		"\s[39]%SFX('ineterjection/HL 92-hen')再多摸幾下……\w6也不是不行……"
 	}
 }
 TouchTooMuch1Bust
@@ -721,7 +726,10 @@ MouseDoubleClick7
 //**********************************************************
 MouseDoubleClick8
 {
-	if DispatchMode>=1 ; OnDispatch.Window
+	if DispatchMode>=1
+	{	if dispatch_left>0 ; OnDispatch.Window
+		else ; OnDispatch.End
+	}
 	elseif SpaMode>=1
 		OnSpa.Window
 	else ; "\p[8]\s[-1]"

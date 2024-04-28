@@ -5,10 +5,6 @@ OnSecondChange
 {
 
 	if SpaMode==1 && stamina<staminamax ; stamina+=0.1
-	if mood[0]<0 ; mood[0]=0
-	if mood[1]<0 ; mood[1]=0
-	if mood[0]>2500 ; mood[0]=2500
-	if mood[1]>2500 ; mood[1]=2500
 	if AYATEMPLATE.mikireflag == 1 && reference[1] == 0
 	{
 		//---- 見切れの終了
@@ -17,7 +13,6 @@ OnSecondChange
 	AYATEMPLATE.mikireflag = reference[1]
 	//if second==0 && SpaMode==1 && stamina<staminamax ; stamina++
 	//if SpaMode>0 ; OnSpa.Window
-	
 }
 OnMinuteChange
 {
@@ -37,6 +32,10 @@ OnMinuteChange
 	}
 	if mood[0]>400 && minute%10==0 ; mood[0]--
 	if mood[1]>400 && minute%10==0 ; mood[1]--
+	if mood[0]<0 ; mood[0]=0
+	if mood[1]<0 ; mood[1]=0
+	if mood[0]>2500 ; mood[0]=2500
+	if mood[1]>2500 ; mood[1]=2500
 	if TOINT (BattleMode+DressingMode+GameMode+DispatchMode+SpaMode)==0
 		MinuteChange.Talk
 }

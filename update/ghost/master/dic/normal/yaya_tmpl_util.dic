@@ -69,6 +69,8 @@ OnAiTalk
 
 OnChoiceSelect
 {
+	click
+	--
 	if ISFUNC(reference[0]) {
 		EVAL(reference[0])
 	}
