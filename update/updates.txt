@@ -62,8 +62,6 @@ file,ghost/master/dic/system/yaya_base/compatible.dic4f8b1e8c8c08dc44e70b1bd4f5
 file,ghost/master/dic/system/yaya_base/config.dicd07874f4b1ba03ba111df8f2fa3cd6dbsize=2592date=2023-12-14T09:44:24
 file,ghost/master/dic/system/yaya_base/optional.dicff4da728a656a8aa6a38939e654c51f2size=9953date=2023-12-14T09:44:24
 file,ghost/master/dic/system/yaya_base/shiori3.dic03d892b84cb33d77167ccb74308ebb37size=55026date=2023-12-14T09:44:24
-file,ghost/master/font/Meiryo.ttfe12daf82690dddcb21e9d42b4e8d5a92size=8540052date=2024-04-08T01:19:37
-file,ghost/master/font/doll.ttf8150e891369c1a2a78f951407bfcab10size=6288228date=2024-04-08T01:11:43
 file,ghost/master/icon.ico1488821d7c5c8db61aae4ae8ec78fb54size=4286date=2024-03-21T15:17:47
 file,ghost/master/img/B_C.pnga2aadc2dd7f35f0f9cec662d635cfe86size=460date=2017-08-15T07:48:36
 file,ghost/master/img/BackIcon.pnge690497e257cb58ea319ae6d8a6c5906size=281date=2022-12-25T01:53:40
@@ -296,18 +294,6 @@ file,ghost/master/img/emoji/D.png7e68f8b55938a40e64703658f40a2659size=1342dat
 file,ghost/master/img/emoji/E.png4da6d85d29898c23cbaab2ef045fc1f1size=1394date=2024-01-31T05:44:15
 file,ghost/master/img/emoji/F.pnge9571b26dde22a236caea28e0d5c1edcsize=1407date=2024-01-31T05:44:15
 file,ghost/master/img/emoji/G.pngb3619495cf9cf09f4c09acb75deedc6fsize=1388date=2024-01-31T05:44:15
-file,ghost/master/img/game/mess/0.png908f48489c308c568da164e3a0aea984size=200date=2024-03-31T11:44:16
-file,ghost/master/img/game/mess/1.pngcc0e4efab2e36f64cbd66215fbe9ca67size=573date=2024-03-31T11:41:28
-file,ghost/master/img/game/mess/2.pngbdd7fef02b70583e2f49d1668567ca40size=790date=2024-03-31T11:41:42
-file,ghost/master/img/game/mess/3.png3401de45a1ec7c51e148cf12b4faa3c1size=715date=2024-03-31T11:41:55
-file,ghost/master/img/game/mess/4.png94b32fdcef21d057dbc21542068c9a8bsize=835date=2024-03-31T11:42:07
-file,ghost/master/img/game/mess/5.png27fb4ca6d64d0405c0c6498efa699c96size=698date=2024-03-31T11:43:06
-file,ghost/master/img/game/mess/6.png73862ccbd14a3cdbf1f722094c695dc0size=738date=2024-03-31T11:42:33
-file,ghost/master/img/game/mess/7.png3691708d27cd56c5d580d795051abaacsize=669date=2024-03-31T11:43:34
-file,ghost/master/img/game/mess/8.png398a6b78ff41f5a4a5ef281ec9445fdasize=798date=2024-03-31T11:43:46
-file,ghost/master/img/game/mess/button.pngffcd1cdded97385cddc2cb880a5a2512size=223date=2024-03-31T11:53:04
-file,ghost/master/img/game/mess/flag.png59ffa9e69f66b8dca9ea3cfc34a67c88size=377date=2024-03-31T11:52:44
-file,ghost/master/img/game/mess/mine.pngc574dbbe96aa3979a5bca60608abeb65size=1404date=2024-03-31T11:50:23
 file,ghost/master/img/game/poker/1_1.pngf97c33e21c324e39288259fdab07ec33size=1124date=2023-07-21T16:14:06
 file,ghost/master/img/game/poker/1_10.png6fc3741f8f243e988ad694a28649d748size=1334date=2023-07-21T16:14:06
 file,ghost/master/img/game/poker/1_11.png766271e59e531076e1cfb47a5e2e6707size=911date=2023-07-21T16:14:06
