@@ -1,4 +1,5 @@
-charset,UTF-8
-
+ghost\master\img\dressing\icon\0\7\07_002_d.11.png
+ghost\master\img\dressing\icon\0\8\08_002_d.11.png
+ghost\master\img\dressing\icon\0\10\10_004_d.11.png
 
 
