@@ -13,6 +13,17 @@ OnSecondChange
 	AYATEMPLATE.mikireflag = reference[1]
 	//if second==0 && SpaMode==1 && stamina<staminamax ; stamina++
 	//if SpaMode>0 ; OnSpa.Window
+	if second%10==0
+	{	if DispatchMode>=1 ; "\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]"
+		--
+		if DispatchMode>=2 && dispatch_left<=0
+		{	"\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"
+			--
+			DispatchMode=1
+			--
+			OnDispatch.Window
+		}
+	}
 }
 OnMinuteChange
 {

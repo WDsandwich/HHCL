@@ -609,6 +609,7 @@ OnSendGift
 	if send_gift_ob==1 && _type=="禮物2" { cum_sendgift_HL[_num]=TOINT(cum_sendgift_HL[_num]) ; cum_sendgift_HL[_num]++}
 	--
 	MoodAdd(send_gift_ob,10)
+	if _name==gift_sp_name[7] ; stamina+=3	//芒果乾(回體)
 	--
 	case send_gift_ob
 	{
@@ -618,6 +619,10 @@ OnSendGift
 			--
 			if _name=="草莓糖果"
 				"\s[1]這個…… \w5對我有特殊的意義。"
+			elseif _name==gift_sp_name[7]	//芒果乾
+			{	"\s[0]是點心嗎？"
+				"\s[1]要不要泡杯茶搭配呢？"
+			}
 			elseif _name==gift_sp_name[6]
 			{	if relationship[0]%2==1
 				{"\s[5]藍色繡球花的花語是\w2…\w3…\w6「執著的愛」。"
@@ -678,6 +683,10 @@ OnSendGift
 			--
 			if _name=="小熊餅乾"
 				"\s[16]哇－－ \w5這個餅乾！\w5好可愛！\w7\n[130]\s[18]嘿嘿，\w3多謝啦，\w5%(usernameHL)。"
+			elseif _name==gift_sp_name[7]	//芒果乾
+			{	"\s[30]明明是水果，\w5\s[35]吃起來卻像零食一樣－－ \w9\s[18]我喜歡！"
+				"\s[12]酸酸甜甜的！\w7\s[33]要不請赫卡蒂泡杯茶來配吧？"
+			}
 			elseif _name==gift_sp_name[6]
 			{	if relationship[1]%2==1
 				{"\s[50]哼\w1…\w1…\w4還挺識相的嘛，\w5\s[13]知道要送我花呀。"

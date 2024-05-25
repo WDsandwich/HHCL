@@ -399,6 +399,9 @@ Store
 				when 5
 				{ event_goods_max=(10) ; event_goods=event_goods_max ; event_goods_prise=(520) ; event_goods_name=(gift_sp_name[6]) ; event_pic="items\gift_sp_6"
 				}
+				when 6
+				{ event_goods_max=(6) ; event_goods=event_goods_max ; event_goods_prise=(30) ; event_goods_name=(gift_sp_name[7]) ; event_pic="items\gift_sp_7"
+				}
 			}
 		}
 		--
@@ -751,6 +754,8 @@ OnBuyingEventGoods
 	{	gift_sp[5]= TOINT (gift_sp[5]) ; gift_sp[5]++ }
 	elseif month==5 && _num==0
 	{	gift_sp[6]= TOINT (gift_sp[6]) ; gift_sp[6]++ }
+	elseif month==6 && _num==0
+	{	gift_sp[7]= TOINT (gift_sp[7]) ; gift_sp[7]++ }
 	--
 	//減少庫存
 	event_goods[_num]-=1
@@ -779,6 +784,11 @@ OnBuyingEventGoods
 		--
 		OnBuyingEventGoods.Talk.500
 	}
+	elseif month==6 && _num==0
+	{	"\p[3]\s[311000]\![quicksession,false]"
+		--
+		OnBuyingEventGoods.Talk.600
+	}
 	else ; Store.Trade.End
 }
 OnBuyingEventGoods.Talk.200 : nonoverlap
@@ -803,6 +813,14 @@ OnBuyingEventGoods.Talk.500 : nonoverlap
 	"這是我親手包裝的唷，\w7好看嗎？"
 	"這種花在狄斯城可不好取得，\w8賣得貴一點……\w5也是很合理的吧。"
 	"我使用了特殊的防腐技術，\w7放得再久都不會枯萎喔。\w9\n[130]至於具體的方法\w2－\w3－\w6那自然是商業機密啦！"
+}
+OnBuyingEventGoods.Talk.600 : nonoverlap
+{
+	"百分百純芒果\w2－\w2－\w5 真的哦！"
+	"這可是來自外邦的品種！"
+	"請置於陰涼乾燥處，\w7避免陽光直射。"
+	"有別於新鮮的芒果，\w7美味卻絲毫不減呢。"
+	"咦？\w3您懷疑我把賣剩的水果加工後，\w7再次拿出來販售嗎？\w9\n[130]這、\w3這怎麼可能呢\w1…\w2…\w5 啊哈哈\w1…\w2…\w3"
 }
 
 

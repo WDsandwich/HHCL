@@ -80,17 +80,20 @@ OnDispatch.Setting
 {
 	dispatch_pass=TimeSpan(dispatch_start,"%(year).%(month).%(day).%(hour).%(minute).%(second)")
 	dispatch_left=dispatch_second-dispatch_pass
-	dispatch_time=(TOINT(dispatch_left/3600),TOINT((dispatch_left/60)%60),TOINT(dispatch_left%60))
+	dispatch_time=dispatch_left+59
+	dispatch_time=(TOINT(dispatch_time/3600),TOINT((dispatch_time/60)%60),TOINT(dispatch_time%60))
 	--
 	if dispatch_time[0]<10 ; dispatch_time[0]="0"+ TOINT (dispatch_time[0])
 	if dispatch_time[1]<10 ; dispatch_time[1]="0"+ TOINT (dispatch_time[1])
 	if dispatch_time[2]<10 ; dispatch_time[2]="0"+ TOINT (dispatch_time[2])
+	--
+	"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\c\s[810010]"
 }
 OnDispatch.Window
 {
 	OnDispatch.Setting
 	--
-	if developermode==1
+	if developermode==1 && dispatch_windows==1
 	{
 		"\p[4]\s[-1]\b[2]\![quicksession,true]\f[height,12]/
 		現在時間\n%(year).%(month).%(day)  %(hour):%(minute):%(second)\n[130]/
@@ -104,24 +107,21 @@ OnDispatch.Window
 	--
 	if dispatch_left<=0 ; dispatch_pass=dispatch_second
 	--
-	"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\c\s[810010]\![quicksession,true]/
-	派遣進度：\n%ProgressBar(7,10,140,dispatch_pass,dispatch_second)\n[130]"
-	--
-	if dispatch_left>0
+	if dispatch_windows==1
 	{
-		"剩餘\f[color,#9EDBFF]%(dispatch_time[0]):%(dispatch_time[1]):%(dispatch_time[2])\n[1]\f[align,right]\f[color,#FFE153]\__q[OnDispatch.Back][ 緊急召回 ]\__q\f[default]"
+		"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\c\s[810010]\![quicksession,true]/
+		派遣進度：\_l[145]\__q[OnDispatch.Window.Close]%Bimg('CancelIcon')\__q/
+		\n%ProgressBar(7,10,140,dispatch_pass,dispatch_second)\n[130]"
 		--
-		"\_w[1000]\![raise,OnDispatch.Window]"
-	}
-	else
-	{	if DispatchMode>=2
-		{	"\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"
+		if dispatch_left>0
+		{
+			"剩餘\f[color,#9EDBFF]%(dispatch_time[0]):%(dispatch_time[1])\n[1]\f[align,right]\f[color,#FFE153]\__q[OnDispatch.Back][ 緊急召回 ]\__q\f[default]"
 			--
-			DispatchMode=1
+			//"\_w[1000]\![raise,OnDispatch.Window]"
 		}
-		--
-		"派遣完成！     \f[color,#FFE153]\__q[OnDispatch.End][ 領取獎勵 ]\__q"
+		else ; "派遣完成！     \f[color,#FFE153]\__q[OnDispatch.End][ 領取獎勵 ]\__q"
 	}
+	else ; "\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]"
 }
 OnDispatch.Back
 {
@@ -170,4 +170,9 @@ OnDispatch.End
 	_txt+="\![quicksession,true]\n[150]\f[color,#FFC2CF]\__q[Dispatch][ 再次派遣 ]\__q\f[default]\n[150]\__q[CANCEL_Button][ 返回管理局 ]\__q"
 	_txt
 	
+}
+OnDispatch.Window.Close
+{
+	dispatch_windows=0
+	OnDispatch.Window
 }

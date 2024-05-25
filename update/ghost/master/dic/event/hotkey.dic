@@ -130,7 +130,7 @@ OnKeyPress
 		_txt
 		*/}
 		when "n" {
-		holiday_celebrated_store[3]=""
+		GETTYPE(lots_result_color)
 		}
 		when "p" {
 		"\![open,dialog,color,--id=Onjrioj]"

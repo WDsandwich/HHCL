@@ -93,7 +93,7 @@ OnBoot
 	%(opp)\q[「沒有。」,TouchTooMuch1Bust3]"
 	elseif DispatchMode>=1
 	{
-		if dispatch_left<0 ; "\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"		//派遣提示音
+		if dispatch_left<=0 ; "\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"		//派遣提示音
 		--
 		OnDispatch.Window
 	}

@@ -43,6 +43,7 @@ OnInstallBegin
 //------------------------------------------------------------------------------
 OnInstallComplete
 {
+	_tvc=TOINT(REPLACE(version_code,",",""))
 	if TOINT(REPLACE(version_code,",",""))<9019
 	{	mood=(1000,1000)
 		relationship=(0,0)
@@ -81,6 +82,12 @@ OnInstallComplete
 		void FDEL('sound/sfx/弓矢が刺さる.mp3')
 		void FDEL('sound/sfx/金額表示.mp3')
 		lottery_ticket=TOINT(lottery_ticket)
+	}
+	if _tvc<10101
+	{	holiday_celebrated_store[5]=""	}
+	if _tvc<10102
+	{	holiday_celebrated_store[6]=""
+		dispatch_windows=1
 	}
 	
 	if TOINT(REPLACE(version_code,",",""))<TOINT(REPLACE(version_now,",",""))
@@ -303,7 +310,10 @@ OnUpdateComplete
 		cum_battle_runaway = (0,cum_battle_runaway)
 	}
 	if _tvc<10101
-	{	holiday_celebrated_store[5]=""
+	{	holiday_celebrated_store[5]=""	}
+	if _tvc<10102
+	{	holiday_celebrated_store[6]=""
+		dispatch_windows=1
 	}
 	
 	if _tvc<TOINT(REPLACE(version_now,",",""))

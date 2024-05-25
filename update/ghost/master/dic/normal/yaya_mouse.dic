@@ -727,7 +727,8 @@ MouseDoubleClick7
 MouseDoubleClick8
 {
 	if DispatchMode>=1
-	{	if dispatch_left>0 ; OnDispatch.Window
+	{	if dispatch_left>0
+		{	dispatch_windows=1 ; OnDispatch.Window	}
 		else ; OnDispatch.End
 	}
 	elseif SpaMode>=1

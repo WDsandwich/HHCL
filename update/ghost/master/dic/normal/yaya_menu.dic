@@ -431,9 +431,9 @@ Menu_Function
 	else ; _txt+="\__q[OnMenu_Function.ChangPage,1]電源\__q"
 	_txt+="\f[default]\n[150]\_q"
 	--
-	_point=("├","├","├","└")
-	_name=("線上更新","開啟APP一覽","計算機","建立捷徑到桌面")
-	_func=("OnUpdateFor","OnBat,APP","OnBat,calculator","CreateShortcut")
+	_point=("├","├","├","├","└")
+	_name=("線上更新","開啟APP一覽","計算機","抽籤機","建立捷徑到桌面")
+	_func=("OnUpdateFor","OnBat,APP","OnBat,calculator","DrawLots","CreateShortcut")
 	if function_page==1
 	{	_point=("├","├","└")
 		_name=("休眠","關機","重新啟動")
@@ -463,6 +463,113 @@ CreateShortcut
 {	intimacy[MenuChoice]+=5
 	"\![create,shortcut]"
 }
+//=======================抽籤機=======================
+DrawLots
+{
+	_txt="\p[2]%cp(0)\b[2]\![quicksession,true]\![set,autoscroll,disable]/
+	\f[color,#FFD306]\f[bold,1]\__q[OnDrawLots.Go][ →抽籤！]\__q\f[default]        /
+	\f[color,#ADADAD]\f[height,12]\__q[OnDrawLots.DeleltAll][ 清空選項 ]\__q\f[default]\n[150]"
+	_i=0
+	for _i=0 ; _i<ARRAYSIZE(lots_name) ; _i++
+	{  
+	   _txt+="%(_i+1).  "
+	   if _i==lots_result && GETTYPE(lots_result[0])==1
+		{	if GETTYPE(lots_result_color)==3 ; _txt+="\f[color,%(lots_result_color)]"
+			else; _txt+= "\f[color,#F57FAC]"
+		}
+	   _txt+="\__q[OnDrawLots.Change,%(_i)]%(lots_name[_i])\__q/
+	   \_l[175]\__q[OnDrawLots.Delelt,%(_i)]%QTYimg('x')\__q\f[default]\n"
+
+	}
+	_txt+="\n[50]\f[align,center]\__q[OnDrawLots.Input,%(_i)]%Bimg('botton/lots_add')\__q\n[150]/
+	\f[align,right]\f[height,12]\f[color,#ADADAD]\__q[DrawLots.ResultColor][ 變更醒目顏色 ]\__q   \__q[DrawLots.ResultColor.Reset][ 恢復預設顏色 ]\__q\n[150]"
+	_txt
+	--
+	if ARRAYSIZE(lots_name)>=9 ; MuenBottomOption2(0)
+	else ; MuenBottomOption(0)
+}
+OnDrawLots.Delelt
+{	click
+	_n=reference0
+	lots_name[_n]=IARRAY
+	lots_result=IARRAY
+	--
+	DrawLots
+}
+OnDrawLots.DeleltAll
+{
+	click
+	lots_name=IARRAY
+	lots_result=IARRAY
+	--
+	DrawLots
+}
+OnDrawLots.Change
+{	click
+	lots_input_ob=reference0
+	--
+	"\![open,inputbox,OnDrawLots.Change.End,,%(lots_name[lots_input_ob])]"
+	--
+	DrawLots
+}
+OnDrawLots.Change.End
+{
+	click
+	lots_name[lots_input_ob]=reference0
+	--
+	DrawLots
+}
+OnDrawLots.Input
+{	click
+	lots_input_ob=reference0
+	--
+	"\![open,inputbox,OnDrawLots.Input.End]"
+	--
+	DrawLots
+}
+OnDrawLots.Input.End
+{
+	click
+	lots_name[lots_input_ob]=reference0
+	--
+	DrawLots
+}
+OnDrawLots.Go
+{	
+	click
+	--
+	_a=ARRAYSIZE(lots_name)
+	lots_result=RAND(_a)
+	DrawLots
+	--
+	"\%(MenuChoice)\![quicksession,false]"
+	--
+	if ARRAYSIZE(lots_name)<=0 ; "沒有任何籤可以抽哦……"
+	elseif ARRAYSIZE(lots_name)==1 ; "只有一張籤，沒有抽的必要。"
+	else ; "抽到了【\f[color,#FFD306]\f[bold,1]%(lots_name[lots_result])\f[default]】。"
+
+}
+DrawLots.ResultColor
+{
+	"\![open,dialog,color,--id=OnDrawLots.ResultColor.End]"
+	--
+	DrawLots
+}
+OnDrawLots.ResultColor.End
+{	
+	click
+	lots_result_color=reference2
+	--
+	DrawLots
+}
+DrawLots.ResultColor.Reset
+{
+	click
+	lots_result_color=IARRAY
+	--
+	DrawLots
+}
+
 //-------------開啟bat檔
 OnBat
 {	_bat=reference0
