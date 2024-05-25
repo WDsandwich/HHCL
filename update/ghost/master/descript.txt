@@ -37,6 +37,7 @@ char4.seriko.alignmenttodesktop,free
 char5.seriko.alignmenttodesktop,top
 char6.seriko.alignmenttodesktop,free
 char7.seriko.alignmenttodesktop,free
+char8.seriko.alignmenttodesktop,free
 
 sakura.balloon.alignment,right
 kero.balloon.alignment,left
