@@ -120,6 +120,11 @@ surface22
 {
 	element1,overlay,face/hecate/face_22.png,0,0
 }
+//親吻
+surface23
+{
+	element1,overlay,face/hecate/face_23.png,0,0
+}
 
 
 
@@ -127,7 +132,9 @@ surface22
 surface0
 {
   //眨眼一下
-	animation0.interval,runonce+random,3
+	animation1.interval,runonce
+	animation1.pattern0,overlay,400,0,0,0
+	animation0.interval,random,3
 	animation0.pattern0,overlay,400,0,0,0
 	animation0.pattern1,overlay,401,30,0,0
 	animation0.pattern2,overlay,402,30,0,0
@@ -165,7 +172,7 @@ surface4
 
 
 //==================海拉表情==================
-surface10-19,30-39,50
+surface10-19,30-39,50-59
 {
 	element0,base,surface0010.png,0,0
 }
@@ -301,11 +308,80 @@ surface50
 {
 	element1,overlay,face/hella/face_50.png,0,0
 }
+surface51
+{
+	element1,overlay,face/hella/face_51.png,0,0
+}
+surface52
+{
+	element1,overlay,face/hella/face_52.png,0,0
+}
+surface160
+{
+	element0,base,face/hella/face_53.png,0,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface161
+{
+	element0,base,face/hella/face_53.png,-321,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface162
+{
+	element0,base,face/hella/face_53.png,-642,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface163
+{
+	element0,base,face/hella/face_53.png,-963,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface164
+{
+	element0,base,face/hella/face_53.png,-1284,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface165
+{
+	element0,base,face/hella/face_53.png,-1605,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface166
+{
+	element0,base,face/hella/face_53.png,-1926,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface167
+{
+	element0,base,face/hella/face_53.png,-2247,0
+	element1,reduce,face/hella/cut.png,0,0
+}
+surface53
+{
+	animation1.interval,runonce
+	animation1.pattern0,overlay,160,0,0,0
+	animation1.pattern1,overlay,161,100,0,0
+	animation1.pattern2,overlay,162,150,0,0
+	animation1.pattern3,overlay,163,150,0,0
+	animation1.pattern4,overlay,162,150,0,0
+	animation1.pattern5,overlay,163,150,0,0
+	animation1.pattern6,overlay,164,150,0,0
+	animation1.pattern7,overlay,165,150,0,0
+	animation1.pattern8,overlay,166,150,0,0
+	animation1.pattern9,overlay,167,100,0,0
+	animation1.pattern10,overlay,166,150,0,0
+	animation1.pattern11,overlay,167,150,0,0
+	animation1.pattern12,overlay,166,150,0,0
+	animation1.pattern13,overlay,167,150,0,0
+	animation1.pattern14,overlay,166,200,0,0
+}
 
 //海拉眨眼
 surface10,36-37
 {
-	animation1000.interval,runonce+random,3
+	animation1001.interval,runonce
+	animation1001.pattern0,overlay,0130,0,0,0
+	animation1000.interval,random,3
 	animation1000.pattern0,overlay,0130,0,0,0
 	animation1000.pattern1,overlay,0131,30,0,0
 	animation1000.pattern2,overlay,0132,30,0,0
@@ -479,7 +555,7 @@ surface0-9,20-29
 //===================================================================
 //							海拉換裝
 //===================================================================
-surface10-19,30-39,50
+surface10-19,30-39,50-59
 {
 //=====瀏海=====
 	animation16300.interval,bind
