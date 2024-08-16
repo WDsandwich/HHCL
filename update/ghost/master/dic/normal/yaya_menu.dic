@@ -682,26 +682,28 @@ Menu_自訂主選單
 //=======================選單底部=======================
 MuenBottomOption
 {
-	_txt="\_q\f[color,150,150,150]\_l[7,220]\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
-	--
-	if _argv[0]==0
-		_txt+="OpenMenu"
-	else
-		_txt+=_argv[0]
-	--
-	_txt+="]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	_txt="\_q\f[color,150,150,150]\_l[7,220]"
+	if EventArgv==0 && SinnerRoomMode==0 {
+		_txt+="\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
+		if _argv[0]==0 ; _txt+="OpenMenu"
+		else ; _txt+=_argv[0]
+		_txt+="]"
+	}
+	else ; _txt+="\f[height,12]"
+	_txt+="\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
 	_txt
 }
 MuenBottomOption2
 {
-	_txt="\_l[10]\_q\f[color,150,150,150]\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
-	--
-	if _argv[0]==0
-		_txt+="OpenMenu"
-	else
-		_txt+=_argv[0]
-	--
-	_txt+="]\_l[170]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
+	_txt="\_l[10]\_q\f[color,150,150,150]"
+	if EventArgv==0 && SinnerRoomMode==0 {
+		_txt+="\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
+		if _argv[0]==0 ; _txt+="OpenMenu"
+		else ; _txt+=_argv[0]
+		_txt+="]"
+	}
+	else ; _txt+="\f[height,12]"
+	_txt+="\_l[170]\_b[img/CancelIcon,inline]\q[關閉,CANCEL_Button]\_q"
 	_txt
 }
 EventBottomOption

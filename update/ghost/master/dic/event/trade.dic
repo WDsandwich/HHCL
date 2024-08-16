@@ -13,6 +13,11 @@ Menu_STORE
 	if StoreMode==0	;{ Menu_STORE.MenuTalk0 ; StoreMode=1 }
 	else ; Menu_STORE.MenuTalk1
 }
+Hotkey_STORE
+{
+	if storepage==(0,0) ; Menu_STORE
+	else ; OnLeaveStore
+}
 //=============商店首頁對話=============
 Menu_STORE.MenuTalk0 : nonoverlap
 {

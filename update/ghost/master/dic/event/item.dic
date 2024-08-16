@@ -102,8 +102,11 @@ OnBagItem
 	"\f[bold,1]\f[shadowcolor,#930000]%(DividingLine)\f[default]/
 	
 	\n[111]\_l[20]\f[valign,center]\__q[TipOption_BagToStore,Discoin]\_b[img\items\Discoin.png,inline,--option=use_self_alpha]\f[color,#DAA520]\__q\f[color,#DAA520] %ThousandsSeparators(discoin)/
-	\n[200]\f[color,150,150,150]\_l[20]\_b[img/BackIcon,inline]\f[height,12]\q[返回,Bag.FrontPage]/
-	\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CloseBag]"
+	\n[200]\f[color,150,150,150]"
+	--
+	if EventArgv+SinnerRoomMode==0 ;"\_l[20]\_b[img/BackIcon,inline]\f[height,12]\q[返回,Bag.FrontPage]"
+	--
+	"\_l[150]\_b[img/CancelIcon,inline]\q[關閉,CloseBag]"
 }
 Bag.FrontPage
 {
@@ -433,11 +436,16 @@ OnUsingItem
 	elseif _type == "染料原礦" || _type == "各色染料"
 		Dye.Grind
 	elseif _type == "禮物" || _type == "禮物2"
-	{	"\p[2]%(cp)\b[22]\n[90]\f[align,center]把這個禮物送給……\n[180]/
-		%(opp)\__q[OnSendGift,0,%(_n),%(_type)] 赫卡蒂 \__q\n[150]/
-		%(opp)\__q[OnSendGift,1,%(_n),%(_type)] 海拉　 \__q"
-		--
-		OnBagItem
+	{	
+		if SinnerRoomMode>=1 ; "\![raise,OnSendGift,%(MenuChoice),%(_n),%(_type)]"
+		else {
+			"\p[2]%(cp)\b[22]\n[90]\f[align,center]把這個禮物送給……\n[180]/
+			%(opp)\__q[OnSendGift,0,%(_n),%(_type)] 赫卡蒂 \__q\n[150]/
+			%(opp)\__q[OnSendGift,1,%(_n),%(_type)] 海拉　 \__q"
+			--
+			OnBagItem
+		}
+		
 	}
 	elseif (_name=="狂亂精粹" && enhancement[0]<=0) || (_name=="異能源液" && enhancement[1]<=0) || (_name=="狂暴源液" && enhancement[2]<=0) 
 	{	"%cp(0)\b[20]\![quicksession,false]（必須要有\f[bold,1]%(_name)\f[bold,0]\n才能使用……）"
@@ -619,6 +627,9 @@ OnSendGift
 			--
 			if _name=="草莓糖果"
 				"\s[1]這個…… \w5對我有特殊的意義。"
+			elseif _name==gift_sp_name[1] {	//小熊餅乾
+				"\s[1]我想海拉會更喜歡這個……"
+			}
 			elseif _name==gift_sp_name[7]	//芒果乾
 			{	"\s[0]是點心嗎？"
 				"\s[1]要不要泡杯茶搭配呢？"
@@ -683,6 +694,10 @@ OnSendGift
 			--
 			if _name=="小熊餅乾"
 				"\s[16]哇－－ \w5這個餅乾！\w5好可愛！\w7\n[130]\s[18]嘿嘿，\w3多謝啦，\w5%(usernameHL)。"
+			elseif _name==gift_sp_name[0] {	//草莓糖果
+				"\s[16]嗯……\w3我覺得赫卡蒂會喜歡喔？"
+				//"\s[30]把這個送給赫卡蒂應該更好。"
+			}
 			elseif _name==gift_sp_name[7]	//芒果乾
 			{	"\s[30]明明是水果，\w5\s[35]吃起來卻像零食一樣－－ \w9\s[18]我喜歡！"
 				"\s[12]酸酸甜甜的！\w7\s[33]要不請赫卡蒂泡杯茶來配吧？"

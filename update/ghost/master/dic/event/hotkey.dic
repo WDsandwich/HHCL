@@ -74,25 +74,25 @@ OnKeyPress
 	elseif _key==self_hotkey[2] {cp(0)}	//顯示局長
 	elseif _key==self_hotkey[3] {SinnerInfo}	//禁閉者檔案
 	elseif _key==self_hotkey[4] {OpenBagItem}	//倉庫
-	elseif _key==self_hotkey[5] {Menu_Interact}	//互動
-	elseif _key==self_hotkey[6]			//採購部
-	{	if StoreMode==0 ; Menu_STORE
-		else ; OnLeaveStore	}
 	elseif _key==self_hotkey[7]	//更衣室
 	{	if DressingMode==0 ; GoIntoDressingRoom
 		elseif DressingCheck!=0 {DressingCheck}
 		else ; OnLeaveDressingRoom
 	}
-	elseif _key==self_hotkey[8] {Dye.Grind.GoTo}	//研磨坊
-	elseif _key==self_hotkey[9] {GoToBattle}	//戰鬥
-	elseif _key==self_hotkey[10] {GoToSpa}	//溫泉
-	elseif _key==self_hotkey[11] {Dispatch}	//派遣
-	elseif _key==self_hotkey[12] {HotKey_Illustrated}	//圖鑑
-	elseif _key==self_hotkey[13] {Hotkey_ForgeRoom}	//鍛造室
-	elseif _key==self_hotkey[14] {Database}	//檔案室
-	//if _key=="f2" ; {BattleMode=0}
-	if developermode==1
-	{  case reference0 {
+	elseif _key==self_hotkey[14] {Database}				//檔案室
+	//================無法在特殊事件時使用================
+	elseif EventArgv+SinnerRoomMode==0 {
+		if _key==self_hotkey[5] {Menu_Interact}				//互動
+		elseif _key==self_hotkey[6]	{Hotkey_STORE}			//採購部
+		elseif _key==self_hotkey[8] {Dye.Grind.GoTo}		//研磨坊
+		elseif _key==self_hotkey[9] {GoToBattle}			//戰鬥
+		elseif _key==self_hotkey[10] {GoToSpa}				//溫泉
+		elseif _key==self_hotkey[11] {Dispatch}				//派遣
+		elseif _key==self_hotkey[12] {HotKey_Illustrated}	//圖鑑
+		elseif _key==self_hotkey[13] {Hotkey_ForgeRoom}		//鍛造室
+	}
+	if developermode==1 {
+	  case reference0 {
 		when "g" { if developermode==1 ; "\![reload,ghost]" }
 		when "s" { if developermode==1 ; "\![reload,shell]" }
 		when "b" { if developermode==1 ; "\![reload,balloon]" }
@@ -128,14 +128,6 @@ OnKeyPress
 		when "i" {
 		
 		}
-		/*when "l" {
-			if ISFUNC('OpenMenu') {
-				OpenMenu
-			}
-			else {
-				'\![raise,OnMouseDoubleClick,0,0,0,0,__SYSTEM_KEYDOWN_COL,0,mouse]'
-			}
-		}*/
 	  }
 	}
 }
