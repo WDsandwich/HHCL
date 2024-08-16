@@ -8,36 +8,38 @@ ghost/master/descript.txteb05b7f50beeeca36f3d36699ae2ce56size=1074date=2024-0
 ghost/master/dic/emerg/yaya_emerg_dic.dic4f6e4586eaba11e77f3da2c55757b8absize=707date=2024-03-30T10:14:02
 ghost/master/dic/event/EmptyRecycleBin.dicb6b9414d6e26f8d9778f62d405961641size=74date=2023-05-28T01:50:28
 ghost/master/dic/event/EnevtTool.dic04c9131236dfbbf15c6f264dddbb7ea2size=7466date=2024-03-23T12:22:26
-ghost/master/dic/event/PapreShredder.dicf109e85ed1dcb5c8d2082ccdfadec361size=7470date=2024-03-02T16:11:36
+ghost/master/dic/event/PapreShredder.dicb19a92b2e61b645a69c4b1bbdcddca0asize=7654date=2024-08-15T23:58:24
+ghost/master/dic/event/SinnerRoom.dic27b014329c64ac7550c0980bc1610942size=13348date=2024-08-16T03:54:09
 ghost/master/dic/event/backup.dicb6a16f81bb99fc57dd79ae7156358080size=5245date=2024-01-14T14:26:21
 ghost/master/dic/event/battle.dic39d953572f40edfb383b8faf5240b198size=61473date=2024-06-01T11:00:51
-ghost/master/dic/event/chat.dic74fafb140ce2a05e261a575604bc33b4size=1119date=2024-03-29T09:08:44
-ghost/master/dic/event/chief.dicd8188c4dc62c5e3aadc3d5965c2064e1size=139date=2024-01-21T23:20:43
-ghost/master/dic/event/cumulative.dic6509ef8ffb7b0d3ed7401a57b5efa29fsize=9592date=2024-03-22T23:45:37
+ghost/master/dic/event/chat.dic46cd8b21216593ea4c8f1e4877ae299asize=3048date=2024-06-02T13:19:06
+ghost/master/dic/event/chief.dic48205cb42d280d515a43fa045dd13d6asize=130date=2024-08-16T13:57:09
+ghost/master/dic/event/cumulative.dicb0d5acc8e97ab7a818b2c6bd688c3801size=9830date=2024-08-16T03:52:14
 ghost/master/dic/event/database.dicd82abfa14b6522b576c601dec8424fe6size=12737date=2024-04-28T13:47:35
 ghost/master/dic/event/date.dicb3255b239a199d1f6b24e05e7acbfff0size=187date=2024-02-01T23:23:13
 ghost/master/dic/event/dispatch.diccada5a6d140a0811797be36a9af1626bsize=5911date=2024-04-30T18:38:50
-ghost/master/dic/event/dressingroom.dic66971457048c8166dd758d73d66a6c2asize=28141date=2024-04-10T18:03:16
+ghost/master/dic/event/dressingroom.dicd6ed2e6b88184524a69ac08436bbbf46size=28528date=2024-07-24T14:47:00
 ghost/master/dic/event/dye.dic1ef2e66d3bd3a853db3dd2f245a1fb9bsize=8289date=2024-03-21T13:53:01
 ghost/master/dic/event/file.dic511b49e6bb402f4572a709a14ad7b7f4size=2434date=2023-01-18T11:23:40
 ghost/master/dic/event/forge.dic6c1e48d198702ba0e69d5a3c4b4af3ebsize=8639date=2024-03-20T23:32:34
-ghost/master/dic/event/game.dic3bbb0eb6404aae05b7a4458aa2e84402size=14557date=2024-03-31T11:57:51
-ghost/master/dic/event/history.dicf70fa21b873c849ba399b4da4ba10e60size=3022date=2024-02-15T11:11:58
-ghost/master/dic/event/hotkey.dic00aef1784ad536039b82afdce926feeasize=5776date=2024-04-30T13:10:37
+ghost/master/dic/event/game.dic6d3408155a44ae9cf5c570db5d26f48dsize=14843date=2024-08-16T17:39:01
+ghost/master/dic/event/history.dic5a5bcc4bd29587ac665b0e5ac4d321b9size=3108date=2024-07-24T03:48:36
+ghost/master/dic/event/hotkey.dicf03f8e55d459e6baac1489c02477ee86size=5039date=2024-08-16T03:51:58
 ghost/master/dic/event/illustrated.dic6c3031c7ddd063b0ed4898c239a8f887size=11481date=2024-03-30T09:27:26
 ghost/master/dic/event/intimacy.dic55bb6d66058d4b84ff62a90e9ce2f2e3size=703date=2023-09-05T01:21:52
 ghost/master/dic/event/item.dic046dea33ff9584af887a5c368700156asize=31442date=2024-05-25T10:59:19
 ghost/master/dic/event/level.dicf454464aa4323028706012c5e699223bsize=966date=2024-03-19T19:13:27
 ghost/master/dic/event/love.dic7c3200719ffd06602dbc012fe415a705size=7829date=2024-02-19T20:35:16
 ghost/master/dic/event/mood.dic0b679b51116adf11551755a5aedbd58fsize=1089date=2024-04-28T10:31:29
-ghost/master/dic/event/office.dicd92638817a973791458fdce4d85bbf3asize=13030date=2024-05-25T11:11:45
+ghost/master/dic/event/office.dic8916fe1e1dbb9cb31a2c347be38e69a8size=13405date=2024-08-16T03:51:51
 ghost/master/dic/event/relationship.dic41fd8cf99a4889a17fba78bc790377e7size=5379date=2024-01-31T09:45:48
 ghost/master/dic/event/rename.dic84641824144d82b312aacd068e399b05size=24990date=2023-05-28T04:27:40
 ghost/master/dic/event/spa.dic619a21dcadc0771132a9a62f2d364402size=7615date=2024-02-08T22:58:31
 ghost/master/dic/event/test.dic4ea75aac0b701539c1f6113f42329b3esize=1067date=2024-02-08T21:22:22
-ghost/master/dic/event/time.dica83882c6967bebf20fa07bd34a83cf62size=7968date=2024-04-30T19:41:50
+ghost/master/dic/event/time.dicdf589f84b25f44c2fe2cfc0c229271d5size=8030date=2024-08-16T04:00:33
 ghost/master/dic/event/trade.dic5cbf81ca16257190da8895ee1a19b152size=38877date=2024-05-24T19:29:18
 ghost/master/dic/event/tutorial.dicc7f2b553c3d260203eff4dfb9690c564size=23450date=2024-04-05T17:02:11
+ghost/master/dic/event/update.dic65f8590743a560be802ecad6dd9ae2desize=2608date=2024-08-16T04:04:27
 ghost/master/dic/event/weather.dic606fe01b57ad426f6537dfce04d29e3esize=69date=2024-04-07T19:48:09
 ghost/master/dic/excel/cloth.dica06885ef748aa880dc7f3edfb1c4474csize=2248date=2024-04-07T02:11:44
 ghost/master/dic/list/battle.txt45daf4226afe9030e201f3a7f833a50fsize=1067date=2023-12-18T02:45:56
@@ -45,13 +47,13 @@ ghost/master/dic/list/chat_choise.dicceeaae655bfa2a1347220798f6b4ba9fsize=269
 ghost/master/dic/list/enemy.txt3fb5c00203c423660c295ae49f4d8193size=4350date=2024-03-30T20:52:36
 ghost/master/dic/list/holiday.txt834498ba031bca08fa89fe80a3f611b8size=9301date=2024-03-21T07:21:04
 ghost/master/dic/list/item.txt7a2c106faad979031905e8750edd9daesize=8578date=2024-05-24T19:44:36
-ghost/master/dic/normal/yaya_aitalk.dic355ac181eb04a8b8735d4d23ccb05562size=17366date=2024-02-14T23:55:09
-ghost/master/dic/normal/yaya_bootend.dice4a534e23cdbeab5fdd44d0ceba8e29csize=11007date=2024-04-30T19:41:33
+ghost/master/dic/normal/yaya_aitalk.diccbddf1e653c7d16e752f0495b99b2b92size=18501date=2024-08-16T13:56:47
+ghost/master/dic/normal/yaya_bootend.dic0dd3d73dace2eba3865dd9c0c9c063b0size=11505date=2024-08-16T21:59:00
 ghost/master/dic/normal/yaya_change.dic7a1a92ede75eedca2ea91bc58ef92d52size=3690date=2024-01-16T16:26:17
 ghost/master/dic/normal/yaya_communicate.dica8f9a367358e014f5189b0146bf10f85size=6074date=2023-07-28T14:14:30
-ghost/master/dic/normal/yaya_etc.dic0595882a28bbe72c19e455709b64c625size=19742date=2024-05-25T11:31:38
-ghost/master/dic/normal/yaya_menu.dicef56c9d046968349e93209c9152030c7size=18970date=2024-04-30T13:21:26
-ghost/master/dic/normal/yaya_mouse.dicef4e11b425afcc5224330225563d2242size=22586date=2024-04-30T09:15:29
+ghost/master/dic/normal/yaya_etc.dic8c41d40885e8ecbcf85f249be982d906size=17419date=2024-08-16T04:03:54
+ghost/master/dic/normal/yaya_menu.dicd951b1a42ee0d9fff07adc4c216ce7fdsize=19385date=2024-07-24T07:09:41
+ghost/master/dic/normal/yaya_mouse.dicec2924e6371fa27848dd1ff231bf4789size=24243date=2024-08-16T00:41:45
 ghost/master/dic/normal/yaya_string.dicee7e8d4a3988167a00f836833ff98000size=3486date=2024-03-21T14:12:42
 ghost/master/dic/normal/yaya_tmpl_util.dic07cd2522c5b49dfbfd387b49aea0e06bsize=8588date=2024-04-08T02:49:39
 ghost/master/dic/normal/yaya_word.dic50490502fad44c172aad70ef0129d7fbsize=8765date=2024-02-19T23:02:05
@@ -660,6 +662,7 @@ ghost/master/sound/exc/02-HC-52-ha a.MP3b6b665aef70beb7b412332caaf23b423size=1
 ghost/master/sound/exc/02-HL-17-waaaaa.MP32b0b16a4fcec7561643c452b3967cc1bsize=10499date=2023-05-28T00:21:36
 ghost/master/sound/exc/02-HL-21-eaaaa.MP3126915f5753ef46010a53319cdcb3fecsize=20112date=2023-05-28T00:31:34
 ghost/master/sound/exc/02-HL-28-hen.MP3328011aa542337157d9620398ac99927size=13424date=2023-05-28T00:41:48
+ghost/master/sound/human/snore.mp32180278c4da3ad92267a038c27744af2size=910317date=2021-03-02T11:12:02
 ghost/master/sound/ineterjection/02 HL 21-eaaaa.MP3126915f5753ef46010a53319cdcb3fecsize=20112date=2023-05-28T00:31:34
 ghost/master/sound/ineterjection/HL 01-A.MP3c2f46d6c0734bb4fc372fcea84a300aesize=11334date=2023-05-27T03:41:42
 ghost/master/sound/ineterjection/HL 05-he.MP387f94b0bbaeb6bc1d36cc7ee789b0da1size=6737date=2023-05-27T03:54:08
@@ -815,6 +818,7 @@ ghost/master/sound/skill/02-HL-19-hai la wu shuang.MP3eff22a651f3c4e139fa44a062
 ghost/master/sound/skill/02-HL-20-bie dang dao.MP329b5a31c3b0665d8246fc05662b2d8a0size=13424date=2023-05-28T00:23:52
 ghost/master/sound/skill/02-HL-59-coward.MP3d48c12ce48dafd7087423be89904e385size=10916date=2023-05-28T00:35:08
 ghost/master/sound/spa/01 [HL]91-hu ha that nice.MP35f9e11720dee86e41150af68051c8accsize=40592date=2023-05-27T06:02:18
+ghost/master/sound/¨Ó·½.txtd8af504fc57270de5076388dda94fb3asize=87date=2024-08-16T01:45:14
 ghost/master/stamp/readme.txtc29418a6b9870493066a4f8b49e6bddesize=128date=2023-12-14T09:44:24
 ghost/master/stamp/stmp_mcr.png133aca627524787a40224704bd4c1ec0size=220date=2023-12-14T09:44:24
 ghost/master/stamp/stmp_yym.png21c3a23a055f63252337ffa17a15d812size=158date=2023-12-14T09:44:24
@@ -842,7 +846,7 @@ ghost/master/yaya.dll49b388973209005e5586f9e54b008bb1size=880640date=2023-12-
 ghost/master/yaya.txtffdfc6b123b0522116b4a757f8c1b4fasize=2071date=2024-01-13T16:56:11
 ghost/master/yaya_emerg.txtd9ee78e2068ff80d809325bd4fa8228bsize=1055date=2023-12-14T09:44:24
 install.txtcafe02f0c13a842618516fa4d1b1b05bsize=89date=2024-01-15T00:13:28
-readme.txt578a034112945e02196d700db122efb4size=630date=2024-03-30T12:31:32
+readme.txt43165e8968870b0c157810e302e940fbsize=640date=2024-08-16T18:52:44
 shell/master/battle/background/DisSea.png5002cc56884f051af389211abbbff62bsize=199298date=2023-05-18T19:37:54
 shell/master/battle/background/ParmaRuins.png726633e2c6beeccdea5aeb4c84619189size=167879date=2023-05-18T19:37:54
 shell/master/battle/background/RustRiver.pnga84a90752218a6b6875f63da173eef1csize=153670date=2023-05-18T19:37:54
@@ -1374,13 +1378,13 @@ shell/master/cursor/pinch7.cur880655b1b3612ae7f95d5db8114ceda1size=10462date=
 shell/master/cursor/point1.curddec0967eb9589e7f1e3a1a8ed992447size=10462date=2023-06-05T21:14:58
 shell/master/cursor/point2.curfb1b29de2e132a1480f6cba59c12b016size=10462date=2023-06-05T21:15:08
 shell/master/descript.txtd838eb8042e37c6c71a96c3dcc848ba3size=19839date=2024-04-07T01:47:38
-shell/master/dispatch/walk/walk_0000.pngd45a011dcb38b15864706c75979b72dbsize=1935date=2024-04-30T09:29:26
-shell/master/dispatch/walk/walk_0001.pnga07c5869d2125a3131082357c9920cfasize=1908date=2024-04-30T09:29:26
-shell/master/dispatch/walk/walk_0002.pngca0fa3b068157fb2728b4c091fcc50efsize=1870date=2024-04-30T09:29:26
-shell/master/dispatch/walk/walk_0003.png7345a236de6dabb4690c10c6b0f75502size=1905date=2024-04-30T09:29:26
-shell/master/dispatch/walk/walk_0004.png4700b0eb8fb06e56d946101953456b99size=1892date=2024-04-30T09:29:26
-shell/master/dispatch/walk/walk_0005.png8f139a4edde6e0ba35b90696106b43d9size=1881date=2024-04-30T09:29:26
-shell/master/dispatch/walk/walk_0006.png0a6361d77dcc96d63c8738a98c034cd8size=1905date=2024-04-30T09:29:26
+shell/master/dispatch/walk/idle_0001.png6e35116fefbc069b04d67c2e5a4111fbsize=32673date=2024-08-15T17:42:32
+shell/master/dispatch/walk/idle_0002.png6660b8b08aef5af013c60403c297f704size=31343date=2024-08-15T17:42:32
+shell/master/dispatch/walk/idle_0003.png164d5bcd50cd81692feba3b1cb22356esize=30185date=2024-08-15T17:42:32
+shell/master/dispatch/walk/idle_0004.pngb60c002c551d449d331e809c1babc63asize=32426date=2024-08-15T17:42:32
+shell/master/dispatch/walk/idle_0005.pngb4850b732fdfae34d1075742d4c6ee72size=33496date=2024-08-15T17:42:32
+shell/master/dispatch/walk/idle_0006.png237e1d171acc8acf33dacfd95f55d0a4size=31111date=2024-08-15T17:42:32
+shell/master/dispatch/walk/idle_0007.pngd76518593db815e132cb536f5bcc0016size=29894date=2024-08-15T17:42:32
 shell/master/dressing/hecate/back_1.png16d4e83ca4975959a797655f3a373598size=7944date=2023-07-24T18:13:25
 shell/master/dressing/hecate/blindfold_00.png1df7da982e12391102586c2384579d5dsize=3159date=2023-05-03T07:51:34
 shell/master/dressing/hecate/book_00.png619d136d59bf487bba12e2a824277b17size=21834date=2024-04-06T21:41:07
@@ -1521,6 +1525,7 @@ shell/master/face/hecate/eyebrow_3.png7894d360b22a0f7bea7e1443cf0fda72size=110
 shell/master/face/hecate/face_20.pngba6371fbf63315013f5f7d0fe12c40d1size=3528date=2024-03-01T04:46:34
 shell/master/face/hecate/face_21.pngfe4ddc985d97f44fa74b7733f0fa8119size=2013date=2024-03-01T04:46:34
 shell/master/face/hecate/face_22.pngb415531408876906ccc00d9d1ffb25a1size=1621date=2024-03-01T04:46:34
+shell/master/face/hecate/face_23.png64a64c55496e9f770c4d3390d6f8be2csize=4962date=2024-08-15T20:53:14
 shell/master/face/hecate/mouth_0.png7812f56ea72fb6212fab43d4c7664323size=881date=2023-01-28T22:15:56
 shell/master/face/hecate/mouth_1.pnga3771e00752d3c5db36e5e07573c8d5asize=917date=2023-01-29T01:08:36
 shell/master/face/hecate/mouth_2.pngbbdb72d8efa684996ce9f636323e074csize=963date=2023-07-28T10:34:54
@@ -1528,6 +1533,7 @@ shell/master/face/hecate/mouth_3.pngb161c50bb1f99a5ea555ecdde0fdbb06size=932d
 shell/master/face/hecate/shy_0.pngd40fbfd2686bf2e9cce765414bbe62b7size=1811date=2023-01-29T01:59:08
 shell/master/face/hecate/shy_1.png2e7461f7a14ba877e289fd1f3d618ff8size=2654date=2023-07-28T10:34:54
 shell/master/face/hecate/skin_2.png1687afae9101c325f7122894204c1e8csize=2811date=2023-12-26T02:23:01
+shell/master/face/hella/cut.pngb702a12c5d6c45b334a07e6418f5d3e5size=2223date=2024-08-15T21:46:15
 shell/master/face/hella/emotion_0.png17d7cb405ad2377493d1c92a98d39c77size=2222date=2023-05-10T10:35:14
 shell/master/face/hella/emotion_1.pngc78d078384d99d98e43d5e79dbadfd95size=8562date=2023-12-22T10:14:50
 shell/master/face/hella/emotion_2.png14afd40c48b947693268ae01c5020ec5size=8860date=2023-12-22T10:14:50
@@ -1559,6 +1565,9 @@ shell/master/face/hella/face_37.png5cefbe28998024b6a6960a9cab3889e2size=3716d
 shell/master/face/hella/face_38.pnge6a797615d5256588fa1fbffd790fa6fsize=5538date=2024-01-22T01:39:24
 shell/master/face/hella/face_39.pngf988faae786156c2a12ba9f87654aa60size=4938date=2024-01-22T01:30:19
 shell/master/face/hella/face_50.png0145301d0ab3d5542177c4676820da1fsize=4045date=2024-01-22T01:48:31
+shell/master/face/hella/face_51.png362b565571d399fe9a212e8682b402e6size=5136date=2024-08-15T20:46:23
+shell/master/face/hella/face_52.pngb284488c9c10d889919b6d123ab3bbf3size=5295date=2024-08-15T20:42:48
+shell/master/face/hella/face_53.png8068d4945e0f6e5bcf2091c70024ff34size=13665date=2024-08-15T22:31:58
 shell/master/face/hella/mouth_0.png28d3efe57414401d5e23ef33f25f02a4size=1274date=2023-05-03T08:45:50
 shell/master/face/hella/mouth_1.png9e0ab7ec16a74c6063d386d163a8f5ffsize=1421date=2023-05-10T10:22:18
 shell/master/face/hella/mouth_10.pngbe786e7d55322480c137886f7ba68aadsize=1117date=2023-12-22T13:19:00
@@ -1620,7 +1629,7 @@ shell/master/outside/surface2202.png63148398c00bd12ec9a10ef5189a0469size=52220
 shell/master/readme.txtf5d14fdfcc2f39ccc543f312bf55ff24size=45date=2023-02-04T02:07:36
 shell/master/surface0000.pngdf905326852c775aa3a60dc4e61756d0size=53639date=2024-04-07T01:28:28
 shell/master/surface0010.pnge6a500683d6db62b0f51b74af83fe170size=72171date=2023-10-29T02:36:14
-shell/master/surfaces.txt0a8f2b71e518ed3e12f6c9b26737ffe3size=20484date=2024-04-06T22:45:11
+shell/master/surfaces.txtbb50d518734cc0acacf6316db81df302size=22266date=2024-08-16T13:38:38
 shell/master/surfaces_10.txt562a5cad24a2acb9a527219685b42e96size=5131date=2024-04-07T01:30:57
 shell/master/surfaces_11.txt6fee78008e31a615d33c20d42adf5114size=9325date=2024-03-24T19:00:05
 shell/master/surfaces_2.txtd157cff4955160f89f3ff5eec02ce3e8size=10800date=2024-01-11T16:38:13
@@ -1632,7 +1641,7 @@ shell/master/surfaces_55.txtee183878a30a6d9a93bb7bdee86f9e2bsize=527date=2023
 shell/master/surfaces_56.txt6167dd2f71df87e4f0e200870b93aac5size=8244date=2024-01-16T18:19:40
 shell/master/surfaces_75.txt1b2d6c9cfdae79ff4937a73aa0f8d7e8size=13860date=2024-03-22T15:45:22
 shell/master/surfaces_8.txt423a63fcec25cabd241d4b4abb397b06size=1471date=2024-04-30T09:31:46
-shell/master/surfacetable.txt1ff2eba0898171786a37e0e9212d53bdsize=795date=2024-03-01T04:49:08
+shell/master/surfacetable.txt770e209ecfcd8081c1d4dd726c910c3csize=846date=2024-08-15T21:41:34
 shell/master/thumbnail.png29e01d08887969ccbacfaa4bfe3a0459size=117923date=2024-01-11T20:53:49
 shell/master/thumbnail.pnr2a06e39b45497301dcd56adea5a10aa3size=8537date=2022-10-09T16:09:54
 thumbnail.pnr64ce4f53dfbdadaa7bf5841461a70d70size=121265date=2024-01-13T18:18:46
