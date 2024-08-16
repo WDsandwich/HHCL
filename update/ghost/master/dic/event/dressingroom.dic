@@ -56,15 +56,19 @@ DressingRoom
 	if DressingPage[1]==0 ; DRpage_max=(DRpage_max-2)/4+1
 	else ; DRpage_max=(DRpage_max-2)/9+1
 	--
-	"\p[5]%(DRBPsurface)\p[3]\s[-1]\b[6]\![set,choicetimeout,0]\![quicksession,true]%(click)"
+	"\p[5]%(DRBPsurface)\p[3]\s[-1]\b[6]\![set,choicetimeout,0]\![quicksession,true]%(click)\_l[3,3]"
 	--
-	"\_l[3,3]%DRimg('HC_1')\_l[92]\__q[TipOption_ClothesShopping]%DRimg('shop')\__q\_l[143]%DRimg('HL_1')"
-	--
-	case DressingPage[0]
+	if TOINT(SinnerRoomMode)==0
 	{
-		when 0 ; "\_l[143,3]\__q[OnChangeDressPerson,1]%DRimg('HL_0')\__q"
-		when 1 ; "\_l[3,3]\__q[OnChangeDressPerson,0]%DRimg('HC_0')\__q"
+		"%DRimg('HC_1')\_l[92]\__q[TipOption_ClothesShopping]%DRimg('shop')\__q\_l[143]%DRimg('HL_1')"
+		--
+		case DressingPage[0]
+		{
+			when 0 ; "\_l[143,3]\__q[OnChangeDressPerson,1]%DRimg('HL_0')\__q"
+			when 1 ; "\_l[3,3]\__q[OnChangeDressPerson,0]%DRimg('HC_0')\__q"
+		}
 	}
+	else ; "\f[align,center]%(Char_Name[MenuChoice])的衣櫥"
 	--
 	pack_all="%TOSTR(pack_normal),%TOSTR(pack_cosplay)"
 	--
@@ -178,9 +182,13 @@ DressingRoom
 		"\_l[129]\__q[OnDRTypePage,%(DressingPage[1]),3]%DRimg('page3')\__q\_l[186]\__q[OnDRTypePage,%(DressingPage[1]),4]%DRimg('page4')\__q"
 	--
 	"\n\f[bold,1]\f[height,12]\_l[3]\f[color,#8B0000]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍/
-	\f[color,150,150,150]\f[height,12]\_l[15,481]\_b[img/BackIcon,inline]\__q[OnLeaveDressingRoom,管理局]返回\__q/
-	/
-	\_l[160]\f[height,12]\_b[img/CancelIcon,inline]\__q[OnLeaveDressingRoom,0]關閉\__q/
+	\f[color,150,150,150]\f[height,12]\_l[15,481]\_b[img/BackIcon,inline]"
+	--
+	
+	if TOINT(SinnerRoomMode)==0 ; "\__q[OnLeaveDressingRoom,管理局]返回\__q"
+	else ; "\__q[OnLeaveDressingRoom,臥室]臥室\__q"
+	--
+	"\_l[160]\f[height,12]\_b[img/CancelIcon,inline]\__q[OnLeaveDressingRoom,0]關閉\__q/
 	\_l[75,475]\__q[DRBattlePreview]%DRimg('battlepreview')\__q/
 	\_l[115,475]\__q[RemoveAllClothesBottom]%DRimg('default')\__q\![quicksession,false]"
 
@@ -240,6 +248,9 @@ OnLeaveDressingRoom
 	{
 		"\p[5]\b[-1]\s[-1]"
 		--
+		if TOINT(SinnerRoomMode)>=1 && reference0 == "臥室" ; "\%(MenuChoice)\b[2]\f[height,12]"
+		else ; "\%(DressingPage[0])\b[0]"
+		--
 		if wearing_cloth_HC==wearing_cloth_HC_last && wearing_cloth_HL==wearing_cloth_HL_last
 		{
 			if DressingPage[0]==0 ; "\0\s[0]維持原樣就行了嗎？"
@@ -292,6 +303,7 @@ OnLeaveDressingRoom
 			when "管理局" ; OnMenu_Bureau
 			when "研磨坊" ; { MenuChoice=DressingPage[0] ; Dye.Grind.GoTo }
 			when "採購部" ; { MenuChoice=DressingPage[0] ; Menu_STORE }
+			when "臥室" ; { SinnerRoom.Menu.List }
 		}
 	}
 }

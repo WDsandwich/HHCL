@@ -3,8 +3,5 @@ cp
 	_s=20000+_argv[0]
 	if BattleMode>=1 ; _s=522000+_argv[0]
 	if chief_photo==0 ; "\p[2]\s[-1]"
-	else
-	{
-		"\p[2]\s[%(_s)]"
-	}
+	else ; "\p[2]\s[%(_s)]"
 }

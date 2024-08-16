@@ -5,13 +5,19 @@ PlayGame
 	--
 	menu_title="小遊戲"
 	menu_p_list=("├","└")
-	
 	menu_o_list=("猜拳（二人）","比大小（三人）")
 	menu_func_list=("Mora","Compare.Once.Begin")
+
+	if SinnerRoomMode>=1 {
+		menu_o_list=("猜拳")
+		menu_p_list=("└")
+	} 
+	
 	--
 	Menu.Option
 	--
-	MuenBottomOption("Menu_Interact")
+	if SinnerRoomMode>=1 ; SinnerRoom.BottomOption('SinnerRoom.Interact')
+	else ; MuenBottomOption("Menu_Interact")
 }
 
 //==================================================================
@@ -87,7 +93,7 @@ OnGame.End
 	--
 	if MenuChoice==0
 	{	"\s[1]嗯。\e"
-		"\s[1]繼續工作吧。\e"
+		if SinnerRoomMode==0 ; "\s[1]繼續工作吧。\e"
 	}
 	elseif MenuChoice==1
 		"\s[13]唔，\w3不玩了嗎……\e"
@@ -232,6 +238,12 @@ Compare.Scoring
 	_C[1] =TOINT(_C[1])
 	poker_result=(0,0,0)
 	--
+	_S.room=(0,0)
+	if SinnerRoomMode>=1 {
+		if MenuChoice==1 ; _S.room=_HL
+		else ; _S.room=_HC
+	}
+
 	//使用>只會判定第一位數字，故以相減比較大小
 	//優先判定鬼牌
 	if _HC[0]==5||_HL[0]==5||_C[0]==5

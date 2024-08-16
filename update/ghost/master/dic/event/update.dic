@@ -1,0 +1,73 @@
+UpdateData
+{
+    _tvc=TOINT(REPLACE(version_code,",",""))
+    //==========測試版本==========
+    if TOINT(REPLACE(version_code,",",""))<9019 {
+        mood=(1000,1000)
+		relationship=(0,0)
+		event_history_HC=(0,0)
+		event_history_HL=(0,0)
+		version_code="0,9,019"
+	}
+	if TOINT(REPLACE(version_code,",",""))<9020
+	{	mood=(1000,1000) ; self_hotkey=("esc","r","c","m","i")	}
+	if TOINT(REPLACE(version_code,",",""))<9022
+	{	papre_shredder_function=(0,0) ; cum_spa_time=(0,0,0,0) ; cum_dispatch_time=(0,0)	
+		birthdaycake = (0,0) ; cum_birthdaycake = (0,0) ; consumable_sp = (0,0)
+	}
+	if TOINT(REPLACE(version_code,",",""))<9023
+	{	cum_cost_discoin[3]=0	}
+	if TOINT(REPLACE(version_code,",",""))<9026
+	{	holiday_celebrated_store[3]=""	}
+	if TOINT(REPLACE(version_code,",",""))<9028
+	{	void FDEL('dic\normal\yaya_homeurl.dic')	
+		void FDEL('dic\emerg\yaya_homeurl.dic')
+		void FDEL('sound/enemy/刀の素振り1.mp3')
+		void FDEL('sound/enemy/鞭で攻撃1.mp3')
+		void FDEL('sound/enemy/鞭で攻撃2.mp3')
+		void FDEL('sound/sfx/お金を落とす2.mp3')
+		void FDEL('sound/sfx/キックの素振り1.mp3')
+		void FDEL('sound/sfx/キックの素振り2.mp3')
+		void FDEL('sound/sfx/キックの素振り3.mp3')
+		void FDEL('sound/sfx/パンチの素振り1.mp3')
+		void FDEL('sound/sfx/パンチの素振り2.mp3')
+		void FDEL('sound/sfx/パンチの素振り3.mp3')
+		void FDEL('sound/sfx/ゲージ回復2.mp3')
+		void FDEL('sound/sfx/スライムの攻撃.mp3')
+		void FDEL('sound/sfx/タイトル表示.mp3')
+		void FDEL('sound/sfx/ビープ音3.mp3')
+		void FDEL('sound/sfx/メニューを開く2.mp3')
+		void FDEL('sound/sfx/弓矢が刺さる.mp3')
+		void FDEL('sound/sfx/金額表示.mp3')
+		lottery_ticket=TOINT(lottery_ticket)
+	}
+	if _tvc<9032
+	{	cum_battle_complete = (0,cum_battle_complete)
+		cum_battle_fall = (0,cum_battle_fall)
+		cum_battle_runaway = (0,cum_battle_runaway)
+	}
+    //==========正式版本==========
+	if _tvc<10101
+	{	holiday_celebrated_store[5]=""	}
+	if _tvc<10102
+	{	holiday_celebrated_store[6]=""
+		dispatch_windows=1
+	}
+	if _tvc<10200 {	//新增臥室
+		cum_int_HL[4]=0
+		cum_int_HC[4]=0
+		SinnerRoomMode		 =	0
+		cum_sinnerroom_visit =	(0,0)
+		cum_sinnerroom_HC	 =	(0,0,0,0)
+		cum_sinnerroom_HL	 =	(0,0,0,0)
+		SheepMode			 =	0
+		sleep_time			 =	("%(year).%(month).%(day).%(hour).%(minute).%(second)","%(year).%(month).%(day).%(hour).%(minute).%(second)")
+		sleep_hint			 =	1
+		snore_sound			 =	1
+	}
+	
+	if _tvc<TOINT(REPLACE(version_now,",",""))
+	{	version_code = version_now
+		compensation=(0,0,0)
+	}
+}

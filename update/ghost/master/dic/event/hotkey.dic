@@ -98,37 +98,7 @@ OnKeyPress
 		when "b" { if developermode==1 ; "\![reload,balloon]" }
 		
 		
-		when "q" {
-		cum_enemy[14]=ANY(1,2,3,4)
-		}
-		when "v" {/*
-		_txt="\p[4]\s[-1]\b[42]\f[valign,center]\![quicksession,true]\![set,autoscroll,disable]"
-		_l=(1,5,100,104,270,274,350,354)
-		_type=("強化道具","體力回復","特殊禮物","普通禮物")
-		_pro=(10,10,20,60)
-		for _t=0 ; _t<ARRAYSIZE(_type) ; _t++
-		{
-			_a=_t*2 ; _b=_a+1
-			_txt+="\f[height,15]\_l[1,"
-			_txt+=_l[_a]
-			_txt+="]%Bimg('\store\square7')\_l[20,"
-			_txt+=_l[_b]
-			_txt+="]%(_type[_t])  \n[1]\f[align,right]共%(_pro[_t])%   \f[height,12]\n[70]"
-			_argv=""
-			case _t
-			{	when 0 ; _argv=enhancement_name
-				when 1 ; _argv=consumable_name
-				when 2 ; _argv=gift_sp_name
-				when 3 ; _argv=gift_name
-			}
-			for _i=0 ; _i<ARRAYSIZE(_argv) ; _i++
-			{
-				_txt+="\n[130]\f[align,left]\_l[30]%(_argv[_i])"
-			}
-		}
-		_txt+="\n"
-		_txt
-		*/}
+		
 		when "n" {
 		GETTYPE(lots_result_color)
 		}
@@ -138,10 +108,13 @@ OnKeyPress
 		when "t" {
 		}
 		when "k" {
-		
+		"%(cum_int_HC)\n[130]%(cum_int_HL)"
 		}
 		when "." {
-		OnMinesweeper.Begin
+		cum_int_HL[4]=0
+		cum_int_HC[4]=0
+		cum_sinnerroom_HC	 =	(0,0,0,0)
+		cum_sinnerroom_HL	 =	(0,0,0,0)
 		}
 		when "," {
 		"\![set,balloonnum,檔案名,3,10]123"

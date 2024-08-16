@@ -98,6 +98,7 @@ CumulativeData
 				cum_sendgift_sp=cum_sendgift_sp_HC
 				cum_sendgift=cum_sendgift_HC
 				cum_touch=cum_touch_HC
+				cum_sinnerroom=cum_sinnerroom_HC
 				_list=("摸頭","摸臉","捏臉","摸胸","揉胸")
 			}
 			when 1
@@ -107,6 +108,7 @@ CumulativeData
 				cum_sendgift_sp=cum_sendgift_sp_HL
 				cum_sendgift=cum_sendgift_HL
 				cum_touch=cum_touch_HL
+				cum_sinnerroom=cum_sinnerroom_HL
 				_list=("摸頭","摸臉","捏臉","摸胸","揉胸","捶肩")
 			}
 		
@@ -115,7 +117,7 @@ CumulativeData
 		"\_l[-,10]%Subtitle(_t)"
 		--
 		cumList_title="好感提升"
-		cumList_list=("觸摸","玩耍","任務","贈禮")
+		cumList_list=("觸摸","玩耍","任務","贈禮","臥室")
 		cumList_array=cum_int
 		cumList_suffix="點"
 		CumList
@@ -134,6 +136,12 @@ CumulativeData
 		cumList_title="互動"
 		cumList_list=_list
 		cumList_array=cum_touch
+		cumList_suffix="次"
+		CumList
+		--
+		cumList_title="臥室"
+		cumList_list=("牽手","擁抱","親吻","睡覺")
+		cumList_array=cum_sinnerroom
 		cumList_suffix="次"
 		CumList
 		--

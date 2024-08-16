@@ -1,0 +1,452 @@
+GoToSinnerRoom
+{
+	if intimacy[MenuChoice]<20000
+	{	case MenuChoice
+		{	when 0 ; "\s[1]我想……\w5那不是適合%(usernameHC)進入的地方……"
+			when 1 ; "\s[14]想進入美少女的房間？！\w8\s[17]門都沒有！！！！！"
+		}
+		--
+		"\w9%cp(0)（和%Char_Name[MenuChoice]的關係還不夠親暱……）"
+	
+	}
+	else
+	{	cum_sinnerroom_visit[MenuChoice]++
+		intimacy[MenuChoice]+=2
+		SinnerRoomMode=MenuChoice+1
+		--
+		SinnerRoom.Menu
+	}
+}
+SinnerRoom.Menu
+{
+	MenuChoice=SinnerRoomMode-1
+	--
+	click
+	--
+	SinnerRoom.Menu.Line
+	--
+	"\w5"
+	--
+	SinnerRoom.Menu.List
+}
+SinnerRoom.Menu.Line
+{
+	case MenuChoice
+	{	when 0 ; "\1\s[-1]\0\s[1]\b[2]\c\f[height,12]有什麼事情要單獨和我說嗎？"
+		when 1 ; "\0\s[-1]\1\s[13]\b[2]\c\f[height,12]怎、怎麼了呀……"
+	}
+}
+SinnerRoom.Menu.List
+{
+	"\_q\f[height,12]\f[color,#8B0000]\n\n[half]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\_q\f[default]"
+	--
+	"\n[130]\![*]\q[ 互動 ,SinnerRoom.Interact]\n[150]/
+	\![*]\q[ 特殊互動 ,SinnerRoom.Interact.SP]\n[150]/
+	\![*]\q[ 換裝 ,GoIntoDressingRoom]\n[300]/
+	\f[color,#CE0000]\f[bold,1]⏎\f[default] \q[ 返回辦公室 ,SinnerRoom.Leave]\n[150]/
+	\f[color,#CE0000]\f[bold,1]⏎\f[default] \q[ 去自己臥室睡覺 ,SinnerRoom.MyBedroom]\n[150]/
+	\f[align,center]\f[color,#ADADAD]\f[height,12]\f[bold,1]\_l[70,222]✖\q[ 取消 ,SinnerRoom.Cancel]\_q"
+}
+/*f[height,12]（關閉程式）*/
+SinnerRoom.Leave
+{	SinnerRoomMode=0
+	"\%(MenuChoice)"
+	--
+	case MenuChoice
+	{	when 0 
+		{
+			"\s[0]嗯，\w3繼續辦公吧。"
+			if hour<4 ; "\s[6]這麼晚了，\w4是有東西忘在辦公室了嗎？"
+			if hour==5 ; "\s[6]這時候就開工嗎？"
+			if hour>5 && hour<9 ; "\s[1]要開始工作了。"
+			if hour>18 ; "\s[1]還有沒完成的工作嗎？"
+			--
+			"\w9\1\s[10]"
+		}
+		when 1 
+		{	
+			"\s[13]欸，\w3要回去了嗎……"
+			"\s[13]不能摸魚了……"
+			if hour<4 ; "\s[16]大半夜的，\w4%(you)去辦公室做什麼？"
+			if hour==5
+			{	"\s[16]現在還沒到工作時間吧？"
+				"\s[16]天都還沒亮吧……"
+			}
+			if hour>5 && hour<9 ; "\s[18]開工開工！"
+			if hour==12 ; "\s[18]正好吃午飯！"
+			if hour>18 ; "\s[30]這麼晚了還要加班……"
+			if hour>22 ; "\s[16]咦？\w3明明已經這個點了？"
+			--
+			"\w9\0\s[1]"
+		}
+	}
+	--
+	"\e"
+}
+SinnerRoom.MyBedroom
+{
+	SinnerRoomMode=0
+	SleepMode[2]==1
+	intimacy[MenuChoice]+=5
+	"\%(MenuChoice)"
+	--
+	case MenuChoice
+	{	when 0 
+		{
+			if hour>0 && hour<4 ; "\s[1]今天也加班到很晚呢，\w8辛苦了，\w5%(usernameHC)。"
+			if hour>18
+			{	 "\s[1]晚安，\w4%(usernameHC)。"
+				 "\s[0]做個好夢。"
+			}
+		}
+		when 1 
+		{	
+			"\s[13]好吧，\w4再見……"
+		}
+	}
+	--
+	"\w9\w5\-"
+}
+
+SinnerRoom.Cancel
+{	
+	"\%(MenuChoice)"
+	--
+	case MenuChoice
+	{	when 0 
+		{	
+			"\s[1]像這樣靜靜地待著，\w7也很不錯。"
+			if intimacy[0]>=25000
+			"\s[5]和%(usernameHC)在一起的時候，\w7就算什麼都不做也很開心。"
+		}
+		when 1 
+		{	
+			"\1\s[18]摸魚的時間永遠不嫌長～"
+			if intimacy[1]>=30000
+			"\1\s[13]再多待一會兒嘛……"
+		}
+	}
+}
+
+//=================================================================
+//							次級選單								
+//=================================================================
+SinnerRoom.Interact
+{
+	memory_page=0
+	event_dialogue=0
+	--
+	"\%(MenuChoice)\b[2]\_q%(click)"
+	--
+	menu_title="和%(Char_Name[MenuChoice])互動"
+	menu_p_list=("├","├","├","└")
+	
+	menu_o_list=("聆聽","玩耍","關於發言頻率","回憶")
+	menu_func_list=("Menu_AITALK","PlayGame","Menu_TALKINTERVAL","Menu_Memory")
+	--
+	Menu.Option
+	--
+	SinnerRoom.BottomOption(0)
+}
+ooxx_option{("牽手","擁抱","親吻","一起睡覺")}
+SinnerRoom.Interact.SP
+{
+	_txt="\%(MenuChoice)\b[2]\c\_q%(click)%Subtitle('和'+Char_Name[MenuChoice]+'增進感情……')\_q\n\_l[0,30]"
+	_option = ooxx_option
+	_int=(0,22000,25000,30000)
+	if relationship[MenuChoice]%2==0 ; _option=("握手","擁抱")
+	--
+	for _i=0 ; _i< ARRAYSIZE (_option) ; _i++
+		{
+			_txt+="\_q\f[height,20]\f[color,200,0,0]"
+			if _i >= ARRAYSIZE (_option)-1 ; _txt+="└"
+			else ; _txt+="├" 
+			_txt+="\f[default] "
+			if intimacy[MenuChoice]<_int[_i] ; _txt+="\f[color,#6C6C6C]%(_option[_i])\f[height,12]（親密度%(_int[_i]-10000)）"
+			else
+			{
+				_txt+="\__q[OnSinnerRoom.ooxx,%(_i)]%(_option[_i])\__q"
+			}
+			_txt+="\_q\w1\n"
+		}
+	--
+	_txt
+	--
+	SinnerRoom.BottomOption(0)
+}
+OnSinnerRoom.ooxx
+{	_i=reference0
+	_option=ooxx_option[_i]
+	_int=TOINT((_i+1)*2+intimacy[MenuChoice]/10000)
+	
+	intimacy[MenuChoice]+=_int
+	if MenuChoice==1 {
+		cum_int_HL[4]+=_int
+		if _i<=2 ; cum_sinnerroom_HL[_i]++
+	} 
+	else {
+		cum_int_HC[4]+=_int
+		if _i<=2 ; cum_sinnerroom_HC[_i]++
+	} 
+	cum_sinnerroom_intimacy[_i]+=_int
+	--
+	"\%(MenuChoice)"
+	--
+	case _option
+	{
+		when "牽手"
+		{	if MenuChoice==1
+			{
+				"\s[13]這樣……\w5不會太大力吧？"
+				"\s[34]小心手被我捏壞哦……\w9\w7\n[130]\s[16]等等，\w5我是開玩笑的！\w7\s[30]%(you)用不著把手抽開啦。"
+				if relationship[1]%2==1
+				{
+					"\s[37]…\w2…\w3…\w2…\w8\n[130]\s[50]唔，\w4幹嘛一直盯著我啦……"
+					"\s[13]我的手很好摸？\w7\s[37]……是喔。"
+					"\s[30]真是的，\w5%(you)也不需要表現得這麼興奮吧？"
+				}
+			}
+			else
+			{
+				"\s[1]不用擔心，\w5%(usernameHC)，\w5我會一直在%(you)身邊。"
+				"\s[1]就算不這麼拴著，\w7我也不會離開%(you)的。"
+				if relationship[0]%2==0 ; "\s[5]%(usernameHC)的手總是讓我覺得很溫暖，\w9哪怕是%(you)的體溫偏低的時候……\w9\n[130]這是為什麼呢……？"
+				if relationship[0]%2==1
+				{
+					"\s[8]想要像這樣一直牽著……"
+					"\s[7]不要放開……\w5好嗎？"
+				}
+			}
+		}
+		when "擁抱"
+		{	
+			if MenuChoice==1
+			{
+				"\s[30]未經我的允許，\w7\s[37]不可以隨意離開哦。"
+				if hour<19 ; "\s[15]呼……\w3呼…\w2…\w3…\w2…\w5\n[130]\s[14]哇！\w4不小心睡著了！"
+				if relationship[1]%2==1
+				{
+					"\s[37]（好喜歡……）\w7\n[130]\s[39]（……不行，\w4要忍耐……）"
+					"…\w2…\w3…\w2…\w8\n[130]\s[37]討、\w3厭，\w4\s[38]%(you)抱夠了沒有！"
+					"\s[37]不可以趁機毛手毛腳喔！"
+					if intimacy[1]>=35000
+					{	"\s[37]一直在一起……\w5好嗎？"
+						"\s[18]%(you)早就是我的囊中之物了哦～"
+					}
+					if intimacy[1]>=40000
+					{
+						"\s[50]…\w2…\w3…\w2…\w7\s[37]%(you)剛剛……\w5是不是偷摸我了……"
+					}
+				}
+			}
+			else
+			{
+				"\s[5]謝謝，\w5我現在安心許多了。"
+				if hour<19 ; "\s[1]呼……\w4有些想睡了……"
+				if relationship[0]%2==1
+				{	"\s[8]好幸福……"
+					"\s[8]再……\w3多抱一下……\w6可以嗎？"
+				}
+				else
+				{	"\s[1]我永遠是%(you)堅實的後盾。"
+					"\s[1]%(usernameHC)的背後，\w5就放心交給我吧。"
+				}
+			}
+		}
+		when "親吻"
+		{
+			if MenuChoice==1
+			{
+				"\s[51]嗯……\w9\n[130]…\w4…\w5…\w4…\w9\n[130]\s[37]這下滿、\w3滿意了吧……"
+				"\s[52]…\w4…\w5…\w4…\w9\n[130]\s[13]一個吻而已，\w6%(you)、\w3%(you)在那裡傻樂些什麼……"
+				if intimacy[1]>=36000
+				{
+					"\s[52]唔嗯……\w3\n[130]…\w2…\w3…\w2…\w9\n[130]……\w3\s[37]還想要……"
+				}
+				
+			}
+			else
+			{
+				"\s[7]我會……\w5努力的……\w7\n[130]\s[23]…\w3…\w4…\w3…\w9\n[130]\s[8]那個……\w5我有做好嗎？\w5%(usernameHC)？"
+				"\s[23]好柔軟……"
+				"\s[23]喜歡……"
+			}
+		}
+		when "一起睡覺"
+		{
+			if hour<21 && hour>5
+			{ case MenuChoice
+			  {	when 0
+				{	
+					if hour==6 || hour==12 || hour==18 ; "\s[3]抱歉……\w4\s[1]我還在用餐。"
+					elseif hour<10 ; "\s[0]現在已經是該起床的時間了喔，\w9%(usernameHC)。"
+					elseif hour>18 ; "\s[0]%(usernameHC)先睡吧，\w5現在還沒到我的就寢時間。"
+					else ; "\s[3]%(usernameHC)要是很累的話，\w7就去休息吧。\w9\n[130]\s[1]我會繼續待命的。"
+				}
+				when 1
+				{	
+					if hour==6 || hour==12 || hour==18 ; "\s[32]我還在吃飯呢！"
+					elseif hour<9 ; "\s[30]%(you)自己睡吧！\w5我不想生理時鐘被打亂……"
+					elseif hour<12 ; "\s[36]現在睡下去，\w6等會兒就會錯過午飯了！"
+					elseif hour<15 ; "\s[50]…\w2…\w3…\w2…\w9我、\w3\s[36]我還在脹氣……"
+					elseif hour<18 ; "\s[35]呃……\w5這樣會在半夜3點醒來的！\w9\n[130]說實話，\w5\s[19]我不是很想看到這個時段管理局的景色。"
+					else
+					{
+						"\1\s[16]還沒到睡覺時間吧？"
+						"\1\s[16]%(you)已經撐不住想睡了嗎？"
+						"\1\s[13]不要，\w5我還想再玩一下……"
+					}
+				}
+			  }
+			}
+			else
+			{	
+				SheepMode = 1
+				if MenuChoice==1 ; cum_sinnerroom_HL[_i]++
+				else ; cum_sinnerroom_HC[_i]++
+				sleep_time[0]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
+				--
+				if MenuChoice==1
+				{
+					if hour>3 && hour<6 ; "\s[19]嗚哇……\w5已經這個點了？\w7只夠瞇一下下了。"
+					elseif hour>0 && hour<3
+					{	
+						"\s[53]呼～\w3哈～\w6終於可以睡覺了……"
+						"\s[36]希望不要睡過頭了……"
+					}
+					else
+					{
+						"\s[30]記得叫我起床喔！"
+						"\s[37]堂堂MBCC局長－－\w5%(usernameHL)，\w6\s[38]應該不會趁人之危吧？\w8\s[39]敢亂來就就敲爆%(you)的腦袋！"
+						if intimacy[0]>=37000
+						"\s[37]嗯……\w5破例允許%(usernameHL)抱著我哦。"
+					}
+				}
+				else
+				{
+					if hour>3 && hour<6 ; "\s[1]剩下的可睡眠時間不多了呢……"
+					elseif hour>0 && hour<4 ; "\s[1]這麼晚才睡，\w7會不會睡眠不充足呢？"
+					else
+					{	
+						"\s[3]晚安，\w5%(usernameHC)。"
+						"\s[0]做個好夢。"
+					}
+					if intimacy[0]>=35000
+					"\s[7]…………\w5可以抱著%(you)入眠嗎？\w6%(usernameHC)……"
+				}
+				--
+				"\w9\w5\-"
+			}
+		}
+	}
+}
+
+
+
+//=================================================================
+//							睡眠選單								
+//=================================================================
+SheepMenu
+{
+	click
+	--
+	if MenuChoice==1 ; "\0\s[-1]"
+	else ; "\1\s[-1]"
+	--
+	"\%(MenuChoice)\b[2]\f[height,12]"
+	--
+	if MenuChoice==1 && snore_sound==1 ; "\![sound,loop,sound\human\snore.mp3]"
+	--
+	SheepMenu.Line
+	--	
+	"\w6"
+	--
+	"\_q\f[height,12]\f[color,#8B0000]\n\n[half]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\_q\f[default]/
+	\w1\_q\n[130]\![*]\q[ 叫醒她 ,SheepMenu.Wakeup]\_q\n[150]/
+	\w1\_q\![*]\__q[SheepMenu.CloseSnore] %(close_snore[snore_sound])打呼聲 \__q\_q\n[150]/
+	\w1\_q\f[align,center]\f[color,#ADADAD]\f[height,12]\f[bold,1]\_l[70,222]✖\q[ 取消 ,CANCEL_Button]\_q"
+}
+SheepMenu.Line
+{
+	if MenuChoice==1 {
+		"\s[15]呼……唔嗯……"
+		"\s[15]已經……吃不下了……"
+		"\s[15]……打爆你們……的狗頭哦……！"
+	}
+	else ; "\s[1]…………"
+}
+SheepMenu.CloseSnore
+{
+	if snore_sound==1 {
+		"\![sound,stop]"
+		snore_sound=0
+	} 
+	else ; snore_sound=1
+	--
+	SheepMenu
+}
+close_snore {("開啟","關閉")}
+SheepMenu.Wakeup
+{
+	SheepMode=0
+	MenuChoice=SinnerRoomMode-1
+	sleep_time[1]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
+	_pass=TimeSpan(sleep_time)
+	_sheep_hour=TOINT(_pass/360)
+	_ss=(0,0,0)	//預回復量,溢出量,實際回復量
+	--
+	"\%(MenuChoice)\b[2]\f[height,12]"
+	--
+	if _sheep_hour>=7 {
+		stamina=staminamax
+		if SinnerRoomMode==1 ; "\s[18]嗯～\w3睡得好飽……"
+		else ; "\s[0]睡眠很充足。"
+		--
+		"（體力已恢復至全滿）"
+	}
+	else {
+		//判定體力預回復量
+		if _sheep_hour>=5 ; _ss[0]=_sheep_hour*10
+		elseif _sheep_hour>=3 ; _ss[0]=_sheep_hour*7
+		else ; _ss[0]=_sheep_hour*5
+		//計算溢出量
+		if stamina+_ss[0]>staminamax ; _ss[2]=staminamax-stamina
+		/*_ss[1]=stamina+_ss[0]-staminamax
+		if _ss[1]<0 ; _ss[2]=_ss[0]+_ss[1]*/
+		else ; _ss[2]=_ss[0]
+		//體力回復
+		stamina+=_ss[2]
+		--
+		//顯示睡醒對話
+		if MenuChoice==1 {
+			"\s[53]呵\w2～\w5嗯～\w2～\w2～\w9\w9……\w4\s[13]我還沒睡夠啊……"
+			if hour>=2 && hour<=4 ; "\s[36]大半夜的把人叫起來有什麼事啊？"
+		}
+		else {
+			"\s[3]唔……\w4嗯？\w6%(usernameHC)？"
+			"\s[3]好的，\w4馬上準備待命……"
+			"\s[3]這是……\w5夢嗎？"
+			//"有局長在，今天沒有做惡夢？"
+		}
+		--
+		"\w3\n[110]（已恢復%(_ss[2])點體力）"
+	}
+	--
+	SinnerRoom.Menu.List
+}
+
+//=================================================================
+//							底部選項								
+//=================================================================
+SinnerRoom.BottomOption
+{
+	_txt="\_q\f[color,150,150,150]\_l[7,220]\_b[img/BackIcon,inline]\f[height,12]\q[返回,"
+	--
+	if _argv[0]==0
+		_txt+="SinnerRoom.Menu"
+	else
+		_txt+=_argv[0]
+	--
+	_txt+="]\_l[160]\_b[img/CancelIcon,inline]\q[關閉,SinnerRoom.Cancel]\_q"
+	_txt
+}

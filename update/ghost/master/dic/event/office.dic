@@ -28,8 +28,8 @@ OnOffice
 	--
 	"\n\_l[-,200]\f[align,right]\f[height,12]\f[color,#6C6C6C]版本 %(version_name)"
 }
-version_name{"1.1.2"}
-version_now{"1,01,02"}
+version_name{"1.2.0"}
+version_now{"1,02,00"}
 
 //======================================
 //				輸入指令碼				
@@ -350,7 +350,19 @@ Initialize.Data
 	wearing_accessory_HL			=	(0,0)
 	wearing_accessory_HL_last		=	(0,0)
 	
-	qty		=	1		// 可變化數量
+	//禁閉者房間模式相關
+	SinnerRoomMode		 =	0
+	cum_sinnerroom_visit =	(0,0)
+	cum_sinnerroom_HC	 =	(0,0,0,0)
+	cum_sinnerroom_HL	 =	(0,0,0,0)
+	SheepMode			 =	0
+	sleep_time			 =	("%(year).%(month).%(day).%(hour).%(minute).%(second)","%(year).%(month).%(day).%(hour).%(minute).%(second)")
+	sleep_hint			 =	1
+	snore_sound			 =	1
+
+
+	//可變化數量
+	qty		=	1		
 
 	//次數統計用
 	cum_cost_discoin = (0,0,0)
@@ -382,6 +394,7 @@ Initialize.Data
 	cum_stamina_heal = (0,0)
 	cum_birthdaycake = (0,0)
 	cum_consumable = (0,0)
+	cum_sinnerroom_visit=(0,0)
 
 	chief_photo=0
 	first_boot_event=0
