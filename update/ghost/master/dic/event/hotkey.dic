@@ -111,10 +111,7 @@ OnKeyPress
 		"%(cum_int_HC)\n[130]%(cum_int_HL)"
 		}
 		when "." {
-		cum_int_HL[4]=0
-		cum_int_HC[4]=0
-		cum_sinnerroom_HC	 =	(0,0,0,0)
-		cum_sinnerroom_HL	 =	(0,0,0,0)
+		stamina=0
 		}
 		when "," {
 		"\![set,balloonnum,檔案名,3,10]123"

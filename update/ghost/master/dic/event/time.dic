@@ -41,8 +41,8 @@ OnMinuteChange
 		if mood[1]>0 ; mood[1]-=4
 		exp++
 	}
-	if mood[0]>400 && minute%10==0 ; mood[0]--
-	if mood[1]>400 && minute%10==0 ; mood[1]--
+	if mood[0]>400 && minute%20==0 && SinnerRoomMode!=1 ; mood[0]--
+	if mood[1]>400 && minute%20==0 && SinnerRoomMode!=2 ; mood[1]--
 	if mood[0]<0 ; mood[0]=0
 	if mood[1]<0 ; mood[1]=0
 	if mood[0]>2500 ; mood[0]=2500

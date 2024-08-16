@@ -392,14 +392,14 @@ SheepMenu.Wakeup
 	MenuChoice=SinnerRoomMode-1
 	sleep_time[1]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
 	_pass=TimeSpan(sleep_time)
-	_sheep_hour=TOINT(_pass/360)
+	_sheep_hour=TOINT(_pass/3600)
 	_ss=(0,0,0)	//預回復量,溢出量,實際回復量
 	--
 	"\%(MenuChoice)\b[2]\f[height,12]"
 	--
 	if _sheep_hour>=7 {
 		stamina=staminamax
-		if SinnerRoomMode==1 ; "\s[18]嗯～\w3睡得好飽……"
+		if MenuChoice==1 ; "\s[18]嗯～\w3睡得好飽……"
 		else ; "\s[0]睡眠很充足。"
 		--
 		"（體力已恢復至全滿）"

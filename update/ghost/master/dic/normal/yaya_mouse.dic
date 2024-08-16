@@ -30,7 +30,8 @@ MouseMove0Hair
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]+=3
 	}
-	if SinnerRoomMode==2
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==2
 	{
 		if DressingMode>=1 ; DressingRoomTouch(0)
 		else ; SinnerRoom.Menu
@@ -52,7 +53,8 @@ MouseMove0Face
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]++
 	}
-	if SinnerRoomMode==2
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==2
 	{
 		if DressingMode>=1 ; DressingRoomTouch(0)
 		else ; SinnerRoom.Menu
@@ -73,7 +75,8 @@ MouseMove0Bust
 		else
 		{	intimacy[0]+=1 ; cum_int_HC[0]+=1	}
 	}
-	if SinnerRoomMode==2
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==2
 	{
 		if DressingMode>=1 ; DressingRoomTouch(0)
 		else ; SinnerRoom.Menu
@@ -98,7 +101,8 @@ MouseDoubleClick0Hair
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]+=3
 	}
-	if SinnerRoomMode==2
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==2
 	{
 		if DressingMode>=1 ; DressingRoomTouch(0)
 		else ; SinnerRoom.Menu
@@ -120,7 +124,8 @@ MouseDoubleClick0Face
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]++
 	}
-	if SinnerRoomMode==2
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==2
 	{
 		if DressingMode>=1 ; DressingRoomTouch(0)
 		else ; SinnerRoom.Menu
@@ -142,7 +147,8 @@ MouseDoubleClick0Bust : nonoverlap
 		else
 		{	intimacy[0]+=0 ; cum_int_HC[0]+=0	}
 	}
-	if SheepMode>=1 ; SheepMenu
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SheepMode>=1 ; SheepMenu
 	elseif SinnerRoomMode==2
 	{
 		if DressingMode>=1 ; DressingRoomTouch(0)
@@ -189,7 +195,8 @@ MouseMove1Hair
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]++
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -210,7 +217,8 @@ MouseMove1Face
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]+=2
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -230,7 +238,8 @@ MouseMove1Bust
 		else
 		{	intimacy[1]-=2 ; cum_int_HL[0]-=2	}
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -252,7 +261,8 @@ MouseDoubleClick1Hair
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]++
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -273,7 +283,8 @@ MouseDoubleClick1Face
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]++
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -293,7 +304,8 @@ MouseDoubleClick1Bust
 		else
 		{	intimacy[1]-=2 ; cum_int_HL[0]-=2	}
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -314,7 +326,8 @@ MouseDoubleClick1Shoulder
 		{	intimacy[1]+=3 ; cum_int_HL[0]+=3	}
 		mood[1]+=5
 	}
-	if SinnerRoomMode==1
+	if SheepMode>=1 ; SheepMenu.Line
+	elseif SinnerRoomMode==1
 	{
 		if DressingMode>=1 ; DressingRoomTouch(1)
 		else ; SinnerRoom.Menu
@@ -444,6 +457,7 @@ MouseDoubleClick0Book : nonoverlap
 {
 	if DressingMode>=1
 		DressingRoomTouch(0)
+	elseif SheepMode>=1 ; SheepMenu.Line
 	else
 	{
 		if MoodStage(mood[0])=="G"
