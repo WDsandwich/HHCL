@@ -170,6 +170,8 @@ SinnerRoom.Interact.SP
 			_txt+="\_q\w1\n"
 		}
 	--
+	_txt+="\_l[-,180]\_q\f[align,right]%Bimg('room\intimacy.png') \f[color,#FFC1E0]%TOINT(intimacy[MenuChoice])\_q\n"
+	--
 	_txt
 	--
 	SinnerRoom.BottomOption(0)
@@ -429,7 +431,7 @@ SheepMenu.Wakeup
 			//"有局長在，今天沒有做惡夢？"
 		}
 		--
-		"\w3\n[110]（已恢復%(_ss[2])點體力）"
+		"\w3\n[110]（已恢復\f[color,#00FFFF] %(_ss[2]) \f[color,default]點體力）"
 	}
 	--
 	SinnerRoom.Menu.List

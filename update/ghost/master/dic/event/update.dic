@@ -62,7 +62,6 @@ UpdateData
 		cum_sinnerroom_HL	 =	(0,0,0,0)
 		SheepMode			 =	0
 		sleep_time			 =	("%(year).%(month).%(day).%(hour).%(minute).%(second)","%(year).%(month).%(day).%(hour).%(minute).%(second)")
-		sleep_hint			 =	1
 		snore_sound			 =	1
 	}
 	
