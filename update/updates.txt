@@ -818,8 +818,8 @@ file,ghost/master/sound/skill/02-HL-19-hai la wu shuang(1).MP3d2e13608c9244553a
 file,ghost/master/sound/skill/02-HL-19-hai la wu shuang.MP3eff22a651f3c4e139fa44a0627ddcedbsize=20112date=2023-05-28T00:23:18
 file,ghost/master/sound/skill/02-HL-20-bie dang dao.MP329b5a31c3b0665d8246fc05662b2d8a0size=13424date=2023-05-28T00:23:52
 file,ghost/master/sound/skill/02-HL-59-coward.MP3d48c12ce48dafd7087423be89904e385size=10916date=2023-05-28T00:35:08
+file,ghost/master/sound/source.txt3480822c5b6c253d31f1a5a356b6234esize=257date=2024-08-16T19:45:37
 file,ghost/master/sound/spa/01 [HL]91-hu ha that nice.MP35f9e11720dee86e41150af68051c8accsize=40592date=2023-05-27T06:02:18
-file,ghost/master/sound/¨Ó·½.txt3480822c5b6c253d31f1a5a356b6234esize=257date=2024-08-16T19:45:37
 file,ghost/master/stamp/readme.txtc29418a6b9870493066a4f8b49e6bddesize=128date=2023-12-14T09:44:24
 file,ghost/master/stamp/stmp_mcr.png133aca627524787a40224704bd4c1ec0size=220date=2023-12-14T09:44:24
 file,ghost/master/stamp/stmp_yym.png21c3a23a055f63252337ffa17a15d812size=158date=2023-12-14T09:44:24
