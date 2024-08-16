@@ -121,6 +121,7 @@ OnFileDrop2
 {
 	PSdropfile=reference0
 	PSob=reference1
+	MenuChoice=PSob
 	PSdropfilesize=FSIZE(reference0)
 	PSdropfileFirst = reference0[0]
 	PSdropfileFirstext = TOLOWER(SPLITPATH(PSdropfileFirst)[3])
@@ -210,7 +211,8 @@ OnDeleteFile.Folder
 	}
 	if !RMDIR(_path)
 	{
-		"資料夾刪除失敗。"
+		if PSob==1 ; "\1\s[19]呃哦呃哦呃？！\w5為什麼燒不掉……"
+		else ; "\0\s[1]銷毀失敗……"
 	}
 	else 
 		OnDeleteFile.End
@@ -223,7 +225,8 @@ OnDeleteFile.File
 		_thefile=_argv[0]
 	if !FDEL(_thefile)
 	{
-		"檔案刪除失敗。"
+		if PSob==1 ; "\1\s[36]……嗯？放不進去？\w5怎麼會這樣……"
+		else ; "\0\s[1]卡紙了。"
 	}
 	else 
 		OnDeleteFile.End

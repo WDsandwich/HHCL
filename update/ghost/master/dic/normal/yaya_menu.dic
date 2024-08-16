@@ -82,22 +82,39 @@ BalloonTooltip_OnHolidayEvent_Start{"%(Char_Name[MenuChoice])似乎有事找%(yo
 //選擇逾時
 OnChoiceTimeout
 {
-	if TOINT (BattleMode+DressingMode+GameMode+DispatchMode+SpaMode)==0
+	if EventArgv==0
 	{ case MenuChoice
 	  {
 		when 0
-		{
-			"\0……%(usernameHC)？累的話還是到沙發上休息吧，在桌子上睡會著涼的。\e"
-			"\0……%(usernameHC)？怎麼了嗎？\e"
-			"\0睜著眼……睡著了嗎？\e"
+		{	
+			"\0"
+			--
+			if SinnerRoomMode>=1
+			{
+				"\s[6]怎麼了？\w5%(usernameHC)，\s[3]\w5突然不說話……\w8\s[9]發現什麼異常了嗎？"
+			}
+			else
+			{
+				"\s[6]……%(usernameHC)？\w5\s[1]累的話還是到沙發上休息吧，\w6在桌子上睡會著涼的。"
+			}
+			"\s[6]……%(usernameHC)？\w5怎麼了嗎？"
+			"\s[1]睜著眼……睡著了嗎？"
 		}
 		when 1
 		{
-			"\1……？\w5\s[13]怎麼沒反應了？"
-			"\1\s[16]%(you)在發什麼呆啊？"
-			"\1\s[30]……喂！別突然不理人哪！"
+			"\1"
+			--
+			if SinnerRoomMode>=1
+			{
+				"\s[32]喂，\w3幹嘛擅自在別人房間裡發呆啊？"
+			}
+			"……？\w5\s[13]怎麼沒反應了？"
+			"\s[16]%(you)在發什麼呆啊？"
+			"\s[30]……喂！別突然不理人哪！"
 		}
 	  }
+	  --
+	  "\e"
 	}
 }
 
@@ -145,9 +162,11 @@ Menu_Interact
 Menu_AITALK
 {
 	intimacy[MenuChoice]++
+	if SinnerRoomMode>=1 ; intimacy[MenuChoice]++
 	_a=2
 	if MenuChoice==0 ; _a=ANY(0,0,2)
 	if MenuChoice==1 ; _a=ANY(1,1,2)
+	if SinnerRoomMode>=1 ; _a=MenuChoice
 	case _a
 	{
 		when 0 ; HecateTalkAlone
@@ -310,6 +329,7 @@ Menu_CANCEL
 OnMenu_Bureau
 {
 	_page=TOINT(reference0)
+	_char=Char_Name[MenuChoice]
 	--
 	"\%(MenuChoice)\b[2]\c\_q%(click)/
 	%Subtitle('管理局')  "
@@ -326,7 +346,7 @@ OnMenu_Bureau
 	_o_list=("辦公室","檔案室","更衣室","娛樂區（施工中）","研磨坊","密室","鍛造室","倉庫")
 	_func_list=("OnOffice","Database","GoIntoDressingRoom","OnGameRoom","Dye.Grind.GoTo","SecretChamber","OnForgeRoom.Open","OnBagItem")
 	if _page==1
-	{	_p_list=("└") ; _o_list=("焚化爐") ; _func_list=("PapreShredder2")	}
+	{	_p_list=("├","└") ; _o_list=("焚化爐",_char+"的臥室") ; _func_list=("PapreShredder2","GoToSinnerRoom")	}
 	_option="\n[150]\f[default]\_q\_l[0,30]\f[height,20]"
 	for _i=0 ; _i<ARRAYSIZE(_o_list) ; _i++
 	{

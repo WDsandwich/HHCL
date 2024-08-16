@@ -30,7 +30,12 @@ MouseMove0Hair
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]+=3
 	}
-	if  EventArgv==0 { MenuChoice=0 ; SameLine_0Hair }
+	if SinnerRoomMode==2
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; SameLine_0Hair }
 	elseif DressingMode>=1 ; DressingRoomTouch(0)
 	else ; MouseInEvent
 }
@@ -47,7 +52,12 @@ MouseMove0Face
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]++
 	}
-	if EventArgv==0 { MenuChoice=0 ; Line_Move0Face }
+	if SinnerRoomMode==2
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; Line_Move0Face }
 	elseif DressingMode>=1 ; DressingRoomTouch(0)
 	else ; MouseInEvent
 }
@@ -63,7 +73,12 @@ MouseMove0Bust
 		else
 		{	intimacy[0]+=1 ; cum_int_HC[0]+=1	}
 	}
-	if EventArgv==0 { MenuChoice=0 ; Line_Move0Bust }
+	if SinnerRoomMode==2
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; Line_Move0Bust }
 	elseif DressingMode>=1 ; DressingRoomTouchBust(0)
 	else ; MouseInEvent
 }
@@ -83,7 +98,12 @@ MouseDoubleClick0Hair
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]+=3
 	}
-	if EventArgv==0 { MenuChoice=0 ; SameLine_0Hair }
+	if SinnerRoomMode==2
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; SameLine_0Hair }
 	elseif DressingMode>=1 ; DressingRoomTouch(0)
 	else ; MouseInEvent
 }
@@ -100,7 +120,12 @@ MouseDoubleClick0Face
 		{	intimacy[0]+=2 ; cum_int_HC[0]+=2	}
 		mood[0]++
 	}
-	if EventArgv==0 { MenuChoice=0 ; Line_DoubleClick0Face }
+	if SinnerRoomMode==2
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; Line_DoubleClick0Face }
 	elseif DressingMode>=1 ; DressingRoomTouch(0)
 	else ; MouseInEvent
 }
@@ -117,14 +142,26 @@ MouseDoubleClick0Bust : nonoverlap
 		else
 		{	intimacy[0]+=0 ; cum_int_HC[0]+=0	}
 	}
-	if EventArgv==0 { MenuChoice=0 ; Line_DoubleClick0Bust }
+	if SheepMode>=1 ; SheepMenu
+	elseif SinnerRoomMode==2
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; Line_DoubleClick0Bust }
 	elseif DressingMode>=1 ; DressingRoomTouchBust(0)
 	else ; MouseInEvent
 }
 //==========開啟主選單（赫卡蒂）
 MouseDoubleClick0
 {
-	if EventArgv==0 { MenuChoice=0 ; OpenMenu }
+	if SheepMode>=1 ; SheepMenu
+	elseif SinnerRoomMode>=1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(0)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=0 ; OpenMenu }
 	elseif DressingMode>=1 ; DressingRoomTouch(0)
 	elseif ill_mode==2 && ill_info_page==14
 	{	OnIllustrated_Enemy_Info
@@ -152,7 +189,12 @@ MouseMove1Hair
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]++
 	}
-	if EventArgv==0 { MenuChoice=1 ; SameLine_1Hair }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; SameLine_1Hair }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
 	else ; MouseInEvent
 }
@@ -168,7 +210,12 @@ MouseMove1Face
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]+=2
 	}
-	if EventArgv==0 { MenuChoice=1 ; Line_Move1Face }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; Line_Move1Face }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
 	else ; MouseInEvent
 }
@@ -183,7 +230,12 @@ MouseMove1Bust
 		else
 		{	intimacy[1]-=2 ; cum_int_HL[0]-=2	}
 	}
-	if EventArgv==0 { MenuChoice=1 ; SameLine_1Bust }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; SameLine_1Bust }
 	elseif DressingMode>=1 ; DressingRoomTouchBust(1)
 	else ; MouseInEvent
 }
@@ -200,7 +252,12 @@ MouseDoubleClick1Hair
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]++
 	}
-	if EventArgv==0 { MenuChoice=1 ; SameLine_1Hair }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; SameLine_1Hair }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
 	else ; MouseInEvent
 }
@@ -216,7 +273,12 @@ MouseDoubleClick1Face
 		{	intimacy[1]+=2 ; cum_int_HL[0]+=2	}
 		mood[1]++
 	}
-	if EventArgv==0 { MenuChoice=1 ; Line_DoubleClick1Face }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; Line_DoubleClick1Face }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
 	else ; MouseInEvent
 }
@@ -231,7 +293,12 @@ MouseDoubleClick1Bust
 		else
 		{	intimacy[1]-=2 ; cum_int_HL[0]-=2	}
 	}
-	if EventArgv==0 { MenuChoice=1 ; SameLine_1Bust }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; SameLine_1Bust }
 	elseif DressingMode>=1 ; DressingRoomTouchBust(1)
 	else ; MouseInEvent
 }
@@ -247,7 +314,12 @@ MouseDoubleClick1Shoulder
 		{	intimacy[1]+=3 ; cum_int_HL[0]+=3	}
 		mood[1]+=5
 	}
-	if EventArgv==0 { MenuChoice=1 ; Line_DoubleClick1Shoulder }
+	if SinnerRoomMode==1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; Line_DoubleClick1Shoulder }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
 	else ; MouseInEvent
 }
@@ -255,7 +327,14 @@ MouseDoubleClick1Shoulder
 //==========開啟主選單（海拉）
 MouseDoubleClick1
 {
-	if EventArgv==0 { MenuChoice=1 ; OpenMenu }
+	
+	if SheepMode>=1 ; SheepMenu
+	elseif SinnerRoomMode>=1
+	{
+		if DressingMode>=1 ; DressingRoomTouch(1)
+		else ; SinnerRoom.Menu
+	}
+	elseif EventArgv==0 { MenuChoice=1 ; OpenMenu }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
 	elseif ill_mode==2 && ill_info_page==14
 	{	OnIllustrated_Enemy_Info
@@ -268,11 +347,12 @@ MouseDoubleClick1
 }
 
 EventArgv
-{ TOINT(BattleMode+DressingMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+TOINT(ill_mode)) }
+{ TOINT(BattleMode+DressingMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+TOINT(ill_mode))+SheepMode}
 //if BattleMode+SpaMode+DispatchMode+StoreMode
 MouseInEvent
 {
 	if first_boot_event<6 ; ChiefRegister
+	elseif SheepMode>=1 ; SheepMenu
 	elseif BattleMode>=1 ; StillInBattle
 	elseif SpaMode>=1 ; OnSpa.Window
 	elseif DispatchMode>=1 ; OnDispatch.Window

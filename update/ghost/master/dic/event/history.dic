@@ -29,7 +29,8 @@ Menu_Memory
 			_txt+="\_q\w1\n"
 		}
 	}
-	_txt+= MuenBottomOption("Menu_Interact")
+	if SinnerRoomMode>=1 ; _txt+= SinnerRoom.BottomOption('SinnerRoom.Interact')
+	else ; _txt+= MuenBottomOption("Menu_Interact")
 	--
 	_txt
 }

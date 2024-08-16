@@ -42,95 +42,111 @@ DailyCheckOut.Fix
 }
 OnBoot
 {
+	//重置特殊模式
 	BattleMode=0
 	ill_mode=0
 	DressingMode=0
 	StoreMode=0
 	HotkeyMode=0
+	if SheepMode==0 ; SinnerRoomMode=0
 	storepage=(0,0)
+	cloth_line_hc=(0,0)
+	//計算離線時間
 	Last_Offline[1]=Last_Offline[0]
 	Last_Offline[0]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
-	cloth_line_hc=(0,0)
-	HolidayCheck
+	//備份存檔
 	OnSaveBackup.Save('boot')
+	//打卡
 	DailyCheckOut
-	/*if version_name=="0.9.4" ; version_code="0,09,04"*/
+	//確認特殊節日
+	HolidayCheck
 	--
-	"\0\s[0]\1\s[10]\p[2]%cp(0)"
+	"%cp(0)"
 	--
-	//檢查離線間隔
-	_interval = TimeSpan(Last_Offline[0],Last_Offline[1])
-	if _interval<=0 ; _interval=0
-	//	扣除心情
-	_ml=TOINT(TOREAL(_interval/600))
-	mood-=_ml
-	if mood[0]<400 ; mood[0]=400
-	if mood[1]<400 ; mood[1]=400
-	if _interval >= 2592000
-	{	if mood[0]>200 ; mood[0]=200
-		if mood[1]>200 ; mood[1]=200
-	}
-	if _interval >= 15552000
-	{	if mood[0]>50 ; mood[0]=50
-		if mood[1]>50 ; mood[1]=50
-	}
-	--
-	//節日特殊事件
-	if MenuChoice==1 { _eh=event_holiday_HL ; _hc=holiday_celebrated_HL }
-	else			 { _eh=event_holiday_HC ; _hc=holiday_celebrated_HC }
-	_he=0 ; _hcy=""
-	for _i=0 ; _i<ARRAYSIZE(holiday_name) ; _i++
-	{	if "%(month).%(day)"== holiday_date[_i] && "%(year)" !_in_ _hc[_i]
-		_he=_i+1
-	}
-	_hee=_he-1
-	--
-	//亂摸摸海拉胸部
-	if first_boot_event<6 ; ChiefRegister
-	elseif touch_hella_chest>=10
-		"\1\s[11]……好好反省過了嗎？\w5/
-		\p[2]\![set,choicetimeout,0]\f[align,center]%(opp)\q[「反省過了。」,TouchTooMuch1Bust2]\n[130]/
-	%(opp)\q[「沒有。」,TouchTooMuch1Bust3]"
-	elseif DispatchMode>=1
+	if SheepMode>=1
 	{
-		if dispatch_left<=0 ; "\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"		//派遣提示音
+		if MenuChoice==1 ; "\0\s[-1]\1\s[15]"
+		else ; "\1\s[-1]\0\s[1]"
 		--
-		OnDispatch.Window
+		if MenuChoice==1 && snore_sound==1 ; "\![sound,loop,sound\human\snore.mp3]"
+		--
 	}
-	elseif SpaMode==2 ; SpaMode=0
-	elseif SpaMode>=1 ; OnSpa.Window
-	elseif "%(year)" !_in_ TOSTR (birthday_celebrated_chief) && "%(month).%(day)"=="%(chief_birthday[1]).%(chief_birthday[2])"
-		OnChiefBirthday_Option.Menu
-	elseif _he>0 && ((relationship%2==(1,1)&&intimacy[0]>intimacy[1]) || (relationship[0]%2==1&&relationship[1]%2==0)) && "%(year)" !_in_ holiday_celebrated_HC[_hee]
-	{	MenuChoice=0 ; "\![raise,OnHolidayEvent_Start,%(_hee)]"	}
-	elseif _he>0 && ((relationship%2==(1,1)&&intimacy[1]>intimacy[0]) || (relationship[1]%2==1&&relationship[0]%2==0)) && "%(year)" !_in_ holiday_celebrated_HL[_hee]
-	{	MenuChoice=1 ; "\![raise,OnHolidayEvent_Start,%(_hee)]"	}
 	else
 	{
-		/*case hour
-		{	when 1-3
-			{	"\1\s[16]咦？\w3這個時間來辦公？\w7\s[30]%(you)也太拚了吧？"
-				"\0\s[1]這麼晚了……"
-			}
-			when 4-5
-			{
-				"\1\s[15]"
-			}
-		
-		}*/
-		"\0\s[0]\![sound,play,voice/原始_獲得禁閉者.mp3]我一直都在等你。"
-		"\0\s[0]\![sound,play,voice/原始_問候.mp3]昨晚睡得好嗎，%(usernameHC)？ 請給我今天的命令。"
-		"\1\s[10]\![sound,play,sound/line/HL/Hl profile 特別關注.mp3]怎\w2麼\w1，\w8\s[18]又\w1想\w1我\w1啦\w1？"
+		"\0\s[0]\1\s[10]"
 		--
-		"\_V"
-	}
-	--
-	if holiday_today!="" && _he==0
-	{	if holiday_today=="%(chief_birthday[1]).%(chief_birthday[2])" && year !_in_ birthday_celebrated_chief ; ""
+		//檢查離線間隔
+		_interval = TimeSpan(Last_Offline[0],Last_Offline[1])
+		if _interval<=0 ; _interval=0
+		//	扣除心情
+		_ml=TOINT(TOREAL(_interval/600))
+		mood-=_ml
+		if mood[0]<400 ; mood[0]=400
+		if mood[1]<400 ; mood[1]=400
+		if _interval >= 2592000	{	
+			if mood[0]>200 ; mood[0]=200
+			if mood[1]>200 ; mood[1]=200
+		}
+		if _interval >= 15552000 {	
+			if mood[0]>50 ; mood[0]=50
+			if mood[1]>50 ; mood[1]=50
+		}
+		--
+		//節日特殊事件
+		if MenuChoice==1 { _eh=event_holiday_HL ; _hc=holiday_celebrated_HL }
+		else			 { _eh=event_holiday_HC ; _hc=holiday_celebrated_HC }
+		_he=0 ; _hcy=""
+		for _i=0 ; _i<ARRAYSIZE(holiday_name) ; _i++ {
+			if "%(month).%(day)"== holiday_date[_i] && "%(year)" !_in_ _hc[_i]
+			_he=_i+1
+		}
+		_hee=_he-1
+		--
+		//亂摸摸海拉胸部
+		if first_boot_event<6 ; ChiefRegister
+		elseif touch_hella_chest>=10
+			"\1\s[11]……好好反省過了嗎？\w5/
+			\p[2]\![set,choicetimeout,0]\f[align,center]%(opp)\q[「反省過了。」,TouchTooMuch1Bust2]\n[130]/
+		%(opp)\q[「沒有。」,TouchTooMuch1Bust3]"
+		elseif DispatchMode>=1 {
+			if dispatch_left<=0 ; "\![sound,play,sound/dispatch/done_%(MenuChoice).mp3]"		//派遣提示音
+			--
+			OnDispatch.Window
+		}
+		elseif SpaMode==2 ; SpaMode=0
+		elseif SpaMode>=1 ; OnSpa.Window
+		elseif "%(year)" !_in_ TOSTR (birthday_celebrated_chief) && "%(month).%(day)"=="%(chief_birthday[1]).%(chief_birthday[2])"
+			OnChiefBirthday_Option.Menu
+		elseif _he>0 && ((relationship%2==(1,1)&&intimacy[0]>intimacy[1]) || (relationship[0]%2==1&&relationship[1]%2==0)) && "%(year)" !_in_ holiday_celebrated_HC[_hee]
+		{	MenuChoice=0 ; "\![raise,OnHolidayEvent_Start,%(_hee)]"	}
+		elseif _he>0 && ((relationship%2==(1,1)&&intimacy[1]>intimacy[0]) || (relationship[1]%2==1&&relationship[0]%2==0)) && "%(year)" !_in_ holiday_celebrated_HL[_hee]
+		{	MenuChoice=1 ; "\![raise,OnHolidayEvent_Start,%(_hee)]"	}
 		else
-		"\__w[2000]\0\s[1]\c今天是\f[bold,1]\f[color,#89B8B8]%(holiday_today[1])\f[default]喔。"
+		{
+			/*case hour
+			{	when 1-3
+				{	"\1\s[16]咦？\w3這個時間來辦公？\w7\s[30]%(you)也太拚了吧？"
+					"\0\s[1]這麼晚了……"
+				}
+				when 4-5
+				{
+					"\1\s[15]"
+				}
+			
+			}*/
+			"\0\s[0]\![sound,play,voice/原始_獲得禁閉者.mp3]我一直都在等你。"
+			"\0\s[0]\![sound,play,voice/原始_問候.mp3]昨晚睡得好嗎，%(usernameHC)？ 請給我今天的命令。"
+			"\1\s[10]\![sound,play,sound/line/HL/Hl profile 特別關注.mp3]怎\w2麼\w1，\w8\s[18]又\w1想\w1我\w1啦\w1？"
+			--
+			"\_V"
+		}
+		--
+		if holiday_today!="" && _he==0
+		{	if holiday_today=="%(chief_birthday[1]).%(chief_birthday[2])" && year !_in_ birthday_celebrated_chief ; ""
+			else
+			"\__w[2000]\0\s[1]\c今天是\f[bold,1]\f[color,#89B8B8]%(holiday_today[1])\f[default]喔。"
+		}
 	}
-	
 	
 	/*_timeslot = GetTimeSlot
 	case _timeslot{
@@ -186,15 +202,29 @@ OnClose
 }
 GoodbyeMSG
 {
-	if MenuChoice==1
-	{
-		"\1\s[30]掰掰啦。"
-		"\1\s[18]明天見哦！"
+	if MenuChoice==1 {
+		"\1"
+		--
+		if SheepMode>=1 {
+			"\s[15]……呼……嗯……"
+		}
+		else {
+			"\s[30]掰掰啦。"
+			"\s[18]明天見哦！"
+		}
+		
 	}
-	else
-	{
-		"\0\s[0]\![sound,play,voice/原始_閒置.mp3]做個好夢。"
-		"\0\s[1]晚安，\w4%(usernameHC)。"
+	else {
+		"\0"
+		--
+		if SheepMode>=1 {
+			"\s[1]…………"
+		}
+		else {
+			"\s[0]\![sound,play,voice/原始_閒置.mp3]做個好夢。"
+			"\s[1]晚安，\w4%(usernameHC)。"
+		}
+		
 	}
 	--
 	"\w9"
