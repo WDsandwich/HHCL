@@ -132,9 +132,7 @@ surface23
 surface0
 {
   //眨眼一下
-	animation1.interval,runonce
-	animation1.pattern0,overlay,400,0,0,0
-	animation0.interval,random,3
+	animation0.interval,runonce+random,3
 	animation0.pattern0,overlay,400,0,0,0
 	animation0.pattern1,overlay,401,30,0,0
 	animation0.pattern2,overlay,402,30,0,0
@@ -379,9 +377,7 @@ surface53
 //海拉眨眼
 surface10,36-37
 {
-	animation1001.interval,runonce
-	animation1001.pattern0,overlay,0130,0,0,0
-	animation1000.interval,random,3
+	animation1000.interval,runonce+random,3
 	animation1000.pattern0,overlay,0130,0,0,0
 	animation1000.pattern1,overlay,0131,30,0,0
 	animation1000.pattern2,overlay,0132,30,0,0
