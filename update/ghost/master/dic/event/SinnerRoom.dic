@@ -170,7 +170,7 @@ SinnerRoom.Interact.SP
 			_txt+="\_q\w1\n"
 		}
 	--
-	_txt+="\_l[-,180]\_q\f[align,right]%Bimg('room\intimacy.png') \f[color,#FFC1E0]%TOINT(intimacy[MenuChoice])\_q\n"
+	_txt+="\_l[-,180]\_q\f[align,right]%Bimg('room\intimacy.png') \f[color,#FFC1E0]%TOINT(intimacy[MenuChoice]-10000)\_q\n"
 	--
 	_txt
 	--
