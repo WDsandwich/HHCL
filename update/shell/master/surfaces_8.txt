@@ -7,13 +7,13 @@ surface810010
 	//element0,base,outside\dispatch.png,0,0
 	
 	animation0.interval,always
-	animation0.pattern0,overlay,810020,100,0,0
-	animation0.pattern1,overlay,810021,100,0,0
-	animation0.pattern2,overlay,810022,100,0,0
-	animation0.pattern3,overlay,810023,100,0,0
-	animation0.pattern4,overlay,810024,100,0,0
-	animation0.pattern5,overlay,810025,100,0,0
-	animation0.pattern6,overlay,810026,100,0,0
+	animation0.pattern0,replace,810020,100,0,0
+	animation0.pattern1,replace,810021,100,0,0
+	animation0.pattern2,replace,810022,100,0,0
+	animation0.pattern3,replace,810023,100,0,0
+	animation0.pattern4,replace,810024,100,0,0
+	animation0.pattern5,replace,810025,100,0,0
+	animation0.pattern6,replace,810026,100,0,0
 }
 
 surface800010
@@ -50,29 +50,29 @@ surface800031
 //===================================================
 surface810020
 {
-	element0,base,dispatch\walk\walk_0000.png,0,0
+	element0,base,dispatch\walk\idle_0007.png,0,0
 }
 surface810021
 {
-	element0,base,dispatch\walk\walk_0001.png,0,0
+	element0,base,dispatch\walk\idle_0001.png,0,0
 }
 surface810022
 {
-	element0,base,dispatch\walk\walk_0002.png,0,0
+	element0,base,dispatch\walk\idle_0002.png,0,0
 }
 surface810023
 {
-	element0,base,dispatch\walk\walk_0003.png,0,0
+	element0,base,dispatch\walk\idle_0003.png,0,0
 }
 surface810024
 {
-	element0,base,dispatch\walk\walk_0004.png,0,0
+	element0,base,dispatch\walk\idle_0004.png,0,0
 }
 surface810025
 {
-	element0,base,dispatch\walk\walk_0005.png,0,0
+	element0,base,dispatch\walk\idle_0005.png,0,0
 }
 surface810026
 {
-	element0,base,dispatch\walk\walk_0006.png,0,0
+	element0,base,dispatch\walk\idle_0006.png,0,0
 }
