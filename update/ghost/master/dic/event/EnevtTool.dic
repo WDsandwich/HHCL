@@ -12,6 +12,11 @@ nl
 {
 	"\n--\n"
 }
+
+//=======================顯示用文字=======================
+switch_name_oc { "開啟","關閉" }
+
+
 //=======================進度條=======================
 //%ProgressBar(顏色,x軸位置,寬度,數值,數值max)
 ProgressBar{
@@ -58,6 +63,18 @@ SureWindow
 	_txt+="]%QTYimg('x')\__q\n[260]\f[align,center]"
 	_txt
 }
+SureWindow2
+{
+	_op=_argv[0] ; _title=_argv[1] ; _char=_argv[2]
+	if _op=="" ; _op="CANCEL_Button"
+	_txt=""
+	if _char=="" ; _txt+="\p[7]"
+	else ; _txt+="\p[%(_char)]"
+	_txt+="\s[-1]\b[54]\![quicksession,true]\_l[25,-5]%(_title)\_l[250,-5]\__q["
+	_txt+=_op
+	_txt+="]%QTYimg('x')\__q\n[70]\f[align,center]"
+	_txt
+}
 SureWindow.Button
 {
 	_op1=_argv[0]
@@ -69,6 +86,30 @@ SureWindow.Button
 	_txt+="]\_b[img\X.png,inline]\__q"
 	_txt
 }
+
+//=======================貨幣相關=======================
+currency_name{"狄斯幣","異方晶","菲幣"}
+currency_color{"\f[color,#FFD306]","\f[color,#84C1FF]","\f[color,#C2C287]"}
+currency_var{discoin,hypercube,fei_coin}
+currency_var_name{"discoin,hypercube,fei_coin"}
+currency_show	//%currency_show()
+{
+	_i=_argv[0]
+	_pic=currency_var_name[_i]+"_15px"
+	"\f[default]%(currency_color[_i])%ItemImg(_pic) %ThousandsSeparators(currency_var[_i])\f[default]"
+}
+currency_price		//%currency_price(,)
+{
+	_i=_argv[0] ; _price=_argv[1]
+	_pic=currency_var_name[_i]+"_15px"
+	"\f[default]\f[height,12]%(currency_color[_i])%ThousandsSeparators(_price)%ItemImg(_pic)\f[default]"
+}
+
+
+
+//=======================字體樣式=======================
+CPFS.store.option { "\f[height,12]\f[bold,1]\f[color,#272727]\f[shadowcolor,#C2C287]%(_argv[0])\f[default]" }
+
 
 //=======================短暫改變部分字體格式=======================
 //ChangePartFontStyle
@@ -160,6 +201,18 @@ Menu.Option
 	for _i=0 ; _i<ARRAYSIZE(menu_o_list) ; _i++
 	{
 		_option+="\_q\f[color,200,0,0]%(menu_p_list[_i])\f[default]\__q[%(menu_func_list[_i])] %(menu_o_list[_i]) \__q\f[height,20]\n\_q\w1"
+	}
+	_option
+}
+Menu.Option2
+{
+	_option="\f[bold,1]\f[color,#E0FFFF]\f[height,13]\![*]%(menu_title)\![*]\f[default]\n\n[half]\f[default]\_l[0,30]\f[height,20]\_q\w1"
+	for _i=0 ; _i<ARRAYSIZE(menu_o_list) ; _i++
+	{
+		_option+="\_q\f[color,200,0,0]"
+		if _i>=ARRAYSIZE(menu_o_list)-1 ; _option+="└"
+		else ; _option+="├"
+		_option+="\f[default]\__q[%(menu_func_list[_i])] %(menu_o_list[_i]) \__q\f[height,20]\n\_q\w1"
 	}
 	_option
 }
@@ -317,4 +370,16 @@ TRSTRtoARRAY
 {	_t=_argv[0] ; _d=_argv[1]
 	_array= REPLACE (_t,_d,",")
 	_array
+}
+
+
+
+
+//========================================戰鬥相關========================================
+Battle.Drop.MSG
+{
+	_txt="\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 "
+	_txt+=_argv[0]
+	_txt+="\f[default] %(bp)\_q\w9"
+	_txt
 }

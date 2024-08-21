@@ -53,7 +53,7 @@ OnBoot
 	cloth_line_hc=(0,0)
 	//計算離線時間
 	Last_Offline[1]=Last_Offline[0]
-	Last_Offline[0]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
+	Last_Offline[0]=GETSECCOUNT()
 	//備份存檔
 	OnSaveBackup.Save('boot')
 	//打卡
@@ -70,6 +70,31 @@ OnBoot
 		--
 		if MenuChoice==1 && snore_sound==1 ; "\![sound,loop,sound\human\snore.mp3]"
 		--
+	}
+	elseif DispatchMode>=1 {
+		_offline_max=TOINT(dispatch_second_max-(dispatch_second[1]-dispatch_second[0]))
+		offline_pass=TOINT(Last_Offline[0]-Last_Offline[1])
+		if offline_pass>_offline_max ; offline_pass=_offline_max
+		_offline_count=(offline_pass/(3*60),offline_pass/(5*60))
+		for _i=0 ; _i<_offline_count[0] ; _i++ {
+			_enh=RAND(11)
+			if _enh==1 {
+				_enh=RAND(3)
+				dispatch_box_enhancement[_enh]++
+			}
+		}
+		for _i=0 ; _i<_offline_count[1] ; _i++ {
+			_dye=RAND(5)
+				if _dye==1 {	
+				_dye=RAND(6)
+				dispatch_box_ingrendient[_dye]++
+				}
+		}
+		//offline_pass=0
+		--
+		"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\s[810010]"
+		--
+		OnDispatch.Window
 	}
 	else
 	{
@@ -202,7 +227,9 @@ OnClose
 }
 GoodbyeMSG
 {
-	if MenuChoice==1 {
+	if DispatchMode>=1 || SheepMode>=1 ; ""
+	elseif StoreMode>=1 ; OnLeaveStore
+	elseif MenuChoice==1 {
 		"\1"
 		--
 		if SheepMode>=1 {

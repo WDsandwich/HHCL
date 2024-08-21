@@ -169,7 +169,7 @@ MouseDoubleClick0
 	}
 	elseif EventArgv==0 { MenuChoice=0 ; OpenMenu }
 	elseif DressingMode>=1 ; DressingRoomTouch(0)
-	elseif ill_mode==2 && ill_info_page==14
+	elseif IllustratedMode==2 && ill_info_page==14
 	{	OnIllustrated_Enemy_Info
 		--
 		"\0\![quicksession,false]"
@@ -349,7 +349,7 @@ MouseDoubleClick1
 	}
 	elseif EventArgv==0 { MenuChoice=1 ; OpenMenu }
 	elseif DressingMode>=1 ; DressingRoomTouch(1)
-	elseif ill_mode==2 && ill_info_page==14
+	elseif IllustratedMode==2 && ill_info_page==14
 	{	OnIllustrated_Enemy_Info
 		--
 		"\1\![quicksession,false]"
@@ -360,7 +360,7 @@ MouseDoubleClick1
 }
 
 EventArgv
-{ TOINT(BattleMode+DressingMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+TOINT(ill_mode))+SheepMode}
+{ TOINT(BattleMode+DressingMode+SpaMode+DispatchMode+StoreMode+(first_boot_event-6)+IllustratedMode+SheepMode)}
 //if BattleMode+SpaMode+DispatchMode+StoreMode
 MouseInEvent
 {
@@ -368,10 +368,10 @@ MouseInEvent
 	elseif SheepMode>=1 ; SheepMenu
 	elseif BattleMode>=1 ; StillInBattle
 	elseif SpaMode>=1 ; OnSpa.Window
-	elseif DispatchMode>=1 ; OnDispatch.Window
+	elseif DispatchMode>=1 ; OnDispatch.Window.Open
 	elseif StoreMode>=1 ; MouseDoubleClick3
-	elseif ill_mode==2 ; OnIllustrated_Enemy_Info
-	elseif ill_mode==1 ; Illustrated
+	elseif IllustratedMode==2 ; OnIllustrated_Enemy_Info
+	elseif IllustratedMode==1 ; Illustrated
 }
 //************************************************************
 //----------------------------台詞----------------------------
@@ -820,11 +820,7 @@ MouseDoubleClick7
 //**********************************************************
 MouseDoubleClick8
 {
-	if DispatchMode>=1
-	{	if dispatch_left>0
-		{	dispatch_windows=1 ; OnDispatch.Window	}
-		else ; OnDispatch.End
-	}
+	if DispatchMode>=1 ; OnDispatch.Window.Open
 	elseif SpaMode>=1
 		OnSpa.Window
 	else ; "\p[8]\s[-1]"

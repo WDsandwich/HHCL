@@ -2,13 +2,11 @@ OnTutorial
 {
 	"%(click)\%(MenuChoice)\b[2]\_q"
 	--
-	menu_title="向夜鶯請教"
-	menu_p_list=("├","└")
-	
+	menu_title="向夜鶯請教"	
 	menu_o_list=("執行戰鬥教學","資源獲得方式")
 	menu_func_list=("OnTutorial.Battle,20","OnTutorial.Resource,0")
 	--
-	Menu.Option
+	Menu.Option2
 	--
 	"\_q\f[color,150,150,150]\_l[7,220]\_b[img/BackIcon,inline]\f[height,12]\q[返回,OnTutorial.Office]\_l[150]\_b[img/CancelIcon,inline]\q[關閉,OnTutorial.Close]\_q"
 	--

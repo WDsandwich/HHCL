@@ -13,7 +13,7 @@ OnSecondChange
 	AYATEMPLATE.mikireflag = reference[1]
 	//if second==0 && SpaMode==1 && stamina<staminamax ; stamina++
 	//if SpaMode>0 ; OnSpa.Window
-	if second%10==0
+	/*if second%10==0
 	{	if DispatchMode>=1 ; "\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]"
 		--
 		if DispatchMode>=2 && dispatch_left<=0
@@ -23,13 +23,13 @@ OnSecondChange
 			--
 			OnDispatch.Window
 		}
-	}
+	}*/
 }
 OnMinuteChange
 {
 	
-	Last_Offline[0]="%(year).%(month).%(day).%(hour).%(minute).%(second)"
-	
+	Last_Offline[0]=GETSECCOUNT()
+	//溫泉
 	if hour == 0 && minute == 0
 	{	DailyCheckOut ; HolidayCheck }
 	if SpaMode==2
@@ -41,6 +41,7 @@ OnMinuteChange
 		if mood[1]>0 ; mood[1]-=4
 		exp++
 	}
+	//心情值
 	if mood[0]>400 && minute%20==0 && SinnerRoomMode!=1 ; mood[0]--
 	if mood[1]>400 && minute%20==0 && SinnerRoomMode!=2 ; mood[1]--
 	if mood[0]<0 ; mood[0]=0
@@ -48,6 +49,35 @@ OnMinuteChange
 	if mood[0]>2500 ; mood[0]=2500
 	if mood[1]>2500 ; mood[1]=2500
 	if EventArgv==0 ; MinuteChange.Talk
+	//掃地機器人
+	if clener>=1 {
+		_a=2+TOINT(level/10)
+		scrap+=RAND(_a)
+	}
+	//派遣
+	if DispatchMode>=1 {
+		dispatch_second[1]=GETSECCOUNT()
+		//_pass=dispatch_second[1]-dispatch_second[0]
+		if dispatch_pass <= dispatch_second_max {
+			//強化素材
+			_enh=RAND(11)
+			if _enh==1 {
+				_enh=RAND(3)
+				dispatch_box_enhancement[_enh]++
+			}
+			//染料原礦
+			if minute%5==0 {
+				_dye=RAND(5)
+				if _dye==1 {	
+				_dye=RAND(6)
+				dispatch_box_ingrendient[_dye]++
+				}
+			}
+		}
+		--
+		OnDispatch.Window
+		
+	}
 }
 MinuteChange.Talk
 {
@@ -219,6 +249,9 @@ TimeSpan
 	_date_b=_argv[0] ; _date_a=_argv[1]
 	SecondFrom2024(_date_a)-SecondFrom2024(_date_b)
 }
+
+time_now { "%(year).%(month).%(day).%(hour).%(minute).%(second)" }
+
 SecondFrom2024
 {
 	_date=_argv[0]

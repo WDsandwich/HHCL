@@ -256,7 +256,15 @@ OnUpdateComplete
 	UpdateData
 	--
 	if reference0 == "none" ; "\p[3]\s[310001]現在已經是最新的版本了。"
-	else ; "\p[3]\b[32]\_q%ProgressBar(4,10,150,update_file[1],update_file[1])\n\f[align,right]%(update_file[1])/%(update_file[1])\n[130]%(DividingLine2)\n[130]\_q\s[310002]已順利完成\f[color,#FFDC35]\f[bold,1]%(version_name)\f[default]版本更新。\x\p[3]\s[-1]"
+	else {
+		lottery_ticket+=5
+		discoin+=1000
+		
+		"\p[3]\b[32]\_q%ProgressBar(4,10,150,update_file[1],update_file[1])\n\f[align,right]%(update_file[1])/%(update_file[1])\n[130]%(DividingLine2)\n[130]\_q\s[310002]已順利完成\f[color,#FFDC35]\f[bold,1]%(version_name)\f[default]版本更新。/
+		\w2\n[150]已獲得%(version_name)版本升級獎勵\w2\n[110]/
+		\_q%SFX('sfx/decision button2')抽獎券×5\_q\w2\n[110]\_q%SFX('sfx/decision button2')狄斯幣×1000\_q/
+		\x\p[3]\s[-1]"
+	}
 }
 //ネットワーク更新失敗
 OnUpdateFailure

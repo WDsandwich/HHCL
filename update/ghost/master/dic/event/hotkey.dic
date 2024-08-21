@@ -1,15 +1,16 @@
 OnHotkeySetting
 {
-	"\p[4]\s[-1]\b[6]%(click)\![quicksession,true]\n[50]\f[height,15]%Subtitle('自訂快捷鍵')\n[150]"
+	"\p[4]\s[-1]\b[6]%(click)\![quicksession,true]\![set,choicetimeout,0]\n[50]\f[height,15]%Subtitle('自訂快捷鍵')\n[150]"
 	--
-	_name="關閉程式,重整位置,顯示局長,禁閉者檔案,倉庫,互動,採購部,更衣室,研磨坊,戰鬥,溫泉,派遣,圖鑑,鍛造室,檔案室"
+	_name="關閉程式,關閉視窗,重整位置,顯示局長,禁閉者檔案,倉庫,互動,採購部,更衣室,研磨坊,戰鬥,溫泉,派遣,快速派遣,圖鑑,鍛造室,檔案室"
 	_txt=""
 	for _i=0 ; _i<ARRAYSIZE(_name) ; _i++
 	{
 		_txt+="\_l[10]\f[color,200,0,0]\f[height,20]└\f[default]\f[height,15] \__q[OnHotkeySetting.Change,%(_i),%(_name[_i])]%(_name[_i])\n[1]\f[align,right] [  \f[bold,1]\f[color,"
 		if OnHotkeySetting.Check(self_hotkey[_i]) >1 ; _txt+="#FF2D2D"
 		else ; _txt+="#FFDC35"
-		_txt+="]%(self_hotkey[_i])\f[color,default]\f[bold,0]  ] \__q \__q[OnHotkeySetting.Delelt,%(_i)]%QTYimg('x')\__q    \n[130]\f[align,left]"
+		_l=TOUPPER(self_hotkey[_i])
+		_txt+="]%(_l)\f[color,default]\f[bold,0]  ] \__q \__q[OnHotkeySetting.Delelt,%(_i)]%QTYimg('x')\__q    \n[130]\f[align,left]"
 	}
 	_txt
 	--
@@ -59,9 +60,27 @@ BalloonTooltip_OnHotkeySetting.Delelt{"清空"}
 OnKeyPress
 {
 	_key=reference0
-	if EventArgv>0 ; MouseInEvent
-	elseif HotkeyMode==1 ; { "\![raise,OnHotkeySetting.End,%(reference0)]" }
-	elseif ill_mode==2			//圖鑑切換
+	//設定快捷鍵
+	if HotkeyMode==1 ; { "\![raise,OnHotkeySetting.End,%(reference0)]" }
+	//自訂快捷鍵
+	elseif _key==self_hotkey[0] {HotKey_CloseSSP}	//關閉程式
+	elseif _key==self_hotkey[1] {	//關閉視窗
+		if first_boot_event<6 ; ChiefRegister
+		elseif StoreMode>=1 ; OnLeaveStore
+		elseif IllustratedMode>=1 { IllustratedMode=0 ; ERASEVAR('ill_info_page') ; CANCEL_Button }
+		elseif BattleMode>=1 ; StillInBattle
+		elseif DressingMode>=1 ; OnLeaveDressingRoom
+		elseif DispatchMode>=1 && dispatch_window[0]>=1 ; { dispatch_window[0]=0 ; CANCEL_Button }
+		elseif openbagmode==1 ; CloseBag
+		else ; CANCEL_Button
+		
+		
+	}//SpaMode+SheepMode
+	elseif _key==self_hotkey[2] {ResetSpot}	//重整位置
+	elseif _key==self_hotkey[3] {cp(0)}	//顯示局長
+	elseif _key==self_hotkey[13] && DispatchMode>=1 ; OnDispatch.End //快速派遣（結束）
+	//[圖鑑模式] 圖鑑切換
+	elseif IllustratedMode==2			
 	{	case _key
 		{	when "left"  ; "\![raise,OnIllustrated_Enemy_Info.Changepage,A]"
 			when "right" ; "\![raise,OnIllustrated_Enemy_Info.Changepage,B]"
@@ -69,27 +88,29 @@ OnKeyPress
 			when "down"  ; "\![raise,OnIllustrated_Enemy_Info.ChangePic,1]"
 		}
 	}
-	elseif _key==self_hotkey[0] {HotKey_CloseSSP}	//關閉程式
-	elseif _key==self_hotkey[1] {ResetSpot}	//重整位置
-	elseif _key==self_hotkey[2] {cp(0)}	//顯示局長
-	elseif _key==self_hotkey[3] {SinnerInfo}	//禁閉者檔案
-	elseif _key==self_hotkey[4] {OpenBagItem}	//倉庫
-	elseif _key==self_hotkey[7]	//更衣室
+	elseif (first_boot_event-6)>0 || DressingMode+SpaMode+DispatchMode+IllustratedMode>0 ; MouseInEvent
+	
+	elseif _key==self_hotkey[4] {SinnerInfo}	//禁閉者檔案
+	elseif _key==self_hotkey[5] {OpenBagItem}	//倉庫
+	elseif _key==self_hotkey[8]	//更衣室
 	{	if DressingMode==0 ; GoIntoDressingRoom
 		elseif DressingCheck!=0 {DressingCheck}
 		else ; OnLeaveDressingRoom
 	}
-	elseif _key==self_hotkey[14] {Database}				//檔案室
+	elseif _key==self_hotkey[16] {Database}				//檔案室
 	//================無法在特殊事件時使用================
 	elseif EventArgv+SinnerRoomMode==0 {
-		if _key==self_hotkey[5] {Menu_Interact}				//互動
-		elseif _key==self_hotkey[6]	{Hotkey_STORE}			//採購部
-		elseif _key==self_hotkey[8] {Dye.Grind.GoTo}		//研磨坊
-		elseif _key==self_hotkey[9] {GoToBattle}			//戰鬥
-		elseif _key==self_hotkey[10] {GoToSpa}				//溫泉
-		elseif _key==self_hotkey[11] {Dispatch}				//派遣
-		elseif _key==self_hotkey[12] {HotKey_Illustrated}	//圖鑑
-		elseif _key==self_hotkey[13] {Hotkey_ForgeRoom}		//鍛造室
+		if _key==self_hotkey[6] {Menu_Interact}				//互動
+		elseif _key==self_hotkey[7]	{Hotkey_STORE}			//採購部
+		elseif _key==self_hotkey[9] {Dye.Grind.GoTo}		//研磨坊
+		elseif _key==self_hotkey[10] {GoToBattle}			//戰鬥
+		elseif _key==self_hotkey[11] {GoToSpa}				//溫泉
+		elseif _key==self_hotkey[12] {Dispatch}				//派遣
+		elseif _key==self_hotkey[13] && DispatchMode==0 {
+			OnDispatch.Start(1) 
+		}
+		elseif _key==self_hotkey[14] {HotKey_Illustrated}	//圖鑑
+		elseif _key==self_hotkey[15] {Hotkey_ForgeRoom}		//鍛造室
 	}
 	if developermode==1 {
 	  case reference0 {
@@ -100,30 +121,29 @@ OnKeyPress
 		
 		
 		when "n" {
-		GETTYPE(lots_result_color)
+		
 		}
 		when "p" {
 		"\![open,dialog,color,--id=Onjrioj]"
 		}
 		when "t" {
+		
 		}
 		when "k" {
-		"%(cum_int_HC)\n[130]%(cum_int_HL)"
+		cum_dispatch_enhancement=(0,0,0)
+		cum_dispatch_ingrendient=(0,0,0,0,0,0)
 		}
 		when "." {
-		stamina=0
-		}
-		when "," {
-		"\![set,balloonnum,檔案名,3,10]123"
+		
 		}
 		when "j" {
-		"\t\q[選項1,efgr]\q[選項2,efgr]\q[選項3,efgr]文字文字文字文字文字文字文字文字文字"
+		
 		}
 		when "w" {
-		"\p[5]\s[520010]%SFX('sfx/Rinwonarasu')\i[680001]"
+		
 		}
 		when "e" {
-		"\![raise,OnTutorial.Battle,20]"
+		
 		}
 		when "i" {
 		

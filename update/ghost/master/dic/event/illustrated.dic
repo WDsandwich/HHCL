@@ -1,9 +1,9 @@
 Menu_Illustrated
-{	ill_mode=1
+{	IllustratedMode=1
 	Illustrated
 }
 HotKey_Illustrated
-{	if ill_mode>=1 ; OnIllustrated_Close
+{	if IllustratedMode>=1 ; OnIllustrated_Close
 	else ; Menu_Illustrated
 }
 Illustrated
@@ -182,7 +182,7 @@ Illustrated_Type_Enemy
 	_txt
 }
 OnIllustrated_Enemy_Icon
-{	ill_mode=2
+{	IllustratedMode=2
 	ill_pic_page=0
 	_name=reference0
 	ill_info_page = ASEARCH (_name,enemy_list_name)
@@ -339,11 +339,12 @@ OnIllustrated_Enemy_Info.ChangePic
 	OnIllustrated_Enemy_Info
 }
 OnIllustrated_Enemy_Info_Close
-{	ill_mode=1
+{	IllustratedMode=1
 	Illustrated
 }
 OnIllustrated_Close
-{	ill_mode=0
+{	IllustratedMode=0
+	ERASEVAR('ill_info_page')
 	CANCEL_Button
 }
 

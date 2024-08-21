@@ -8,6 +8,10 @@ Menu_STORE
 	StoreMode=0
 	DressingPage[1]=2
 	poke_history_open=0
+	multiply=1
+	store_autoscroll[6]=0
+	openbagmode=0
+	--
 	Store
 	--
 	if StoreMode==0	;{ Menu_STORE.MenuTalk0 ; StoreMode=1 }
@@ -63,18 +67,28 @@ Store
 	--
 	if storepage==(0,0)		//-----首頁
 	{
-		"\n[250]\f[height,18]\f[bold,1]/
-		\_l[50]\f[color,223,158,62]👚\f[color,default]\__q[OnStore.ChangePage,1,0] 服裝分區 \__q\n[233]/
-		\_l[50]\f[color,223,158,62]🍬\f[color,default]\__q[OnStore.ChangePage,2,0] 雜貨區 \__q\n[233]/
-		\_l[50]\f[color,223,158,62]🎁\f[color,default]\__q[OnStore.ChangePage,3,0] 禮品抽獎區 \__q\n[233]/
-		\_l[50]\f[color,223,158,62]✡︎\f[color,default]\__q[OnStore.ChangePage,4,0] 活動 \__q\n[233]/
+		"\n[120]\f[height,18]\f[bold,1]/
+		\_l[50]\f[color,223,158,62]👚\f[color,default]\__q[OnStore.ChangePage,1,0] 服裝分區 \__q\n[200]/
+		\_l[50]\f[color,#1E90FF]⚔️\f[color,default]\__q[OnStore.ChangePage,6,0] 戰鬥道具 \__q\n[200]/
+		\_l[50]\f[color,#FFB6C1]🍬\f[color,default]\__q[OnStore.ChangePage,2,0] 雜貨區 \__q\n[200]/
+		\_l[50]\f[color,#9370DB]✡︎\f[color,default]\__q[OnStore.ChangePage,4,0] 月供商品 \__q\n[200]/
+		\_l[50]\f[color,#E6E6FA]🎟️\f[color,default]\__q[OnStore.ChangePage,3,0] 戳戳樂 \__q\n[200]/
+		\_l[50]%Bimg('items\fei_coin_20px.png')\__q[OnStore.ChangePage,5,0] 菲幣兌換 \__q\n[200]/
 		\_l[50]\f[color,127,179,230]💰\f[color,default]\__q[OnStore.ChangePage,99,0] 販售物品 \__q\f[default]"
 		--
-		"\_l[10,320]\f[height,12]累計消費額度：%ThousandsSeparators(cum_cost_discoin[0]+cum_cost_discoin[1]+cum_cost_discoin[2])"
+		cum_cost=(0,0)
+		for _i=0 ; _i<ARRAYSIZE(cum_cost_discoin) ; _i++ {
+			cum_cost[0]+=cum_cost_discoin[_i]
+		}
+		for _i=0 ; _i<ARRAYSIZE(cum_cost_hypercube) ; _i++ {
+			cum_cost[1]+=cum_cost_hypercube[_i]
+		}
+		"\_l[10,320]\__q[Store.cum_cost.Detail] %CPFS.store.option('[詳情]') \__q/
+		\f[height,12]\f[color,#C2C287]累計消費：%ThousandsSeparators(cum_cost[0]+cum_cost[1]+cum_cost_fei_coin)"
 		--
 		"\_l[80,350]\f[default]%(OnLeaveStoreBottom)\![quicksession,false]"
 	}
-	elseif storepage==(1,0)		//-----服裝分區
+	elseif storepage==(1,0)		//-----服裝分區(總覽)
 	{
 		"\f[align,center]\f[color,#000000]\f[bold,1]\f[height,20]\f[shadowcolor,#FFFFFF]▪\f[color,#DBB700]\f[shadowcolor,#000000]  %(_sectionname)服裝分區 \f[color,#000000]\f[shadowcolor,#FFFFFF] ▪\f[default]\n[150]/
 		\f[height,12]\f[color,#F0E68C]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\f[default]/
@@ -151,7 +165,7 @@ Store
 				   when 1 ; "\__q[STChangeHC]%STimg('HL_60px')\__q"
 				}
 				--
-				"\n[70]%(STdiscoin)\n[130]"
+				"\n[70]%currency_show(0)\n[130]"
 			}
 		  //套裝-標籤頁
 			when 2
@@ -165,12 +179,12 @@ Store
 				}
 				--
 				"\_l[203]\__q[OnLeaveStore,更衣室]%STimg('dressingroom')\__q\n[10]/
-				%(STdiscoin)\n[120]"
+				%currency_show(0)\n[120]"
 			}
 		  //cosplay-標籤頁
 		  when 3
 			{
-				"    %(STdiscoin)\_l[203,10]\__q[OnLeaveStore,更衣室]%STimg('dressingroom')\__q\n[30]"
+				"    %currency_show(0)\_l[203,10]\__q[OnLeaveStore,更衣室]%STimg('dressingroom')\__q\n[30]"
 			}
 		}
 		--
@@ -339,7 +353,7 @@ Store
 		if poke_history_open==1 ; "0][ 關閉 "
 		else ; "1][ 開啟 "
 		--
-		"歷史紀錄 ]\__q\n\_l[-,300]\f[align,right]%(STdiscoin)"
+		"歷史紀錄 ]\__q\n\_l[-,300]\f[align,right]%currency_show(0)"
 		--
 		"\f[default]\_l[-9,333]%STimg('line')\n[-30]/
 		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
@@ -349,15 +363,16 @@ Store
 	//========================================================================
 	elseif storepage==(2,0)
 	{
-		_txt="%STimg('title')\_l[23]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 特供 ▪\f[default]\_l[110]< 1500 %ItemImg('Discoin')狄斯幣 >\n[170]\__q[OnStore.BuyingGroceries,1,1]\_l[10]%STimg('square4')\__q\_l[37]%STimg('commodity\energydrink_18px') 能量飲料\n[150]/
-		%STimg('title')\_l[8]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 強化材料 ▪\f[default]\_l[120]< 100 %ItemImg('hypercube_15px')異方晶 >\n[20]"
+		_txt="%STimg('title')\_l[23]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 體力 ▪\f[default]\_l[110]%currency_price(0,1500)\n[170]/
+		\__q[OnStore.BuyingGroceries,1,1]\_l[10]%STimg('square4')\__q\_l[37]%STimg('commodity\energydrink_18px') 能量飲料\n[150]/
+		%STimg('title')\_l[8]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 強化材料 ▪\f[default]\_l[120]%currency_price(1,100)\n[20]"
 		--
 		_enhpic=("enhancement_0_18px","enhancement_1_18px","enhancement_2_18px")
 		for _i=0 ; _i<3 ; _i++
 		{
 			_txt+="\n[150]\__q[OnStore.BuyingGroceries,2,%(_i)]\_l[10]%STimg('square4')\__q\_l[37]%ItemImg(_enhpic[_i]) %(enhancement_name[_i])"
 		}
-		_txt+="\n[150]%STimg('title')\_l[23]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 染劑 ▪\f[default]\_l[120]< 500 %ItemImg('hypercube_15px')異方晶 >\n[150]"
+		_txt+="\n[150]%STimg('title')\_l[23]\f[color,#171717]\f[bold,1]\f[shadowcolor,none]▪ 染劑 ▪\f[default]\_l[120]%currency_price(1,500)\n[150]"
 		for _i=0 ; _i< ARRAYSIZE (dye_name) ; _i++
 		{
 			if _i==3 || _i==8 ; _txt+="\n[30]\f[align,center]"
@@ -379,10 +394,84 @@ Store
 		--
 		_txt
 		--
-		"\n\_l[,310]\f[align,right]\_b[img\items\hypercube_15px.png,inline,--option=use_self_alpha] /
-		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %(STdiscoin)/
+		"\n\_l[,310]\f[align,right]%currency_show(1)    %currency_show(0)/
 		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
 		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+	}
+	//========================================================================
+	//---------------------------------菲幣兌換-------------------------------
+	//========================================================================
+	elseif storepage==(5,0){
+		_fei_list=("掃地機器人")
+		fei_var=("cleaner","enhancement[0]","enhancement[1]","enhancement[2]")
+		_fei_pic=("cleaner","enhancement_0","enhancement_1","enhancement_2")
+		fei_price=(100,10,15,15,15)
+		_fei_max=(1,0,0,0)
+		_goods="\f[height,12]"
+		for _i=0 ; _i<ARRAYSIZE(_fei_list) ; _i++ {	
+			_pic="items\"+_fei_pic[_i]
+			if fei_good_buy[_i]>=_fei_max[_i] && _fei_max[_i]!=0 ; _goods+=""
+			else {
+				_goods+="\n[30]\f[align,left]\_l[4]%Bimg(_pic)\n[30]\_l[70]%(_fei_list[_i])   [ "
+				if _fei_max[_i]==0 ; _goods+="無購買限制"
+				else ; _goods+="剩餘\f[color,#82F3F3]%(_fei_max[_i]-fei_good_buy[_i])\f[color,default]"
+				_goods+=" ]\n[130]\f[align,right]\f[bold,1]%(currency_color[2])%(fei_price[_i])\f[color,default]%ItemImg('fei_coin_15px')\f[bold,0]/
+				\n[-250]\_l[-1]\__q[OnBuyingFeiCoin,%(_i)]%STimg('square8')\__q\n[20]"
+			}
+		}
+		_goods+="\n[5]\f[color,#616161]"
+		for _i=0 ; _i<ARRAYSIZE(_fei_list) ; _i++ {	
+			_pic="items\"+_fei_pic[_i]
+			if fei_good_buy[_i]>=_fei_max[_i] && _fei_max[_i]!=0 {
+				_goods+="\n[30]\f[align,left]\_l[4]%Bimg(_pic)\n[30]\_l[70]%(_fei_list[_i])   [ 已售罄 ]\n[130]/
+				\f[align,right]\f[bold,1]%(fei_price[_i])%ItemImg('fei_coin_15px')\f[bold,0]/
+				\n[-250]\_l[-1]%STimg('square8_x')\n[20]"
+			}
+		}
+		_goods
+		--
+		"\n\_l[,310]\f[align,right]%currency_show(2)/
+		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
+	}
+	//========================================================================
+	//---------------------------------戰鬥---------------------------------
+	//========================================================================
+	elseif storepage==(6,0){
+		
+		
+		_txt="\f[height,12]\f[bold,1]\f[color,#000000]\f[shadowcolor,#D9D9D9]購買數量       \n[1]\f[align,right]"
+		if store_autoscroll[6]>=4 ; _txt+="\![set,autoscroll,enable]"
+		else ; _txt+="\![set,autoscroll,disable]"
+		for _i=1 ; _i<=100 ; _i=_i*10 {
+			if multiply==_i ; _txt+=" \f[color,#FFD700]\f[shadowcolor,default]x%(_i)\f[color,#000000]\f[shadowcolor,#D9D9D9] "
+			else ; _txt+="\__q[OnStore.ChangeMultiply,%(_i)] x%(_i) \__q"
+			
+		}
+		_txt+="\n[10]\f[shadowcolor,default]\f[default]\n/
+		\_l[-9]%STimg('line')\n[-70]/
+		\f[align,right]%currency_show(0)\f[color,default]\n[130]/
+		\f[color,default]\f[align,center]"
+		/*for _i=0 ; _i<6 ; _i++ {
+			_txt+="\n[130]\__q[OnStore.BuyingFuzhi,%(_i),%(500*multiply)]%(fuzhi_color[_i])色符紙\__q"
+		}*/
+		_txt
+		--
+		_goods="\f[height,12]"
+		for _i=0 ; _i<=5 ; _i++
+		{	
+			_pic="items\fuzhi_"+_i+".png"
+			_goods+="\n[50]\f[align,left]\_l[4]%Bimg(_pic)\n[40]\_l[70]%(fuzhi_color[_i])色符紙x%(multiply)  /
+			[ 持有\f[color,#82F3F3]%(fuzhi[_i])\f[color,default]個 ]/
+			\n[150]\f[align,right]\f[bold,1]\f[color,#FFDC35]%(500*multiply)\f[color,default]元\f[bold,0]"
+			_goods+="\n[-350]\_l[-1]\__q[OnStore.BuyingFuzhi,%(_i),500,%(multiply)]%STimg('square')\__q"
+			_goods+="\n[20]"
+		}
+		_goods
+		--
+		"\n[70]\f[align,right]%currency_show(0)/
+		\f[default]\n[130]\_l[-9]%STimg('line')\n[-30]/
+		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)\n"
 	}
 	//========================================================================
 	//---------------------------------活動---------------------------------
@@ -427,11 +516,11 @@ Store
 		}
 		_goods
 		--
-		"\n\_l[,310]\f[align,right]\_b[img\items\hypercube_15px.png,inline,--option=use_self_alpha] /
-		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %(STdiscoin)/
+		"\n\_l[,310]\f[align,right]%currency_show(0)/
 		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
 		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
 	}
+	
 	//========================================================================
 	//--------------------------------販賣物品--------------------------------
 	//========================================================================
@@ -447,8 +536,11 @@ Store
 		\__q[OnSellItem,3,0] └ 賣出所有原礦 \__q\n[150]/
 		\__q[OnSellItem,3,1] └ 賣出所有原礦（包括鎖定物品） \__q\n[150]"
 		--
+		_word="%(switch_name_oc[openbagmode])倉庫＞"
+		"\n\_l[,280]\f[align,right]\__q[OpenBagItem] %CPFS.store.option(_word) \__q"
+		--
 		"\n\_l[,310]\f[align,right]%ItemImg('hypercube_15px') /
-		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %(STdiscoin)/
+		\f[color,#84C1FF]%ThousandsSeparators(hypercube)    %currency_show(0)/
 		\f[default]\_l[-9,333]%STimg('line')\n[-30]/
 		\_l[7]\f[height,15]\f[color,#FFD700]\q[ ﹤採購部 ,OnStore.ChangePage,0,0]\_l[150]%(OnLeaveStoreBottom)"
 	}
@@ -458,6 +550,41 @@ Store
 OnStore.ChangePage
 {
 	storepage=reference
+	--
+	Store
+}
+
+
+//==============================================================
+//---------------------------累消額度---------------------------
+//==============================================================
+Store.cum_cost.Detail
+{
+	_txt="\p[6]\s[-1]\b[42]\![set,choicetimeout,0]\![quicksession,true]/
+	\f[align,center]%Bimg('store/title2')\n[6]\f[color,#272727]\f[shadowcolor,none]\f[bold,1]．採購部消費紀錄．\f[default]\n[250]"
+	--
+	_list=("服裝","戳戳樂","雜貨","月供商品","戰鬥道具","雜貨","")
+	_cum=(cum_cost_discoin,cum_cost_hypercube[0]+cum_cost_hypercube[1],cum_cost_fei_coin)
+	for _i=0 ; _i<ARRAYSIZE(_list) ; _i++ {
+		if _i==0 {
+			_txt+=ItemImg('discoin_20px')+currency_color[0]+" \f[bold,1]"+currency_name[0]
+			_dis=0
+			for _j=0 ; _j<ARRAYSIZE(cum_cost_discoin) ; _j++ {
+				_dis+=cum_cost_discoin[_j]
+			}
+			_txt+=" - %ThousandsSeparators(_dis)\n[150]"
+		}
+		elseif _i==ARRAYSIZE(cum_cost_discoin) {
+			_txt+="\n"+ItemImg('hypercube_20px')+currency_color[1]+" \f[bold,1]"+currency_name[1]
+			_txt+=" - %ThousandsSeparators(cum_cost_hypercube[0]+cum_cost_hypercube[1])\n[150]"
+		}
+		elseif _i==ARRAYSIZE(_list)-1 ; _txt+="\n"+ItemImg('fei_coin_20px')+currency_color[2]+" \f[bold,1]"+currency_name[2]+"\n[130]"
+
+		_txt+="\f[color,#000000]\f[shadowcolor,#ADADAD]\f[bold,1]"+_list[_i]+"  \f[default]"+ThousandsSeparators(_cum[_i])+"\n[130]"
+	}
+	_txt
+	--
+	"\_l[-,333]\f[align,center]\__q[Store]%Bimg('store/X')\__q"
 	--
 	Store
 }
@@ -527,6 +654,7 @@ OnBuyingClothes
 		--
 		discoin-=_price
 		cum_cost_discoin[0]+=_price
+		fei_coin+=TOINT(_price/100)
 		--
 		Store
 		--
@@ -613,6 +741,7 @@ OnPokingLottery.Poke
 		else
 		{	discoin-=poke_price[0]
 			cum_cost_discoin[1]+=TOINT(poke_price[0])
+			fei_coin+=TOINT(poke_price/100)
 		}
 		//	寫入抽獎紀錄
 		_prize=ANY(poke_prize_list)
@@ -693,10 +822,11 @@ OnStore.BuyingGroceries
 	{	case _tag
 		{	when 1
 			{	consumable[0]++ ; discoin-=1500
-				cum_cost_discoin[2]=TOINT(cum_cost_discoin[2]) ; cum_cost_discoin[2]+=1500 
+				cum_cost_discoin[2]=TOINT(cum_cost_discoin[2]) ; cum_cost_discoin[2]+=1500
+				fei_coin+=1500/100 
 			}
-			when 2 ; { enhancement[_item]++ ; hypercube-=100 ; cum_cost_hypercube[0]+=100 }
-			when 3 ; { dye[_item]++ ; hypercube-=500 ; cum_cost_hypercube[1]+=500 }
+			when 2 ; { enhancement[_item]++ ; hypercube-=100 ; cum_cost_hypercube[0]+=100 ; fei_coin+=1/100 }
+			when 3 ; { dye[_item]++ ; hypercube-=500 ; cum_cost_hypercube[1]+=500 ; fei_coin+=1/100 }
 		}
 		--
 		Store
@@ -829,6 +959,54 @@ OnBuyingEventGoods.Talk.600 : nonoverlap
 }
 
 
+//========================================================================
+//-----------------------------戰鬥道具相關事件-----------------------------
+//========================================================================
+OnStore.ChangeMultiply
+{
+	multiply=reference0
+	Store
+}
+OnStore.BuyingFuzhi
+{
+	_n=reference0 ; _price=reference1*reference2 ; _qty=reference2
+	store_autoscroll[6]=_n
+	_var="fuzhi[%(_n)]"
+
+	Store.Checkout(0,_price,_var,_qty,4)
+
+	/*if discoin>=_price ; fuzhi[_n]+=_qty
+	Store.CostCheck(_price,0)*/
+
+}
+
+//========================================================================
+//-----------------------------菲幣兌換事件-----------------------------
+//========================================================================
+OnBuyingFeiCoin
+{
+	_n=reference0
+	_var=fei_var[_n]+"++"
+	if fei_coin>=fei_price[_n] {
+		EVAL(_var)
+		fei_coin-=fei_price[_n]
+		fei_good_buy[_n]+=1
+		cum_cost_fei_coin+=fei_price[_n]
+		--
+		Store
+		--
+		"\![sound,play,sound/sfx/kingaku hyouzi.mp3]\p[3]\s[311000]\![quicksession,false]"
+		--
+		"嘿嘿，\w4多謝%(username)對小店的支持呀～"
+	}
+	else {
+		Store
+		--
+		"\p[3]\s[311000]\![quicksession,false]"
+		--
+		"嗯……\w3您沒有那麼多的菲幣哦。\w9\n[110]不妨先看看其他分區的商品？"
+	}
+}
 //========================================================================
 //-----------------------------售物相關事件-----------------------------
 //========================================================================
@@ -974,9 +1152,78 @@ OnSellItem
 		}
 	}
 }
-//======================================================================
-//------------------------------狄斯幣不足------------------------------
-//======================================================================
+//================================================================
+//------------------------------結帳------------------------------
+//================================================================
+Store.Checkout		//Store.Checkout(0貨幣,1價格,2變量（商品）,3數量,4統計編號,5選項)
+{
+	_currency=_argv[0] ; _price=_argv[1]
+	_var=_argv[2] ; _qty=TOINT(_argv[3])
+	if _qty==0 ; _qty=1
+	_n=TOINT(_argv[4]) ; _r=_argv[5]
+
+	//var_name=currency_var[_currncy]
+	if currency_var[_currency]>=_price {
+		//扣款
+		_code1=currency_var_name[_currency] + "-=" + _price
+		EVAL(_code1)
+		//進貨
+		_code2=_var + "+=" + _qty
+		EVAL(_code2)
+		//統編
+		_code3="cum_cost_"+currency_var_name[_currency] + "[%(_n)]+=" + _price
+		EVAL(_code3)
+		--
+		Store
+		--
+		_fc=0
+		if _price>=100 && _currency!=2 {
+			_fc=TOINT(_price/100)
+			fei_coin+=_fc
+			/*SureWindow('Store')
+			--
+			"已獲得回饋\n
+			"*/
+		}
+		--
+		"\p[3]\s[311000]\![quicksession,false]\![sound,play,sound/sfx/kingaku hyouzi.mp3]"
+		--
+		if storepage[0]==5 {	//菲幣
+			"嘿嘿，\w4多謝%(username)對小店的支持呀～"
+		}
+		elseif storepage[0]==6 {	//戰鬥道具
+			"GO～\w3GO～\w3FIGHTING！"
+			"%(username)，\w5出外勤的時候要小心呀。"
+			"每次進入地圖都會消耗哦！\w7%(username)出發前記得檢查餘量～"
+		}
+		elseif storepage[0]==4 {	//月供商品
+
+		}
+		else {
+			"謝謝惠顧！"
+			"多謝惠顧！"
+			"\![sound,play,voice/store/slide_01.mp3]啊……令人迷醉的光澤……"
+		}
+	}
+	else {	//貨幣不足
+		Store
+		--
+		"\p[3]\s[311000]\![quicksession,false]"
+		--
+		if storepage[0]==6 {
+			"嗯……\w3您沒有那麼多的菲幣哦。\w9\n[110]不妨先看看其他分區的商品？"
+		}
+		else {
+			"啊！\w3您的%(currency_name[_curency])不夠哦！"
+		}
+	}
+
+}
+Store.NotEnough
+{
+	_i=_argv[0]
+	"\p[3]\s[311000]\![quicksession,false]啊！\w3您的%(currency_name[_i])不夠哦！"
+}
 Store.NotEnoughDiscoin
 {
 	"\p[3]\s[311000]\![quicksession,false]啊！您的狄斯幣不夠哦！"
@@ -989,10 +1236,19 @@ Store.Trade.End
 	"多謝惠顧！"
 	"\![sound,play,voice/store/slide_01.mp3]啊……令人迷醉的光澤……"
 }
+Store.Sell.End
+{
+	"\![sound,play,sound/sfx/kingaku hyouzi.mp3]\p[3]\s[311000]\![quicksession,false]"
+	--
+	_c=sell_item[0]
+	--
+	"這是您的%(currency_color[_c])%(sell_item[1])\f[color,default]%(currency_name[_c])，\w6拿好囉！"
+	"總共是%(currency_color[_c])%(sell_item[1])\f[color,default]%(currency_name[_c])，\w6還有其他要賣的嗎？"
+}
 
-//======================================================================
-//---------------------------零食分區相關事件---------------------------
-//======================================================================
+//===========================================================================
+//---------------------------零食分區相關事件（舊）---------------------------
+//===========================================================================
 STORE_Snack
 {
 	visit_store++
@@ -1056,6 +1312,7 @@ OnLeaveStore
 {
 	StoreMode=0
 	storepage=(0,0)
+	ERASEVAR('poke_price')
 	--
 	"\p[3]\s[311000]\b[0]咦？\w3已經要走了嗎？\w5\n[150]下次再光臨哦！\w9\w5/
 	%SFX('sfx\door chime2')\c\s[-1]\b[-1]"
@@ -1105,6 +1362,9 @@ SGimg
 	_txt+=".png,inline,--option=use_self_alpha]"
 	_txt
 }
+
+
+//=============棄用=============
 STdiscoin
 {
 	"\_b[img\items\Discoin.png,inline,--option=use_self_alpha]\f[default]\f[color,185,159,40] %ThousandsSeparators(discoin)"

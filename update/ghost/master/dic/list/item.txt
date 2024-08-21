@@ -1,3 +1,14 @@
+//=========================符紙=========================
+fuzhi_color
+{
+	("紅","黃","藍","黑","白","彩")
+}
+fuzhi_description
+{
+	//"使該場戰鬥只遭遇掉落","的敵人，無法在辛迪加使用。\n會在戰鬥開始時消耗。"
+	//"使該場戰鬥掉落的原礦只會是","，無法在辛迪加使用。","會在戰鬥開始時消耗。"
+	("使該場戰鬥的所有敵人掉落","，無法在辛迪加使用。","會在戰鬥開始時消耗。")
+}
 //=========================染劑=========================
 dye_ingredient_name
 {
@@ -9,7 +20,11 @@ dye_ingredient_description
 }
 dye_ingredient_price
 {
-	(39,35,44,77,85,50)
+	(3,3,3,3,3,5)
+}
+dye_ingredient_color
+{
+	("\f[color,#ED6464]","\f[color,#F4CC66]","\f[color,#0080FF]","\f[color,#09090C]\f[shadowcolor,#A6AABA]","\f[color,#E0FFFF]","\f[color,#FF77FF]")
 }
 
 //0紅,1橙,2黃,3綠,4深綠,5藍,6靛,7紫,8粉紅,9咖啡,10白,11黑,12灰
@@ -67,7 +82,7 @@ enhancement_description
 }
 enhancement_price
 {
-	(200,150,150)
+	(10,15,15)
 }
 birthdaycake_name
 {
@@ -101,19 +116,27 @@ consumable_stamina
 //=========================特殊物品=========================
 spitem_name
 {
-	("廢料","異方晶","抽獎券")
+	("掃地機器人","紙屑","異方晶","菲幣","抽獎券")
 }
 spitem
 {
-	(scrap,hypercube,lottery_ticket)
+	(cleaner,scrap,hypercube,fei_coin,lottery_ticket)
 }
 spitem_description
 {
-	("用萬能的「碎紙機」拆解出來的廢料，無法分辨其成分。\n可以變賣成等量的狄斯幣。","唯一能夠幫助人類抵禦「災變」的消耗性礦物質，相當稀有。\n可於採購部換購一些物品。","可以在採購部的抽獎區抵用一次抽獎機會。")
+	("每分鐘掃出最多 1+\f[color,#2ECEFF]%TOINT(level/10)\f[color,default] 個紙屑，會在程式開啟期間自動工作。\n（藍字每\f[color,#2ECEFF]10等\f[color,default]上升1）","用萬能的「碎紙機」拆解出來的紙屑，無法分辨其成分。\n可以變賣成等量的狄斯幣。","唯一能夠幫助人類抵禦「災變」的消耗性礦物質，相當稀有。\n可於採購部換購一些物品。","單筆消費滿100，菲將贈予買家\n\f[color,#FFD306]消費金額/100\f[color,default] 的菲幣。\n[130]可以在採購部兌換特殊的道具。","可以在採購部的抽獎區抵用一次抽獎機會。")
 }
 spitem_option
 {
-	("\f[color,#EAC100]變賣","\f[color,#EAC100]前往採購部","\f[color,#EAC100]前往採購部")
+	if EventArgv+SinnerRoomMode==0
+	("","\f[color,#EAC100]變賣","\f[color,#EAC100]前往採購部","\f[color,#EAC100]前往採購部")
+	else
+	("","","","")
+
+}
+spitem_price
+{
+	(0,1,0,0)
 }
 event_item_name
 {

@@ -364,9 +364,11 @@ SheepMenu
 	"\w6"
 	--
 	"\_q\f[height,12]\f[color,#8B0000]\n\n[half]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\_q\f[default]/
-	\w1\_q\n[130]\![*]\q[ 叫醒她 ,SheepMenu.Wakeup]\_q\n[150]/
-	\w1\_q\![*]\__q[SheepMenu.CloseSnore] %(close_snore[snore_sound])打呼聲 \__q\_q\n[150]/
-	\w1\_q\f[align,center]\f[color,#ADADAD]\f[height,12]\f[bold,1]\_l[70,222]✖\q[ 取消 ,CANCEL_Button]\_q"
+	\w1\_q\n[130]\![*]\q[ 叫醒她 ,SheepMenu.Wakeup]\_q\n[150]"
+	--
+	if MenuChoice==1 ; "\w1\_q\![*]\__q[SheepMenu.CloseSnore] %(close_snore[snore_sound])打呼聲 \__q\_q\n[150]"
+	--
+	"\w1\_q\f[align,center]\f[color,#ADADAD]\f[height,12]\f[bold,1]\_l[70,222]✖\q[ 取消 ,CANCEL_Button]\_q"
 }
 SheepMenu.Line
 {

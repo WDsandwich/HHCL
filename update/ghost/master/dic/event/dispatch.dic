@@ -1,20 +1,26 @@
 Dispatch
 {
-	"\%(MenuChoice)\b[2]\_q%(click)"
-	--
-	menu_title="前往派遣"
-	menu_p_list=("├","├","├","└")
-	
-	menu_o_list=("30分鐘","1小時","3小時","6小時")
-	menu_func_list=("OnDispatch.Sure,30,1","OnDispatch.Sure,60,0.9","OnDispatch.Sure,180,0.8","OnDispatch.Sure,360,0.6")
-	--
-	Menu.Option
+	DispatchMode=0
+	_txt="\%(MenuChoice)\b[2]%(click)\![quicksession,true]%Subtitle('派遣')\n[130]/
+	\f[color,200,0,0]└\f[default]\q[前往派遣,OnDispatch.Start] (%TOUPPER(self_hotkey[13]))\n/
+	\f[height,12]\f[color,#8B0000]\n[150]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍\f[bold,0]\f[default]\n/
+	\f[height,12]\f[bold,1]\f[color,#8E8E8E]有概率獲得：\n[130]"
+	for _i=0 ; _i<3 ;_i++ {
+		_pic="enhancement_"+_i+"_30px"
+		_txt+=ItemImg(_pic)+" "
+	}
+	_txt+="\n[130]"
+	for _i=0 ; _i<6 ;_i++ {
+		_pic="dye_ingredient_"+_i+"_30px"
+		_txt+=ItemImg(_pic)+" "
+	}
+	_txt
 	--
 	"\![quicksession,true]/
-	\n\_l[100,0]\f[height,12]\f[color,#4DFFFF]\f[bold,1]\__q[Dispatch.Detail][?]\__q\f[default]/
+	\n\_l[180,0]\f[height,12]\f[color,#4DFFFF]\f[bold,1]\__q[Dispatch.Detail][?]\__q\f[default]/
 	\n\_l[-,180]\f[align,right]\f[height,12]\__q[Dispatch.ChangeOption]"
 	--
-	if dispatch_option==1 ; Bimg('dressing\button\mark1')
+	if dispatch_shutdown==1 ; Bimg('dressing\button\mark1')
 	else ; Bimg('dressing\button\mark0')
 	--
 	" 派遣後關機\__q"
@@ -25,32 +31,26 @@ Dispatch
 Dispatch.Detail
 {	Dispatch
 	--
-	"\p[4]\s[-1]\b[34]\![quicksession,true]\n[166]/
+	"\p[4]\s[-1]\b[34]\![quicksession,true]\![set,choicetimeout,0]\f[height,12]/
+	\_l[200]\__q[Dispatch]%QTYimg('x')\__q\n[20]/
 	\![*]即使關閉程式，派遣也不會終止。\n[166]/
-	\![*]執行%TTRBY('一小時及以上')派遣，可獲得和時間成正比的%TTRBC('染料原礦')。\n[166]/
-	\![*]所有派遣都可獲得隨機數量%TTRBC('強化素材')，上限與時間成正比。/
-	\n\_l[-,200]\f[align,center]\__q[Dispatch]%QTYimg('x')\__q"
+	\![*]派遣期間將持續蒐集道具，回家時可直接領取。\n[166]/
+	\![*]使用\q[快捷鍵,OnHotkeySetting]（%TOUPPER(self_hotkey[13])）可直接開始或結束派遣，此操作不會觸發關機選項。\n[166]/
+	\![*]預設單次可持續時長為\f[color,#00FFFF]12\f[color,default]小時，並根據以下資訊提升上限，直至\f[color,#00FFFF]30\f[color,default]小時。\n[130]/
+	\f[color,#FFD306]\_l[15]- 打卡天數\n\_l[15]- 等級\n\_l[15]- 禁閉者的好感"
 
 }
 BalloonTooltip_Dispatch.Detail{"查看說明"}
 
-
-OnDispatch.Sure
+OnDispatch.Start
 {
-	dispatch_second=reference0*60
+	_hotkey=_argv[0]
 	DispatchMode=2
-	dispatch_start="%(year).%(month).%(day).%(hour).%(minute).%(second)"
-	_ratio=reference1
-	//	強化材料
-	dispatch_drop=(0,0,0)
-	for _i=0 ; _i<3 ; _i++
-	{
-		_d= TOINT (dispatch_second/1800*(level*0.05)*_ratio)
-		dispatch_drop[_i]+=TOINT (dispatch_second/1800*(level*0.13)*_ratio)+ RAND(_d)+1
-	}
-	//	原礦
-	dispatch_dye_qty=dispatch_second/3600
-	dispatch_dye_type= RAND (5)
+	dispatch_second=(GETSECCOUNT(),GETSECCOUNT())
+	dispatch_box_enhancement=(0,0,0)
+	dispatch_box_ingrendient=(0,0,0,0,0,0)
+	offline_pass=0
+	cum_dispatch_time[0]++
 	--
 	if	   MenuChoice==0 && MoodStage(mood[0])=="E" ; "\0\s[1]嗯。"
 	elseif MenuChoice==0 && MoodStage(mood[0])=="F" ; "\0\s[1]命令……\w3必須服從……"
@@ -59,94 +59,142 @@ OnDispatch.Sure
 	elseif MenuChoice==1 && MoodStage(mood[1])=="F" ; "\1\s[19]啊？\w3非去不可嗎？"
 	elseif MenuChoice==1 ; "\1\s[34]等著我的好消息吧！"
 	--
-	"\w9"
+	"\w9\b[-1]\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\s[810010]"
 	--
-	if dispatch_option==1
-	{	OnDispatch.Setting
-		--
-		"\w5\![open,file,order\關機.bat]"
-	}
-	else ; OnDispatch.Window
+	if dispatch_shutdown==1 && _hotkey!=1 ; "\w5\![open,file,order\關機.bat]\w5%(OnClose)"
+	else ; OnDispatch.Window.Open
 }
-Dispatch.ChangeOption
+OnDispatch.Start.Setting {}
+OnDispatch.Start.Line
 {
-	if dispatch_option==1 ; dispatch_option=0
-	else ; dispatch_option=1
+	if	   MenuChoice==0 && MoodStage(mood[0])=="E" ; "\0\s[1]嗯。"
+	elseif MenuChoice==0 && MoodStage(mood[0])=="F" ; "\0\s[1]命令……\w3必須服從……"
+	elseif MenuChoice==0 ; "\0\s[0]那麼待會兒見了，\w5%(usernameHC)。"
+	elseif MenuChoice==1 && MoodStage(mood[1])=="E" ; "\1去去就回……"
+	elseif MenuChoice==1 && MoodStage(mood[1])=="F" ; "\1\s[19]啊？\w3非去不可嗎？"
+	elseif MenuChoice==1 ; "\1\s[34]等著我的好消息吧！"
+}
+
+//dispatch_second { TimeSpan(dispatch_time) }
+dispatch_second_max {
+	_max=(12*60*60)+dispatch_second_ex2
+	if _max>30*60*60 ; _max=30*60*60
+	_max
+}
+dispatch_second_max_clock { 
+	
+	_clock=(dispatch_second_max/3600,(dispatch_second_max/60)%60)
+	if _clock[0]<10 ; _clock[0]="0"+_clock[0]
+	if _clock[1]<10 ; _clock[1]="0"+_clock[1]
+	"\f[color,#D3A4FF]%(_clock[0])\f[color,default]:\f[color,#D3A4FF]%(_clock[1])\f[color,default]"
+}
+dispatch_minute_ex { (ARRAYSIZE(open_date),level*3,TOINT(intimacy[0]/200),TOINT(intimacy[1]/200)) }
+dispatch_minute_ex2 { dispatch_minute_ex[0]+dispatch_minute_ex[1]+dispatch_minute_ex[2]+dispatch_minute_ex[3] }
+dispatch_second_ex2 { dispatch_minute_ex2*60 }
+dispatch_pass { (dispatch_second[1]-dispatch_second[0])+offline_pass }
+dispatch_time_clock { 
+	
+	_clock=(dispatch_pass/3600,(dispatch_pass/60)%60)
+	if _clock[0]<10 ; _clock[0]="0"+_clock[0]
+	if _clock[1]<10 ; _clock[1]="0"+_clock[1]
+	"\f[color,#D3A4FF]%(_clock[0])\f[color,default]:\f[color,#D3A4FF]%(_clock[1])\f[color,default]"
+}
+
+
+OnDispatch.ChangeOption
+{
+	if dispatch_shutdown==1 ; dispatch_shutdown=0
+	else ; dispatch_shutdown=1
 	--
 	Dispatch
 }
 
-OnDispatch.Setting
-{
-	dispatch_pass=TimeSpan(dispatch_start,"%(year).%(month).%(day).%(hour).%(minute).%(second)")
-	dispatch_left=dispatch_second-dispatch_pass
-	dispatch_time=dispatch_left+59
-	dispatch_time=(TOINT(dispatch_time/3600),TOINT((dispatch_time/60)%60),TOINT(dispatch_time%60))
-	--
-	if dispatch_time[0]<10 ; dispatch_time[0]="0"+ TOINT (dispatch_time[0])
-	if dispatch_time[1]<10 ; dispatch_time[1]="0"+ TOINT (dispatch_time[1])
-	if dispatch_time[2]<10 ; dispatch_time[2]="0"+ TOINT (dispatch_time[2])
-	--
-	"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\c\s[810010]"
-}
 OnDispatch.Window
 {
-	OnDispatch.Setting
+	/*"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\s[810010]"
+	--*/
+	/*if GETTYPEEX(_argv[0])==1 ; dispatch_window[0]=_argv[0]
+	if GETTYPEEX(reference0)==1 ; dispatch_window[1]=reference0*/
+	"\p[8]"
 	--
-	if developermode==1 && dispatch_windows==1
-	{
-		"\p[4]\s[-1]\b[2]\![quicksession,true]\f[height,12]/
-		現在時間\n%(year).%(month).%(day)  %(hour):%(minute):%(second)\n[130]/
-		DispatchMode %(DispatchMode)\n[150]/
-		dispatch_start 出發時間(日期)\n%(dispatch_start)\n[130]/
-		dispatch_second 所需用時(相對數值)\n%(dispatch_second)\n[130]/
-		dispatch_pass 已過去時間(相對數值)\n%(dispatch_pass)\n[130]/
-		dispatch_left 剩餘時間(相對數值)\n%(dispatch_left)\n[130]/
-		dispatch_time 剩餘時間(相對數值)顯示用\n%(dispatch_time)"
-	}
-	--
-	if dispatch_left<=0 ; dispatch_pass=dispatch_second
-	--
-	if dispatch_windows==1
-	{
-		"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\c\s[810010]\![quicksession,true]/
-		派遣進度：\_l[145]\__q[OnDispatch.Window.Close]%Bimg('CancelIcon')\__q/
-		\n%ProgressBar(7,10,140,dispatch_pass,dispatch_second)\n[130]"
-		--
-		if dispatch_left>0
-		{
-			"剩餘\f[color,#9EDBFF]%(dispatch_time[0]):%(dispatch_time[1])\n[1]\f[align,right]\f[color,#FFE153]\__q[OnDispatch.Back][ 緊急召回 ]\__q\f[default]"
-			--
-			//"\_w[1000]\![raise,OnDispatch.Window]"
+	if dispatch_window[0]>=1 {
+		case dispatch_window[1] {
+			when 0 {
+				"\b[60]\c\![quicksession,true]\![set,choicetimeout,0]\n[50]/
+				[時長] %(dispatch_time_clock)\_l[100]\f[color,#00FFFF]\__q[OnDispatch.Window.Change,1][ 詳情⋀]\__q\f[color,default]\n[130]\f[align,left]/
+				[道具蒐集] 共\f[color,#FFD306]"
+				--
+				_qty=0
+				for  _i=0 ; _i<ARRAYSIZE(dispatch_box_enhancement) ; _i++ {
+					_qty+= dispatch_box_enhancement[_i]
+				}
+				for  _i=0 ; _i<ARRAYSIZE(dispatch_box_ingrendient) ; _i++ {
+					_qty+= dispatch_box_ingrendient[_i]
+				}
+				"%(_qty)\f[color,default]個\n/
+				\_l[3,60]\f[color,#00FFFF]\__q[OnDispatch.End][＜回家]\__q\_l[98]\f[color,#ADADAD]\__q[OnDispatch.Window.Close][x關閉]\__q"
+			}
+			when 1 {
+				_txt="\b[54]\c\![quicksession,true]\![set,choicetimeout,0]/
+				\_l[25,-5]派遣資訊\_l[250,-5]\__q[OnDispatch.Window.Close]%QTYimg('x')\__q\n[70]/
+				\f[align,center]\f[height,12]已執行時間：%REPLACE(dispatch_time_clock,':','時')分 / %REPLACE(dispatch_second_max_clock,':','時')分\n/
+				%ProgressBar(8,20,233,dispatch_pass,dispatch_second_ex2+12*3600)\n[150]/
+				\f[align,center]\f[height,12]已蒐集道具：\n[130]"
+				--
+				for _i=0 ; _i<3 ;_i++ {
+					_pic="enhancement_"+_i+"_30px"
+					_txt+=ItemImg(_pic)+" "
+				}
+				_txt+="\n[80]"
+				for _i=0 ; _i<ARRAYSIZE(dispatch_box_enhancement) ; _i++ {
+					if _i==0 ; _txt+="       "
+					if dispatch_box_enhancement[_i]>=1 ; _txt+="\f[color,#FFD306]"
+					_txt+=dispatch_box_enhancement[_i]+"\f[color,default]       "
+				}
+				_txt+="\n[130]"
+				for _i=0 ; _i<6 ;_i++ {
+					_pic="dye_ingredient_"+_i+"_30px"
+					_txt+=ItemImg(_pic)+" "
+				}
+				_txt+="\n[80]"
+				for _i=0 ; _i<ARRAYSIZE(dispatch_box_ingrendient) ; _i++ {
+					if _i==0 ; _txt+="       "
+					if dispatch_box_ingrendient[_i]>=1 ; _txt+="\f[color,#FFD306]"
+					_txt+=dispatch_box_ingrendient[_i]+"\f[color,default]       "
+				}
+				_txt
+				--
+				"\n\_l[30,165]\f[color,#00FFFF]\f[height,12]\__q[OnDispatch.End] [ ＜回家 ]\__q/
+				\_l[200]\__q[OnDispatch.Window.Change,0][ 簡略⋁]\__q"
+			}
 		}
-		else ; "派遣完成！     \f[color,#FFE153]\__q[OnDispatch.End][ 領取獎勵 ]\__q"
+		
 	}
-	else ; "\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]"
 }
-OnDispatch.Back
+
+OnDispatch.Window.Close
 {
-	if reference0=='sure'
-	{	DispatchMode=0
-		dispatch_pass=TimeSpan(dispatch_start,"%(year).%(month).%(day).%(hour).%(minute).%(second)")
-		cum_dispatch[1]++
-		cum_dispatch_time[1]+=dispatch_pass
-		--
-		"\p[8]\s[-1]\0\s[0]\1\s[10]\p[2]%cp(0)"
-	}
-	else
-		"%SureWindow('OnDispatch.Window')\f[align,center]這樣\f[bold,1]\f[color,#FF7575]無法\f[default]獲得任何獎勵，\n確定緊急召回嗎？\n[180]/
-			%SureWindow.Button('OnDispatch.Back,sure','OnDispatch.Window')"
+	dispatch_window[0]=0
+	OnDispatch.Window
 }
-OnDispatch.Back.Sure
+OnDispatch.Window.Open
 {
-	Dispatch
+	"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\s[810010]"
+	--
+	dispatch_window[0]=1
+	OnDispatch.Window
 }
+OnDispatch.Window.Change
+{
+	dispatch_window[1]=reference0
+	OnDispatch.Window
+}
+
+
 OnDispatch.End
 {
 	DispatchMode=0
-	cum_dispatch[0]++
-	cum_dispatch_time[0]+=dispatch_second
-	intimacy+=25 ; mood+=30
+	cum_dispatch_time[1]+=TOINT(dispatch_pass)
 	"\p[8]\s[-1]"
 	--
 	case MenuChoice
@@ -155,24 +203,33 @@ OnDispatch.End
 		when 1 ; "\0\s[0]\1\s[33]%SFX('short/02-HL-15-hao le')我帶了東西回來喔！"
 	}
 	--
-	_txt="\w9\p[4]\s[-1]\b[32]\![set,balloontimeout,0]"
+	_txt="\w9\p[4]\s[-1]\b[32]\![set,balloontimeout,0]/
+	\_q時長：%REPLACE(dispatch_time_clock,':','時')分\_q\w2"
 	--
-	for _i=0 ; _i<3 ; _i++
-	{
-		_txt+="\_q%(bp)%SFX('sfx/decision button2') 獲得 %(dispatch_drop[_i]) 個 %(enhancement_color[_i])%(enhancement_name[_i])\f[default] %(bp)\_q\n[130]\w9"
-		enhancement[_i]+=dispatch_drop[_i]
+	for _i=0 ; _i<ARRAYSIZE(dispatch_box_enhancement) ; _i++ {
+		if dispatch_box_enhancement[_i]>=1 {
+			_msg=enhancement_color[_i]+enhancement_name[_i]+"\f[color,default] ×"+dispatch_box_enhancement[_i]
+			_txt+=Battle.Drop.MSG(_msg)
+			enhancement[_i]+=dispatch_box_enhancement[_i]
+			cum_dispatch_enhancement[_i]+=dispatch_box_enhancement[_i]
+		}
 	}
-	if dispatch_dye_qty>0
-	{
-		_txt+="\_q%(bp)%SFX('sfx/decision button2') 獲得 %(dispatch_dye_qty) 個 %(dye_ingredient_name[dispatch_dye_type]) %(bp)\_q\n[130]\w9"
-		dye_ingredient[dispatch_dye_type]+=dispatch_dye_qty
+	for _i=0 ; _i<ARRAYSIZE(dispatch_box_ingrendient) ; _i++ {
+		if dispatch_box_ingrendient[_i]>=1 {
+			_msg=dye_ingredient_color[_i]+dye_ingredient_name[_i]+"\f[color,default]\f[shadowcolor,default] ×"+dispatch_box_ingrendient[_i]
+			_txt+=Battle.Drop.MSG(_msg)
+			dye_ingredient[_i]+=dispatch_box_ingrendient[_i]
+			cum_dispatch_ingrendient[_i]+=dispatch_box_ingrendient[_i]
+		}
 	}
-	_txt+="\![quicksession,true]\n[150]\f[color,#FFC2CF]\__q[Dispatch][ 再次派遣 ]\__q\f[default]\n[150]\__q[CANCEL_Button][ 返回管理局 ]\__q"
+	--
 	_txt
-	
-}
-OnDispatch.Window.Close
-{
-	dispatch_windows=0
-	OnDispatch.Window
+	--
+	ERASEVAR('dispatch_second')
+	ERASEVAR('dispatch_box_enhancement')
+	ERASEVAR('dispatch_box_ingrendient')
+	ERASEVAR('offline_pass')
+	--
+	"\![quicksession,true]\n[300]\f[color,#FFC2CF]\__q[OnDispatch.Start][ 再次派遣 ]\__q\f[default]\n[150]\__q[CANCEL_Button][ 返回管理局 ]\__q"
+
 }

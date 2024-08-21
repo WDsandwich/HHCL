@@ -49,6 +49,12 @@ CumulativeData
 		cumList_suffix = "個"
 		CumList
 		--
+		cumList_title = "累計消費菲幣"
+		cumList_list = ""
+		cumList_array = cum_cost_fei_coin
+		cumList_suffix = "個"
+		CumList
+		--
 		"\_l[65]\f[color,#BBFFFF]（%ARRAYSIZE(get_pay_date)\f[default]次）"
 		--
 		"\n\_l[-,480]"
@@ -75,6 +81,12 @@ CumulativeData
 		cumList_list = ("教程","辛迪加","實驗室廢墟","銹河河道")
 		cumList_array = cum_battle_runaway
 		cumList_suffix = "次"
+		CumList
+		--
+		cumList_title = "使用符紙"
+		cumList_list = fuzhi_color+"色"
+		cumList_array = cum_fuzhi
+		cumList_suffix = "個"
 		CumList
 		--
 		cumList_title = "擊敗敵人"
@@ -133,15 +145,15 @@ CumulativeData
 			_txt
 		}
 		--
-		cumList_title="互動"
+		cumList_title="觸摸"
 		cumList_list=_list
 		cumList_array=cum_touch
 		cumList_suffix="次"
 		CumList
 		--
 		cumList_title="臥室"
-		cumList_list=("牽手","擁抱","親吻","睡覺")
-		cumList_array=cum_sinnerroom
+		cumList_list=("拜訪","牽手","擁抱","親吻","睡覺")
+		cumList_array=(cum_sinnerroom_visit[MenuChoice],cum_sinnerroom)
 		cumList_suffix="次"
 		CumList
 		--
@@ -226,9 +238,15 @@ CumulativeData
 		--
 		_t=(cum_dispatch_time[0]/3600,cum_dispatch_time[0]/60%60)
 		_r=(cum_dispatch_time[1]/3600,cum_dispatch_time[1]/60%60)
-		"\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1] 累計派遣\f[default]\n[150]/
-		\_l[20]完成  \f[color,#BBFFFF]%ThousandsSeparators(cum_dispatch[0])\f[default] 次／\f[color,#BBFFFF]%(_t[0])\f[default]時\f[color,#BBFFFF]%(_t[1])\f[default]分\n[120]/
-		\_l[20]緊急召回  \f[color,#BBFFFF]%ThousandsSeparators(cum_dispatch[1])\f[default] 次／\f[color,#BBFFFF]%(_r[0])\f[default]時\f[color,#BBFFFF]%(_r[1])\f[default]分\n[120]"
+		"\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1] 派遣\f[default]\n[150]/
+		\_l[20]出發次數  \f[color,#BBFFFF]%ThousandsSeparators(cum_dispatch[0])\f[default] 次\n[120]/
+		\_l[20]累計時長  \f[color,#BBFFFF]%(_t[0])\f[default]時\f[color,#BBFFFF]%(_t[1])\f[default]分\n[120]"
+		--
+		cumList_title = "派遣資源"
+		cumList_list = (enhancement_name,dye_ingredient_name)
+		cumList_array = (cum_dispatch_enhancement,cum_dispatch_ingrendient)
+		cumList_suffix = "個"
+		CumList
 		--
 		"\n\_l[-,480]"
 		--
@@ -292,7 +310,7 @@ CumulativeData
 
 CumList
 {
-	_txt="\n[150]\f[color,200,0,0]└\f[color,#FFE153]\f[bold,1]%(cumList_title)\f[default]\n[150]"
+	_txt="\n[150]\f[color,200,0,0]└ \f[color,#FFE153]\f[bold,1]%(cumList_title)\f[default]\n[150]"
 	for _i=0 ; _i< ARRAYSIZE (cumList_list) ; _i++
 	{
 		_txt+="\_l[20]%(cumList_list[_i])  \f[color,#BBFFFF]%ThousandsSeparators(cumList_array[_i])\f[default] %(cumList_suffix)\n[120]"
