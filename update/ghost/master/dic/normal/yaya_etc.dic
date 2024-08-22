@@ -261,8 +261,8 @@ OnUpdateComplete
 		discoin+=1000
 		
 		"\p[3]\b[32]\_q%ProgressBar(4,10,150,update_file[1],update_file[1])\n\f[align,right]%(update_file[1])/%(update_file[1])\n[130]%(DividingLine2)\n[130]\_q\s[310002]已順利完成\f[color,#FFDC35]\f[bold,1]%(version_name)\f[default]版本更新。/
-		\w2\n[150]已獲得%(version_name)版本升級獎勵\w2\n[110]/
-		\_q%SFX('sfx/decision button2')抽獎券×5\_q\w2\n[110]\_q%SFX('sfx/decision button2')狄斯幣×1000\_q/
+		\w2\n[300]獲得%(version_name)版本升級獎勵\n[110]/
+		\w2\_q%SFX('sfx/decision button2')抽獎券×5\_q\w2\n[110]\_q%SFX('sfx/decision button2')狄斯幣×1000\_q/
 		\x\p[3]\s[-1]"
 	}
 }
@@ -275,7 +275,7 @@ OnUpdateFailure
 	if reference0 == "timeout" ; "連線超時，更新失敗。\x"
 	elseif reference0 == "md5 miss" ; "MD5校驗碼錯誤，更新失敗。\x"
 	elseif reference0 == "fileio" ; "文件寫入錯誤，更新失敗。\x"
-	elseif reference0 == "readonly" ; "準備更新……"
+	elseif reference0 == "readonly" ; "\f[color,#82D900]準備更新……"
 	else
 	{	"\![set,choicetimeout,0]更新失敗，錯誤代碼：%(reference0)。/
 		%SureWindow【%(oufail_mas)】\n[150]下載失敗。" }
