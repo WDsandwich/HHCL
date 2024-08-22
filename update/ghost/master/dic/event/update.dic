@@ -92,6 +92,11 @@ UpdateData
 		self_hotkey[13]="h"
 		Last_Offline=(GETSECCOUNT(),GETSECCOUNT())
 	}
+/*	if _tvc<10400 {		//換裝系統改版
+		self_hotkey_illustrated=("w","a","s","d")
+		self_hotkey_dressingroom=("w","a","s","d","space")
+
+	}*/
 	
 	if _tvc<TOINT(REPLACE(version_now,",",""))
 	{	version_code = version_now

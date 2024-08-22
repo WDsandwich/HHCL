@@ -27,8 +27,8 @@ OnOffice
 	--
 	"\n\_l[-,200]\f[align,right]\f[height,12]\f[color,#6C6C6C]版本 %(version_name)"
 }
-version_name{"1.3.0"}
-version_now{"1,03,00"}
+version_name{"1.3.1"}
+version_now{"1,03,01"}
 
 //======================================
 //				輸入指令碼				
@@ -292,43 +292,87 @@ Initialize.Data
 {
 	//版本序號
 	version_code = version_now
+
 	//初次啟動時間
-	time_firstboot		= "%(year),%(month),%(day),%(hour),%(minute)" //---- 初始數值設定
+	time_firstboot		= "%(year),%(month),%(day),%(hour),%(minute)"
+
 	//最後離線時間
-	Last_Offline=("%(year).%(month).%(day).%(hour).%(minute).%(second)","")
+	Last_Offline		= (GETSECCOUNT(),GETSECCOUNT())
+
+
+	//=========================局長資訊=========================
 	username			= "局長"
 	usernameHC			= username
 	usernameHL			= username
 	you					= "你"
-	
-	intimacy			= (0,0)			// 親密度
-	mood				= (1000,1000)	// 心情
-	relationship		= (0,0)			// 交往狀態
-	discoin				= 1000			// 狄斯幣
-	hypercube			= 0				// 異方晶
-	
-	get_pay_date		= 0			// 月薪領取紀錄
-	
+	chief_birthday		= (year,month,day)	//局長生日
+	chief_photo			= 0					//局長證件照片
+	// 打卡紀錄
 	_m=month ; _d=day
 	if month<10 ; _m="0"+month
 	if day<10 	; _d="0"+day
-	open_date	= "%(year).%(_m).%(_d)"		// 打卡紀錄
+	open_date	= "%(year).%(_m).%(_d)"		
 	
-	chief_birthday		= (year,month,day)	//局長生日
-	chief_photo			= 0					//局長證件照片
+
+	//=========================禁閉者資訊=========================
+	// 親密度
+	intimacy			= (0,0)			
+	cum_int_HC=(0,0,0,0,0)
+	cum_int_HL=(0,0,0,0,0)
+	cum_int_down_HL=(0,0,0)
+	relationship		= (0,0)			// 交往狀態
+	// 心情
+	mood				= (1000,1000)	
+	// 觸摸
+	touch_hella_chest	= 0
+	cum_touch_HC = (0,0)
+	cum_touch_HL = (0,0)
+	// 初始強化數值
+	HCinc_ex = (0,0)	
+	HLinc_ex = (0,0)
+	// 事件歷史紀錄
+	event_history_HC=(0,0)
+	event_history_HL=(0,0)
+	// 禮物
+	gift_sp			= (1,1)		//特殊禮物
+	gift			= (0,0)
+	cum_sendgift_sp_HC = (0,0)
+	cum_sendgift_sp_HL = (0,0)
+	cum_sendgift_HC = (0,0)
+	cum_sendgift_HL = (0,0)
+	// 強化
+	cum_enh_HC=(0,0)
+	cum_enh_HL=(0,0)
+
+
+	//=========================選單操作=========================
+	MenuChoice			= 0
+	self_hotkey=("","esc","r","c","m","i")  //快捷鍵預設
+
+
+	//=========================採購部=========================
+	discoin				= 1000			// 狄斯幣
+	cum_cost_discoin=(0,0,0,0,0)		// 狄斯幣-累積消費
+	cum_gain_discoin = (0,0,0,0)		// 狄斯幣-累積獲得
+	hypercube			= 0				// 異方晶
+	cum_cost_hypercube=(0,0)			// 異方晶-累積消費
+	cum_gain_hypercube = (0,0)			// 異方晶-累積獲得
+	fei_coin			= 0				// 菲幣
+	cum_cost_fei_coin=0					// 菲幣-累積消費
+	fei_good_buy		= (0,0,0,0)		// 菲幣兌換紀錄
 	
-	MenuChoice = 0	//預設主選單
-	
-	touch_hella_chest = 0
-	
+
+	//=========================密室=========================
+	get_pay_date		= 0			// 月薪領取紀錄
+
+
+	//=========================紙屑=========================
+	clener	= 0							// 掃地機器人
 	papre_shredder_function = (0,0)		// 碎紙機(預設關閉)
-	scrap	= 0						// 廢料
+	scrap	= 0							// 紙屑
 
-	self_hotkey=("esc","r","c","m","i")  //快捷鍵預設
 
-	stamina	= 100					// 初始體力
-	staminamax	= 100				// 體力上限
-	
+	//=========================戰鬥=========================
 	level	=	1					// 等級
 	exp		=	0					// 經驗值
 	levelupexp = (level*10)*(level*10)
@@ -337,26 +381,53 @@ Initialize.Data
 	debuff_HC=(0,0)					// 我方異常狀態
 	debuff_HL=(0,0)
 	
-	loot = (IARRAY)					// 戰利品
+	loot = (0,0)					// 戰利品
 	
-	dye_ingredient = (0,0,0,0,0,0)					// 染劑原料數量
-	dye	=  (0,0,0,0,0,0,0,0,0,0,0,0,0)				// 染劑數量
-	acrylic_paint	=  (0,0,0,0,0,0,0,0,0,0,0,0,0)	// 顏料數量
-	
+	cum_battle_complete = (0,0,0,0,0)	//任務完成次數
+	cum_battle_fall = (0,0,0,0,0)		//戰敗次數
+	cum_battle_runaway = (0,0,0,0,0)	//逃走次數
+	cum_enemy = (0,0)					//擊敗敵人次數
+
+	// 戰鬥道具
+	battle_item_use		= "null"			// 目前使用對象
+	fuzhi				= (0,0,0,0,0,0)		// 符紙
+	cum_fuzhi			= (0,0,0,0,0,0)		// 符紙-使用次數
+
+
+	//=========================體力=========================
+	stamina	= 100					// 初始體力
+	staminamax	= 100				// 體力上限
+	cum_stamina_use = 0				// 體力消耗
+	cum_consumable = (0,0)			// 體力道具使用次數
+	cum_stamina_heal = (0,0)		// 體力回復量
+
+
+	//=========================道具=========================
 	enhancement	=	(5,3,3)		//強化道具
 	birthdaycake  = (0,0)		//生日蛋糕
+	cum_birthdaycake = (0,0)
 	consumable_sp = (0,0)		//特殊體力道具
 	consumable	=	(3,0,0)		//體力道具
-	gift_sp	=	(1,1)		//特殊禮物
-	
-	HCinc_ex = (0,0) 		//初始強化數值
-	HLinc_ex = (0,0)
-	
-	event_history_HC=(0,0)	//事件歷史紀錄
-	event_history_HL=(0,0)
-	
-	dispatch_windows=1		//派遣視窗開啟
-	
+	dye_ingredient = (0,0,0,0,0,0)					// 染劑原料數量
+	dye	=  (0,0,0,0,0,0,0,0,0,0,0,0,0)				// 染劑數量
+	cum_grind = (0,0,0,0,0,0,0,0,0,0,0,0,0)								// 累積染劑製作
+	acrylic_paint	=  (0,0,0,0,0,0,0,0,0,0,0,0,0)	// 顏料數量
+	cum_ingredient = (0,0)
+
+
+	//=========================派遣=========================
+	dispatch_window		= (1,0)		//視窗開啟
+	dispatch_shutdown	= 0			//派遣後關機
+	cum_dispatch_enhancement=(0,0,0)	//累積資源
+	cum_dispatch_ingrendient=(0,0,0,0,0,0)
+
+
+	//=========================溫泉=========================
+	cum_spa = (0,0,0,0)
+	cum_spa_time = (0,0,0,0)
+
+
+	//=========================更衣室=========================
 	//持有服裝
 	outfit_box_HC	=	"00_001"
 	clothes_box_HC	=	("04_001","06_001","10_001","13_001","13_002")
@@ -380,56 +451,30 @@ Initialize.Data
 	wearing_accessory_HC_last		=	(0,0)
 	wearing_accessory_HL			=	(0,0)
 	wearing_accessory_HL_last		=	(0,0)
-	
-	//禁閉者房間模式相關
+
+
+	//=========================禁閉者臥室=========================
 	SinnerRoomMode		 =	0
 	SheepMode			 =	0
-	sleep_time			 =	("%(year).%(month).%(day).%(hour).%(minute).%(second)","%(year).%(month).%(day).%(hour).%(minute).%(second)")
-	snore_sound			 =	1
-
-	//圖鑑模式
-	IllustratedMode	=	0
-
-	//可變化數量
-	qty		=	1		
-	
-
-	//次數統計用
-	cum_cost_discoin = (0,0,0)
-	cum_gain_discoin = (0,0,0,0)
-	cum_cost_hypercube = (0,0)
-	cum_gain_hypercube = (0,0)
-	cum_battle_complete = (0,0,0,0,0)
-	cum_battle_fall = (0,0)
-	cum_battle_runaway = (0,0)
-	cum_enemy = (0,0)
-	cum_int_HC=(0,0,0,0,0)
-	cum_int_HL=(0,0,0,0,0)
-	cum_int_down_HL=(0,0,0)
-	cum_touch_HC = (0,0)
-	cum_touch_HL = (0,0)
-	cum_sinnerroom_visit =	(0,0)
+	sleep_time			 =	(GETSECCOUNT(),GETSECCOUNT())
+	snore_sound			 =	1	// 打呼聲
+	cum_sinnerroom_visit=(0,0)	// 拜訪次數
+	// 臥室內互動
 	cum_sinnerroom_HC	 =	(0,0,0,0)
 	cum_sinnerroom_HL	 =	(0,0,0,0)
-	cum_sendgift_sp_HC = (0,0)
-	cum_sendgift_sp_HL = (0,0)
-	cum_sendgift_HC = (0,0)
-	cum_sendgift_HL = (0,0)
-	cum_enh_HC=(0,0)
-	cum_enh_HL=(0,0)
-	cum_ingredient = (0,0)
-	cum_grind = (0,0)
-	cum_spa = (0,0,0,0)
-	cum_spa_time = (0,0,0,0)
-	cum_dispatch = (0,0)
-	cum_dispatch_time = (0,0)
-	cum_stamina_use = 0
-	cum_stamina_heal = (0,0)
-	cum_birthdaycake = (0,0)
-	cum_consumable = (0,0)
-	cum_sinnerroom_visit=(0,0)
 
-	chief_photo=0
+
+	//=========================圖鑑=========================
+	IllustratedMode	=	0
+	self_hotkey_illustrated=("w","a","s","d")
+
+
+	//=========================其他=========================
+	//可變化數量
+	qty		=	1		
+
+
+	//=========================初次啟動=========================
 	first_boot_event=0
 }
 

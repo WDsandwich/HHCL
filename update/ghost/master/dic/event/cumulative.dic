@@ -49,13 +49,13 @@ CumulativeData
 		cumList_suffix = "個"
 		CumList
 		--
+		"\_l[65]\f[color,#BBFFFF]（%ARRAYSIZE(get_pay_date)\f[default]次）"
+		--
 		cumList_title = "累計消費菲幣"
-		cumList_list = ""
+		cumList_list = " "
 		cumList_array = cum_cost_fei_coin
 		cumList_suffix = "個"
 		CumList
-		--
-		"\_l[65]\f[color,#BBFFFF]（%ARRAYSIZE(get_pay_date)\f[default]次）"
 		--
 		"\n\_l[-,480]"
 		--

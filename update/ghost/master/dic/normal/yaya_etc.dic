@@ -275,6 +275,7 @@ OnUpdateFailure
 	if reference0 == "timeout" ; "連線超時，更新失敗。\x"
 	elseif reference0 == "md5 miss" ; "MD5校驗碼錯誤，更新失敗。\x"
 	elseif reference0 == "fileio" ; "文件寫入錯誤，更新失敗。\x"
+	elseif reference0 == "readonly" ; "準備更新……"
 	else
 	{	"\![set,choicetimeout,0]更新失敗，錯誤代碼：%(reference0)。/
 		%SureWindow【%(oufail_mas)】\n[150]下載失敗。" }
