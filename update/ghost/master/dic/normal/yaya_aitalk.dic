@@ -331,8 +331,6 @@ OnSurfaceRestore
 	}
 	elseif DispatchMode>=1 {
 		"\0\s[-1]\1\s[-1]\p[2]\s[-1]\p[8]\s[810010]"
-		--
-		if dispatch_window[0]==1 ; OnDispatch.Window
 	}
 	else ; "\0\s[0]\1\s[10]"
 }
