@@ -106,20 +106,6 @@ BattleMapChoose
 	--
 	"\_l[40,30]實驗室廢墟\__q\_l[130,45]\__q[OnMapDetail,2]\_b[img\battle\skill\skill_detail,inline,--option=use_self_alpha]\__q"
 	--
-	//選擇道具
-	_pic="battle\item\battle_item_null.png"
-	if GETTYPE(battle_item_use)==1 && fuzhi[battle_item_use]<=0 ; battle_item_use="null"
-	if GETTYPE(battle_item_use)==1 ; _pic="battle\item\battle_item_fuzhi_%(battle_item_use).png"
-	//for
-	"\_l[170,20]"
-	--
-	if level>=20 ; "\__q[OnBattle.ChooseItem]%Bimg(_pic)\__q"
-	else ; "\__q[OnBattle.ChooseItem0]%Bimg(_pic)\__q"
-	--
-	if GETTYPE(battle_item_use)==1
-		"\n[1]\f[align,right]\f[height,12]\f[color,#82F3F3]%(fuzhi[battle_item_use])"
-	--
-	//汙染層級
 	batlle_level = TOINT(batlle_level)
 	if batlle_level<0 ; batlle_level=0
 	"\_l[10,180]\f[height,12]\f[color,#CA8EC2]汙染層級：\n[120]\_l[15]\__q[OnBattle.ChangeBL,-1]%QTYimg('-')\__q \__q[OnBattle.ChangeBL,input]%(batlle_level)\__q \__q[OnBattle.ChangeBL,1]%QTYimg('+')\__q\n"
@@ -135,35 +121,6 @@ OnBattle.ChangeBL
 	}
 	else
 	{	batlle_level+=reference0 ; BattleMapChoose	}
-}
-
-BalloonTooltip_OnBattle.ChooseItem0 { "等級達到20開放" }
-OnBattle.ChooseItem0 { BattleMapChoose }
-OnBattle.ChooseItem
-{
-	_list=("null",0,1,2,3,4,5)
-	_txt="\p[6]\s[-1]\b[32]\![quicksession,true]\![set,autoscroll,disable]%(click)\![*]選擇使用符紙\![*]\_l[160,-2]\__q[BattleMapChoose]%Bimg('qty\x.png')\__q\n[90]/
-	\f[align,center]不使用\n[-45]   "
-	--
-	if GETTYPE(battle_item_use) != 1 ; _txt+="%Bimg('battle\item\square_null_1.png')"
-	else ;  _txt+="\__q[OnBattle.ChooseItem.Sure,null]%Bimg('battle\item\square_null_0.png')\__q"
-	_txt+="\n[20]"
-	for _i=0 ; _i<=5 ; _i++{
-		_pic="battle\item\fuzhi_%(_i).png"
-		_txt+="\n[30]\f[align,left]%Bimg(_pic)\n[30]\_l[45]%(fuzhi_color[_i])色符紙  [剩餘\f[color,#82F3F3]%(fuzhi[_i])\f[color,default]]\n[-90]/
-		\f[align,center]   "
-		if fuzhi[_i]<=0 ; _txt+=Bimg('battle\item\square_x.png')
-		elseif battle_item_use==_i && GETTYPE(battle_item_use)==1 ; _txt+=Bimg('battle\item\square_1.png')
-		else ; _txt+="\__q[OnBattle.ChooseItem.Sure,%(_i)]%Bimg('battle\item\square_0.png')\__q"
-	}
-	_txt
-	--
-	BattleMapChoose
-}
-OnBattle.ChooseItem.Sure
-{
-	battle_item_use=reference0
-	OnBattle.ChooseItem
 }
 OnBattle.ChangeBL.Enter
 {	_bl=reference0
@@ -277,6 +234,53 @@ OnChooseMap
 	--
 	AllMapSetting
 }
+/*
+//辛迪加 地圖設定
+ChooseMap_Syndicate
+{
+	BattleMode=1
+	mapname="Syndicate"
+	missionpay=50+level*27+TOINT(level*batlle_level*1.14514)
+	wave=(1,7,2)
+	--
+	"\p[6]\s[-1]\![bind,background,Syndicate,1]\![set,balloonalign,right]\![move,--X=550,--Y=440,--time=10,--base-offset=left.top]\p[5]\s[-1]\![bind,background,Syndicate,1]\![set,balloonalign,top]\![move,--X=500,--Y=400,--time=10,--base-offset=left.top]"
+	--
+	AllMapSetting
+}
+//實驗室廢墟 地圖設定
+ChooseMap_ParmaRuins
+{
+	BattleMode=1
+	mapname="ParmaRuins"
+	missionpay=3000
+	wave=(1,5,4)
+	--
+	"\p[5]\s[-1]\![bind,background,ParmaRuins,1]"
+	--
+	AllMapSetting
+}
+//銹河河道 地圖設定
+ChooseMap_RustRiver
+{
+	BattleMode=1
+	mapname="RustRiver"
+	missionpay=2000
+	wave=(1,10,6)
+	--
+	"\p[5]\s[-1]\![bind,background,RustRiver,1]"
+	--
+	AllMapSetting
+}
+//內海 地圖設定
+ChooseMap_DisSea
+{
+	BattleMode=1
+	mapname=DisSea
+	missionpay=5000
+	wave=(1,3)
+	"\p[5]\s[-1]\![bind,background,DisSea,1]"
+	AllMapSetting
+}*/
 
 //通用開場設定
 AllMapSetting
@@ -295,12 +299,6 @@ AllMapSetting
 	cirt=(15,15)
 	pressbutton=0
 	click_sound=1
-	//符紙消耗
-	if GETTYPE(battle_item_use)==1 && mapname!="Syndicate" { 
-		fuzhi[battle_item_use]--
-		cum_fuzhi[battle_item_use]++
-	}
-	//敵方資訊設定
 	enemy_nameSetting
 	EnemyInfoSetting
 	--
@@ -354,45 +352,26 @@ InitialSetting
 //敵人名稱設定
 enemy_nameSetting
 {
-	case mapname {
-		when "Syndicate"
-			enemy_name=ANY(EnemyC)
-		when "ParmaRuins" {
-			_DeepOnes=RAND(30)
-			--
-			if _DeepOnes==8
-				enemy_name="？？？"
-			/*elseif GETTYPE(battle_item_use)==1 {
-				case battle_item_use {
-					when 0 ; enemy_name="紅水母"
-					when 1 ; enemy_name=""
-					when 2 ; enemy_name="藍蠕蟲"
-					when 3 ; enemy_name="厄種"
-					when 4 ; enemy_name="聚合體"
-					when 5 ; enemy_name=""
-				}
-			}*/
-			else {
-				enemy_name=ANY(EnemyP)
-			--
-			if wave[0]==1
-				enemy_name=ANY(EnemyP)
-			}
-		}
-		when "RustRiver" {
-			/*if GETTYPE(battle_item_use)==1 {
-				case battle_item_use {
-					when 0 ; enemy_name="淚人兒"
-					when 1 ; enemy_name="婕克南瓜"
-					when 2 ; enemy_name="魟魚"
-					when 3 ; enemy_name=ANY("厄種","憂鬱的婦人")
-					when 4 ; enemy_name=""
-					when 5 ; enemy_name="淚人兒"
-				}
-			}
-			else*/
+	case mapname
+	{
+	  when "Syndicate"
+		enemy_name=ANY(EnemyC)
+	  when "ParmaRuins"
+	  {
+		_Eappear=RAND(20)
+		--
+		if _Eappear==1
+			enemy_name="？？？"
+		else
+			enemy_name=ANY(EnemyP)
+		--
+		if wave[0]==1
+			enemy_name=ANY(EnemyP)
+	  }
+	  when "RustRiver"
+	  {
 			enemy_name=ANY(EnemyR)
-		}
+	  }
 	}
 }
 //==================================================
@@ -1386,14 +1365,48 @@ EnemyHPCheck
 	}
 	elseif Ehp==0
     {
-		//=========================================擊敗敵方事件=========================================
-			//定義掉落物
+		//擊敗敵方演出
+		EnemyDropItemSetting
 		_en = ASEARCH (enemy_name,enemy_list_name)
 		cum_enemy[_en] = TOINT (cum_enemy[_en]) ; cum_enemy[_en] ++
 		--
-		"%BattleSurface('idle')\![bind,enemy,%(enemy_name)-defeated,1]"
+		"%BattleSurface('idle')\![bind,enemy,%(enemy_name)-defeated,1]\p[6]\s[-1]\b[32]\c\![quicksession,false]%(bp)%SFX('sfx/decision button2') 擊敗了 %(enemy_name) ！%(bp)\w9\w5\n[200]/
+		\_q%(bp)%SFX('sfx/decision button2') 獲得%(Edrop[0])經驗值 %(bp)\_q\w9"
 		--
-		Battle.Drop
+		WhenExpGet
+		--
+		if Edrop[1]>=1 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 \f[color,#ECAA36]%(Edrop[1])狄斯幣\f[default] %(bp)\_q\w9"
+		--
+		//強化道具
+		_txt=""
+		for _i=2 ; _i<=4 ; _i++
+		{
+			_k=_i-2
+			if Edrop[_i]>=1
+			{
+				_txt+="\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 %(Edrop[_i]) 個 %(enhancement_color[_k])%(Edrop_name[_i])\f[default] %(bp)\_q\w9"
+				--
+				enhancement[_k]+=Edrop[_i]
+			}
+		}
+		_txt
+		--
+		//戰利品
+		if enemy_name _in_ TOSTR(loot_enemy_name) ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得了 \f[color,#80FFFF]%(Edrop[5])\f[default]！%(bp)\_q\w9"
+		--
+		if Edrop[6] != ""
+		{	"\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得"
+			--
+			if mapname=="RustRiver" ; " 2個"
+			else ; "了"
+			--
+			" %(Edrop[6])！%(bp)\_q\w9"
+		}
+		--
+		if Edrop[7]>=1 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 %(Edrop[7])個 \f[color,#d8bfd8]感染凝膠\f[default]。%(bp)\_q\w9"
+		--
+		//月供
+		if GETTYPE(Edrop[8])==3 ; "\n[150]\_q%(bp)%SFX('sfx/decision button2') 獲得 \f[color,#FFBB77]%(Edrop[8])\f[default]。%(bp)\_q\w9"
 		--
 		"\x"
 		--
@@ -1420,121 +1433,70 @@ EnemyHPCheck
 //====================================================
 //-------------------戰鬥結束後操作-------------------
 //====================================================
-Battle.Drop	//----------定義敵方單位掉落道具，在此事件中獲得相應道具(除強化道具)
+EnemyDropItemSetting	//----------敵方單位掉落道具，在此事件中獲得相應道具(除強化道具)
 {
-	"\p[6]\s[-1]\b[32]\c\![quicksession,false]\![set,balloontimeout,0]\![set,choicetimeout,0]/
-	%(bp)%SFX('sfx/decision button2') 擊敗了 %(enemy_name) ！%(bp)\w9\w5\n[50]"
-	--
-	_msg=""
-	//====================[基礎掉落] 0exp,1狄斯幣,2狂亂精粹,3異能源液,4狂暴源液,5戰利品====================
-	Edrop_basic=(TOINT(level*53.1472+RAND(level)+level*30*batlle_level*0.1),0,RAND(level/10),0,0,"")
+	//0exp,1狄斯幣,2狂亂精粹,3異能源液,4狂暴源液,5戰利品,6原礦,7感染凝膠,8月供物品
+	Edrop=(TOINT(level*53.1472+RAND(level)+level*30*batlle_level*0.1),0,RAND(level/10),0,0,"","",0,RAND(7))
 	//-----exp
 	if mapname=="ParmaRuins" ; Edrop[0]=TOINT(Edrop[0]*1.7)
 	if mapname=="RustRiver" ; Edrop[0]=Edrop[0]*3
 	if enemy_name=="？？？" ; Edrop[0]=TOINT(Edrop[0]*10.7+RAND(level))
 	exp+=Edrop[0]
-	_msg="%(Edrop_basic[0])經驗值"
-	Battle.Drop.MSG(_msg)
-	--
-	WhenExpGet
-	--
 	//-----狄斯幣
-	if mapname=="Syndicate" { 
-		Edrop[1]=TOINT(level*3.456+RAND(level)+RAND(batlle_level))
-		discoin+=Edrop[1]
-		_msg="\f[color,#ECAA36]%(Edrop_basic[1])狄斯幣\f[default]"
-		Battle.Drop.MSG(_msg)
+	if mapname=="Syndicate" ; Edrop[1]=TOINT(level*3.456+RAND(level)+RAND(batlle_level))
+	discoin+=Edrop[1]
+	cum_gain_discoin[1]+=Edrop[1]
+	//-----異能or狂暴源液（需手動更新）
+	case enemy_name
+	{
+		when "刀狩","幫派打手","三角頭","聚合體","魟魚","淚人兒" ; Edrop[4]=RAND(level/10)
+		when "失心者","兜帽客工匠","紅水母","厄種","婕克南瓜","憂鬱的婦人" ; Edrop[3]=RAND(level/10)
 	}
-	--
-	//-----狂亂精粹 + 異能/狂暴源液
-	enhancement[0]+=Edrop_basic[2]
-	for _i=3 ; _i<=4 ; _i++ {	//尋找 異能or狂暴源液
-		_j=_i-3
-		if enemy_name _in_ enemy_enhancement_classify[_i] { 
-			Edrop_basic[_j]=RAND(level/10)
-		}
-		_k=_i-2
-		enhancement[_k]+=Edrop[_j]
-	}
-	for _i=0 ; _i<3 ; _i++ {
-		_j=_i+2
-		if Edrop_basic[_j]>=1 {
-			_msg="%(Edrop_basic[_j]) 個 %(enhancement_color[_i])%(Edrop_name[_i])"
-			Battle.Drop.MSG(_msg)
-		}
-	}
-	--
 	//-----戰利品
 	_a=ASEARCHEX(enemy_name,loot_enemy_name)
 	_a=ANY(_a)
-	Edrop_basic[5]=loot_name[_a]
+	Edrop[5]=loot_name[_a]
 	if enemy_name _in_ TOSTR(loot_enemy_name)
 	{	if loot[_a]=="" ; loot[_a]=1
 		else ; loot[_a]++
-		_msg="\f[color,#80FFFF]%(Edrop_basic[5])\f[color,default]！"
-		Battle.Drop.MSG(_msg)
 	}
-	
-	--
-	//====================[礦物掉落] 0原礦類型,1原礦數量,2感染凝膠(數量)====================
-	Edrop_ingredient=("null",1+TOINT(level/100)+TOINT(battle_level/100),0)
-	//使用符咒時重新定義原礦類型
-	if GETTYPE(battle_item_use)==1 && mapname != "Syndicate" {
-		if battle_item_use==5 {	//彩色
-			Edrop_ingredient[2]=Edrop_ingredient[1]
-		}
-		else {
-			Edrop_ingredient[0]=battle_item_use
-		}
-		
-	}
-	else {
-		//尋找掉落原礦類型
-		for _i=0 ; _i<=4 ; _i++ {
-			if enemy_name _in_ enemy_ingredient_classify[_i] ; Edrop_ingredient[0]=_i
-		}
-
-
-		//特殊情況-深潛者
-		if enemy_name=="？？？" {
-			Edrop_ingredient[0]=RAND(5)
-		}
-	}
-	//感染凝膠（無視符紙，額外增加）
+	//-----染料原礦
+	_b=ASEARCH(enemy_name,enemy_list_name)
+	_c=""
 	case enemy_name
-	{	when "淚人兒" ; Edrop_ingredient[2]+=3
-		when "？？？" ; Edrop_ingredient[2]+=10
-		when "紅水母","魟魚" ; Edrop_ingredient[2]+=1
+	{	when "紅水母" ; _c=0
+		when "婕克南瓜" ; _c=1
+		when "魟魚","藍蠕蟲" ; _c=2
+		when "厄種","死神" ; _c=3
+		when "聚合體","淚人兒" ; _c=4
 	}
-	//實驗室時，礦掉落x2
-	if mapname=="ParmaRuins" ; Edrop_ingredient[1]=Edrop_ingredient[1]*2
+	if _c!=""
+	{
+		Edrop[6]=dye_ingredient_name[_c]
+		dye_ingredient[_c]++
+		cum_ingredient[_c]=TOINT(cum_ingredient[_c]) ; cum_ingredient[_c]++
+		if mapname=="ParmaRuins"
+		{	dye_ingredient[_c]++ ; cum_ingredient[_c]=TOINT(cum_ingredient[_c]) ; cum_ingredient[_c]++	}
+	}
+	//-----感染凝膠
+	case enemy_name
+	{	when "紅水母","淚人兒" ; Edrop[7]=3
+		when "？？？" ; Edrop[7]=10
+		when "魟魚" ; Edrop[7]=1
+	}
+	if Edrop[7]>0
+	{	dye_ingredient[5]+=Edrop[7] ; cum_ingredient[5]=TOINT(cum_ingredient[5]) ; cum_ingredient[5]+=Edrop[7] }
+	//-----月供物品
+	if mapname=="RustRiver" && Edrop[8]==1
+	{ case month
+	 {
+		when 3 { gift_sp[4]=TOINT(gift_sp[4]) ; gift_sp[4]++ ; Edrop[8]=gift_sp_name[4] }
+		when 4 { gift_sp[5]=TOINT(gift_sp[5]) ; gift_sp[5]++ ; Edrop[8]=gift_sp_name[5] }
+		when 5 { gift_sp[6]=TOINT(gift_sp[6]) ; gift_sp[6]++ ; Edrop[8]=gift_sp_name[6] }
+		when 6 { gift_sp[7]=TOINT(gift_sp[7]) ; gift_sp[7]++ ; Edrop[8]=gift_sp_name[7] }
+	 }
+	}
 	
-	//放入背包
-	if GETTYPE(Edrop_ingredient[0])==1 {
-		_type=Edrop_ingredient[0]
-		dye_ingredient[_type]+=Edrop_ingredient[1]
-		_msg="%(dye_ingredient_color[_type])%(dye_ingredient_name[_type])\f[default] ×%(Edrop_ingredient[1])"
-		Battle.Drop.MSG(_msg)
-	}
-	if Edrop_ingredient[2]>=1 {
-		dye_ingredient[5]+=Edrop_ingredient[2]
-		_msg="\f[color,#d8bfd8]感染凝膠\f[default] ×%(Edrop_ingredient[2])"
-		Battle.Drop.MSG(_msg)
-	}
-
-	--
-	//====================[禮物掉落]====================
-	Edrop_gift=RAND(20)
-	if Edrop_gift<=1 {
-		gift_sp[Edrop_gift]++
-		_msg="\f[color,#FF79BC]"+gift_sp_name[Edrop_gift]
-		Battle.Drop.MSG(_msg)
-	}
-
-	//[月供物品]
-	Edrop_mouth=0
-
-
 }
 
 
@@ -1950,28 +1912,25 @@ BattleRunaway
 AddWave
 {
 	if Bmp[2]<Bmp[4] ; Bmp[2]+=1
-	if stamina<wave[2] && wave[0]<wave[1]+1 {
-		"\c\0\s[-1]\1\s[-1]\p[6]\s[-1]\b[32]\![quicksession,true]/
-		剩餘體力 （\f[color,#80FFFF]-%(wave[2])）\n/
-		\_l[65]\f[color,default]\f[shadowcolor,none]/
-		%(stamina)/%(staminamax)%ProgressBar(6,10,150,stamina,staminamax)\n/
-		%(DividingLine2)\n\f[default]/
-		\![quicksession,false]%(bp)體力不足以支撐她們繼續前進，要使用道具補充嗎？%(bp)\n"
+	if stamina<wave[2] && wave[0]<wave[1]+1
+	{
+		"\c\0\s[-1]\p[6]\n[130]\b[32]%(bp)體力不足以支撐她們繼續前進，要使用道具補充嗎？%(bp)\n"
 		--
 		_txt=""
-		for _i=0 ; consumable_name[_i]!="" ; _i++ {
+		for _i=0 ; consumable_name[_i]!="" ; _i++
+		{
 			if consumable[_i]>=1
-			_txt+="\n[130]\_q- \__q[OnBattle.UseConsumable,%(_i)]%(consumable_name[_i]) /
-			(\f[color,#80FFFF]+%(consumable_stamina[_i])\f[color,default])  /
-			剩餘\f[color,#FFE153]%(consumable_stamina[_i])\f[color,default]\__q\_q"
+			_txt+="\n[130]- \_q\__q[OnBattle.UseConsumable,%(_i)]%(consumable_name[_i])／%(consumable_stamina[_i])\__q\_q"
 		}
 		_txt
 		--
-		if _txt="" ; "（未持有任何恢復道具。）"
+		if _txt=""
+			"（未持有任何恢復道具。）"
 		--
-		"\n[250]\w1\_q\f[color,#D2A2CC]→ \__q[BattleRunaway][ 回到管理局 ]\__q\f[color,default]\_q"
+		"\n[250]→\_q \__q[BattleRunaway][ 回到管理局 ]\__q\_q"
 	}
-	else {
+	else
+	{
 		wave[0]+=1
 		stamina-=wave[2]
 		cum_stamina_use+=wave[2]
