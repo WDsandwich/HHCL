@@ -124,20 +124,51 @@ OnKeyPress
 		
 		}
 		when "p" {
-		"\![open,dialog,color,--id=Onjrioj]"
+		OnDispatch.Window
 		}
 		when "t" {
 		
 		}
 		when "k" {
-		cum_dispatch_enhancement=(0,0,0)
-		cum_dispatch_ingrendient=(0,0,0,0,0,0)
+		_a=("A","B","C")
+		_a[0]=IARRAY()
+		_a
+		--
+		"||%ARRAYSIZE(_a)"
 		}
 		when "." {
+		"\1\b[70]\![quicksession,true]\_l[-,10]"
+		--
+		_txt=""
+		for _i=0 ; _i<=11 ; _i++ {
+			_img="dressing\button\type\"+_i
+			_txt+="\_l[10]"+Bimg(_img)+"\n[140]"
+		}
+		_txt
+		--
+		"\_l[70,10]"+Bimg("dressing\button\changechar0")+"\_l[200]"+Bimg("dressing\button\shop")+"\n[180]"
+		--
+		"\_l[75]"+Bimg("dressing\button\remove type2")+"\_l[130,52]脫下帽子\n[180]"
+		--
+		_txt=""
+		for _i=0 ; _i<5 ; _i++ {
+			_txt+="\_l[60]"+Bimg("dressing\button\square1")+" "+Bimg("dressing\button\scr1")+"\_l[157]"+Bimg("dressing\button\square1")+" "+Bimg("dressing\button\scr1")+"\n[180]"
 		
 		}
-		when "j" {
-		
+		_txt
+		--
+		"\_l[10,440]"+Bimg("dressing\button\default")
+		--
+		"\_l[60,450]\f[valign,center]"+Bimg("dressing\button\page1")+"  "+Bimg("dressing\button\page2")+" 01 "+Bimg("dressing\button\page3")+"  "+Bimg("dressing\button\page4")
+		--
+		"\n\f[bold,1]\f[height,12]\f[align,center]\f[color,#8B0000]╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍/
+		\n\_l[10,485]\f[color,150,150,150]\_b[img/BackIcon,inline]返回\_l[210]\_b[img/CancelIcon,inline]關閉"
+		}
+		when "j" {	//"著裝列表|髮型|裝飾|美甲"	為空時，記0
+		_a="1,2|A,B|甲,乙"
+		SETDELIM(_a,"|")
+		_b=_a[2]
+		_b[1]
 		}
 		when "w" {
 		
